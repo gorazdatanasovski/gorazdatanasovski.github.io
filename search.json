@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "research.html",
+    "href": "research.html",
+    "title": "Mathematics",
+    "section": "",
+    "text": "$ = S_t dt + S_t dW_t$$"
+  },
+  {
+    "objectID": "research.html#stochastic-calculus",
+    "href": "research.html#stochastic-calculus",
+    "title": "Mathematics",
+    "section": "",
+    "text": "$ = S_t dt + S_t dW_t$$"
+  },
+  {
+    "objectID": "code.html",
+    "href": "code.html",
+    "title": "Code",
+    "section": "",
+    "text": "Numerical engine initialized."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Gorazd Atanasovski",
+    "section": "",
+    "text": "Professional quantitative repository."
+  }
+]
