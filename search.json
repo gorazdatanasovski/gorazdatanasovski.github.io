@@ -4,42 +4,41 @@
     "href": "research.html",
     "title": "Mathematics",
     "section": "",
-    "text": "$ = S_t dt + S_t dW_t$$",
-    "crumbs": [
-      "Gorazd Atanasovski",
-      "Research",
-      "Mathematics"
-    ]
+    "text": "$ = S_t dt + S_t dW_t$$"
   },
   {
     "objectID": "research.html#stochastic-calculus",
     "href": "research.html#stochastic-calculus",
     "title": "Mathematics",
     "section": "",
-    "text": "$ = S_t dt + S_t dW_t$$",
-    "crumbs": [
-      "Gorazd Atanasovski",
-      "Research",
-      "Mathematics"
-    ]
+    "text": "$ = S_t dt + S_t dW_t$$"
   },
   {
     "objectID": "code.html",
     "href": "code.html",
-    "title": "Code",
+    "title": "Software & Libraries",
     "section": "",
-    "text": "Numerical engine initialized.",
-    "crumbs": [
-      "Gorazd Atanasovski",
-      "Research",
-      "Code"
-    ]
+    "text": "This library handles high-frequency data synthesis. Here is a live demonstration:\nimport gorazd # Show a specific function from your actual library here print(“Library gorazd initialized successfully.”)"
+  },
+  {
+    "objectID": "code.html#the-gorazd-library",
+    "href": "code.html#the-gorazd-library",
+    "title": "Software & Libraries",
+    "section": "",
+    "text": "This library handles high-frequency data synthesis. Here is a live demonstration:\nimport gorazd # Show a specific function from your actual library here print(“Library gorazd initialized successfully.”)"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Gorazd Atanasovski",
     "section": "",
-    "text": "Quantitative Researcher | University of South Dakota\nWelcome to my research repository. I specialize in data science, stochastic calculus, and financial modeling. This site serves as a living document of my technical proofs and computational libraries.\nResearch Interests: * Stochastic Differential Equations * Bayesian Data Analysis * Machine Learning in Finance"
+    "text": "I am a quantitative researcher at the University of South Dakota focused on the intersection of data science and stochastic modeling.\n\n\nMy Python library, gorazd, provides specialized tools for quantitative analysis. * Install: pip install gorazd * Documentation: See the Software section for live execution examples.\n\n\n\n\nStochastic Impact Kernels (2026) - A study on \\(L^1\\)-bounded Volterra resolvents.\nFinancial Alpha Synthesis (2025) - Quantitative strategies for market-beating returns."
+  },
+  {
+    "objectID": "index.html#biography",
+    "href": "index.html#biography",
+    "title": "Gorazd Atanasovski",
+    "section": "",
+    "text": "I am a quantitative researcher at the University of South Dakota focused on the intersection of data science and stochastic modeling.\n\n\nMy Python library, gorazd, provides specialized tools for quantitative analysis. * Install: pip install gorazd * Documentation: See the Software section for live execution examples.\n\n\n\n\nStochastic Impact Kernels (2026) - A study on \\(L^1\\)-bounded Volterra resolvents.\nFinancial Alpha Synthesis (2025) - Quantitative strategies for market-beating returns."
   }
 ]

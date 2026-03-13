@@ -44,9 +44,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-46f66b053e56abd73bb6e954d61a315b.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-ff38ca5759cea8d2b4e40dc1c167d4da.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-b82a8e178c632e86601320a4062c3b24.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-ff38ca5759cea8d2b4e40dc1c167d4da.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-1d7b19a0dda7fad8a77f9591659a9cbf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-473ced84fe230d0117833396d3ca3334.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-1d7b19a0dda7fad8a77f9591659a9cbf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -75,6 +75,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -260,15 +289,15 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">Gorazd Atanasovski</span></a>
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./research.html"> 
-<span class="menu-text">Mathematics</span></a>
+<span class="menu-text">Research</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./code.html"> 
-<span class="menu-text">Code</span></a>
+<span class="menu-text">Software</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -297,7 +326,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Research</span></a>
+ <span class="menu-text">Quick Links</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -305,14 +334,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./research.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Mathematics</span></a>
+  <a href="https://pypi.org/project/gorazd/" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyPI: gorazd</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./code.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Code</span></a>
+  <a href="https://github.com/gorazdatanasovski" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GitHub</span></a>
   </div>
 </li>
       </ul>
@@ -327,7 +356,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#quantitative-researcher-university-of-south-dakota" id="toc-quantitative-researcher-university-of-south-dakota" class="nav-link active" data-scroll-target="#quantitative-researcher-university-of-south-dakota">Quantitative Researcher | University of South Dakota</a></li>
+  <li><a href="#biography" id="toc-biography" class="nav-link active" data-scroll-target="#biography">Biography</a>
+  <ul class="collapse">
+  <li><a href="#featured-software-gorazd" id="toc-featured-software-gorazd" class="nav-link" data-scroll-target="#featured-software-gorazd">Featured Software: <code>gorazd</code></a></li>
+  <li><a href="#research-papers" id="toc-research-papers" class="nav-link" data-scroll-target="#research-papers">Research Papers</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -338,6 +371,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Gorazd Atanasovski</h1>
+<p class="subtitle lead">Quantitative Researcher | University of South Dakota</p>
 </div>
 
 
@@ -354,12 +388,22 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="quantitative-researcher-university-of-south-dakota" class="level3">
-<h3 class="anchored" data-anchor-id="quantitative-researcher-university-of-south-dakota">Quantitative Researcher | University of South Dakota</h3>
-<p>Welcome to my research repository. I specialize in data science, stochastic calculus, and financial modeling. This site serves as a living document of my technical proofs and computational libraries.</p>
-<p><strong>Research Interests:</strong> * Stochastic Differential Equations * Bayesian Data Analysis * Machine Learning in Finance</p>
+<section id="biography" class="level2">
+<h2 class="anchored" data-anchor-id="biography">Biography</h2>
+<p>I am a quantitative researcher at the University of South Dakota focused on the intersection of data science and stochastic modeling.</p>
+<section id="featured-software-gorazd" class="level3">
+<h3 class="anchored" data-anchor-id="featured-software-gorazd">Featured Software: <code>gorazd</code></h3>
+<p>My Python library, <strong>gorazd</strong>, provides specialized tools for quantitative analysis. * <strong>Install:</strong> <code>pip install gorazd</code> * <strong>Documentation:</strong> See the <a href="./code.html">Software</a> section for live execution examples.</p>
+</section>
+<section id="research-papers" class="level3">
+<h3 class="anchored" data-anchor-id="research-papers">Research Papers</h3>
+<ul>
+<li><strong><a href="assets/paper1.pdf">Stochastic Impact Kernels</a></strong> (2026) - <em>A study on <span class="math inline">\(L^1\)</span>-bounded Volterra resolvents.</em></li>
+<li><strong><a href="assets/paper2.pdf">Financial Alpha Synthesis</a></strong> (2025) - <em>Quantitative strategies for market-beating returns.</em></li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
