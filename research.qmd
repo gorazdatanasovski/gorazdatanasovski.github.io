@@ -1,0 +1,6 @@
+﻿---
+title: 'Mathematics'
+---
+## Stochastic Differential Equations
+
+\$\ = \mu S_t dt + \sigma S_t dW_t\$\$

@@ -1,0 +1,4 @@
+﻿/* Quantitative CSS Overrides */
+body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+h1, h2, h3 { font-weight: 600; }
+.math.display { overflow-x: auto; }

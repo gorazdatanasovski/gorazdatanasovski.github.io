@@ -1,0 +1,15 @@
+﻿project:
+  type: website
+  output-dir: _site
+website:
+  title: "Gorazd Atanasovski | Research"
+  navbar:
+    left:
+      - index.qmd
+      - research.qmd
+      - code.qmd
+format:
+  html:
+    theme: cosmo
+    html-math-method: mathjax
+    code-fold: true
