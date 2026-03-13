@@ -4,27 +4,42 @@
     "href": "research.html",
     "title": "Mathematics",
     "section": "",
-    "text": "$ = S_t dt + S_t dW_t$$"
+    "text": "$ = S_t dt + S_t dW_t$$",
+    "crumbs": [
+      "Gorazd Atanasovski",
+      "Research",
+      "Mathematics"
+    ]
   },
   {
     "objectID": "research.html#stochastic-calculus",
     "href": "research.html#stochastic-calculus",
     "title": "Mathematics",
     "section": "",
-    "text": "$ = S_t dt + S_t dW_t$$"
+    "text": "$ = S_t dt + S_t dW_t$$",
+    "crumbs": [
+      "Gorazd Atanasovski",
+      "Research",
+      "Mathematics"
+    ]
   },
   {
     "objectID": "code.html",
     "href": "code.html",
     "title": "Code",
     "section": "",
-    "text": "Numerical engine initialized."
+    "text": "Numerical engine initialized.",
+    "crumbs": [
+      "Gorazd Atanasovski",
+      "Research",
+      "Code"
+    ]
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Gorazd Atanasovski",
     "section": "",
-    "text": "Professional quantitative repository."
+    "text": "Quantitative Researcher | University of South Dakota\nWelcome to my research repository. I specialize in data science, stochastic calculus, and financial modeling. This site serves as a living document of my technical proofs and computational libraries.\nResearch Interests: * Stochastic Differential Equations * Bayesian Data Analysis * Machine Learning in Finance"
   }
 ]
