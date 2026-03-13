@@ -1,4 +1,32 @@
-﻿/* Quantitative CSS Overrides */
-body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
-h1, h2, h3 { font-weight: 600; }
-.math.display { overflow-x: auto; }
+﻿/* Smooth Fade-in for the whole page */
+body {
+    animation: fadeInAnimation ease 0.8s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Custom Navigation Bar Styling */
+.navbar {
+    border-bottom: 3px solid #710113; /* Darker USD shade */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* High-density code blocks */
+.listing-category {
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* MathJax Equation Styling */
+.math.display {
+    color: #ab0520;
+    font-size: 1.1em;
+    padding: 1rem;
+    background: rgba(171, 5, 32, 0.03);
+    border-radius: 8px;
+}

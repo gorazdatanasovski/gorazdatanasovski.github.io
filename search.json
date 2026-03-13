@@ -16,29 +16,29 @@
   {
     "objectID": "code.html",
     "href": "code.html",
-    "title": "Software & Libraries",
+    "title": "Software & Engineering",
     "section": "",
-    "text": "This library handles high-frequency data synthesis. Here is a live demonstration:\nimport gorazd # Show a specific function from your actual library here print(“Library gorazd initialized successfully.”)"
+    "text": "The gorazd library is engineered for high-frequency data synthesis. Below is a live execution demonstrating the kernel convergence logic.\nimport numpy as np import matplotlib.pyplot as plt"
   },
   {
     "objectID": "code.html#the-gorazd-library",
     "href": "code.html#the-gorazd-library",
-    "title": "Software & Libraries",
+    "title": "Software & Engineering",
     "section": "",
-    "text": "This library handles high-frequency data synthesis. Here is a live demonstration:\nimport gorazd # Show a specific function from your actual library here print(“Library gorazd initialized successfully.”)"
+    "text": "The gorazd library is engineered for high-frequency data synthesis. Below is a live execution demonstrating the kernel convergence logic.\nimport numpy as np import matplotlib.pyplot as plt"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Gorazd Atanasovski",
     "section": "",
-    "text": "I am a quantitative researcher at the University of South Dakota focused on the intersection of data science and stochastic modeling.\n\n\nMy Python library, gorazd, provides specialized tools for quantitative analysis. * Install: pip install gorazd * Documentation: See the Software section for live execution examples.\n\n\n\n\nStochastic Impact Kernels (2026) - A study on \\(L^1\\)-bounded Volterra resolvents.\nFinancial Alpha Synthesis (2025) - Quantitative strategies for market-beating returns."
+    "text": "I am a researcher at the University of South Dakota specializing in translating global market complexity into actionable insights. This portal serves as the primary repository for my technical proofs, peer-reviewed papers, and open-source software.\n\n\n\n\nStochastic Calculus: SDEs and fractional impact kernels.\nAlgorithmic Development: High-performance Python/C++ integration.\nBayesian Statistics: Predictive modeling and uncertainty quantification.\n\n\n\n\ngorazd (v1.0.4) My proprietary Python library for automated alpha synthesis and market noise filtering. pip install gorazd\n\n\n\n\n\n\nAnalytical Convergence of Fractional Operators\nThe \\(L^1\\)-Bounded Volterra Resolvent Paradox"
   },
   {
-    "objectID": "index.html#biography",
-    "href": "index.html#biography",
+    "objectID": "index.html#technical-profile",
+    "href": "index.html#technical-profile",
     "title": "Gorazd Atanasovski",
     "section": "",
-    "text": "I am a quantitative researcher at the University of South Dakota focused on the intersection of data science and stochastic modeling.\n\n\nMy Python library, gorazd, provides specialized tools for quantitative analysis. * Install: pip install gorazd * Documentation: See the Software section for live execution examples.\n\n\n\n\nStochastic Impact Kernels (2026) - A study on \\(L^1\\)-bounded Volterra resolvents.\nFinancial Alpha Synthesis (2025) - Quantitative strategies for market-beating returns."
+    "text": "I am a researcher at the University of South Dakota specializing in translating global market complexity into actionable insights. This portal serves as the primary repository for my technical proofs, peer-reviewed papers, and open-source software.\n\n\n\n\nStochastic Calculus: SDEs and fractional impact kernels.\nAlgorithmic Development: High-performance Python/C++ integration.\nBayesian Statistics: Predictive modeling and uncertainty quantification.\n\n\n\n\ngorazd (v1.0.4) My proprietary Python library for automated alpha synthesis and market noise filtering. pip install gorazd\n\n\n\n\n\n\nAnalytical Convergence of Fractional Operators\nThe \\(L^1\\)-Bounded Volterra Resolvent Paradox"
   }
 ]
