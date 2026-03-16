@@ -139,118 +139,12 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-```{=html}
-<div id="canvas-container">
-
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script>
-    let scene, camera, renderer, wireframe;
-    const geometrySize = 1400;
-    const segments = 65;
-
-    function init() {
-        scene = new THREE.Scene();
-        camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
-        camera.position.set(0, 180, 400);
-        camera.lookAt(0, -50, 0);
-        
-        renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.getElementById('canvas-container').appendChild(renderer.domElement);
-
-        let geometry = new THREE.PlaneGeometry(geometrySize, geometrySize, segments, segments);
-        geometry.rotateX(-Math.PI / 2);
-        
-        // Inject structural color array for gradient mapping
-        const count = geometry.attributes.position.count;
-        geometry.setAttribute('color', new THREE.BufferAttribute(new Float32Array(count * 3), 3));
-
-        // Vertex colors enabled to allow dynamic topological gradients
-        let material = new THREE.MeshBasicMaterial({
-            vertexColors: true, 
-            wireframe: true, 
-            transparent: true, 
-            opacity: 0.35
-        });
-        
-        wireframe = new THREE.Mesh(geometry, material);
-        scene.add(wireframe);
-
-        animate();
-    }
-    
-    let time = 0;
-    const colorObj = new THREE.Color();
-
-    function animate() {
-        requestAnimationFrame(animate);
-        time += 0.012;
-        
-        let positions = wireframe.geometry.attributes.position;
-        let colors = wireframe.geometry.attributes.color;
-        
-        for (let i = 0; i < positions.count; i++) {
-            let x = positions.getX(i);
-            let z = positions.getZ(i);
-            
-            // Non-linear stochastic surface simulation
-            let y = Math.sin(x * 0.008 + time) * Math.cos(z * 0.008 + time) * 75;
-            positions.setY(i, y);
-            
-            // Dynamic Hue Gradient based on vertex displacement
-            let hue = 0.6 + (y / 250); 
-            colorObj.setHSL(hue, 1.0, 0.5);
-            colors.setXYZ(i, colorObj.r, colorObj.g, colorObj.b);
-        }
-        
-        positions.needsUpdate = true;
-        colors.needsUpdate = true;
-        renderer.render(scene, camera);
-    }
-    
-    window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-    
-    init();
-</script>
-<div id="math-rain">
-
-</div>
-<script>
-    const rainContainer = document.getElementById('math-rain');
-    const mathSymbols = ['Σ', 'Π', '∫', '√', '∞', '∂', '∇', 'Δ', 'Ω', 'd', 'dt', 'dW_t', 'd\\sigma_t', 'H', 'μ', 'σ', '\\mathbb{P}', '\\mathbb{Q}'];
-    
-    function createMathCharacter() {
-        const char = document.createElement('div');
-        char.innerText = mathSymbols[Math.floor(Math.random() * mathSymbols.length)];
-        
-        // Dynamic topological mapping
-        char.style.left = Math.random() * 100 + 'vw';
-        char.style.opacity = Math.random() * 0.3 + 0.1;
-        char.style.animationDuration = Math.random() * 8 + 4 + 's';
-        char.style.fontSize = Math.random() * 0.8 + 1.2 + 'rem';
-        char.style.fontWeight = Math.random() > 0.5 ? 'bold' : 'normal';
-
-        rainContainer.appendChild(char);
-
-        setTimeout(() => {
-            char.remove();
-        }, parseFloat(char.style.animationDuration) * 1000);
-    }
-
-    // Initiate kinetic character cascade
-    setInterval(createMathCharacter, 150); 
-</script>
 <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 6rem 2rem; position: relative; z-index: 10;">
 <pre><code>&lt;div style="text-align: center; margin-bottom: 5rem;"&gt;
     &lt;a href="https://www.usd.edu/" target="_blank"&gt;
         &lt;img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8c/University_of_South_Dakota_logo.svg/1200px-University_of_South_Dakota_logo.svg.png" alt="University of South Dakota" class="usd-logo"&gt;
     &lt;/a&gt;
-    &lt;h1 style="margin-top: 2rem; font-size: 3.8rem; margin-bottom: 0.5rem;"&gt;Welcome to my page&lt;/h1&gt;
+    &lt;h1 style="margin-top: 2rem; font-size: 3.8rem; margin-bottom: 0.5rem; background: linear-gradient(90deg, #ffffff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"&gt;Welcome to my page&lt;/h1&gt;
     &lt;h2 class="text-red" style="font-size: 2.2rem; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase;"&gt;Quantitative Finance&lt;/h2&gt;
     &lt;p style="max-width: 800px; margin: 2rem auto; font-size: 1.25rem; color: #f3f4f6; opacity: 0.8;"&gt;
         On this website, you can find the mathematical research and theories that drive my models, alongside the deterministic software infrastructure built for microsecond-latency execution.
