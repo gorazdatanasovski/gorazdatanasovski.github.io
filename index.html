@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>GZ | Quantitative Engine</title>
+<title>Gorazd Atanasovski</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">GZ | Quantitative Engine</span>
+    <span class="navbar-title">Gorazd Atanasovski</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -94,15 +94,15 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">Terminal</span></a>
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./research.html"> 
-<span class="menu-text">Mathematics</span></a>
+<span class="menu-text">Research</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./code.html"> 
-<span class="menu-text">Software: GORAZD</span></a>
+<span class="menu-text">Software</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -134,84 +134,92 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 style="font-size: 4rem;" class="title display-7">
-Gorazd Atanasovski
-</h1></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
 
-<div id="particles-js">
+<div id="canvas-container">
 
 </div>
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-  particlesJS("particles-js", {
-    "particles": {
-      "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-      "color": { "value": "#ffffff" },
-      "shape": { "type": "circle" },
-      "opacity": { "value": 0.3, "random": false },
-      "size": { "value": 2, "random": true },
-      "line_linked": { "enable": true, "distance": 150, "color": "#FF0000", "opacity": 0.4, "width": 1 },
-      "move": { "enable": true, "speed": 1.5, "direction": "none", "random": true, "out_mode": "out" }
-    },
-    "interactivity": {
-      "detect_on": "canvas",
-      "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" } },
-      "modes": { "grab": { "distance": 200, "line_linked": { "opacity": 0.8 } } }
-    },
-    "retina_detect": true
-  });
-</script>
-<div class="container" style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
-<div class="hero-section">
+    let scene, camera, renderer, wireframe;
+    function init() {
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
+        camera.position.set(0, 150, 300);
+        camera.lookAt(0, 0, 0);
+        
+        renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-<h3 style="color: #94a3b8; font-weight: 400; font-size: 1.5rem; margin-bottom: 2rem;" class="anchored">
-Apex Quantitative Research &amp; Algorithmic Deployment
-</h3>
-<p style="max-width: 700px; font-size: 1.2rem; margin-bottom: 3rem;">
-Translating global market complexity into pure, profitable alpha. This infrastructure bypasses heuristic approximation in favor of exact analytical solutions, unassailable mathematical proofs, and microsecond-latency execution matrices.
-</p>
-<div>
-<pre><code>&lt;a href="code.qmd" class="btn-cyber" style="margin-right: 1rem;"&gt;View Software Matrices&lt;/a&gt;
-&lt;a href="research.qmd" class="btn-cyber" style="background: rgba(255,0,0,0.1);"&gt;Initialize Mathematics&lt;/a&gt;</code></pre>
-</div>
-</div>
-<div class="quant-card">
-<h2 class="anchored">
-<span class="text-red">01.</span> The GORAZD Universal Matrix
-</h2>
-<p>
-<strong>Gradient-Optimized Regime-Aware Zero-allocation Dispatcher (v1.0.0)</strong>
-</p>
-<p>
-An elite, cross-platform quantitative execution matrix designed for institutional developers. It bridges the gap between local workstation simulation and bare-metal high-frequency deployment, physically bypassing the Python Global Interpreter Lock (GIL) to achieve deterministic, microsecond-latency execution.
-</p>
-<div class="grid-2" style="margin-top: 2rem;">
-<pre><code>&lt;div&gt;
-  &lt;h4&gt;Tactical Simulation&lt;/h4&gt;
-  &lt;p&gt;Build, train, and backtest non-linear risk matrices locally utilizing full multicore concurrency and ZeroMQ tactical dashboards.&lt;/p&gt;
+        let geometry = new THREE.PlaneGeometry(1200, 1200, 50, 50);
+        geometry.rotateX(-Math.PI / 2);
+        
+        // NO YELLOW. Exclusively #FF0000
+        let material = new THREE.MeshBasicMaterial({color: 0xFF0000, wireframe: true, transparent: true, opacity: 0.25});
+        wireframe = new THREE.Mesh(geometry, material);
+        scene.add(wireframe);
+
+        animate();
+    }
+    
+    let time = 0;
+    function animate() {
+        requestAnimationFrame(animate);
+        time += 0.015;
+        let position = wireframe.geometry.attributes.position;
+        for (let i = 0; i < position.count; i++) {
+            let x = position.getX(i);
+            let z = position.getZ(i);
+            // Simulating a stochastic volatility surface
+            let y = Math.sin(x * 0.005 + time) * Math.cos(z * 0.005 + time) * 80;
+            position.setY(i, y);
+        }
+        position.needsUpdate = true;
+        renderer.render(scene, camera);
+    }
+    
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+    
+    init();
+</script>
+<div class="container" style="max-width: 1200px; margin: 0 auto; padding: 4rem 2rem;">
+<pre><code>&lt;div style="text-align: center; margin-bottom: 4rem;"&gt;
+    &lt;a href="https://www.usd.edu/" target="_blank"&gt;
+        &lt;img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8c/University_of_South_Dakota_logo.svg/1200px-University_of_South_Dakota_logo.svg.png" alt="University of South Dakota" class="usd-logo"&gt;
+    &lt;/a&gt;
+    &lt;h1 style="font-size: 3.5rem; margin-bottom: 0.5rem;"&gt;Welcome to my page&lt;/h1&gt;
+    &lt;h2 class="text-red" style="font-size: 2rem; font-weight: 400;"&gt;Quantitative Finance&lt;/h2&gt;
+    &lt;p style="max-width: 800px; margin: 2rem auto; font-size: 1.2rem; color: #a1a1aa;"&gt;
+        This architecture serves as the primary deployment vector for advanced quantitative analytics. 
+        Navigate through the interface to explore formally proven mathematical theories and deterministic algorithmic software infrastructure.
+    &lt;/p&gt;
 &lt;/div&gt;
-&lt;div&gt;
-  &lt;h4&gt;Live Deployment&lt;/h4&gt;
-  &lt;p&gt;Deploy the exact same codebase to a bare-metal server. GORAZD automatically maps to Linux &lt;code&gt;isolcpus&lt;/code&gt; and native &lt;code&gt;.so&lt;/code&gt; C-libraries for zero-latency physical execution.&lt;/p&gt;
+
+&lt;div class="grid-2"&gt;
+    &lt;div class="quant-card"&gt;
+        &lt;h2&gt;Mathematical Research &amp; Theories&lt;/h2&gt;
+        &lt;p style="color: #a1a1aa; margin-bottom: 2rem;"&gt;
+            Rigorous formalization of market microstructure dynamics, continuous-time pricing frameworks, and analytical boundary limits. Heuristic approximations are rejected in favor of exact stochastic derivations.
+        &lt;/p&gt;
+        &lt;a href="research.qmd" class="btn-cyber"&gt;View Mathematics&lt;/a&gt;
+    &lt;/div&gt;
+
+    &lt;div class="quant-card"&gt;
+        &lt;h2&gt;Computational Software&lt;/h2&gt;
+        &lt;p style="color: #a1a1aa; margin-bottom: 2rem;"&gt;
+            Live execution environments and proprietary libraries. Featuring GORAZD, a Gradient-Optimized Regime-Aware Zero-allocation Dispatcher engineered for zero-latency physical execution.
+        &lt;/p&gt;
+        &lt;a href="code.qmd" class="btn-cyber"&gt;View Software&lt;/a&gt;
+    &lt;/div&gt;
 &lt;/div&gt;</code></pre>
-</div>
-<p><a href="https://pypi.org/project/gorazd/" target="_blank" class="btn-cyber" style="margin-top: 2rem; padding: 0.5rem 1.5rem;">pip install gorazd</a></p>
-</div>
-<div class="grid-2">
-<div class="quant-card">
-<pre><code>&lt;h2&gt;&lt;span class="text-red"&gt;02.&lt;/span&gt; Mathematics &amp; Pricing&lt;/h2&gt;
-&lt;p&gt;Heuristic approximations are systematically rejected. The asset pricing models deployed herein rely upon continuous-time stochastic differential equations, fractional impact kernels, and rigorous martingale theory.&lt;/p&gt;
-&lt;a href="research.qmd" style="color: #FF0000; font-weight: bold; text-decoration: none;"&gt;Explore Proofs →&lt;/a&gt;</code></pre>
-</div>
-<div class="quant-card">
-<pre><code>&lt;h2&gt;&lt;span class="text-red"&gt;03.&lt;/span&gt; Algo Trading Society&lt;/h2&gt;
-&lt;p&gt;Operating as an elite localized incubator for computational finance theory. We synthesize fundamental analysis, technical frameworks, and quantitative methods into a singular alpha-generation mechanism.&lt;/p&gt;
-&lt;a href="https://github.com/gorazdbankscapital-sudo" target="_blank" style="color: #FF0000; font-weight: bold; text-decoration: none;"&gt;View Commits →&lt;/a&gt;</code></pre>
-</div>
-</div>
 </div>
 
 

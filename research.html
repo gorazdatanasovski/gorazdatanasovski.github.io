@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Formal derivations and stochastic calculus proofs.">
 
-<title>research – GZ | Quantitative Engine</title>
+<title>research – Gorazd Atanasovski</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -72,35 +71,6 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -113,7 +83,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">GZ | Quantitative Engine</span>
+    <span class="navbar-title">Gorazd Atanasovski</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -124,15 +94,15 @@ window.Quarto = {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="./index.html"> 
-<span class="menu-text">Terminal</span></a>
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./research.html" aria-current="page"> 
-<span class="menu-text">Mathematics</span></a>
+<span class="menu-text">Research</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./code.html"> 
-<span class="menu-text">Software: GORAZD</span></a>
+<span class="menu-text">Software</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -171,11 +141,6 @@ window.Quarto = {
 <h1 class="title">Mathematics</h1>
 </div>
 
-<div>
-  <div class="description">
-    Formal derivations and stochastic calculus proofs.
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
@@ -190,19 +155,8 @@ window.Quarto = {
 </header>
 
 
-<section id="continuous-time-asset-pricing" class="level2">
-<h2 class="anchored" data-anchor-id="continuous-time-asset-pricing">Continuous-Time Asset Pricing</h2>
-<p>The baseline derivation of an asset trajectory under the physical measure <span class="math inline">\(\mathbb{P}\)</span> is defined as:</p>
-<p><span class="math display">\[dS_t = \mu(t, S_t) S_t dt + \sigma(t, S_t) S_t dW_t\]</span></p>
-<section id="rough-volatility-market-memory" class="level3">
-<h3 class="anchored" data-anchor-id="rough-volatility-market-memory">Rough Volatility &amp; Market Memory</h3>
-<p>To capture persistent market memory and rough volatility, the standard Brownian motion <span class="math inline">\(W_t\)</span> is superseded by fractional Brownian motion <span class="math inline">\(W_t^H\)</span> parameterized by the Hurst exponent <span class="math inline">\(H \in (0,1)\)</span>, inducing a non-Markovian system state. The volatility process is modeled as:</p>
-<p><span class="math display">\[d\sigma_t = \theta(\omega - \sigma_t)dt + \nu \sigma_t dW_t^H\]</span></p>
-<p>All subsequent alpha generation matrices rely on isolating the deterministic drift component from the overwhelming stochastic noise represented by <span class="math inline">\(dW_t^H\)</span>.</p>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
