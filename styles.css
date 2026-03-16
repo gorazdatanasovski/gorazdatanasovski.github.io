@@ -1,163 +1,72 @@
-﻿:root {
+﻿/* Core Vector Variables & Resets */
+:root {
     --bg-base: #02040a;
-    --bg-mid: #0b1120;
-    --bg-high: #111827;
     --quant-red: #FF0000;
-    --text-main: #f3f4f6;
-    --glass-panel: rgba(10, 10, 10, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.08);
 }
 
-/* Force Override of Bootstrap Backgrounds */
-body, html, .quarto-container, #quarto-content, main, .navbar {
+/* Force Transparent Backgrounds for WebGL Visibility */
+body, html, .quarto-container, #quarto-content, main {
+    background: transparent !important;
     background-color: transparent !important;
+    color: #f3f4f6;
+    font-family: 'Inter', sans-serif;
 }
 
-body {
-    background: linear-gradient(135deg, var(--bg-base), var(--bg-mid), var(--bg-high), var(--bg-base)) !important;
-    background-size: 400% 400% !important;
-    animation: fluidGradient 20s ease infinite !important;
-    color: var(--text-main);
-    font-family: 'Inter', 'Roboto Mono', sans-serif;
-    margin: 0;
-}
+body { background-color: var(--bg-base) !important; }
 
-@keyframes fluidGradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
+/* Structural Navigation Integrity */
+.navbar { border-bottom: 1px solid var(--quant-red) !important; box-shadow: 0 4px 20px rgba(0,0,0,0.8); }
+.navbar-brand, .nav-link { text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; transition: 0.3s; }
+.nav-link:hover, .navbar-brand:hover { color: var(--quant-red) !important; text-shadow: 0 0 10px var(--quant-red); }
 
-#canvas-container {
+/* Background Canvas Layers */
+#bg-canvas, #math-rain {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: -10; pointer-events: none;
+}
+#math-rain { z-index: -9; opacity: 0.15; overflow: hidden; }
+
+/* Commercial Advertisement / Affiliation Side-Panel */
+.usd-sponsor-panel {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2;
-    pointer-events: none;
+    bottom: 30px;
+    right: 30px;
+    width: 220px;
+    background: rgba(10, 10, 10, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 3px solid var(--quant-red);
+    padding: 15px;
+    border-radius: 4px;
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
 }
-
-#math-rain {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-    opacity: 0.12;
-    overflow: hidden;
+.usd-sponsor-panel:hover {
+    border-color: var(--quant-red);
+    transform: translateX(-5px);
+    background: rgba(20, 20, 20, 0.95);
 }
+.usd-text-main { color: #ffffff; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; margin: 0 0 5px 0; letter-spacing: 0.05em; }
+.usd-text-sub { color: #888; font-size: 0.75rem; text-transform: uppercase; margin: 0; }
 
-#math-rain div {
-    position: absolute;
-    color: var(--text-main);
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 1.2rem;
-    animation: mathDrop linear infinite;
-}
-
-@keyframes mathDrop {
-    to { transform: translateY(100vh); }
-}
-
-.navbar {
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--quant-red) !important;
-    padding: 1rem 2rem;
-}
-
-.navbar-brand, .nav-link {
-    color: #ffffff !important;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    transition: 0.3s ease;
-}
-
-.nav-link:hover {
-    color: var(--quant-red) !important;
-    text-shadow: 0 0 10px var(--quant-red);
-}
-
+/* High-Density Layout Cards */
 .card-quant {
-    background: var(--glass-panel);
-    border: 1px solid var(--glass-border);
+    background: rgba(10, 10, 10, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 4px;
     padding: 3rem;
     backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    transition: transform 0.4s ease, border-color 0.4s ease;
 }
-
-.card-quant:hover {
-    transform: translateY(-5px);
-    border-color: rgba(255, 0, 0, 0.4);
-    box-shadow: 0 0 25px rgba(255, 0, 0, 0.2);
-}
-
-h1, h2, h3, h4 {
-    font-weight: 800;
-    color: #ffffff;
-    margin-bottom: 1.5rem;
-    letter-spacing: -0.01em;
-}
-
-h1 {
-    font-size: 4rem;
-    text-transform: uppercase;
-    margin: 0;
-    background: linear-gradient(90deg, #ffffff, #94a3b8);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.text-red { color: var(--quant-red); }
+.card-quant:hover { transform: translateY(-5px); border-color: var(--quant-red); box-shadow: 0 0 30px rgba(255, 0, 0, 0.2); }
 
 .btn-quant {
-    display: inline-block;
-    background: transparent;
-    color: #ffffff !important;
-    border: 1px solid var(--quant-red);
-    padding: 1rem 2rem;
-    border-radius: 4px;
-    font-weight: 700;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    font-size: 0.8rem;
-    transition: all 0.3s ease;
-}
-
-.btn-quant:hover {
-    background: var(--quant-red);
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
-    transform: scale(1.05);
-}
-
-.grid-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-top: 4rem;
-}
-
-@media (max-width: 900px) {
-    .grid-2 { grid-template-columns: 1fr; }
-}
-
-.usd-logo {
-    width: 200px;
-    filter: grayscale(100%) brightness(200%);
-    opacity: 0.7;
+    display: inline-block; background: transparent; color: #fff !important;
+    border: 1px solid var(--quant-red); padding: 1rem 2rem; border-radius: 4px;
+    font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem;
     transition: 0.3s ease;
 }
-
-.usd-logo:hover {
-    filter: grayscale(0%);
-    opacity: 1;
-}
+.btn-quant:hover { background: var(--quant-red); box-shadow: 0 0 20px rgba(255, 0, 0, 0.4); transform: scale(1.05); }
