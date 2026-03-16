@@ -139,54 +139,42 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-```{=html}
-<div id="canvas-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none;">
+<script src="[https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js](https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js)"></script>
+<div id="canvas-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-color: #02040a;">
 
 </div>
-<div id="math-rain" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: hidden; opacity: 0.15;">
+<div id="math-rain" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; opacity: 0.15; pointer-events: none;">
 
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-    // 1. WebGL Gradient Volatility Surface
+window.addEventListener('DOMContentLoaded', function() {
     let scene = new THREE.Scene();
     let camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
     camera.position.set(0, 180, 400);
     camera.lookAt(0, -50, 0);
-    
     let renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.getElementById('canvas-container').appendChild(renderer.domElement);
-
-    let geometry = new THREE.PlaneGeometry(1400, 1400, 65, 65);
+    let geometry = new THREE.PlaneGeometry(1600, 1600, 70, 70);
     geometry.rotateX(-Math.PI / 2);
-    
     const count = geometry.attributes.position.count;
     geometry.setAttribute('color', new THREE.BufferAttribute(new Float32Array(count * 3), 3));
-
-    let material = new THREE.MeshBasicMaterial({vertexColors: true, wireframe: true, transparent: true, opacity: 0.45});
+    let material = new THREE.MeshBasicMaterial({vertexColors: true, wireframe: true, transparent: true, opacity: 0.35});
     let wireframe = new THREE.Mesh(geometry, material);
     scene.add(wireframe);
-
     let time = 0;
     const colorObj = new THREE.Color();
-
     function animate() {
         requestAnimationFrame(animate);
-        time += 0.012;
+        time += 0.015;
         let positions = wireframe.geometry.attributes.position;
         let colors = wireframe.geometry.attributes.color;
-        
         for (let i = 0; i < positions.count; i++) {
             let x = positions.getX(i);
             let z = positions.getZ(i);
-            
-            // Stochastic wave deformation
-            let y = Math.sin(x * 0.008 + time) * Math.cos(z * 0.008 + time) * 80;
+            let y = Math.sin(x * 0.008 + time) * Math.cos(z * 0.008 + time) * 85;
             positions.setY(i, y);
-            
-            // Topological gradient: Spectral mapping from Y-displacement
-            let hue = 0.65 + (y / 250); 
+            let hue = 0.65 + (y / 250);
             colorObj.setHSL(hue, 1.0, 0.5);
             colors.setXYZ(i, colorObj.r, colorObj.g, colorObj.b);
         }
@@ -195,42 +183,36 @@ ul.task-list li input[type="checkbox"] {
         renderer.render(scene, camera);
     }
     animate();
-
     window.addEventListener('resize', () => {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
     });
-
-    // 2. Mathematical Cascade Engine
     const rainContainer = document.getElementById('math-rain');
-    const mathSymbols = ['Σ', 'Π', '∫', '√', '∞', '∂', '∇', 'Δ', 'Ω', 'd', 'dt', 'dW_t', 'd\\sigma_t', 'H', 'μ', 'σ', '\\mathbb{P}', '\\mathbb{Q}'];
-    
+    const mathSymbols = ['Σ','Π','∫','√','∞','∂','∇','Δ','Ω','d','dt','dW_t','H','μ','σ'];
     function createMathCharacter() {
         const char = document.createElement('div');
         char.innerText = mathSymbols[Math.floor(Math.random() * mathSymbols.length)];
         char.style.position = 'absolute';
-        char.style.color = '#f3f4f6';
-        char.style.fontFamily = '"Times New Roman", Times, serif';
+        char.style.color = '#FF0000';
+        char.style.fontFamily = 'monospace';
         char.style.left = Math.random() * 100 + 'vw';
-        char.style.opacity = Math.random() * 0.4 + 0.1;
-        let animDuration = Math.random() * 6 + 4;
-        char.style.transition = `transform ${animDuration}s linear`;
+        char.style.opacity = Math.random() * 0.5 + 0.1;
+        let animDuration = Math.random() * 5 + 3;
+        char.style.transition = 'transform ' + animDuration + 's linear';
         char.style.transform = 'translateY(-50px)';
-        char.style.fontSize = Math.random() * 0.8 + 1.2 + 'rem';
-        char.style.fontWeight = Math.random() > 0.5 ? 'bold' : 'normal';
+        char.style.fontSize = Math.random() * 1 + 1 + 'rem';
         rainContainer.appendChild(char);
-        
         setTimeout(() => { char.style.transform = 'translateY(110vh)'; }, 50);
         setTimeout(() => { char.remove(); }, animDuration * 1000 + 100);
     }
-    
-    setInterval(createMathCharacter, 120);
+    setInterval(createMathCharacter, 150);
+});
 </script>
 <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 6rem 2rem; position: relative; z-index: 10;">
 <pre><code>&lt;div style="text-align: center; margin-bottom: 5rem;"&gt;
-    &lt;a href="https://www.usd.edu/" target="_blank"&gt;
-        &lt;img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8c/University_of_South_Dakota_logo.svg/1200px-University_of_South_Dakota_logo.svg.png" alt="University of South Dakota" style="width: 200px; filter: grayscale(100%) brightness(200%); opacity: 0.7; transition: 0.3s ease;"&gt;
+    &lt;a href="[https://www.usd.edu/](https://www.usd.edu/)" target="_blank"&gt;
+        &lt;img src="[https://upload.wikimedia.org/wikipedia/en/thumb/8/8c/University_of_South_Dakota_logo.svg/1200px-University_of_South_Dakota_logo.svg.png](https://upload.wikimedia.org/wikipedia/en/thumb/8/8c/University_of_South_Dakota_logo.svg/1200px-University_of_South_Dakota_logo.svg.png)" style="width: 200px; filter: grayscale(100%) brightness(200%); opacity: 0.7; transition: 0.3s ease;"&gt;
     &lt;/a&gt;
     &lt;h1 style="margin-top: 2rem; font-size: 3.8rem; margin-bottom: 0.5rem; background: linear-gradient(90deg, #ffffff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"&gt;Welcome to my page&lt;/h1&gt;
     &lt;h2 style="color: #FF0000; font-size: 2.2rem; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase;"&gt;Quantitative Finance&lt;/h2&gt;
@@ -238,15 +220,13 @@ ul.task-list li input[type="checkbox"] {
         On this website, you can find the mathematical research and theories that drive my models, alongside the deterministic software infrastructure built for microsecond-latency execution.
     &lt;/p&gt;
 &lt;/div&gt;
-
 &lt;div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 4rem;"&gt;
-    &lt;div style="background: rgba(10, 10, 10, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 4px; padding: 3rem; backdrop-filter: blur(15px); box-shadow: 0 10px 40px rgba(0,0,0,0.6);"&gt;
+    &lt;div style="background: rgba(10, 10, 10, 0.7); border: 1px solid rgba(255, 0, 0, 0.25); border-radius: 4px; padding: 3rem; backdrop-filter: blur(15px); box-shadow: 0 10px 40px rgba(0,0,0,0.6);"&gt;
         &lt;h3 style="font-weight: 800; color: #ffffff; margin-bottom: 1.5rem; letter-spacing: -0.01em; text-transform: uppercase;"&gt;Mathematical Research &amp; Theories&lt;/h3&gt;
         &lt;p style="color: #64748b; margin-bottom: 2rem;"&gt;Rigorous formalization of market microstructure dynamics, continuous-time pricing frameworks, and analytical boundary limits. Heuristic approximations are rejected in favor of exact stochastic derivations.&lt;/p&gt;
         &lt;a href="research.qmd" style="display: inline-block; background: transparent; color: #ffffff; border: 1px solid #FF0000; padding: 1rem 2rem; border-radius: 4px; font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem; transition: background 0.3s ease, transform 0.3s ease;" onmouseover="this.style.background='#FF0000'; this.style.transform='scale(1.05)';" onmouseout="this.style.background='transparent'; this.style.transform='scale(1)';"&gt;View Mathematics&lt;/a&gt;
     &lt;/div&gt;
-
-    &lt;div style="background: rgba(10, 10, 10, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 4px; padding: 3rem; backdrop-filter: blur(15px); box-shadow: 0 10px 40px rgba(0,0,0,0.6);"&gt;
+    &lt;div style="background: rgba(10, 10, 10, 0.7); border: 1px solid rgba(255, 0, 0, 0.25); border-radius: 4px; padding: 3rem; backdrop-filter: blur(15px); box-shadow: 0 10px 40px rgba(0,0,0,0.6);"&gt;
         &lt;h3 style="font-weight: 800; color: #ffffff; margin-bottom: 1.5rem; letter-spacing: -0.01em; text-transform: uppercase;"&gt;Computational Software&lt;/h3&gt;
         &lt;p style="color: #64748b; margin-bottom: 2rem;"&gt;Live execution environments and proprietary libraries. Featuring GORAZD, a Gradient-Optimized Regime-Aware Zero-allocation Dispatcher engineered for zero-latency physical execution.&lt;/p&gt;
         &lt;a href="code.qmd" style="display: inline-block; background: transparent; color: #ffffff; border: 1px solid #FF0000; padding: 1rem 2rem; border-radius: 4px; font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem; transition: background 0.3s ease, transform 0.3s ease;" onmouseover="this.style.background='#FF0000'; this.style.transform='scale(1.05)';" onmouseout="this.style.background='transparent'; this.style.transform='scale(1)';"&gt;View Software&lt;/a&gt;
