@@ -1,114 +1,114 @@
 ﻿/* Core Vector Palette & Structural Variables */
 :root {
-    --space-bg-1: #05070a;
-    --space-bg-2: #0a0f18;
-    --space-bg-3: #0d131f;
-    --quant-accent: #FF0000;
-    --glass-bg: rgba(10, 15, 24, 0.65);
-    --glass-border: rgba(255, 255, 255, 0.08);
-    --text-primary: #e0e6ed;
+    --lab-bg-1: #e2e8f0;
+    --lab-bg-2: #f8fafc;
+    --lab-bg-3: #cbd5e1;
+    --quant-red: #FF0000;
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --glass-panel: rgba(255, 255, 255, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.9);
+    --shadow-subtle: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+    --shadow-red: 0 8px 25px rgba(255, 0, 0, 0.15);
 }
 
-/* Base Gradient Animation Matrix */
+/* Fluid Mesh Gradient Background */
 body {
-    background: linear-gradient(-45deg, var(--space-bg-1), var(--space-bg-2), var(--space-bg-3));
+    background: linear-gradient(135deg, var(--lab-bg-1), var(--lab-bg-2), var(--lab-bg-3));
     background-size: 400% 400%;
-    animation: gradientBG 18s ease infinite;
-    color: var(--text-primary);
-    font-family: 'Inter', 'Roboto Mono', sans-serif;
+    animation: fluidGradient 18s ease infinite;
+    color: var(--text-main);
+    font-family: 'Inter', system-ui, sans-serif;
+    margin: 0;
+    line-height: 1.6;
 }
 
-@keyframes gradientBG {
+@keyframes fluidGradient {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* Global Glassmorphism Navigation */
+/* Glassmorphism Global Navigation */
 .navbar {
-    background: rgba(5, 7, 10, 0.8) !important;
+    background: var(--glass-panel) !important;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-subtle);
+}
+
+.navbar-brand, .nav-link {
+    color: var(--text-main) !important;
+    font-weight: 600;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link:hover {
+    color: var(--quant-red) !important;
+    transform: translateY(-2px);
+}
+
+/* High-Density Computational Nodes */
+.quarto-about-trestles, .cell, .panel-tabset, .card-lab {
+    background: var(--glass-panel);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--glass-border);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-}
-
-/* Hyperlink Kinematics */
-a, .navbar-brand, .nav-link {
-    color: #ffffff !important;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-a:hover, .nav-link:hover {
-    color: var(--quant-accent) !important;
-    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
-}
-
-/* Modular Content Nodes (Glass Cards) */
-.quarto-about-trestles, .panel-tabset, .cell, .callout {
-    background: var(--glass-bg);
     border: 1px solid var(--glass-border);
     border-radius: 12px;
-    padding: 2rem;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    padding: 2.5rem;
+    box-shadow: var(--shadow-subtle);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Hover Physics for Modules */
-.quarto-about-trestles:hover, .cell:hover {
-    border-color: rgba(255, 0, 0, 0.5);
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.15);
-    transform: translateY(-2px);
+/* Subatomic Hover Physics */
+.quarto-about-trestles:hover, .cell:hover, .card-lab:hover {
+    transform: translateY(-4px) scale(1.005);
+    border-color: rgba(255, 0, 0, 0.2);
+    box-shadow: var(--shadow-red), var(--shadow-subtle);
+}
+
+/* Interactive Action Arrays */
+.btn, .about-link {
+    background: transparent;
+    color: var(--text-main) !important;
+    border: 1px solid var(--text-muted);
+    border-radius: 6px;
+    padding: 0.6rem 1.2rem;
+    font-weight: 700;
+    font-size: 0.85rem;
+    transition: all 0.4s ease;
+    overflow: hidden;
+}
+
+.btn:hover, .about-link:hover {
+    background: var(--quant-red);
+    color: #ffffff !important;
+    border-color: var(--quant-red);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+    transform: scale(1.04);
 }
 
 /* Mathematical Formulation Isolation */
 .math.display {
-    background: rgba(255, 0, 0, 0.03);
-    border-left: 2px solid var(--quant-accent);
-    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.55);
+    border-left: 3px solid var(--quant-red);
+    padding: 2rem;
     border-radius: 0 8px 8px 0;
-    color: #ffffff;
     font-size: 1.15em;
     overflow-x: auto;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
 }
 
-/* Button & Icon Topology */
-.btn-outline-primary, .about-link {
-    color: var(--text-primary) !important;
-    border: 1px solid var(--glass-border);
-    background: rgba(255, 255, 255, 0.02);
-    border-radius: 8px;
-    padding: 0.5rem 1rem;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.btn-outline-primary:hover, .about-link:hover {
-    background: rgba(255, 0, 0, 0.1);
-    border-color: var(--quant-accent);
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
-    transform: scale(1.05);
-}
-
-/* Typographic Hierarchy */
-h1, h2, h3, h4 {
-    font-weight: 700;
+/* Structural Typography */
+h1, h2, h3 {
+    color: var(--text-main);
+    font-weight: 800;
     letter-spacing: -0.02em;
-    color: #ffffff;
 }
 
-/* Scrollbar Engineering */
-::-webkit-scrollbar {
-    width: 8px;
-}
-::-webkit-scrollbar-track {
-    background: var(--space-bg-1);
-}
-::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: var(--quant-accent);
+h1 {
+    background: linear-gradient(90deg, var(--text-main), var(--quant-red));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
