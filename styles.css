@@ -1,32 +1,114 @@
-﻿/* Smooth Fade-in for the whole page */
+﻿/* Core Vector Palette & Structural Variables */
+:root {
+    --space-bg-1: #05070a;
+    --space-bg-2: #0a0f18;
+    --space-bg-3: #0d131f;
+    --quant-accent: #FF0000;
+    --glass-bg: rgba(10, 15, 24, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --text-primary: #e0e6ed;
+}
+
+/* Base Gradient Animation Matrix */
 body {
-    animation: fadeInAnimation ease 0.8s;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
+    background: linear-gradient(-45deg, var(--space-bg-1), var(--space-bg-2), var(--space-bg-3));
+    background-size: 400% 400%;
+    animation: gradientBG 18s ease infinite;
+    color: var(--text-primary);
+    font-family: 'Inter', 'Roboto Mono', sans-serif;
 }
 
-@keyframes fadeInAnimation {
-    0% { opacity: 0; transform: translateY(10px); }
-    100% { opacity: 1; transform: translateY(0); }
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-/* Custom Navigation Bar Styling */
+/* Global Glassmorphism Navigation */
 .navbar {
-    border-bottom: 3px solid #710113; /* Darker USD shade */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    background: rgba(5, 7, 10, 0.8) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
-/* High-density code blocks */
-.listing-category {
-    font-weight: 600;
-    text-transform: uppercase;
+/* Hyperlink Kinematics */
+a, .navbar-brand, .nav-link {
+    color: #ffffff !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* MathJax Equation Styling */
+a:hover, .nav-link:hover {
+    color: var(--quant-accent) !important;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+}
+
+/* Modular Content Nodes (Glass Cards) */
+.quarto-about-trestles, .panel-tabset, .cell, .callout {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Hover Physics for Modules */
+.quarto-about-trestles:hover, .cell:hover {
+    border-color: rgba(255, 0, 0, 0.5);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Mathematical Formulation Isolation */
 .math.display {
-    color: #ab0520;
-    font-size: 1.1em;
-    padding: 1rem;
-    background: rgba(171, 5, 32, 0.03);
+    background: rgba(255, 0, 0, 0.03);
+    border-left: 2px solid var(--quant-accent);
+    padding: 1.5rem;
+    border-radius: 0 8px 8px 0;
+    color: #ffffff;
+    font-size: 1.15em;
+    overflow-x: auto;
+}
+
+/* Button & Icon Topology */
+.btn-outline-primary, .about-link {
+    color: var(--text-primary) !important;
+    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.02);
     border-radius: 8px;
+    padding: 0.5rem 1rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-outline-primary:hover, .about-link:hover {
+    background: rgba(255, 0, 0, 0.1);
+    border-color: var(--quant-accent);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+    transform: scale(1.05);
+}
+
+/* Typographic Hierarchy */
+h1, h2, h3, h4 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+}
+
+/* Scrollbar Engineering */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--space-bg-1);
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--quant-accent);
 }
