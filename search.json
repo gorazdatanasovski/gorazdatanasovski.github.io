@@ -4,62 +4,34 @@
     "href": "research.html",
     "title": "Mathematics",
     "section": "",
-    "text": "$ = S_t dt + S_t dW_t$$"
+    "text": "The baseline derivation of an asset trajectory under the physical measure \\(\\mathbb{P}\\) is defined as:\n\\[dS_t = \\mu(t, S_t) S_t dt + \\sigma(t, S_t) S_t dW_t\\]\n\n\nTo capture persistent market memory and rough volatility, the standard Brownian motion \\(W_t\\) is superseded by fractional Brownian motion \\(W_t^H\\) parameterized by the Hurst exponent \\(H \\in (0,1)\\), inducing a non-Markovian system state. The volatility process is modeled as:\n\\[d\\sigma_t = \\theta(\\omega - \\sigma_t)dt + \\nu \\sigma_t dW_t^H\\]\nAll subsequent alpha generation matrices rely on isolating the deterministic drift component from the overwhelming stochastic noise represented by \\(dW_t^H\\)."
   },
   {
-    "objectID": "research.html#stochastic-calculus",
-    "href": "research.html#stochastic-calculus",
+    "objectID": "research.html#continuous-time-asset-pricing",
+    "href": "research.html#continuous-time-asset-pricing",
     "title": "Mathematics",
     "section": "",
-    "text": "$ = S_t dt + S_t dW_t$$"
+    "text": "The baseline derivation of an asset trajectory under the physical measure \\(\\mathbb{P}\\) is defined as:\n\\[dS_t = \\mu(t, S_t) S_t dt + \\sigma(t, S_t) S_t dW_t\\]\n\n\nTo capture persistent market memory and rough volatility, the standard Brownian motion \\(W_t\\) is superseded by fractional Brownian motion \\(W_t^H\\) parameterized by the Hurst exponent \\(H \\in (0,1)\\), inducing a non-Markovian system state. The volatility process is modeled as:\n\\[d\\sigma_t = \\theta(\\omega - \\sigma_t)dt + \\nu \\sigma_t dW_t^H\\]\nAll subsequent alpha generation matrices rely on isolating the deterministic drift component from the overwhelming stochastic noise represented by \\(dW_t^H\\)."
   },
   {
     "objectID": "code.html",
     "href": "code.html",
-    "title": "Software & Engineering",
+    "title": "Software Infrastructure",
     "section": "",
-    "text": "The gorazd library is engineered for high-frequency data synthesis. Below is a live execution demonstrating the kernel convergence logic.\nimport numpy as np import matplotlib.pyplot as plt"
+    "text": "Latest Version: Released Mar 13, 2026 | Requires: Python &gt;= 3.10\n\n\n\nThe 4-Core Hydra: Mechanically hijacks 4 CPU cores for Asynchronous Ingestion, Routing, Risk (Kill-Switch), and Concept Drift monitoring.\nPage-Aligned Memory: Eradicates OS page faults by mapping monolithic tensors directly to physical RAM via mmap.\nLock-Free IPC: Inter-Process Communication utilizing C11 atomic pointers and 64-byte L1 cache-line padding.\nMicrostructure Physics: Custom objective gradients mathematically constrained by Maker/Taker exchange rebates.\n\n\n\n\nGORAZD installs directly into your operating system’s PATH. Drive your entire quantitative stack from the terminal:\n```bash gorazd-fetch # Polls physical APIs, calculates multipliers, locks Parquet tensors. gorazd-train # Executes Purged Cross-Validation and Non-Linear Optimization. gorazd-ui # Ignites the ZeroMQ tactical terminal dashboard. gorazd-ignite # Launches the 4-Core UHFT memory-mapped daemon. import gorazd as gz"
   },
   {
-    "objectID": "code.html#the-gorazd-library",
-    "href": "code.html#the-gorazd-library",
-    "title": "Software & Engineering",
+    "objectID": "code.html#gorazd-gradient-optimized-regime-aware-zero-allocation-dispatcher",
+    "href": "code.html#gorazd-gradient-optimized-regime-aware-zero-allocation-dispatcher",
+    "title": "Software Infrastructure",
     "section": "",
-    "text": "The gorazd library is engineered for high-frequency data synthesis. Below is a live execution demonstrating the kernel convergence logic.\nimport numpy as np import matplotlib.pyplot as plt"
+    "text": "Latest Version: Released Mar 13, 2026 | Requires: Python &gt;= 3.10\n\n\n\nThe 4-Core Hydra: Mechanically hijacks 4 CPU cores for Asynchronous Ingestion, Routing, Risk (Kill-Switch), and Concept Drift monitoring.\nPage-Aligned Memory: Eradicates OS page faults by mapping monolithic tensors directly to physical RAM via mmap.\nLock-Free IPC: Inter-Process Communication utilizing C11 atomic pointers and 64-byte L1 cache-line padding.\nMicrostructure Physics: Custom objective gradients mathematically constrained by Maker/Taker exchange rebates.\n\n\n\n\nGORAZD installs directly into your operating system’s PATH. Drive your entire quantitative stack from the terminal:\n```bash gorazd-fetch # Polls physical APIs, calculates multipliers, locks Parquet tensors. gorazd-train # Executes Purged Cross-Validation and Non-Linear Optimization. gorazd-ui # Ignites the ZeroMQ tactical terminal dashboard. gorazd-ignite # Launches the 4-Core UHFT memory-mapped daemon. import gorazd as gz"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Gorazd Atanasovski",
+    "title": "\nGorazd Atanasovski\n",
     "section": "",
-    "text": "Welcome to the primary quantitative architecture and research repository. This deployment vector synthesizes high-frequency market data, fundamental analysis, and automated algorithmic infrastructure to isolate and execute asymmetric alpha."
-  },
-  {
-    "objectID": "index.html#command-center",
-    "href": "index.html#command-center",
-    "title": "Gorazd Atanasovski",
-    "section": "",
-    "text": "Welcome to the primary quantitative architecture and research repository. This deployment vector synthesizes high-frequency market data, fundamental analysis, and automated algorithmic infrastructure to isolate and execute asymmetric alpha."
-  },
-  {
-    "objectID": "index.html#research-analytics",
-    "href": "index.html#research-analytics",
-    "title": "Gorazd Atanasovski",
-    "section": "Research & Analytics",
-    "text": "Research & Analytics\n\nTheoretical Modeling\nDeveloping unassailable frameworks for market microstructure analysis and signal extraction. The research division focuses exclusively on empirically verified structures, bypassing heuristic noise.\nAccess Research Repository"
-  },
-  {
-    "objectID": "index.html#software-engineering",
-    "href": "index.html#software-engineering",
-    "title": "Gorazd Atanasovski",
-    "section": "Software Engineering",
-    "text": "Software Engineering\n\nThe gorazd PyPI Library\nA proprietary Python library engineered for advanced data scientists and traders. Optimized for multi-threaded array processing and probabilistic density forecasting.\nInitialize Codebase"
-  },
-  {
-    "objectID": "index.html#system-architecture-leadership",
-    "href": "index.html#system-architecture-leadership",
-    "title": "Gorazd Atanasovski",
-    "section": "System Architecture & Leadership",
-    "text": "System Architecture & Leadership\n\nAlgo Trading Society\nAs the founder and lead architect, the society operates as an elite incubator for quantitative theory. We enforce strict mathematical precision, integrating Python, R, and Stata environments to bridge the gap between academic theory and live market deployment."
+    "text": "Apex Quantitative Research & Algorithmic Deployment\n\n\nTranslating global market complexity into pure, profitable alpha. This infrastructure bypasses heuristic approximation in favor of exact analytical solutions, unassailable mathematical proofs, and microsecond-latency execution matrices.\n\n\n&lt;a href=\"code.qmd\" class=\"btn-cyber\" style=\"margin-right: 1rem;\"&gt;View Software Matrices&lt;/a&gt;\n&lt;a href=\"research.qmd\" class=\"btn-cyber\" style=\"background: rgba(255,0,0,0.1);\"&gt;Initialize Mathematics&lt;/a&gt;\n\n\n\n\n01. The GORAZD Universal Matrix\n\n\nGradient-Optimized Regime-Aware Zero-allocation Dispatcher (v1.0.0)\n\n\nAn elite, cross-platform quantitative execution matrix designed for institutional developers. It bridges the gap between local workstation simulation and bare-metal high-frequency deployment, physically bypassing the Python Global Interpreter Lock (GIL) to achieve deterministic, microsecond-latency execution.\n\n\n&lt;div&gt;\n  &lt;h4&gt;Tactical Simulation&lt;/h4&gt;\n  &lt;p&gt;Build, train, and backtest non-linear risk matrices locally utilizing full multicore concurrency and ZeroMQ tactical dashboards.&lt;/p&gt;\n&lt;/div&gt;\n&lt;div&gt;\n  &lt;h4&gt;Live Deployment&lt;/h4&gt;\n  &lt;p&gt;Deploy the exact same codebase to a bare-metal server. GORAZD automatically maps to Linux &lt;code&gt;isolcpus&lt;/code&gt; and native &lt;code&gt;.so&lt;/code&gt; C-libraries for zero-latency physical execution.&lt;/p&gt;\n&lt;/div&gt;\n\npip install gorazd\n\n\n\n&lt;h2&gt;&lt;span class=\"text-red\"&gt;02.&lt;/span&gt; Mathematics & Pricing&lt;/h2&gt;\n&lt;p&gt;Heuristic approximations are systematically rejected. The asset pricing models deployed herein rely upon continuous-time stochastic differential equations, fractional impact kernels, and rigorous martingale theory.&lt;/p&gt;\n&lt;a href=\"research.qmd\" style=\"color: #FF0000; font-weight: bold; text-decoration: none;\"&gt;Explore Proofs →&lt;/a&gt;\n\n\n&lt;h2&gt;&lt;span class=\"text-red\"&gt;03.&lt;/span&gt; Algo Trading Society&lt;/h2&gt;\n&lt;p&gt;Operating as an elite localized incubator for computational finance theory. We synthesize fundamental analysis, technical frameworks, and quantitative methods into a singular alpha-generation mechanism.&lt;/p&gt;\n&lt;a href=\"https://github.com/gorazdbankscapital-sudo\" target=\"_blank\" style=\"color: #FF0000; font-weight: bold; text-decoration: none;\"&gt;View Commits →&lt;/a&gt;"
   }
 ]

@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Documentation for the GORAZD PyPI Library">
 
-<title>code – Gorazd Atanasovski</title>
+<title>code – GZ | Quantitative Engine</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -41,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-22b4aaf4c2978829df3684e8f2c068db.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-00feface57a40fb7a06c8694f9a70c45.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-32c5f89a0bf4ce64b0aa49306889d7ad.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -75,7 +76,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -83,7 +84,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Gorazd Atanasovski</span>
+    <span class="navbar-title">GZ | Quantitative Engine</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -94,20 +95,20 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="./index.html"> 
-<span class="menu-text">Command Center</span></a>
+<span class="menu-text">Terminal</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./research.html"> 
-<span class="menu-text">Theoretical Research</span></a>
+<span class="menu-text">Mathematics</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./code.html" aria-current="page"> 
-<span class="menu-text">Computational Software</span></a>
+<span class="menu-text">Software: GORAZD</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/gorazdatanasovski"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/gorazdbankscapital-sudo"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -132,25 +133,20 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#the-gorazd-library" id="toc-the-gorazd-library" class="nav-link active" data-scroll-target="#the-gorazd-library">The <code>gorazd</code> Library</a></li>
-  <li><a href="#simulate-kernel-decay" id="toc-simulate-kernel-decay" class="nav-link" data-scroll-target="#simulate-kernel-decay">Simulate kernel decay</a></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Software &amp; Engineering</h1>
-<p class="subtitle lead">Documenting the <code>gorazd</code> Python Library</p>
+<h1 class="title">Software Infrastructure</h1>
 </div>
 
+<div>
+  <div class="description">
+    Documentation for the GORAZD PyPI Library
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -165,15 +161,36 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="the-gorazd-library" class="level2">
-<h2 class="anchored" data-anchor-id="the-gorazd-library">The <code>gorazd</code> Library</h2>
-<p>The <code>gorazd</code> library is engineered for high-frequency data synthesis. Below is a live execution demonstrating the kernel convergence logic.</p>
-<p>import numpy as np import matplotlib.pyplot as plt</p>
+<section id="gorazd-gradient-optimized-regime-aware-zero-allocation-dispatcher" class="level2">
+<h2 class="anchored" data-anchor-id="gorazd-gradient-optimized-regime-aware-zero-allocation-dispatcher">GORAZD: Gradient-Optimized Regime-Aware Zero-allocation Dispatcher</h2>
+<p><strong>Latest Version:</strong> Released Mar 13, 2026 | <strong>Requires:</strong> Python &gt;= 3.10</p>
+<section id="architectural-supremacy" class="level3">
+<h3 class="anchored" data-anchor-id="architectural-supremacy">Architectural Supremacy</h3>
+<ul>
+<li><strong>The 4-Core Hydra:</strong> Mechanically hijacks 4 CPU cores for Asynchronous Ingestion, Routing, Risk (Kill-Switch), and Concept Drift monitoring.</li>
+<li><strong>Page-Aligned Memory:</strong> Eradicates OS page faults by mapping monolithic tensors directly to physical RAM via <code>mmap</code>.</li>
+<li><strong>Lock-Free IPC:</strong> Inter-Process Communication utilizing C11 atomic pointers and 64-byte L1 cache-line padding.</li>
+<li><strong>Microstructure Physics:</strong> Custom objective gradients mathematically constrained by Maker/Taker exchange rebates.</li>
+</ul>
 </section>
-<section id="simulate-kernel-decay" class="level1">
-<h1>Simulate kernel decay</h1>
-<p>t = np.linspace(0.1, 10, 100) alpha = 0.5 kernel = t**(alpha - 1)</p>
-<p>plt.figure(figsize=(10, 4)) plt.plot(t, kernel, color=‘#ab0520’, lw=2) plt.title(“Impact Kernel Decay Strategy”) plt.grid(True, alpha=0.3) plt.show()</p>
+<section id="the-global-cli-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="the-global-cli-matrix">The Global CLI Matrix</h3>
+<p>GORAZD installs directly into your operating system’s PATH. Drive your entire quantitative stack from the terminal:</p>
+<p>```bash gorazd-fetch # Polls physical APIs, calculates multipliers, locks Parquet tensors. gorazd-train # Executes Purged Cross-Validation and Non-Linear Optimization. gorazd-ui # Ignites the ZeroMQ tactical terminal dashboard. gorazd-ignite # Launches the 4-Core UHFT memory-mapped daemon. import gorazd as gz</p>
+</section>
+</section>
+<section id="synthesize-physical-tensors" class="level1">
+<h1>1. Synthesize Physical Tensors</h1>
+<p>compiler = gz.TensorCompiler(target=“SPY”) compiler.compile(start_date=“2016-01-01”)</p>
+</section>
+<section id="optimize-physics-aware-matrix" class="level1">
+<h1>2. Optimize Physics-Aware Matrix</h1>
+<p>optimizer = gz.Optimizer() optimizer.fit(parquet_file=“SPY_institutional_matrix.parquet”)</p>
+</section>
+<section id="ignite-the-multicore-daemon" class="level1">
+<h1>3. Ignite the Multicore Daemon</h1>
+<p>engine = gz.Engine(target=“SPY”, model_file=“core.ubj”) engine.ignite()</p>
+<hr>
 
 
 </section>

@@ -1,92 +1,158 @@
-﻿:root {
-    --space-base: #02040a;
-    --space-mid: #0b1120;
-    --space-high: #111827;
+﻿/* Core Vector Variables */
+:root {
+    --bg-deep: #0f0c29;
+    --bg-mid: #302b63;
+    --bg-high: #24243e;
     --quant-red: #FF0000;
-    --text-primary: #f8fafc;
-    --glass-bg: rgba(11, 17, 32, 0.65);
+    --text-main: #e2e8f0;
+    --glass-panel: rgba(15, 23, 42, 0.45);
     --glass-border: rgba(255, 255, 255, 0.08);
 }
 
-/* Force Override of Bootstrap Backgrounds */
-body, html, .quarto-container, #quarto-content, main, .navbar {
+/* Nuke Quarto's Default Black Layers */
+body, html, .quarto-container, #quarto-content, main {
+    background: transparent !important;
     background-color: transparent !important;
-}
-
-body {
-    background: linear-gradient(135deg, var(--space-base), var(--space-mid), var(--space-high), var(--space-base)) !important;
-    background-size: 400% 400% !important;
-    animation: fluidGradient 20s ease infinite !important;
-    color: var(--text-primary);
+    color: var(--text-main);
     font-family: 'Inter', 'Roboto Mono', sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-@keyframes fluidGradient {
+/* 1. Fluid Spacecraft Gradient */
+body {
+    background: linear-gradient(135deg, var(--bg-deep), var(--bg-mid), var(--bg-high), var(--bg-deep)) !important;
+    background-size: 400% 400% !important;
+    animation: engineGlow 20s ease infinite !important;
+}
+
+@keyframes engineGlow {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
+/* 2. Interactive Particle Canvas Layer */
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Keeps it behind the content */
+    pointer-events: none;
+}
+
+/* Global Navigation */
 .navbar {
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--glass-border) !important;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.8);
+    background: rgba(15, 12, 41, 0.8) !important;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--quant-red);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
 }
 
 .navbar-brand, .nav-link {
     color: #ffffff !important;
     font-weight: 700;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    transition: 0.3s ease;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
 }
 
 .nav-link:hover {
     color: var(--quant-red) !important;
-    text-shadow: 0 0 10px var(--quant-red);
+    text-shadow: 0 0 15px var(--quant-red);
 }
 
-.card-quant, .quarto-about-trestles {
-    background: var(--glass-bg);
+/* Modular Glassmorphism Layouts */
+.quant-card {
+    background: var(--glass-panel);
     border: 1px solid var(--glass-border);
     border-radius: 12px;
-    padding: 2.5rem;
-    margin-bottom: 2rem;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    padding: 3rem;
+    margin-bottom: 3rem;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
-.card-quant:hover, .quarto-about-trestles:hover {
+.quant-card:hover {
     transform: translateY(-5px);
-    border-color: rgba(255, 0, 0, 0.4);
-    box-shadow: 0 0 25px rgba(255, 0, 0, 0.2);
+    border-color: rgba(255, 0, 0, 0.5);
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.15);
 }
 
-h1, h2, h3, h4 {
+/* Typography */
+h1, h2, h3 {
     font-weight: 800;
     color: #ffffff;
+    letter-spacing: -0.02em;
     margin-bottom: 1.5rem;
 }
 
-.btn-quant {
+h1 {
+    font-size: 3.5rem;
+    background: linear-gradient(90deg, #ffffff, #94a3b8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-red {
+    color: var(--quant-red);
+}
+
+/* Mathematical Formulation Isolation */
+.math.display {
+    background: rgba(255, 0, 0, 0.05);
+    border-left: 2px solid var(--quant-red);
+    padding: 1.5rem;
+    border-radius: 0 8px 8px 0;
+    color: #ffffff;
+    font-size: 1.2em;
+    overflow-x: auto;
+}
+
+/* Buttons */
+.btn-cyber {
     display: inline-block;
-    background: rgba(255, 0, 0, 0.1);
-    color: #ffffff !important;
+    background: transparent;
+    color: #ffffff;
     border: 1px solid var(--quant-red);
-    padding: 0.8rem 1.8rem;
-    border-radius: 6px;
+    padding: 1rem 2.5rem;
+    border-radius: 4px;
     font-weight: 700;
     text-decoration: none;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
     transition: all 0.3s ease;
 }
 
-.btn-quant:hover {
+.btn-cyber:hover {
     background: var(--quant-red);
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
-    transform: scale(1.03);
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    transform: scale(1.02);
+}
+
+/* Layout Utilities */
+.hero-section {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+@media (max-width: 900px) {
+    .grid-2 { grid-template-columns: 1fr; }
 }
