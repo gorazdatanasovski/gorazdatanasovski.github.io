@@ -1,26 +1,30 @@
-﻿/* Core Vector Palette & Structural Variables */
+﻿/* Core Vector Variables */
 :root {
-    --lab-bg-1: #e2e8f0;
-    --lab-bg-2: #f8fafc;
-    --lab-bg-3: #cbd5e1;
+    --space-base: #030712;
+    --space-mid: #0f172a;
+    --space-high: #1e293b;
     --quant-red: #FF0000;
-    --text-main: #0f172a;
-    --text-muted: #475569;
-    --glass-panel: rgba(255, 255, 255, 0.65);
-    --glass-border: rgba(255, 255, 255, 0.9);
-    --shadow-subtle: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
-    --shadow-red: 0 8px 25px rgba(255, 0, 0, 0.15);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --glass-bg: rgba(15, 23, 42, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glow-red: 0 0 20px rgba(255, 0, 0, 0.2);
 }
 
-/* Fluid Mesh Gradient Background */
+/* Force Override of Quarto Defaults */
+body, html, .quarto-container, #quarto-content, main {
+    background-color: transparent !important;
+    color: var(--text-primary);
+    font-family: 'Inter', 'Roboto Mono', sans-serif;
+}
+
+/* Fluid Mesh Gradient Infrastructure */
 body {
-    background: linear-gradient(135deg, var(--lab-bg-1), var(--lab-bg-2), var(--lab-bg-3));
-    background-size: 400% 400%;
-    animation: fluidGradient 18s ease infinite;
-    color: var(--text-main);
-    font-family: 'Inter', system-ui, sans-serif;
+    background: linear-gradient(135deg, var(--space-base), var(--space-mid), var(--space-high), var(--space-base)) !important;
+    background-size: 400% 400% !important;
+    animation: fluidGradient 25s ease infinite !important;
     margin: 0;
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 @keyframes fluidGradient {
@@ -29,86 +33,103 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* Glassmorphism Global Navigation */
+/* Global Navigation Geometry */
 .navbar {
-    background: var(--glass-panel) !important;
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    background: rgba(3, 7, 18, 0.85) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--glass-border);
-    box-shadow: var(--shadow-subtle);
+    padding: 1rem 2rem;
 }
 
 .navbar-brand, .nav-link {
-    color: var(--text-main) !important;
+    color: var(--text-primary) !important;
     font-weight: 600;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .nav-link:hover {
     color: var(--quant-red) !important;
-    transform: translateY(-2px);
+    text-shadow: 0 0 10px var(--quant-red);
 }
 
-/* High-Density Computational Nodes */
-.quarto-about-trestles, .cell, .panel-tabset, .card-lab {
-    background: var(--glass-panel);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+/* Glassmorphism Structural Modules */
+.lab-module, .cell, .panel-tabset, .quarto-about-trestles {
+    background: var(--glass-bg);
     border: 1px solid var(--glass-border);
-    border-radius: 12px;
+    border-radius: 16px;
     padding: 2.5rem;
-    box-shadow: var(--shadow-subtle);
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    margin-bottom: 2.5rem;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* Subatomic Hover Physics */
-.quarto-about-trestles:hover, .cell:hover, .card-lab:hover {
-    transform: translateY(-4px) scale(1.005);
-    border-color: rgba(255, 0, 0, 0.2);
-    box-shadow: var(--shadow-red), var(--shadow-subtle);
+.lab-module:hover, .cell:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 0, 0, 0.4);
+    box-shadow: var(--glow-red);
 }
 
-/* Interactive Action Arrays */
-.btn, .about-link {
-    background: transparent;
-    color: var(--text-main) !important;
-    border: 1px solid var(--text-muted);
-    border-radius: 6px;
-    padding: 0.6rem 1.2rem;
-    font-weight: 700;
-    font-size: 0.85rem;
-    transition: all 0.4s ease;
-    overflow: hidden;
-}
-
-.btn:hover, .about-link:hover {
-    background: var(--quant-red);
-    color: #ffffff !important;
-    border-color: var(--quant-red);
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
-    transform: scale(1.04);
-}
-
-/* Mathematical Formulation Isolation */
-.math.display {
-    background: rgba(255, 255, 255, 0.55);
-    border-left: 3px solid var(--quant-red);
-    padding: 2rem;
-    border-radius: 0 8px 8px 0;
-    font-size: 1.15em;
-    overflow-x: auto;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
-}
-
-/* Structural Typography */
-h1, h2, h3 {
-    color: var(--text-main);
+/* Typography and Gradient Text */
+h1, h2, h3, h4 {
     font-weight: 800;
-    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
 }
 
-h1 {
-    background: linear-gradient(90deg, var(--text-main), var(--quant-red));
+.gradient-text {
+    background: linear-gradient(90deg, #ffffff, #94a3b8);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.accent-text {
+    color: var(--quant-red);
+}
+
+/* Mathematical Isolation Rendering */
+.math.display {
+    background: rgba(255, 0, 0, 0.04);
+    border-left: 2px solid var(--quant-red);
+    padding: 2rem;
+    margin: 2rem 0;
+    border-radius: 0 12px 12px 0;
+    font-size: 1.25em;
+    overflow-x: auto;
+    color: #ffffff;
+}
+
+/* Interactive Node Topology */
+.btn-quant {
+    display: inline-block;
+    background: rgba(255, 0, 0, 0.1);
+    color: var(--text-primary);
+    border: 1px solid var(--quant-red);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+}
+
+.btn-quant:hover {
+    background: var(--quant-red);
+    color: #ffffff;
+    box-shadow: var(--glow-red);
+    transform: scale(1.05);
+}
+
+/* Grid Override for Density */
+.grid {
+    display: grid;
+    grid-gap: 2rem;
 }

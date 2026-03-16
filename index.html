@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Apex Quantitative Research &amp; Algorithmic Deployment">
 
 <title>Gorazd Atanasovski</title>
 <style>
@@ -26,178 +27,99 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/tabby.min.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-html-640605f58ae58ee79329c070719e555b.min.css" rel="stylesheet" append-hash="true" data-mode="light">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-46f66b053e56abd73bb6e954d61a315b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
-  "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
-  }
-}</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body>
 
-<div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Gorazd Atanasovski</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">Terminal</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./research.html"> 
-<span class="menu-text">Research</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./code.html"> 
-<span class="menu-text">Software</span></a>
-  </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/gorazdatanasovski"> <i class="bi bi-github" role="img">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/gorazdatanasovski/"> <i class="bi bi-linkedin" role="img">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://www.youtube.com/@gorazdthegreat"> <i class="bi bi-youtube" role="img">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-</div>
-      </div> <!-- /container-fluid -->
-    </nav>
+
+<header id="title-block-header">
+<h1 class="title">Alpha Synthesis Infrastructure</h1>
+
 </header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
-<!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+
+<nav id="TOC" role="doc-toc">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#system-architecture" id="toc-system-architecture" class="nav-link active" data-scroll-target="#system-architecture">System Architecture</a>
-  <ul class="collapse">
-  <li><a href="#operational-vectors" id="toc-operational-vectors" class="nav-link" data-scroll-target="#operational-vectors">Operational Vectors</a></li>
-  </ul></li>
-  <li><a href="#active-deployments" id="toc-active-deployments" class="nav-link" data-scroll-target="#active-deployments">Active Deployments</a></li>
+  <li><a href="#operational-directive" id="toc-operational-directive">Operational Directive</a></li>
+  <li><a href="#mathematical-frameworks-stochastic-calculus" id="toc-mathematical-frameworks-stochastic-calculus">Mathematical Frameworks: Stochastic Calculus</a></li>
   </ul>
 </nav>
-    </div>
-<!-- main -->
-<main class="content" id="quarto-document-content">
+<section id="operational-directive" class="lab-module">
+<h2 class="anchored">Operational Directive</h2>
+<p>This architecture serves as the primary deployment vector for advanced stochastic modeling, empirical data science, and high-frequency financial mathematics. The objective is the rigorous translation of global market complexity into verifiable probability matrices and highly asymmetric, profitable alpha.</p>
+<p>Heuristic approximations are systematically rejected. All quantitative assertions must be derived via exact analytical solutions and formally proven logic gates.</p>
+</section>
+<section id="mathematical-frameworks-stochastic-calculus" class="lab-module">
+<h2 class="anchored">Mathematical Frameworks: Stochastic Calculus</h2>
+<p>The foundation of the asset pricing models deployed herein relies upon continuous-time stochastic differential equations and martingale theory.</p>
+<p>The baseline derivation of asset trajectory under the physical measure <span class="math inline">\(\mathbb{P}\)</span> is defined as:</p>
+<p><span class="math display">\[dS_t = \mu(t, S_t) S_t dt + \sigma(t, S_t) S_t dW_t\]</span></p>
+<p>To capture persistent market memory and rough volatility, the standard Brownian motion <span class="math inline">\(W_t\)</span> is superseded by fractional Brownian motion <span class="math inline">\(W_t^H\)</span> parameterized by the Hurst exponent <span class="math inline">\(H \in (0,1)\)</span>, inducing a non-Markovian system state:</p>
+<p><span class="math display">\[d\sigma_t = \theta(\omega - \sigma_t)dt + \nu \sigma_t dW_t^H\]</span></p>
+</section>
+<div class="lab-module">
+<h2 id="computational-execution-quantitative-models" class="anchored">Computational Execution: Quantitative Models</h2>
+<p>Theoretical frameworks are translated into executable Python, R, and Stata environments. Below is a live execution demonstrating the synthetic decay of a fractional impact kernel within a simulated market microstructure environment.</p>
+<p>```python #| label: fig-kernel-decay #| fig-cap: ‘Simulation of <span class="math inline">\(L^1\)</span>-bounded Volterra resolvent decay over <span class="math inline">\(t \in [0, 10]\)</span>.’ #| echo: true #| code-fold: false</p>
+<p>import numpy as np import matplotlib.pyplot as plt</p>
+<h1 id="initialization-of-non-linear-parameter-space">Initialization of non-linear parameter space</h1>
+<p>t_space = np.linspace(0.1, 10, 200) hurst_exponent = 0.15 # Extreme rough volatility regime kernel_trajectory = (t_space)**(hurst_exponent - 0.5) * np.exp(-0.2 * t_space)</p>
+<h1 id="visual-rendering-engine">Visual rendering engine</h1>
+<p>plt.style.use(‘dark_background’) fig, ax = plt.subplots(figsize=(10, 4)) fig.patch.set_facecolor(‘#030712’) ax.set_facecolor(‘#030712’)</p>
+<p>ax.plot(t_space, kernel_trajectory, color=‘#FF0000’, linewidth=2.5, alpha=0.9) ax.fill_between(t_space, kernel_trajectory, color=‘#FF0000’, alpha=0.1)</p>
+<p>ax.set_title(“Fractional Impact Kernel Trajectory”, color=“#f8fafc”, weight=‘bold’) ax.grid(True, color=‘#ffffff’, alpha=0.05) ax.spines[‘top’].set_visible(False) ax.spines[‘right’].set_visible(False) ax.spines[‘bottom’].set_color(‘#475569’) ax.spines[‘left’].set_color(‘#475569’) plt.show()</p>
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Quantitative Alpha Synthesis</h1>
 </div>
 
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<section id="system-architecture" class="level2 card-lab">
-<h2 class="anchored" data-anchor-id="system-architecture">System Architecture</h2>
-<p>This infrastructure operates as the primary quantitative repository for Gorazd Atanasovski. All deployments prioritize rigorous signal synthesis, stochastic framework derivation, and algorithmic market execution over standard heuristic approximations.</p>
-<section id="operational-vectors" class="level3">
-<h3 class="anchored" data-anchor-id="operational-vectors">Operational Vectors</h3>
-<ul>
-<li><strong>Stochastic Calculus &amp; Asset Pricing:</strong> Continuous-time theoretical modeling and unassailable mathematical proofs.</li>
-<li><strong>High-Frequency Signal Extraction:</strong> Reverse-engineering market flow using advanced probability theory and mathematical statistics.</li>
-<li><strong>Algorithmic Infrastructure:</strong> Architecture and deployment of the <code>gorazd</code> quantitative library.</li>
-</ul>
-</section>
-</section>
-<section id="active-deployments" class="level2 card-lab" style="margin-top: 2rem;">
-<h2 class="anchored" data-anchor-id="active-deployments">Active Deployments</h2>
-<div class="grid">
-<section id="structural-mathematics" class="level3 g-col-6">
-<h3 class="anchored" data-anchor-id="structural-mathematics">Structural Mathematics</h3>
-<p>Rigorous derivation of novel mathematical objects. Excision of market noise via exact analytical solutions and rough volatility theory. <a href="./research.html">Initialize Proofs</a></p>
-</section>
-<section id="computational-execution" class="level3 g-col-6">
-<h3 class="anchored" data-anchor-id="computational-execution">Computational Execution</h3>
-<p>Python, R, and Stata implementations. Hosting environment for the Algo Trading Society framework and machine learning market directives. <a href="./code.html">Execute Models</a></p>
-</section>
-</div>
-</section>
-
-
-
-</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+    tabsets.forEach(function(tabset) {
+      const tabby = new Tabby('#' + tabset.id);
+    });
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -296,7 +218,7 @@ ul.task-list li input[type="checkbox"] {
         },
         interactive: true,
         interactiveBorder: 10,
-        theme: 'quarto',
+        theme: 'light-border',
         placement: 'bottom-start',
       };
       if (contentFn) {
@@ -596,7 +518,6 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
-</div> <!-- /content -->
 
 
 
