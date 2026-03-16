@@ -75,19 +75,31 @@ ul.task-list li input[type="checkbox"] {
 
 window.addEventListener('DOMContentLoaded', () => {
 
-    // 1. Generate WebGL Canvas
+    // 1. WebGL Volatility Canvas (Absolute Background)
 
     const canvasContainer = document.createElement('div');
 
     canvasContainer.id = 'bg-canvas';
 
-    canvasContainer.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -10; pointer-events: none; background: #02040a;';
+    canvasContainer.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; pointer-events: none; background: #02040a;';
 
     document.body.prepend(canvasContainer);
 
 
 
-    // 2. Generate Commercial USD Side-Panel
+    // 2. Mathematical Cascade Canvas (Middle Layer)
+
+    const mathCanvas = document.createElement('canvas');
+
+    mathCanvas.id = 'math-rain-canvas';
+
+    mathCanvas.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; mix-blend-mode: screen;';
+
+    document.body.prepend(mathCanvas);
+
+
+
+    // 3. Commercial Affiliation Panel
 
     const usdPanel = document.createElement('a');
 
@@ -103,7 +115,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // 3. Initialize 3D Volatility Gradient
+    // 4. Initialize 3D Volatility Gradient
 
     let scene = new THREE.Scene();
 
@@ -149,9 +161,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-    function animate() {
+    function animateWebGL() {
 
-        requestAnimationFrame(animate);
+        requestAnimationFrame(animateWebGL);
 
         time += 0.012;
 
@@ -169,15 +181,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
             
 
-            // Stochastic Wave Deformation
-
             let y = Math.sin(x * 0.008 + time) * Math.cos(z * 0.008 + time) * 85;
 
             positions.setY(i, y);
 
             
-
-            // Cyan to Magenta to FF0000 Gradient
 
             let hue = 0.75 + (y / 350); 
 
@@ -195,57 +203,47 @@ window.addEventListener('DOMContentLoaded', () => {
 
     }
 
-    animate();
+    animateWebGL();
 
 
 
-    // 4. Kinetic Mathematical Cascade (HTML5 Canvas Engine)
-
-    const mathCanvas = document.createElement('canvas');
-
-    mathCanvas.id = 'math-rain-canvas';
-
-    mathCanvas.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -9; pointer-events: none; opacity: 0.15;';
-
-    document.body.prepend(mathCanvas);
-
-
+    // 5. Initialize Kinetic Mathematical Rain
 
     const ctx = mathCanvas.getContext('2d');
 
-    mathCanvas.width = window.innerWidth;
+    let width = mathCanvas.width = window.innerWidth;
 
-    mathCanvas.height = window.innerHeight;
+    let height = mathCanvas.height = window.innerHeight;
 
 
 
     const symbols = '∫∬∭∮∇∂∑∏∞μσΦΨΩαβγλθΔℝℂℤℚℕ∈∉⊂⊃∪∩≈≠≡≤≥'.split('');
 
-    const fontSize = 16;
+    const fontSize = 18;
 
-    let columns = Math.floor(mathCanvas.width / fontSize);
+    let columns = Math.floor(width / fontSize);
 
     let drops = [];
 
     
 
-    // Stagger initial drop alignment 
+    for (let x = 0; x < columns; x++) {
 
-    for (let x = 0; x < columns; x++) drops[x] = Math.random() * -100;
+        drops[x] = Math.random() * -100;
 
-
-
-    function drawMathRain() {
-
-        // Translucent fill for geometric trailing effect
-
-        ctx.fillStyle = 'rgba(2, 4, 10, 0.08)'; 
-
-        ctx.fillRect(0, 0, mathCanvas.width, mathCanvas.height);
+    }
 
 
 
-        ctx.fillStyle = '#FF0000';
+    function animateMathRain() {
+
+        ctx.fillStyle = 'rgba(2, 4, 10, 0.08)';
+
+        ctx.fillRect(0, 0, width, height);
+
+
+
+        ctx.fillStyle = 'rgba(255, 0, 0, 0.85)';
 
         ctx.font = fontSize + 'px "Courier New", monospace';
 
@@ -257,53 +255,59 @@ window.addEventListener('DOMContentLoaded', () => {
 
             
 
-            if (drops[i] * fontSize > 0) {
-
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-            }
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
 
 
-            // Probability-weighted organic reset
-
-            if (drops[i] * fontSize > mathCanvas.height && Math.random() > 0.975) {
+            if (drops[i] * fontSize > height && Math.random() > 0.975) {
 
                 drops[i] = 0;
 
             }
 
-            drops[i]++;
+            drops[i] += 0.8;
 
         }
 
+        requestAnimationFrame(animateMathRain);
+
     }
 
-    setInterval(drawMathRain, 45);
+    animateMathRain();
 
 
 
-    // Global Resize Matrix
+    // 6. Global Matrix Re-scaling
 
     window.addEventListener('resize', () => {
 
-        camera.aspect = window.innerWidth / window.innerHeight;
+        width = window.innerWidth;
 
-        camera.updateProjectionMatrix();
-
-        renderer.setSize(window.innerWidth, window.innerHeight);
+        height = window.innerHeight;
 
         
 
-        mathCanvas.width = window.innerWidth;
+        camera.aspect = width / height;
 
-        mathCanvas.height = window.innerHeight;
+        camera.updateProjectionMatrix();
 
-        columns = Math.floor(mathCanvas.width / fontSize);
+        renderer.setSize(width, height);
+
+        
+
+        mathCanvas.width = width;
+
+        mathCanvas.height = height;
+
+        columns = Math.floor(width / fontSize);
 
         drops = [];
 
-        for (let x = 0; x < columns; x++) drops[x] = Math.random() * -100;
+        for (let x = 0; x < columns; x++) {
+
+            drops[x] = Math.random() * -100;
+
+        }
 
     });
 
