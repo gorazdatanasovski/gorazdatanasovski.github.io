@@ -145,21 +145,24 @@ ul.task-list li input[type="checkbox"] {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
     let scene, camera, renderer, wireframe;
+    const vertices = 50;
+    const geometrySize = 1200;
+
     function init() {
         scene = new THREE.Scene();
-        camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
-        camera.position.set(0, 150, 300);
-        camera.lookAt(0, 0, 0);
+        camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
+        camera.position.set(0, 150, 450);
+        camera.lookAt(0, -50, 0);
         
         renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-        let geometry = new THREE.PlaneGeometry(1200, 1200, 50, 50);
+        let geometry = new THREE.PlaneGeometry(geometrySize, geometrySize, vertices, vertices);
         geometry.rotateX(-Math.PI / 2);
         
-        // NO YELLOW. Exclusively #FF0000
-        let material = new THREE.MeshBasicMaterial({color: 0xFF0000, wireframe: true, transparent: true, opacity: 0.25});
+        // NO YELLOW. Exclusively FF0000.
+        let material = new THREE.MeshBasicMaterial({color: 0xFF0000, wireframe: true, transparent: true, opacity: 0.2});
         wireframe = new THREE.Mesh(geometry, material);
         scene.add(wireframe);
 
@@ -174,8 +177,8 @@ ul.task-list li input[type="checkbox"] {
         for (let i = 0; i < position.count; i++) {
             let x = position.getX(i);
             let z = position.getZ(i);
-            // Simulating a stochastic volatility surface
-            let y = Math.sin(x * 0.005 + time) * Math.cos(z * 0.005 + time) * 80;
+            // Non-linear stochastic surface simulation
+            let y = Math.sin(x * 0.01 + time) * Math.cos(z * 0.01 + time) * 60;
             position.setY(i, y);
         }
         position.needsUpdate = true;
@@ -190,35 +193,64 @@ ul.task-list li input[type="checkbox"] {
     
     init();
 </script>
-<div class="container" style="max-width: 1200px; margin: 0 auto; padding: 4rem 2rem;">
-<pre><code>&lt;div style="text-align: center; margin-bottom: 4rem;"&gt;
+<div id="math-rain">
+
+</div>
+<script>
+    const rainContainer = document.getElementById('math-rain');
+    // Apex mathematical objects and stochastic differential operators
+    const mathSymbols = ['Σ', 'Π', '∫', '√', '∞', '±', '∂', '∇', 'Δ', 'Ω', '≈', '≠', '≤', '≥', 'd', 'dt', 'dW_t', 'd\sigma_t', 'L^1', 'H', 'x', 'y', 'z', 'μ', 'σ', 'v', 'k'];
+    
+    function createMathCharacter() {
+        const char = document.createElement('div');
+        char.innerText = mathSymbols[Math.floor(Math.random() * mathSymbols.length)];
+        
+        // Dynamic topological mapping
+        char.style.left = Math.random() * 100 + 'vw';
+        char.style.opacity = Math.random() * 0.5 + 0.5;
+        char.style.animationDuration = Math.random() * 5 + 3 + 's';
+        char.style.fontSize = Math.random() * 0.6 + 0.9 + 'rem';
+        char.style.fontWeight = Math.random() > 0.5 ? 'bold' : 'normal';
+
+        rainContainer.appendChild(char);
+
+        setTimeout(() => {
+            char.remove();
+        }, parseFloat(char.style.animationDuration) * 1000);
+    }
+
+    // Initiate kinetic character cascade
+    setInterval(createMathCharacter, 120); 
+</script>
+<div class="container" style="max-width: 1200px; margin: 0 auto; padding: 6rem 2rem;">
+<pre><code>&lt;div style="text-align: center; margin-bottom: 5rem;"&gt;
     &lt;a href="https://www.usd.edu/" target="_blank"&gt;
         &lt;img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8c/University_of_South_Dakota_logo.svg/1200px-University_of_South_Dakota_logo.svg.png" alt="University of South Dakota" class="usd-logo"&gt;
     &lt;/a&gt;
-    &lt;h1 style="font-size: 3.5rem; margin-bottom: 0.5rem;"&gt;Welcome to my page&lt;/h1&gt;
-    &lt;h2 class="text-red" style="font-size: 2rem; font-weight: 400;"&gt;Quantitative Finance&lt;/h2&gt;
-    &lt;p style="max-width: 800px; margin: 2rem auto; font-size: 1.2rem; color: #a1a1aa;"&gt;
-        This architecture serves as the primary deployment vector for advanced quantitative analytics. 
-        Navigate through the interface to explore formally proven mathematical theories and deterministic algorithmic software infrastructure.
+    &lt;h1 style="margin-top: 2rem;"&gt;Welcome to my page&lt;/h1&gt;
+    &lt;h2 class="text-red" style="font-size: 2.2rem; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase;"&gt;Quantitative Finance&lt;/h2&gt;
+    &lt;p style="max-width: 800px; margin: 2rem auto; font-size: 1.25rem; color: #f3f4f6; opacity: 0.8;"&gt;
+        The primary quantitative architecture and research repository for Gorazd Atanasovski. All deployments prioritize rigorous signal synthesis, stochastic framework derivation, and algorithmic market execution over standard heuristic approximations.
     &lt;/p&gt;
 &lt;/div&gt;
 
 &lt;div class="grid-2"&gt;
-    &lt;div class="quant-card"&gt;
-        &lt;h2&gt;Mathematical Research &amp; Theories&lt;/h2&gt;
-        &lt;p style="color: #a1a1aa; margin-bottom: 2rem;"&gt;
-            Rigorous formalization of market microstructure dynamics, continuous-time pricing frameworks, and analytical boundary limits. Heuristic approximations are rejected in favor of exact stochastic derivations.
-        &lt;/p&gt;
-        &lt;a href="research.qmd" class="btn-cyber"&gt;View Mathematics&lt;/a&gt;
+    &lt;div class="card-quant"&gt;
+        &lt;h3&gt;Mathematical Theories&lt;/h3&gt;
+        &lt;p style="color: #64748b; margin-bottom: 2rem;"&gt;Rigorous formalization of market microstructure dynamics, continuous-time pricing frameworks, and stochastic differential equations. Heuristic approximations are systematically rejected in favor of exact derivations.&lt;/p&gt;
+        &lt;a href="research.qmd" class="btn-quant"&gt;Initialize Proofs&lt;/a&gt;
     &lt;/div&gt;
 
-    &lt;div class="quant-card"&gt;
-        &lt;h2&gt;Computational Software&lt;/h2&gt;
-        &lt;p style="color: #a1a1aa; margin-bottom: 2rem;"&gt;
-            Live execution environments and proprietary libraries. Featuring GORAZD, a Gradient-Optimized Regime-Aware Zero-allocation Dispatcher engineered for zero-latency physical execution.
-        &lt;/p&gt;
-        &lt;a href="code.qmd" class="btn-cyber"&gt;View Software&lt;/a&gt;
+    &lt;div class="card-quant"&gt;
+        &lt;h3&gt;Software &amp; Engineering&lt;/h3&gt;
+        &lt;p style="color: #64748b; margin-bottom: 2rem;"&gt;Computational execution environments. Featuring the `gorazd` Python library, an institutional-grade Gradient-Optimized Regime-Aware Zero-allocation Dispatcher engineered for zero-latency bare-metal execution.&lt;/p&gt;
+        &lt;a href="code.qmd" class="btn-quant"&gt;Execute models&lt;/a&gt;
     &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="card-quant" style="margin-top: 4rem;"&gt;
+    &lt;h2&gt;Algo Trading Society&lt;/h2&gt;
+    &lt;p style="color: #64748b;"&gt;Founder and lead architect. The society operates as an elite computational finance incubator, synthesizing mathematical rigor with high-performance C++ and Python infrastructure to bridge the gap between abstract academic theory and live market synchronization.&lt;/p&gt;
 &lt;/div&gt;</code></pre>
 </div>
 
