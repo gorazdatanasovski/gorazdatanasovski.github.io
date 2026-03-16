@@ -1,30 +1,24 @@
-﻿/* Core Vector Variables */
-:root {
-    --space-base: #030712;
-    --space-mid: #0f172a;
-    --space-high: #1e293b;
+﻿:root {
+    --space-base: #02040a;
+    --space-mid: #0b1120;
+    --space-high: #111827;
     --quant-red: #FF0000;
     --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --glass-bg: rgba(15, 23, 42, 0.7);
+    --glass-bg: rgba(11, 17, 32, 0.65);
     --glass-border: rgba(255, 255, 255, 0.08);
-    --glow-red: 0 0 20px rgba(255, 0, 0, 0.2);
 }
 
-/* Force Override of Quarto Defaults */
-body, html, .quarto-container, #quarto-content, main {
+/* Force Override of Bootstrap Backgrounds */
+body, html, .quarto-container, #quarto-content, main, .navbar {
     background-color: transparent !important;
-    color: var(--text-primary);
-    font-family: 'Inter', 'Roboto Mono', sans-serif;
 }
 
-/* Fluid Mesh Gradient Infrastructure */
 body {
     background: linear-gradient(135deg, var(--space-base), var(--space-mid), var(--space-high), var(--space-base)) !important;
     background-size: 400% 400% !important;
-    animation: fluidGradient 25s ease infinite !important;
-    margin: 0;
-    line-height: 1.7;
+    animation: fluidGradient 20s ease infinite !important;
+    color: var(--text-primary);
+    font-family: 'Inter', 'Roboto Mono', sans-serif;
 }
 
 @keyframes fluidGradient {
@@ -33,22 +27,19 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* Global Navigation Geometry */
 .navbar {
-    background: rgba(3, 7, 18, 0.85) !important;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--glass-border);
-    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--glass-border) !important;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.8);
 }
 
 .navbar-brand, .nav-link {
-    color: var(--text-primary) !important;
-    font-weight: 600;
+    color: #ffffff !important;
+    font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    font-size: 0.85rem;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
+    transition: 0.3s ease;
 }
 
 .nav-link:hover {
@@ -56,80 +47,46 @@ body {
     text-shadow: 0 0 10px var(--quant-red);
 }
 
-/* Glassmorphism Structural Modules */
-.lab-module, .cell, .panel-tabset, .quarto-about-trestles {
+.card-quant, .quarto-about-trestles {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
-    border-radius: 16px;
+    border-radius: 12px;
     padding: 2.5rem;
-    margin-bottom: 2.5rem;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease, box-shadow 0.4s ease;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.lab-module:hover, .cell:hover {
+.card-quant:hover, .quarto-about-trestles:hover {
     transform: translateY(-5px);
     border-color: rgba(255, 0, 0, 0.4);
-    box-shadow: var(--glow-red);
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.2);
 }
 
-/* Typography and Gradient Text */
 h1, h2, h3, h4 {
     font-weight: 800;
+    color: #ffffff;
     margin-bottom: 1.5rem;
 }
 
-.gradient-text {
-    background: linear-gradient(90deg, #ffffff, #94a3b8);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-}
-
-.accent-text {
-    color: var(--quant-red);
-}
-
-/* Mathematical Isolation Rendering */
-.math.display {
-    background: rgba(255, 0, 0, 0.04);
-    border-left: 2px solid var(--quant-red);
-    padding: 2rem;
-    margin: 2rem 0;
-    border-radius: 0 12px 12px 0;
-    font-size: 1.25em;
-    overflow-x: auto;
-    color: #ffffff;
-}
-
-/* Interactive Node Topology */
 .btn-quant {
     display: inline-block;
     background: rgba(255, 0, 0, 0.1);
-    color: var(--text-primary);
+    color: #ffffff !important;
     border: 1px solid var(--quant-red);
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
+    padding: 0.8rem 1.8rem;
+    border-radius: 6px;
     font-weight: 700;
     text-decoration: none;
     text-transform: uppercase;
-    font-size: 0.8rem;
     letter-spacing: 0.1em;
     transition: all 0.3s ease;
 }
 
 .btn-quant:hover {
     background: var(--quant-red);
-    color: #ffffff;
-    box-shadow: var(--glow-red);
-    transform: scale(1.05);
-}
-
-/* Grid Override for Density */
-.grid {
-    display: grid;
-    grid-gap: 2rem;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+    transform: scale(1.03);
 }
