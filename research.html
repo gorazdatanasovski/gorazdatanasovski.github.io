@@ -87,19 +87,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // 2. Generate Math Rain Container
-
-    const rainContainer = document.createElement('div');
-
-    rainContainer.id = 'math-rain';
-
-    rainContainer.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -9; pointer-events: none; overflow: hidden; opacity: 0.15;';
-
-    document.body.prepend(rainContainer);
-
-
-
-    // 3. Generate Commercial USD Side-Panel
+    // 2. Generate Commercial USD Side-Panel
 
     const usdPanel = document.createElement('a');
 
@@ -115,7 +103,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // 4. Initialize 3D Volatility Gradient
+    // 3. Initialize 3D Volatility Gradient
 
     let scene = new THREE.Scene();
 
@@ -189,7 +177,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
             
 
-            // Cyan to Magenta to FF0000 Gradient 
+            // Cyan to Magenta to FF0000 Gradient
 
             let hue = 0.75 + (y / 350); 
 
@@ -211,6 +199,92 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
+    // 4. Kinetic Mathematical Cascade (HTML5 Canvas Engine)
+
+    const mathCanvas = document.createElement('canvas');
+
+    mathCanvas.id = 'math-rain-canvas';
+
+    mathCanvas.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -9; pointer-events: none; opacity: 0.15;';
+
+    document.body.prepend(mathCanvas);
+
+
+
+    const ctx = mathCanvas.getContext('2d');
+
+    mathCanvas.width = window.innerWidth;
+
+    mathCanvas.height = window.innerHeight;
+
+
+
+    const symbols = '∫∬∭∮∇∂∑∏∞μσΦΨΩαβγλθΔℝℂℤℚℕ∈∉⊂⊃∪∩≈≠≡≤≥'.split('');
+
+    const fontSize = 16;
+
+    let columns = Math.floor(mathCanvas.width / fontSize);
+
+    let drops = [];
+
+    
+
+    // Stagger initial drop alignment 
+
+    for (let x = 0; x < columns; x++) drops[x] = Math.random() * -100;
+
+
+
+    function drawMathRain() {
+
+        // Translucent fill for geometric trailing effect
+
+        ctx.fillStyle = 'rgba(2, 4, 10, 0.08)'; 
+
+        ctx.fillRect(0, 0, mathCanvas.width, mathCanvas.height);
+
+
+
+        ctx.fillStyle = '#FF0000';
+
+        ctx.font = fontSize + 'px "Courier New", monospace';
+
+
+
+        for (let i = 0; i < drops.length; i++) {
+
+            const text = symbols[Math.floor(Math.random() * symbols.length)];
+
+            
+
+            if (drops[i] * fontSize > 0) {
+
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+            }
+
+
+
+            // Probability-weighted organic reset
+
+            if (drops[i] * fontSize > mathCanvas.height && Math.random() > 0.975) {
+
+                drops[i] = 0;
+
+            }
+
+            drops[i]++;
+
+        }
+
+    }
+
+    setInterval(drawMathRain, 45);
+
+
+
+    // Global Resize Matrix
+
     window.addEventListener('resize', () => {
 
         camera.aspect = window.innerWidth / window.innerHeight;
@@ -219,47 +293,19 @@ window.addEventListener('DOMContentLoaded', () => {
 
         renderer.setSize(window.innerWidth, window.innerHeight);
 
-    });
-
-
-
-    // 5. Kinetic Math Rain
-
-    const mathSymbols = ['Σ','Π','∫','√','∞','∂','∇','Δ','Ω','d','dt','dW_t','H','μ','σ'];
-
-    setInterval(() => {
-
-        const char = document.createElement('div');
-
-        char.innerText = mathSymbols[Math.floor(Math.random() * mathSymbols.length)];
-
-        char.style.position = 'absolute';
-
-        char.style.color = '#FF0000';
-
-        char.style.fontFamily = 'monospace';
-
-        char.style.left = Math.random() * 100 + 'vw';
-
-        char.style.opacity = Math.random() * 0.4 + 0.1;
-
-        let animDuration = Math.random() * 5 + 4;
-
-        char.style.transition = `transform ${animDuration}s linear`;
-
-        char.style.transform = 'translateY(-50px)';
-
-        char.style.fontSize = Math.random() * 1.2 + 1 + 'rem';
-
-        rainContainer.appendChild(char);
-
         
 
-        setTimeout(() => { char.style.transform = 'translateY(110vh)'; }, 50);
+        mathCanvas.width = window.innerWidth;
 
-        setTimeout(() => { char.remove(); }, animDuration * 1000 + 100);
+        mathCanvas.height = window.innerHeight;
 
-    }, 120);
+        columns = Math.floor(mathCanvas.width / fontSize);
+
+        drops = [];
+
+        for (let x = 0; x < columns; x++) drops[x] = Math.random() * -100;
+
+    });
 
 });
 
@@ -332,7 +378,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Mathematics</h1>
+<h1 class="title">Research</h1>
 </div>
 
 
