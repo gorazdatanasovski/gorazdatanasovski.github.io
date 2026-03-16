@@ -1,10 +1,8 @@
-﻿/* Core Vector Variables & Resets */
-:root {
+﻿:root {
     --bg-base: #02040a;
     --quant-red: #FF0000;
 }
 
-/* Force Transparent Backgrounds for WebGL Visibility */
 body, html, .quarto-container, #quarto-content, main {
     background: transparent !important;
     background-color: transparent !important;
@@ -12,61 +10,41 @@ body, html, .quarto-container, #quarto-content, main {
     font-family: 'Inter', sans-serif;
 }
 
-body { background-color: var(--bg-base) !important; }
-
-/* Structural Navigation Integrity */
-.navbar { border-bottom: 1px solid var(--quant-red) !important; box-shadow: 0 4px 20px rgba(0,0,0,0.8); }
+/* Global Navigation */
+.navbar { border-bottom: 1px solid var(--quant-red) !important; background: rgba(5,5,5,0.95) !important; box-shadow: 0 4px 20px rgba(0,0,0,0.8); }
 .navbar-brand, .nav-link { text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; transition: 0.3s; }
 .nav-link:hover, .navbar-brand:hover { color: var(--quant-red) !important; text-shadow: 0 0 10px var(--quant-red); }
 
-/* Background Canvas Layers */
-#bg-canvas, #math-rain {
-    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    z-index: -10; pointer-events: none;
-}
-#math-rain { z-index: -9; opacity: 0.15; overflow: hidden; }
-
-/* Commercial Advertisement / Affiliation Side-Panel */
+/* Commercial USD Side-Panel */
 .usd-sponsor-panel {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 220px;
-    background: rgba(10, 10, 10, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-left: 3px solid var(--quant-red);
-    padding: 15px;
-    border-radius: 4px;
-    backdrop-filter: blur(10px);
-    z-index: 100;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    position: fixed; bottom: 30px; right: 30px; width: 220px;
+    background: rgba(10, 10, 10, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-left: 3px solid var(--quant-red);
+    padding: 15px; border-radius: 4px; backdrop-filter: blur(10px); z-index: 100;
+    transition: all 0.3s ease; text-decoration: none; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
 }
-.usd-sponsor-panel:hover {
-    border-color: var(--quant-red);
-    transform: translateX(-5px);
-    background: rgba(20, 20, 20, 0.95);
-}
+.usd-sponsor-panel:hover { border-color: var(--quant-red); transform: translateX(-5px); background: rgba(20, 20, 20, 0.95); }
 .usd-text-main { color: #ffffff; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; margin: 0 0 5px 0; letter-spacing: 0.05em; }
 .usd-text-sub { color: #888; font-size: 0.75rem; text-transform: uppercase; margin: 0; }
 
-/* High-Density Layout Cards */
+/* Markdown Hero Section */
+.hero-container { text-align: center; max-width: 900px; margin: 6rem auto 4rem; position: relative; z-index: 10; }
+.hero-container h1 { font-size: 4.5rem; letter-spacing: -0.02em; background: linear-gradient(90deg, #ffffff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; margin-bottom: 0.5rem; }
+.hero-container h2 { color: var(--quant-red); font-size: 2.2rem; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; margin-top: 0; }
+.hero-container p { font-size: 1.25rem; color: #a1a1aa; line-height: 1.6; margin-top: 2rem; }
+
+/* Markdown Grid Layout */
+.grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem; max-width: 1200px; margin: 0 auto 6rem; position: relative; z-index: 10; }
+
 .card-quant {
-    background: rgba(10, 10, 10, 0.75);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 4px;
-    padding: 3rem;
-    backdrop-filter: blur(15px);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-    transition: transform 0.4s ease, border-color 0.4s ease;
+    background: rgba(10, 10, 10, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 4px; padding: 3rem;
+    backdrop-filter: blur(15px); box-shadow: 0 10px 40px rgba(0,0,0,0.8); transition: transform 0.4s ease, border-color 0.4s ease;
 }
 .card-quant:hover { transform: translateY(-5px); border-color: var(--quant-red); box-shadow: 0 0 30px rgba(255, 0, 0, 0.2); }
+.card-quant h3 { font-size: 1.5rem; letter-spacing: 0.05em; color: #ffffff; text-transform: uppercase; margin-top: 0; }
+.card-quant p { color: #a1a1aa; line-height: 1.7; margin: 1.5rem 0 2rem; }
 
 .btn-quant {
-    display: inline-block; background: transparent; color: #fff !important;
-    border: 1px solid var(--quant-red); padding: 1rem 2rem; border-radius: 4px;
-    font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem;
-    transition: 0.3s ease;
+    display: inline-block; background: transparent; color: #fff !important; border: 1px solid var(--quant-red);
+    padding: 1rem 2rem; border-radius: 4px; font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem; transition: 0.3s ease;
 }
 .btn-quant:hover { background: var(--quant-red); box-shadow: 0 0 20px rgba(255, 0, 0, 0.4); transform: scale(1.05); }
