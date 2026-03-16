@@ -76,7 +76,7 @@ ul.task-list li input[type="checkbox"] {
 
 window.addEventListener('DOMContentLoaded', () => {
 
-    // 1. WebGL Volatility Canvas (Absolute Background)
+    // 1. WebGL Volatility Canvas (Layer: -2)
 
     const canvasContainer = document.createElement('div');
 
@@ -88,11 +88,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // 2. Mathematical Cascade Canvas (Middle Layer)
+    // 2. Kinetic Derivation Engine Canvas (Layer: -1)
 
     const mathCanvas = document.createElement('canvas');
 
-    mathCanvas.id = 'math-rain-canvas';
+    mathCanvas.id = 'math-derivation-canvas';
 
     mathCanvas.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; mix-blend-mode: screen;';
 
@@ -116,7 +116,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // 4. Initialize 3D Volatility Gradient
+    // 4. Initialize 3D Volatility Surface
 
     let scene = new THREE.Scene();
 
@@ -188,6 +188,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
             
 
+            // Cyan -> Magenta -> FF0000 Gradient (Strictly Zero Yellow)
+
             let hue = 0.75 + (y / 350); 
 
             colorObj.setHSL(hue, 1.0, 0.5);
@@ -208,7 +210,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // 5. Initialize Kinetic Mathematical Rain
+    // 5. Initialize Kinetic Derivation Engine
 
     const ctx = mathCanvas.getContext('2d');
 
@@ -218,73 +220,209 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-    const symbols = '∫∬∭∮∇∂∑∏∞μσΦΨΩαβγλθΔℝℂℤℚℕ∈∉⊂⊃∪∩≈≠≡≤≥'.split('');
+    const rigorousFormulations = [
 
-    const fontSize = 18;
+        "dS(t) = μS(t)dt + σS(t)dW(t)",
 
-    let columns = Math.floor(width / fontSize);
+        "dσ(t) = θ(ω - σ(t))dt + νσ(t)dW^H(t)",
 
-    let drops = [];
+        "V_t = E^Q[e^{-r(T-t)} h(S_T) | F_t]",
 
-    
+        "R(t) = ∫_0^t K(t-s) dW(s)",
 
-    for (let x = 0; x < columns; x++) {
+        "P(θ|D) ∝ P(D|θ)P(θ)",
 
-        drops[x] = Math.random() * -100;
+        "lim_{H→0} W^H(t) = log-volatility",
 
-    }
+        "∂V/∂t + ½σ²S²(∂²V/∂S²) + rS(∂V/∂S) - rV = 0",
 
+        "d[S,S]_t = σ²(t)S²(t)dt",
 
+        "E[dW_t dW_s] = δ(t-s)dt ds",
 
-    function animateMathRain() {
+        "L(θ) = -½ ∑ [log(2πσ²) + (y-μ)²/σ²]",
 
-        ctx.fillStyle = 'rgba(2, 4, 10, 0.08)';
+        "α_t = argmax E[U(W_T)]",
 
-        ctx.fillRect(0, 0, width, height);
+        "H(p, q) = ½ p^T M^{-1} p + V(q)",
 
+        "C(S,t) = N(d₁)S - N(d₂)Ke^{-r(T-t)}",
 
+        "K(τ) = τ^{H - ½} / Γ(H + ½)",
 
-        ctx.fillStyle = 'rgba(255, 0, 0, 0.85)';
+        "∇·E = ρ/ε₀",
 
-        ctx.font = fontSize + 'px "Courier New", monospace';
+        "iℏ(∂Ψ/∂t) = HΨ"
 
-
-
-        for (let i = 0; i < drops.length; i++) {
-
-            const text = symbols[Math.floor(Math.random() * symbols.length)];
-
-            
-
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+    ];
 
 
 
-            if (drops[i] * fontSize > height && Math.random() > 0.975) {
+    class MathematicalDerivation {
 
-                drops[i] = 0;
+        constructor() {
 
-            }
-
-            drops[i] += 0.8;
+            this.reset();
 
         }
 
-        requestAnimationFrame(animateMathRain);
+        
+
+        reset() {
+
+            this.equation = rigorousFormulations[Math.floor(Math.random() * rigorousFormulations.length)];
+
+            this.x = Math.random() * (width * 0.8) + (width * 0.1);
+
+            this.y = Math.random() * (height * 0.8) + (height * 0.1);
+
+            this.vx = (Math.random() - 0.5) * 0.2; 
+
+            this.vy = (Math.random() - 0.5) * 0.2; 
+
+            this.progress = 0;
+
+            this.typingSpeed = Math.random() * 0.3 + 0.1; 
+
+            this.state = 'formulating'; 
+
+            this.holdTime = Math.random() * 200 + 100;
+
+            this.opacity = 0;
+
+            this.maxOpacity = Math.random() * 0.15 + 0.1; 
+
+            this.fontSize = Math.random() * 10 + 14; 
+
+        }
+
+
+
+        update() {
+
+            this.x += this.vx;
+
+            this.y += this.vy;
+
+
+
+            if (this.state === 'formulating') {
+
+                this.opacity = Math.min(this.opacity + 0.01, this.maxOpacity);
+
+                this.progress += this.typingSpeed;
+
+                if (this.progress >= this.equation.length) {
+
+                    this.progress = this.equation.length;
+
+                    this.state = 'suspension';
+
+                }
+
+            } else if (this.state === 'suspension') {
+
+                this.holdTime--;
+
+                if (this.holdTime <= 0) {
+
+                    this.state = Math.random() > 0.5 ? 'deconstructing' : 'decaying';
+
+                }
+
+            } else if (this.state === 'deconstructing') {
+
+                this.progress -= this.typingSpeed * 1.5;
+
+                if (this.progress <= 0) {
+
+                    this.reset();
+
+                }
+
+            } else if (this.state === 'decaying') {
+
+                this.opacity -= 0.005;
+
+                if (this.opacity <= 0) {
+
+                    this.reset();
+
+                }
+
+            }
+
+        }
+
+
+
+        draw(ctx) {
+
+            if (this.opacity <= 0) return;
+
+            ctx.fillStyle = `rgba(226, 232, 240, ${this.opacity})`;
+
+            ctx.font = `italic ${this.fontSize}px "Cambria Math", "Times New Roman", serif`;
+
+            ctx.shadowBlur = 4;
+
+            ctx.shadowColor = `rgba(255, 255, 255, ${this.opacity * 0.5})`;
+
+            
+
+            const visibleText = this.equation.substring(0, Math.floor(this.progress));
+
+            ctx.fillText(visibleText, this.x, this.y);
+
+            
+
+            // Render typing cursor
+
+            if (this.state === 'formulating' && Math.floor(time * 50) % 2 === 0) {
+
+                const textWidth = ctx.measureText(visibleText).width;
+
+                ctx.fillRect(this.x + textWidth + 2, this.y - this.fontSize * 0.8, 2, this.fontSize);
+
+            }
+
+        }
 
     }
 
-    animateMathRain();
+
+
+    const derivations = Array.from({ length: 18 }, () => new MathematicalDerivation());
 
 
 
-    // 6. Global Matrix Re-scaling
+    function renderDerivationEngine() {
+
+        ctx.clearRect(0, 0, width, height);
+
+        derivations.forEach(d => {
+
+            d.update();
+
+            d.draw(ctx);
+
+        });
+
+        requestAnimationFrame(renderDerivationEngine);
+
+    }
+
+    renderDerivationEngine();
+
+
+
+    // 6. Global Resize Matrix
 
     window.addEventListener('resize', () => {
 
-        width = window.innerWidth;
+        width = mathCanvas.width = window.innerWidth;
 
-        height = window.innerHeight;
+        height = mathCanvas.height = window.innerHeight;
 
         
 
@@ -293,22 +431,6 @@ window.addEventListener('DOMContentLoaded', () => {
         camera.updateProjectionMatrix();
 
         renderer.setSize(width, height);
-
-        
-
-        mathCanvas.width = width;
-
-        mathCanvas.height = height;
-
-        columns = Math.floor(width / fontSize);
-
-        drops = [];
-
-        for (let x = 0; x < columns; x++) {
-
-            drops[x] = Math.random() * -100;
-
-        }
 
     });
 
