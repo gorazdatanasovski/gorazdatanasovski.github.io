@@ -77,39 +77,135 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<style>
+
+/* Bare-Metal Hardware Terminal Overlays */
+
+.terminal-scanline {
+
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+
+    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,229,255,0.02) 50%, rgba(0,229,255,0));
+
+    background-size: 100% 6px;
+
+    z-index: -2; pointer-events: none; opacity: 0.6;
+
+}
+
+
+
+.terminal-vignette {
+
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+
+    z-index: -2; pointer-events: none;
+
+    background: radial-gradient(circle at 50% 40%, transparent 20%, rgba(1, 2, 4, 0.95) 100%);
+
+    box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.9);
+
+}
+
+
+
+.math-equation-node {
+
+    position: absolute;
+
+    color: #ffffff;
+
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.8), 0 0 20px rgba(0, 229, 255, 0.4), 0 0 40px rgba(0, 229, 255, 0.2), 2px 2px 2px rgba(0,0,0,0.9);
+
+    white-space: nowrap;
+
+    will-change: transform, opacity, clip-path;
+
+}
+
+
+
+/* Luminous writing cursor attached to the equations */
+
+.math-equation-node::after {
+
+    content: '';
+
+    position: absolute;
+
+    right: -8px; top: 10%; height: 80%; width: 3px;
+
+    background: #00ffff;
+
+    box-shadow: 0 0 15px #00ffff, 0 0 30px #ffffff;
+
+    opacity: 0;
+
+    transition: opacity 0.2s;
+
+}
+
+.math-equation-node.is-writing::after {
+
+    opacity: 1;
+
+    animation: cursor-flicker 0.1s infinite alternate;
+
+}
+
+@keyframes cursor-flicker {
+
+    0% { opacity: 0.5; height: 75%; }
+
+    100% { opacity: 1; height: 85%; }
+
+}
+
+</style>
+
+
+
 <script>
 
 window.addEventListener('load', () => {
 
-    // 1. Structural WebGL Canvas Layer
+    // 1. Absolute Base Void
 
     const bgContainer = document.createElement('div');
 
-    bgContainer.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; background: #02040a; pointer-events: none;';
+    bgContainer.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -3; background: #010204; pointer-events: none; overflow: hidden;';
 
     document.body.prepend(bgContainer);
 
 
 
-    // 2. Structural DOM Layer for Authentic LaTeX
+    // 2. Hardware Terminal Artifacts
+
+    const scanline = document.createElement('div'); scanline.className = 'terminal-scanline';
+
+    const vignette = document.createElement('div'); vignette.className = 'terminal-vignette';
+
+    document.body.prepend(vignette);
+
+    document.body.prepend(scanline);
+
+
+
+    // 3. Structural DOM Layer for Authentic LaTeX
 
     const mathDOMContainer = document.createElement('div');
 
-    mathDOMContainer.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; overflow: hidden;';
+    mathDOMContainer.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; overflow: hidden; mix-blend-mode: screen; perspective: 1000px;';
 
     document.body.prepend(mathDOMContainer);
 
 
 
-    // 3. USD Institutional Panel
+    // 4. USD Institutional Panel (Appended natively)
 
     const usdPanel = document.createElement('a');
 
-    usdPanel.href = 'https://www.usd.edu/';
-
-    usdPanel.target = '_blank';
-
-    usdPanel.className = 'usd-sponsor-panel';
+    usdPanel.href = 'https://www.usd.edu/'; usdPanel.target = '_blank'; usdPanel.className = 'usd-sponsor-panel';
 
     usdPanel.innerHTML = '<p class="usd-text-sub">Institutional Affiliation</p><p class="usd-text-main">University of<br>South Dakota</p>';
 
@@ -117,27 +213,37 @@ window.addEventListener('load', () => {
 
 
 
-    // 4. WebGL Volatility Surface
+    // ==========================================
+
+    // APEX WEBGL VOLATILITY SURFACE (HOLOGRAPHIC)
+
+    // ==========================================
 
     let scene = new THREE.Scene();
 
-    let camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
+    scene.fog = new THREE.FogExp2(0x010204, 0.0016); // Infinite computing horizon
 
-    camera.position.set(0, 180, 400);
 
-    camera.lookAt(0, -50, 0);
+
+    let camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 10000);
+
+    camera.position.set(0, 120, 480);
+
+    camera.lookAt(0, -40, 0);
 
     
 
-    let renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
+    let renderer = new THREE.WebGLRenderer({alpha: true, antialias: true, powerPreference: "high-performance"});
 
     renderer.setSize(window.innerWidth, window.innerHeight);
+
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Supreme sharpness, clamped for performance
 
     bgContainer.appendChild(renderer.domElement);
 
 
 
-    let geometry = new THREE.PlaneGeometry(1600, 1600, 75, 75);
+    let geometry = new THREE.PlaneGeometry(2400, 2400, 110, 110);
 
     geometry.rotateX(-Math.PI / 2);
 
@@ -149,11 +255,55 @@ window.addEventListener('load', () => {
 
     
 
-    let material = new THREE.MeshBasicMaterial({vertexColors: true, wireframe: true, transparent: true, opacity: 0.35});
+    // Wireframe Manifold
+
+    let material = new THREE.MeshBasicMaterial({
+
+        vertexColors: true, wireframe: true, transparent: true, opacity: 0.08, blending: THREE.AdditiveBlending
+
+    });
 
     let wireframe = new THREE.Mesh(geometry, material);
 
     scene.add(wireframe);
+
+
+
+    // Generate Luminous Optical Orbs for Vertices
+
+    const particleCanvas = document.createElement('canvas');
+
+    particleCanvas.width = 64; particleCanvas.height = 64;
+
+    const pCtx = particleCanvas.getContext('2d');
+
+    const pGrad = pCtx.createRadialGradient(32, 32, 0, 32, 32, 32);
+
+    pGrad.addColorStop(0, 'rgba(255, 255, 255, 1)');
+
+    pGrad.addColorStop(0.2, 'rgba(255, 255, 255, 0.8)');
+
+    pGrad.addColorStop(0.5, 'rgba(0, 229, 255, 0.2)');
+
+    pGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+    pCtx.fillStyle = pGrad; pCtx.fillRect(0, 0, 64, 64);
+
+    const particleTexture = new THREE.CanvasTexture(particleCanvas);
+
+
+
+    // Glowing Data Nodes
+
+    let pointsMaterial = new THREE.PointsMaterial({
+
+        size: 4.5, map: particleTexture, vertexColors: true, transparent: true, opacity: 0.85, blending: THREE.AdditiveBlending, depthWrite: false
+
+    });
+
+    let points = new THREE.Points(geometry, pointsMaterial);
+
+    scene.add(points);
 
 
 
@@ -163,15 +313,17 @@ window.addEventListener('load', () => {
 
 
 
-    // 5. Authentic LaTeX Derivation Engine (Accelerated & Boundary-Pushed)
+    // ==========================================
+
+    // AUTHENTIC LATEX DERIVATION ENGINE
+
+    // ==========================================
 
     let width = window.innerWidth;
 
     let height = window.innerHeight;
 
 
-
-    // Hyper-complex aesthetic formulations
 
     const rigorousLaTeX = [
 
@@ -187,17 +339,13 @@ window.addEventListener('load', () => {
 
         "rV = \\frac{\\partial V}{\\partial t} + \\frac{1}{2}\\sigma^2 S^2 \\frac{\\partial^2 V}{\\partial S^2} + \\lambda \\mathbb{E}[V(SY) - V(S)]",
 
-        "f(x) = a_0 + \\cfrac{1}{a_1 + \\cfrac{1}{a_2 + \\cfrac{1}{a_3 + \\ddots}}}",
-
         "W_t^H = \\frac{1}{\\Gamma(H+\\frac{1}{2})} \\int_0^t (t-s)^{H-\\frac{1}{2}} dW_s",
 
         "\\det(M) = \\sum_{\\sigma \\in S_n} \\left( \\text{sgn}(\\sigma) \\prod_{i=1}^n M_{i,\\sigma_i} \\right)",
 
         "G_{\\mu\\nu} + \\Lambda g_{\\mu\\nu} = \\frac{8\\pi G}{c^4} T_{\\mu\\nu}",
 
-        "\\oint_{\\partial \\Sigma} \\mathbf{E} \\cdot d\\mathbf{l} = - \\iint_{\\Sigma} \\frac{\\partial \\mathbf{B}}{\\partial t} \\cdot d\\mathbf{S}",
-
-        "\\lim_{N\\to\\infty} \\prod_{n=1}^N \\left(1 - \\frac{x^2}{n^2\\pi^2}\\right) = \\frac{\\sin(x)}{x}"
+        "\\oint_{\\partial \\Sigma} \\mathbf{E} \\cdot d\\mathbf{l} = - \\iint_{\\Sigma} \\frac{\\partial \\mathbf{B}}{\\partial t} \\cdot d\\mathbf{S}"
 
     ];
 
@@ -217,13 +365,7 @@ window.addEventListener('load', () => {
 
             this.el = document.createElement('div');
 
-            this.el.style.position = 'absolute';
-
-            this.el.style.color = '#cbd5e1'; 
-
-            this.el.style.textShadow = '0 0 12px rgba(56, 189, 248, 0.45)';
-
-            this.el.style.whiteSpace = 'nowrap';
+            this.el.className = 'math-equation-node';
 
             mathDOMContainer.appendChild(this.el);
 
@@ -249,13 +391,11 @@ window.addEventListener('load', () => {
 
             
 
-            // Extreme Boundary Push: Left (2% - 6%), Right (78% - 85%)
-
             this.x = this.side === 'left' 
 
-                ? (width * 0.02 + Math.random() * (width * 0.04)) 
+                ? (width * 0.02 + Math.random() * (width * 0.05)) 
 
-                : (width * 0.78 + Math.random() * (width * 0.07));
+                : (width * 0.75 + Math.random() * (width * 0.08));
 
             
 
@@ -263,9 +403,11 @@ window.addEventListener('load', () => {
 
             this.driftY = 0;
 
-            // Accelerated drifting up or down
+            // Parallax Z-depth drift for 3D illusion
 
-            this.vy = (Math.random() - 0.5) * 0.4; 
+            this.z = (Math.random() - 0.5) * 100;
+
+            this.vy = (Math.random() - 0.5) * 0.15; 
 
 
 
@@ -273,37 +415,23 @@ window.addEventListener('load', () => {
 
             this.revealProgress = isInit && this.state === 'wait' ? 100 : 0;
 
-            
+            this.speed = Math.random() * 0.5 + 0.3; 
 
-            // Accelerated writing speed
+            this.hold = Math.random() * 300 + 150;
 
-            this.speed = Math.random() * 0.8 + 0.6; 
+            this.opacity = isInit ? (Math.random() * 0.4 + 0.2) : 0;
 
-
-
-            // Slashed suspension time
-
-            this.hold = Math.random() * 150 + 50;
+            this.maxOpacity = Math.random() * 0.5 + 0.3; 
 
             
 
-            this.opacity = isInit ? (Math.random() * 0.25 + 0.15) : 0;
-
-            this.maxOpacity = Math.random() * 0.25 + 0.35; 
-
-            
-
-            let scale = Math.random() * 0.35 + 0.65;
+            let scale = Math.random() * 0.35 + 0.70;
 
             this.el.style.transformOrigin = 'left center';
 
-            this.scaleString = `scale(${scale})`;
+            this.scaleString = `translate3d(${this.x}px, 0px, ${this.z}px) scale(${scale})`;
 
 
-
-            this.el.style.left = this.x + 'px';
-
-            this.el.style.top = this.y + 'px';
 
             this.updateStyles();
 
@@ -315,9 +443,21 @@ window.addEventListener('load', () => {
 
             this.el.style.opacity = this.opacity;
 
-            this.el.style.transform = `${this.scaleString} translateY(${this.driftY}px)`;
+            this.el.style.transform = `${this.scaleString} translateY(${this.y + this.driftY}px)`;
 
             this.el.style.clipPath = `inset(0 ${100 - this.revealProgress}% 0 0)`;
+
+            
+
+            if (this.state === 'reveal' && this.revealProgress < 98) {
+
+                this.el.classList.add('is-writing');
+
+            } else {
+
+                this.el.classList.remove('is-writing');
+
+            }
 
         }
 
@@ -331,7 +471,7 @@ window.addEventListener('load', () => {
 
             if (this.state === 'reveal') {
 
-                this.opacity = Math.min(this.opacity + 0.025, this.maxOpacity);
+                this.opacity = Math.min(this.opacity + 0.02, this.maxOpacity);
 
                 this.revealProgress += this.speed;
 
@@ -351,15 +491,11 @@ window.addEventListener('load', () => {
 
             } else if (this.state === 'fade') {
 
-                // Accelerated fade-out sequence
-
-                this.opacity -= 0.015;
+                this.opacity -= 0.006;
 
                 if (this.opacity <= 0) this.reset();
 
             }
-
-
 
             this.updateStyles();
 
@@ -379,7 +515,11 @@ window.addEventListener('load', () => {
 
 
 
-    // 6. Unified Execution Loop
+    // ==========================================
+
+    // UNIFIED EXECUTION LOOP
+
+    // ==========================================
 
     function engineLoop() {
 
@@ -387,25 +527,49 @@ window.addEventListener('load', () => {
 
         
 
-        // Volatility Surface Fluid Dynamics
-
-        time += 0.012;
+        time += 0.008; 
 
         let pos = wireframe.geometry.attributes.position;
 
         let col = wireframe.geometry.attributes.color;
 
+        
+
         for (let i = 0; i < pos.count; i++) {
 
             let x = pos.getX(i); let z = pos.getZ(i);
 
-            let y = Math.sin(x*0.008 + time) * Math.cos(z*0.008 + time) * 85;
+            
+
+            // Tri-Layered Stochastic Deformation (Macro, Meso, Micro)
+
+            let y = Math.sin(x*0.004 + time) * Math.cos(z*0.004 + time) * 110; 
+
+            y += Math.sin(x*0.015 - time*1.2) * Math.cos(z*0.015 + time*1.2) * 25; 
+
+            y += Math.sin(x*0.05 + time*3) * 5; 
+
+            
 
             pos.setY(i, y);
 
-            let hue = 0.75 + (y/350); 
+            
 
-            colorObj.setHSL(hue, 1.0, 0.5);
+            // Absolute Spectrum Clamping: Cyan (0.5) -> Magenta (0.83) -> Red (1.0)
+
+            // Normalized height mapping to strictly enforce the color bounds
+
+            let normalizedHeight = (y + 140) / 280; 
+
+            let hue = 0.5 + (normalizedHeight * 0.5); 
+
+            // Clamp hue between 0.5 (Cyan) and 1.0 (Red)
+
+            hue = Math.max(0.5, Math.min(1.0, hue));
+
+            
+
+            colorObj.setHSL(hue, 1.0, 0.55);
 
             col.setXYZ(i, colorObj.r, colorObj.g, colorObj.b);
 
@@ -413,11 +577,9 @@ window.addEventListener('load', () => {
 
         pos.needsUpdate = true; col.needsUpdate = true;
 
+        
+
         renderer.render(scene, camera);
-
-
-
-        // Mathematical Lattice Updates
 
         derivations.forEach(d => d.update());
 
@@ -427,7 +589,11 @@ window.addEventListener('load', () => {
 
 
 
-    // 7. Dynamic Matrix Rescaling
+    // ==========================================
+
+    // DYNAMIC MATRIX RESCALING
+
+    // ==========================================
 
     window.addEventListener('resize', () => {
 
@@ -443,19 +609,15 @@ window.addEventListener('load', () => {
 
         
 
-        // Snap lattice derivations to extreme boundaries upon resize
-
         derivations.forEach(d => {
 
-            d.x = d.side === 'left' ? (width * 0.02) : (width * 0.80);
-
-            d.el.style.left = d.x + 'px';
+            d.x = d.side === 'left' ? (width * 0.02) : (width * 0.75);
 
             const slotHeight = height / TOTAL_SLOTS;
 
             d.y = (d.slotIndex * slotHeight) + (slotHeight * 0.1);
 
-            d.el.style.top = d.y + 'px';
+            d.scaleString = `translate3d(${d.x}px, 0px, ${d.z}px) scale(${parseFloat(d.scaleString.split('scale(')[1])})`;
 
         });
 
