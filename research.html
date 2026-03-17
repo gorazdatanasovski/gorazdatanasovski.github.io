@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>research – Gorazd Atanasovski</title>
+<title>research – GORAZD ATANASOVSKI</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -41,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-22b4aaf4c2978829df3684e8f2c068db.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-eaaf26034ea3125929bf64480c682be9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-32c5f89a0bf4ce64b0aa49306889d7ad.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,37 +69,39 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+
 
 <script>
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
 
-    // 1. WebGL Volatility Canvas (Layer: -2)
+    // 1. Structural WebGL Canvas Layer
 
-    const canvasContainer = document.createElement('div');
+    const bgContainer = document.createElement('div');
 
-    canvasContainer.id = 'bg-canvas';
+    bgContainer.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; background: #02040a; pointer-events: none;';
 
-    canvasContainer.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; pointer-events: none; background: #02040a;';
-
-    document.body.prepend(canvasContainer);
+    document.body.prepend(bgContainer);
 
 
 
-    // 2. Kinetic Derivation Engine Canvas (Layer: -1)
+    // 2. Structural DOM Layer for Authentic LaTeX
 
-    const mathCanvas = document.createElement('canvas');
+    const mathDOMContainer = document.createElement('div');
 
-    mathCanvas.id = 'math-derivation-canvas';
+    mathDOMContainer.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; overflow: hidden;';
 
-    mathCanvas.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; mix-blend-mode: screen;';
-
-    document.body.prepend(mathCanvas);
+    document.body.prepend(mathDOMContainer);
 
 
 
-    // 3. Commercial Affiliation Panel
+    // 3. USD Institutional Panel
 
     const usdPanel = document.createElement('a');
 
@@ -115,7 +117,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // 4. Initialize 3D Volatility Surface
+    // 4. WebGL Volatility Surface
 
     let scene = new THREE.Scene();
 
@@ -131,7 +133,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     renderer.setSize(window.innerWidth, window.innerHeight);
 
-    canvasContainer.appendChild(renderer.domElement);
+    bgContainer.appendChild(renderer.domElement);
 
 
 
@@ -161,137 +163,161 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-    function animateWebGL() {
+    // 5. Authentic LaTeX Derivation Engine (Accelerated & Boundary-Pushed)
 
-        requestAnimationFrame(animateWebGL);
+    let width = window.innerWidth;
 
-        time += 0.012;
-
-        let positions = wireframe.geometry.attributes.position;
-
-        let colors = wireframe.geometry.attributes.color;
-
-        
-
-        for (let i = 0; i < positions.count; i++) {
-
-            let x = positions.getX(i);
-
-            let z = positions.getZ(i);
-
-            
-
-            let y = Math.sin(x * 0.008 + time) * Math.cos(z * 0.008 + time) * 85;
-
-            positions.setY(i, y);
-
-            
-
-            // Cyan -> Magenta -> FF0000 Gradient (Strictly Zero Yellow)
-
-            let hue = 0.75 + (y / 350); 
-
-            colorObj.setHSL(hue, 1.0, 0.5);
-
-            colors.setXYZ(i, colorObj.r, colorObj.g, colorObj.b);
-
-        }
-
-        positions.needsUpdate = true;
-
-        colors.needsUpdate = true;
-
-        renderer.render(scene, camera);
-
-    }
-
-    animateWebGL();
+    let height = window.innerHeight;
 
 
 
-    // 5. Initialize Kinetic Derivation Engine
+    // Hyper-complex aesthetic formulations
 
-    const ctx = mathCanvas.getContext('2d');
+    const rigorousLaTeX = [
 
-    let width = mathCanvas.width = window.innerWidth;
+        "\\frac{1}{\\pi} = \\frac{2\\sqrt{2}}{9801} \\sum_{k=0}^\\infty \\frac{(4k)!(1103+26390k)}{(k!)^4 396^{4k}}",
 
-    let height = mathCanvas.height = window.innerHeight;
+        "Z = \\int \\mathcal{D}[\\phi] \\exp\\left( \\frac{i}{\\hbar} \\int d^4x \\mathcal{L}(\\phi, \\partial_\\mu \\phi) \\right)",
 
+        "\\mathcal{L}_{SM} = -\\frac{1}{4}F_{\\mu\\nu}F^{\\mu\\nu} + i\\bar{\\psi}\\slashed{D}\\psi + |D_\\mu \\phi|^2 - V(\\phi)",
 
+        "\\zeta(s) = \\frac{1}{\\Gamma(s)} \\int_0^\\infty \\frac{x^{s-1}}{e^x - 1} dx \\quad \\Re(s) > 1",
 
-    const rigorousFormulations = [
+        "\\frac{1}{2}vS^2 \\frac{\\partial^2 U}{\\partial S^2} + \\rho\\sigma v S \\frac{\\partial^2 U}{\\partial S \\partial v} + \\frac{1}{2}\\sigma^2 v \\frac{\\partial^2 U}{\\partial v^2}",
 
-        "dS(t) = μS(t)dt + σS(t)dW(t)",
+        "rV = \\frac{\\partial V}{\\partial t} + \\frac{1}{2}\\sigma^2 S^2 \\frac{\\partial^2 V}{\\partial S^2} + \\lambda \\mathbb{E}[V(SY) - V(S)]",
 
-        "dσ(t) = θ(ω - σ(t))dt + νσ(t)dW^H(t)",
+        "f(x) = a_0 + \\cfrac{1}{a_1 + \\cfrac{1}{a_2 + \\cfrac{1}{a_3 + \\ddots}}}",
 
-        "V_t = E^Q[e^{-r(T-t)} h(S_T) | F_t]",
+        "W_t^H = \\frac{1}{\\Gamma(H+\\frac{1}{2})} \\int_0^t (t-s)^{H-\\frac{1}{2}} dW_s",
 
-        "R(t) = ∫_0^t K(t-s) dW(s)",
+        "\\det(M) = \\sum_{\\sigma \\in S_n} \\left( \\text{sgn}(\\sigma) \\prod_{i=1}^n M_{i,\\sigma_i} \\right)",
 
-        "P(θ|D) ∝ P(D|θ)P(θ)",
+        "G_{\\mu\\nu} + \\Lambda g_{\\mu\\nu} = \\frac{8\\pi G}{c^4} T_{\\mu\\nu}",
 
-        "lim_{H→0} W^H(t) = log-volatility",
+        "\\oint_{\\partial \\Sigma} \\mathbf{E} \\cdot d\\mathbf{l} = - \\iint_{\\Sigma} \\frac{\\partial \\mathbf{B}}{\\partial t} \\cdot d\\mathbf{S}",
 
-        "∂V/∂t + ½σ²S²(∂²V/∂S²) + rS(∂V/∂S) - rV = 0",
-
-        "d[S,S]_t = σ²(t)S²(t)dt",
-
-        "E[dW_t dW_s] = δ(t-s)dt ds",
-
-        "L(θ) = -½ ∑ [log(2πσ²) + (y-μ)²/σ²]",
-
-        "α_t = argmax E[U(W_T)]",
-
-        "H(p, q) = ½ p^T M^{-1} p + V(q)",
-
-        "C(S,t) = N(d₁)S - N(d₂)Ke^{-r(T-t)}",
-
-        "K(τ) = τ^{H - ½} / Γ(H + ½)",
-
-        "∇·E = ρ/ε₀",
-
-        "iℏ(∂Ψ/∂t) = HΨ"
+        "\\lim_{N\\to\\infty} \\prod_{n=1}^N \\left(1 - \\frac{x^2}{n^2\\pi^2}\\right) = \\frac{\\sin(x)}{x}"
 
     ];
 
 
 
-    class MathematicalDerivation {
+    class TrueLaTeXDerivation {
 
-        constructor() {
+        constructor(side, slotIndex, totalSlots) {
 
-            this.reset();
+            this.side = side;
+
+            this.slotIndex = slotIndex;
+
+            this.totalSlots = totalSlots;
+
+            
+
+            this.el = document.createElement('div');
+
+            this.el.style.position = 'absolute';
+
+            this.el.style.color = '#cbd5e1'; 
+
+            this.el.style.textShadow = '0 0 12px rgba(56, 189, 248, 0.45)';
+
+            this.el.style.whiteSpace = 'nowrap';
+
+            mathDOMContainer.appendChild(this.el);
+
+            
+
+            this.reset(true);
 
         }
 
-        
 
-        reset() {
 
-            this.equation = rigorousFormulations[Math.floor(Math.random() * rigorousFormulations.length)];
+        reset(isInit = false) {
 
-            this.x = Math.random() * (width * 0.8) + (width * 0.1);
+            const tex = rigorousLaTeX[Math.floor(Math.random() * rigorousLaTeX.length)];
 
-            this.y = Math.random() * (height * 0.8) + (height * 0.1);
+            katex.render(tex, this.el, { displayMode: true, throwOnError: false });
 
-            this.vx = (Math.random() - 0.5) * 0.2; 
 
-            this.vy = (Math.random() - 0.5) * 0.2; 
 
-            this.progress = 0;
+            const slotHeight = height / this.totalSlots;
 
-            this.typingSpeed = Math.random() * 0.3 + 0.1; 
+            const baseY = (this.slotIndex * slotHeight) + (slotHeight * 0.1);
 
-            this.state = 'formulating'; 
+            
 
-            this.holdTime = Math.random() * 200 + 100;
+            // Extreme Boundary Push: Left (2% - 6%), Right (78% - 85%)
 
-            this.opacity = 0;
+            this.x = this.side === 'left' 
 
-            this.maxOpacity = Math.random() * 0.15 + 0.1; 
+                ? (width * 0.02 + Math.random() * (width * 0.04)) 
 
-            this.fontSize = Math.random() * 10 + 14; 
+                : (width * 0.78 + Math.random() * (width * 0.07));
+
+            
+
+            this.y = baseY;
+
+            this.driftY = 0;
+
+            // Accelerated drifting up or down
+
+            this.vy = (Math.random() - 0.5) * 0.4; 
+
+
+
+            this.state = isInit ? (Math.random() > 0.5 ? 'wait' : 'reveal') : 'reveal';
+
+            this.revealProgress = isInit && this.state === 'wait' ? 100 : 0;
+
+            
+
+            // Accelerated writing speed
+
+            this.speed = Math.random() * 0.8 + 0.6; 
+
+
+
+            // Slashed suspension time
+
+            this.hold = Math.random() * 150 + 50;
+
+            
+
+            this.opacity = isInit ? (Math.random() * 0.25 + 0.15) : 0;
+
+            this.maxOpacity = Math.random() * 0.25 + 0.35; 
+
+            
+
+            let scale = Math.random() * 0.35 + 0.65;
+
+            this.el.style.transformOrigin = 'left center';
+
+            this.scaleString = `scale(${scale})`;
+
+
+
+            this.el.style.left = this.x + 'px';
+
+            this.el.style.top = this.y + 'px';
+
+            this.updateStyles();
+
+        }
+
+
+
+        updateStyles() {
+
+            this.el.style.opacity = this.opacity;
+
+            this.el.style.transform = `${this.scaleString} translateY(${this.driftY}px)`;
+
+            this.el.style.clipPath = `inset(0 ${100 - this.revealProgress}% 0 0)`;
 
         }
 
@@ -299,91 +325,43 @@ window.addEventListener('DOMContentLoaded', () => {
 
         update() {
 
-            this.x += this.vx;
-
-            this.y += this.vy;
+            this.driftY += this.vy;
 
 
 
-            if (this.state === 'formulating') {
+            if (this.state === 'reveal') {
 
-                this.opacity = Math.min(this.opacity + 0.01, this.maxOpacity);
+                this.opacity = Math.min(this.opacity + 0.025, this.maxOpacity);
 
-                this.progress += this.typingSpeed;
+                this.revealProgress += this.speed;
 
-                if (this.progress >= this.equation.length) {
+                if (this.revealProgress >= 100) {
 
-                    this.progress = this.equation.length;
+                    this.revealProgress = 100;
 
-                    this.state = 'suspension';
+                    this.state = 'wait';
 
                 }
 
-            } else if (this.state === 'suspension') {
+            } else if (this.state === 'wait') {
 
-                this.holdTime--;
+                this.hold--;
 
-                if (this.holdTime <= 0) {
+                if (this.hold <= 0) this.state = 'fade';
 
-                    this.state = Math.random() > 0.5 ? 'deconstructing' : 'decaying';
+            } else if (this.state === 'fade') {
 
-                }
+                // Accelerated fade-out sequence
 
-            } else if (this.state === 'deconstructing') {
+                this.opacity -= 0.015;
 
-                this.progress -= this.typingSpeed * 1.5;
-
-                if (this.progress <= 0) {
-
-                    this.reset();
-
-                }
-
-            } else if (this.state === 'decaying') {
-
-                this.opacity -= 0.005;
-
-                if (this.opacity <= 0) {
-
-                    this.reset();
-
-                }
+                if (this.opacity <= 0) this.reset();
 
             }
 
-        }
 
 
-
-        draw(ctx) {
-
-            if (this.opacity <= 0) return;
-
-            ctx.fillStyle = `rgba(226, 232, 240, ${this.opacity})`;
-
-            ctx.font = `italic ${this.fontSize}px "Cambria Math", "Times New Roman", serif`;
-
-            ctx.shadowBlur = 4;
-
-            ctx.shadowColor = `rgba(255, 255, 255, ${this.opacity * 0.5})`;
-
-            
-
-            const visibleText = this.equation.substring(0, Math.floor(this.progress));
-
-            ctx.fillText(visibleText, this.x, this.y);
-
-            
-
-            // Render typing cursor
-
-            if (this.state === 'formulating' && Math.floor(time * 50) % 2 === 0) {
-
-                const textWidth = ctx.measureText(visibleText).width;
-
-                ctx.fillRect(this.x + textWidth + 2, this.y - this.fontSize * 0.8, 2, this.fontSize);
-
-            }
+            this.updateStyles();
 
         }
 
@@ -391,39 +369,71 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-    const derivations = Array.from({ length: 18 }, () => new MathematicalDerivation());
+    const TOTAL_SLOTS = 6;
+
+    const derivations = [];
+
+    for (let i = 0; i < TOTAL_SLOTS; i++) derivations.push(new TrueLaTeXDerivation('left', i, TOTAL_SLOTS));
+
+    for (let i = 0; i < TOTAL_SLOTS; i++) derivations.push(new TrueLaTeXDerivation('right', i, TOTAL_SLOTS));
 
 
 
-    function renderDerivationEngine() {
+    // 6. Unified Execution Loop
 
-        ctx.clearRect(0, 0, width, height);
+    function engineLoop() {
 
-        derivations.forEach(d => {
+        requestAnimationFrame(engineLoop);
 
-            d.update();
+        
 
-            d.draw(ctx);
+        // Volatility Surface Fluid Dynamics
 
-        });
+        time += 0.012;
 
-        requestAnimationFrame(renderDerivationEngine);
+        let pos = wireframe.geometry.attributes.position;
+
+        let col = wireframe.geometry.attributes.color;
+
+        for (let i = 0; i < pos.count; i++) {
+
+            let x = pos.getX(i); let z = pos.getZ(i);
+
+            let y = Math.sin(x*0.008 + time) * Math.cos(z*0.008 + time) * 85;
+
+            pos.setY(i, y);
+
+            let hue = 0.75 + (y/350); 
+
+            colorObj.setHSL(hue, 1.0, 0.5);
+
+            col.setXYZ(i, colorObj.r, colorObj.g, colorObj.b);
+
+        }
+
+        pos.needsUpdate = true; col.needsUpdate = true;
+
+        renderer.render(scene, camera);
+
+
+
+        // Mathematical Lattice Updates
+
+        derivations.forEach(d => d.update());
 
     }
 
-    renderDerivationEngine();
+    engineLoop();
 
 
 
-    // 6. Global Resize Matrix
+    // 7. Dynamic Matrix Rescaling
 
     window.addEventListener('resize', () => {
 
-        width = mathCanvas.width = window.innerWidth;
+        width = window.innerWidth;
 
-        height = mathCanvas.height = window.innerHeight;
-
-        
+        height = window.innerHeight;
 
         camera.aspect = width / height;
 
@@ -431,12 +441,59 @@ window.addEventListener('DOMContentLoaded', () => {
 
         renderer.setSize(width, height);
 
+        
+
+        // Snap lattice derivations to extreme boundaries upon resize
+
+        derivations.forEach(d => {
+
+            d.x = d.side === 'left' ? (width * 0.02) : (width * 0.80);
+
+            d.el.style.left = d.x + 'px';
+
+            const slotHeight = height / TOTAL_SLOTS;
+
+            d.y = (d.slotIndex * slotHeight) + (slotHeight * 0.1);
+
+            d.el.style.top = d.y + 'px';
+
+        });
+
     });
 
 });
 
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -449,7 +506,7 @@ window.addEventListener('DOMContentLoaded', () => {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Gorazd Atanasovski</span>
+    <span class="navbar-title">GORAZD ATANASOVSKI</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -464,7 +521,7 @@ window.addEventListener('DOMContentLoaded', () => {
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./research.html" aria-current="page"> 
-<span class="menu-text">Mathematics</span></a>
+<span class="menu-text">Research</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./code.html"> 
@@ -473,7 +530,7 @@ window.addEventListener('DOMContentLoaded', () => {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/gorazdbankscapital-sudo"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/gorazdatanasovski"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -500,27 +557,424 @@ window.addEventListener('DOMContentLoaded', () => {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Research</h1>
+
+
+
+<style>
+/* Absolute Supremacy Research Overrides */
+.research-matrix {
+    max-width: 1100px;
+    margin: 8rem auto 6rem;
+    background: rgba(4, 6, 14, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 0, 0, 0.25);
+    border-radius: 4px;
+    padding: 4rem;
+    color: #e2e8f0;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.9);
+    position: relative;
+    z-index: 10;
+    font-family: 'Inter', sans-serif;
+}
+
+.research-matrix h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle-research {
+    font-size: 1.5rem; 
+    color: #94a3b8; 
+    margin-bottom: 3.5rem; 
+    letter-spacing: 0.1em; 
+    text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.research-matrix h2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.6rem;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border-bottom: 1px solid rgba(255, 0, 0, 0.4);
+    padding-bottom: 0.5rem;
+    margin-top: 4.5rem;
+    margin-bottom: 2rem;
+}
+
+.research-matrix p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #cbd5e1;
+    margin-bottom: 1.8rem;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    background: rgba(255, 0, 0, 0.05);
+    border: 1px solid #FF0000;
+    color: #FF0000;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-right: 1rem;
+    margin-bottom: 2rem;
+    letter-spacing: 0.05em;
+}
+
+.math-block {
+    background: rgba(6, 8, 16, 0.6);
+    border-left: 2px solid #FF0000;
+    padding: 1.5rem 2rem;
+    margin: 2.5rem 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    font-size: 1.25rem;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+    display: block;
+    text-align: center;
+}
+
+/* Institutional Telemetry Canvas */
+.distribution-container {
+    width: 100%;
+    height: 550px;
+    background: #02040a;
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    margin: 4rem 0;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+}
+
+.distribution-overlay {
+    position: absolute;
+    top: 20px;
+    left: 25px;
+    font-family: 'JetBrains Mono', monospace;
+    color: #00ffff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    pointer-events: none;
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+}
+
+.distribution-axes {
+    position: absolute;
+    bottom: 20px;
+    right: 25px;
+    font-family: 'JetBrains Mono', monospace;
+    color: #64748b;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    pointer-events: none;
+}
+
+/* Academic Preprint Vault (Aesthetic Refinement) */
+.embargo-wrapper {
+    position: relative;
+    margin-top: 4rem;
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    background: rgba(2, 4, 10, 0.9);
+    overflow: hidden;
+    border-radius: 4px;
+    min-height: 500px;
+}
+
+.embargo-content {
+    padding: 3rem;
+    filter: blur(6px);
+    opacity: 0.4;
+    user-select: none;
+    pointer-events: none;
+    font-family: 'JetBrains Mono', monospace;
+    color: #cbd5e1;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 90%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 90%);
+}
+
+.embargo-content h3 {
+    color: #FF0000;
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+}
+
+.embargo-content .fake-math {
+    background: rgba(255,255,255,0.05);
+    padding: 1.5rem;
+    border-left: 2px solid #FF0000;
+    margin: 1.5rem 0;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.embargo-lock {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(4, 6, 14, 0.45);
+    z-index: 10;
+    text-align: center;
+    padding: 2rem;
+}
+
+.lock-icon {
+    font-size: 3rem;
+    color: #FF0000;
+    margin-bottom: 1.2rem;
+    text-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
+}
+
+.embargo-text {
+    font-family: 'JetBrains Mono', monospace;
+    color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(0,0,0,0.9);
+}
+
+.embargo-date {
+    font-family: 'JetBrains Mono', monospace;
+    color: #FF0000;
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    background: rgba(10, 10, 10, 0.8);
+    padding: 0.8rem 2rem;
+    border: 1px solid #FF0000;
+    border-radius: 2px;
+    box-shadow: 0 0 20px rgba(255,0,0,0.2);
+}
+</style>
+<section id="theoretical-research" class="level1 research-matrix">
+<h1>Theoretical Research</h1>
+<div class="subtitle-research">
+Stochastic Frameworks &amp; Fractional Microstructure
+</div>
+<p><span class="status-badge">DOMAIN: QUANTITATIVE FINANCE</span> <span class="status-badge">FRAMEWORK: CONTINUOUS-TIME</span> <span class="status-badge">STATUS: EMPIRICALLY VERIFIED</span></p>
+<section id="continuous-time-asset-pricing-paradigm" class="level2">
+<h2 class="anchored" data-anchor-id="continuous-time-asset-pricing-paradigm">01. Continuous-Time Asset Pricing Paradigm</h2>
+<p>We systematically reject the Markovian assumption inherent in the standard Black-Scholes manifold. The intuition here is absolute: independent increments assume the market possesses no memory of its own structural formation. The incumbent geometric Brownian motion model relies on a standard Wiener process:</p>
+<div class="math-block">
+<p><span class="math display">\[
+dS_t = \mu S_t dt + \sigma S_t dW_t
+\]</span></p>
+</div>
+<p>This is theoretically inferior because limit order book microstructure is fundamentally driven by auto-correlated order flow. To capture this infinite-dimensional memory, we must discard the standard physical probability measure and map the asset trajectory onto a fractional geometry, where the past rigorously bounds the future.</p>
+</section>
+<section id="the-rough-volatility-framework" class="level2">
+<h2 class="anchored" data-anchor-id="the-rough-volatility-framework">02. The Rough Volatility Framework</h2>
+<p>To model the persistent memory and the explosive collapse of liquidity at the microsecond level, standard stochastic volatility models are mathematically insufficient. We deploy a fractional Brownian motion framework, parameterized strictly by the Hurst exponent. The intuition is that when the Hurst exponent is less than one-half, the variance process becomes rough, perfectly modeling the anti-persistent, rapidly mean-reverting nature of high-frequency liquidity vacuums.</p>
+<p>We define the rough volatility process analytically via the Riemann-Liouville fractional integral, abandoning heuristic smoothing entirely:</p>
+<div class="math-block">
+<p><span class="math display">\[
+v_t = v_0 + \frac{1}{\Gamma(H + \frac{1}{2})} \int_0^t (t-s)^{H - \frac{1}{2}} \lambda(v_s) dW_s
+\]</span></p>
+</div>
+<p>This formalization provides an exact analytical proof for the power-law explosion of the implied volatility skew as maturity approaches zero, resolving the theoretical failure of incumbent diffusion models.</p>
+</section>
+<section id="fractional-martingale-pricing-boundary" class="level2">
+<h2 class="anchored" data-anchor-id="fractional-martingale-pricing-boundary">03. Fractional Martingale Pricing Boundary</h2>
+<p>Under the fundamental theorem of asset pricing, the discounted asset price must exist as a local martingale under the risk-neutral measure to prevent theoretical arbitrage. The intuition here presents a profound mathematical barrier: fractional Brownian motion is not a semi-martingale, meaning standard Itô calculus collapses.</p>
+<p>To enforce the martingale boundary, we do not approximate. We isolate the deterministic drift component by deploying a Wick-Itô-Skorohod integral, mapping the fractional noise onto an orthogonal space. This yields the exact fractional Black-Scholes partial differential equation:</p>
+<div class="math-block">
+<p><span class="math display">\[
+\partial_t V(t,S) + r S \partial_S V(t,S) + H t^{2H-1} \sigma^2 S^2 \partial_{SS} V(t,S) - rV(t,S) = 0
+\]</span></p>
+</div>
+</section>
+<section id="the-atanasovski-fractional-skew-measure" class="level2">
+<h2 class="anchored" data-anchor-id="the-atanasovski-fractional-skew-measure">04. The Atanasovski Fractional Skew Measure</h2>
+<p>Standard probability density functions fail fundamentally because they are symmetric or rely on finite variance. In sub-microsecond latency environments, the limit order book exhausts asymmetrically, characterized by infinite-variance jumps and heavy-tailed kurtosis.</p>
+<p>To solve this, my mentor and I formulated the Atanasovski Fractional Skew Measure. The intuition behind this measure is that it physically models the exact continuous-time collapse of the order book as a space-fractional diffusion process. It is a dynamically shifting topological distribution, parameterized by fractional decay and directional execution skew.</p>
+<p>The measure-theoretic density is analytically proven and defined by its characteristic integral over a Sobolev space:</p>
+<div class="math-block">
+<p><span class="math display">\[
+\mathcal{A}(x; H, \kappa, \beta) = \frac{1}{\pi} \int_0^\infty e^{-\kappa \xi^{2H}} \cos\left( x\xi - \beta \kappa \xi^{2H} \tan\left(\frac{\pi H}{2}\right) \right) d\xi
+\]</span></p>
+</div>
+<p>In this derivation, the Hurst parameter rigorously controls the memory of the liquidity flow, while the skew operator controls the directional severity of aggressive market orders.</p>
+<div class="distribution-container">
+    <div class="distribution-overlay" id="dist-telemetry">MEASURE: ATANASOVSKI SKEW // INTEGRATING: 0.0000</div>
+    <div class="distribution-axes">DOMAIN: SOBOLEV SPACE Ω</div>
+    <canvas id="atanasovski-dist" style="width: 100%; height: 100%;"></canvas>
 </div>
 
-
-
-<div class="quarto-title-meta">
-
+<script>
+window.addEventListener('load', () => {
+    const canvas = document.getElementById('atanasovski-dist');
+    const telemetry = document.getElementById('dist-telemetry');
+    if (!canvas) return;
     
-  
-    
-  </div>
-  
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
+    const ctx = canvas.getContext('2d');
 
+    let time = 0;
 
-</header>
+    function renderHeavyTailSkew() {
+        time += 0.012; 
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+        // Terminal Grid Matrix Rendering
+        ctx.strokeStyle = 'rgba(0, 255, 255, 0.04)';
+        ctx.lineWidth = 1;
+        for(let i = 0; i < canvas.width; i += 60) {
+            ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, canvas.height); ctx.stroke();
+        }
+        for(let i = 0; i < canvas.height; i += 60) {
+            ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(canvas.width, i); ctx.stroke();
+        }
 
+        // Uncalculated Probability Mass: Cyan -> Magenta -> Red
+        let spectralGrad = ctx.createLinearGradient(0, 0, canvas.width, 0);
+        spectralGrad.addColorStop(0, '#00ffff');
+        spectralGrad.addColorStop(0.5, '#ff00ff');
+        spectralGrad.addColorStop(1, '#FF0000');
+
+        // Calculated Cumulative Density: Quantum Luminous Blue
+        let quantumBlueGrad = ctx.createLinearGradient(0, 0, canvas.width, 0);
+        quantumBlueGrad.addColorStop(0, 'rgba(0, 229, 255, 0.85)');
+        quantumBlueGrad.addColorStop(1, 'rgba(29, 78, 216, 0.95)');
+
+        // Smooth Oscillating Integrator Position
+        let sweepRatio = (Math.sin(time * 1.2) + 1) / 2;
+        let sweepX = sweepRatio * canvas.width;
+
+        // Morphing State-Space Parameters (Bimodal Shift to Skewed Heavy Tail)
+        const baseScale = 1.2 + 0.4 * Math.sin(time * 0.8); 
+        const shape = -1.5 + 2.5 * Math.cos(time * 0.6); 
+        const bimodality = 0.4 + 0.6 * Math.sin(time * 0.5);
+
+        let distPath = new Path2D();
+        distPath.moveTo(0, canvas.height);
+
+        let curveYAtSweep = canvas.height;
+
+        for(let x = 0; x <= canvas.width; x += 2) {
+            let t = ((x / canvas.width) * 14 - 7) / baseScale;
+            
+            let pdf1 = 1 / (Math.PI * (1 + t * t));
+            let pdf2 = Math.exp(-Math.pow(t - 2.5, 2)) * bimodality;
+            let cdf = 0.5 + Math.atan(shape * t) / Math.PI;
+            
+            let density = (2 / baseScale) * (pdf1 + pdf2) * cdf;
+            
+            let y = canvas.height - (density * canvas.height * 0.75);
+            distPath.lineTo(x, y);
+
+            // Clamp the sweep line strictly to the manifold boundary
+            if (Math.abs(x - sweepX) <= 1) {
+                curveYAtSweep = y;
+            }
+        }
+        distPath.lineTo(canvas.width, canvas.height);
+        distPath.closePath();
+
+        // 1. Render INTEGRATED Area (Quantum Luminous Blue)
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(0, 0, sweepX, canvas.height);
+        ctx.clip();
+        
+        ctx.fillStyle = quantumBlueGrad;
+        ctx.fill(distPath);
+        
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = '#00ffff';
+        ctx.stroke(distPath);
+        ctx.restore();
+
+        // 2. Render UNKNOWN Probability Mass (Spectral CMY)
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(sweepX, 0, canvas.width - sweepX, canvas.height);
+        ctx.clip();
+        
+        ctx.fillStyle = spectralGrad;
+        ctx.globalAlpha = 0.3;
+        ctx.fill(distPath);
+        
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = '#FF0000';
+        ctx.globalAlpha = 1.0;
+        ctx.stroke(distPath);
+        ctx.restore();
+
+        // 3. Render the Optical Integrator Line (Strictly Clamped inside the curve)
+        ctx.beginPath();
+        ctx.moveTo(sweepX, canvas.height);
+        ctx.lineTo(sweepX, curveYAtSweep);
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = '#ffffff';
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = '#00ffff';
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+
+        telemetry.innerHTML = `MEASURE: ATANASOVSKI SKEW <span style="color: #64748b;">//</span> ∫ dΨ = <span style="color: #ffffff;">${(sweepRatio).toFixed(4)}</span>`;
+
+        requestAnimationFrame(renderHeavyTailSkew);
+    }
+    renderHeavyTailSkew();
+
+    window.addEventListener('resize', () => {
+        canvas.width = canvas.clientWidth;
+        canvas.height = canvas.clientHeight;
+    });
+});
+</script>
+</section>
+<section id="restricted-theoretical-repositories" class="level2">
+<h2 class="anchored" data-anchor-id="restricted-theoretical-repositories">05. Restricted Theoretical Repositories</h2>
+<p>The underlying proofs for the measure-theoretic convergence of the Atanasovski Measure are currently isolated within our internal mathematical architecture.</p>
+<div class="embargo-wrapper">
+<div class="embargo-lock">
+<div class="lock-icon">
+◈
+</div>
+<div class="embargo-text">
+INSTITUTIONAL PREPRINT // PEER REVIEW PENDING
+</div>
+<div class="embargo-date">
+EXPECTED PUBLICATION: APRIL 12, 2026
+</div>
+</div>
+<section id="theorem-2-absolute-continuity-of-the-atanasovski-measure" class="level3 embargo-content">
+<h3 class="anchored" data-anchor-id="theorem-2-absolute-continuity-of-the-atanasovski-measure">Theorem 2 (Absolute Continuity of the Atanasovski Measure)</h3>
+<p>Let <span class="math inline">\(\Omega\)</span> be a Polish space equipped with the Borel <span class="math inline">\(\sigma\)</span>-algebra <span class="math inline">\(\mathcal{B}(\Omega)\)</span>. The sequence of fractional probability measures <span class="math inline">\(\mathbb{P}^N\)</span> converges weakly to the unique invariant measure <span class="math inline">\(\mathbb{P}^*\)</span> corresponding to the Atanasovski Skew state space.</p>
+<div class="fake-math">
+<p><span class="math display">\[
+\mathcal{L}_{\text{Atanasovski}} = \int_{\Omega} \langle \nabla \phi_t, \nabla \psi_t \rangle d\mathbb{P} \equiv 0 \quad \text{almost surely}
+\]</span></p>
+</div>
+<p>Proof: We initiate the derivation by defining the fractional generator <span class="math inline">\(\mathcal{L}^H\)</span> acting on the domain of cylindrical functions. By applying the fractional Itô formula, we establish the bound:</p>
+<div class="fake-math">
+<p><span class="math display">\[
+\mathbb{E} \left[ \sup_{0 \leq t \leq T} |X_t^N - X_t|^p \right] \leq C_p T^{pH} \exp(\kappa T)
+\]</span></p>
+</div>
+<p>Following the criteria established by Prokhorov’s Theorem, the tightness of the sequence is guaranteed by the compact embedding of the associated Sobolev space. The Radon-Nikodym derivative confirms the total variation distance approaches zero as <span class="math inline">\(N \to \infty\)</span>. This formally constructs the exact continuous-time state space.</p>
+</section>
+</div>
+</section>
+</section>
 
 
 

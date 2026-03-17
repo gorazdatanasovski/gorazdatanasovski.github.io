@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Documentation for the GORAZD Python Library">
 
-<title>code – Gorazd Atanasovski</title>
+<title>code – GORAZD ATANASOVSKI</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -42,7 +76,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-22b4aaf4c2978829df3684e8f2c068db.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-eaaf26034ea3125929bf64480c682be9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-32c5f89a0bf4ce64b0aa49306889d7ad.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,37 +104,39 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+
 
 <script>
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
 
-    // 1. WebGL Volatility Canvas (Layer: -2)
+    // 1. Structural WebGL Canvas Layer
 
-    const canvasContainer = document.createElement('div');
+    const bgContainer = document.createElement('div');
 
-    canvasContainer.id = 'bg-canvas';
+    bgContainer.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; background: #02040a; pointer-events: none;';
 
-    canvasContainer.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; pointer-events: none; background: #02040a;';
-
-    document.body.prepend(canvasContainer);
+    document.body.prepend(bgContainer);
 
 
 
-    // 2. Kinetic Derivation Engine Canvas (Layer: -1)
+    // 2. Structural DOM Layer for Authentic LaTeX
 
-    const mathCanvas = document.createElement('canvas');
+    const mathDOMContainer = document.createElement('div');
 
-    mathCanvas.id = 'math-derivation-canvas';
+    mathDOMContainer.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; overflow: hidden;';
 
-    mathCanvas.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; mix-blend-mode: screen;';
-
-    document.body.prepend(mathCanvas);
+    document.body.prepend(mathDOMContainer);
 
 
 
-    // 3. Commercial Affiliation Panel
+    // 3. USD Institutional Panel
 
     const usdPanel = document.createElement('a');
 
@@ -116,7 +152,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // 4. Initialize 3D Volatility Surface
+    // 4. WebGL Volatility Surface
 
     let scene = new THREE.Scene();
 
@@ -132,7 +168,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     renderer.setSize(window.innerWidth, window.innerHeight);
 
-    canvasContainer.appendChild(renderer.domElement);
+    bgContainer.appendChild(renderer.domElement);
 
 
 
@@ -162,137 +198,161 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-    function animateWebGL() {
+    // 5. Authentic LaTeX Derivation Engine (Accelerated & Boundary-Pushed)
 
-        requestAnimationFrame(animateWebGL);
+    let width = window.innerWidth;
 
-        time += 0.012;
-
-        let positions = wireframe.geometry.attributes.position;
-
-        let colors = wireframe.geometry.attributes.color;
-
-        
-
-        for (let i = 0; i < positions.count; i++) {
-
-            let x = positions.getX(i);
-
-            let z = positions.getZ(i);
-
-            
-
-            let y = Math.sin(x * 0.008 + time) * Math.cos(z * 0.008 + time) * 85;
-
-            positions.setY(i, y);
-
-            
-
-            // Cyan -> Magenta -> FF0000 Gradient (Strictly Zero Yellow)
-
-            let hue = 0.75 + (y / 350); 
-
-            colorObj.setHSL(hue, 1.0, 0.5);
-
-            colors.setXYZ(i, colorObj.r, colorObj.g, colorObj.b);
-
-        }
-
-        positions.needsUpdate = true;
-
-        colors.needsUpdate = true;
-
-        renderer.render(scene, camera);
-
-    }
-
-    animateWebGL();
+    let height = window.innerHeight;
 
 
 
-    // 5. Initialize Kinetic Derivation Engine
+    // Hyper-complex aesthetic formulations
 
-    const ctx = mathCanvas.getContext('2d');
+    const rigorousLaTeX = [
 
-    let width = mathCanvas.width = window.innerWidth;
+        "\\frac{1}{\\pi} = \\frac{2\\sqrt{2}}{9801} \\sum_{k=0}^\\infty \\frac{(4k)!(1103+26390k)}{(k!)^4 396^{4k}}",
 
-    let height = mathCanvas.height = window.innerHeight;
+        "Z = \\int \\mathcal{D}[\\phi] \\exp\\left( \\frac{i}{\\hbar} \\int d^4x \\mathcal{L}(\\phi, \\partial_\\mu \\phi) \\right)",
 
+        "\\mathcal{L}_{SM} = -\\frac{1}{4}F_{\\mu\\nu}F^{\\mu\\nu} + i\\bar{\\psi}\\slashed{D}\\psi + |D_\\mu \\phi|^2 - V(\\phi)",
 
+        "\\zeta(s) = \\frac{1}{\\Gamma(s)} \\int_0^\\infty \\frac{x^{s-1}}{e^x - 1} dx \\quad \\Re(s) > 1",
 
-    const rigorousFormulations = [
+        "\\frac{1}{2}vS^2 \\frac{\\partial^2 U}{\\partial S^2} + \\rho\\sigma v S \\frac{\\partial^2 U}{\\partial S \\partial v} + \\frac{1}{2}\\sigma^2 v \\frac{\\partial^2 U}{\\partial v^2}",
 
-        "dS(t) = μS(t)dt + σS(t)dW(t)",
+        "rV = \\frac{\\partial V}{\\partial t} + \\frac{1}{2}\\sigma^2 S^2 \\frac{\\partial^2 V}{\\partial S^2} + \\lambda \\mathbb{E}[V(SY) - V(S)]",
 
-        "dσ(t) = θ(ω - σ(t))dt + νσ(t)dW^H(t)",
+        "f(x) = a_0 + \\cfrac{1}{a_1 + \\cfrac{1}{a_2 + \\cfrac{1}{a_3 + \\ddots}}}",
 
-        "V_t = E^Q[e^{-r(T-t)} h(S_T) | F_t]",
+        "W_t^H = \\frac{1}{\\Gamma(H+\\frac{1}{2})} \\int_0^t (t-s)^{H-\\frac{1}{2}} dW_s",
 
-        "R(t) = ∫_0^t K(t-s) dW(s)",
+        "\\det(M) = \\sum_{\\sigma \\in S_n} \\left( \\text{sgn}(\\sigma) \\prod_{i=1}^n M_{i,\\sigma_i} \\right)",
 
-        "P(θ|D) ∝ P(D|θ)P(θ)",
+        "G_{\\mu\\nu} + \\Lambda g_{\\mu\\nu} = \\frac{8\\pi G}{c^4} T_{\\mu\\nu}",
 
-        "lim_{H→0} W^H(t) = log-volatility",
+        "\\oint_{\\partial \\Sigma} \\mathbf{E} \\cdot d\\mathbf{l} = - \\iint_{\\Sigma} \\frac{\\partial \\mathbf{B}}{\\partial t} \\cdot d\\mathbf{S}",
 
-        "∂V/∂t + ½σ²S²(∂²V/∂S²) + rS(∂V/∂S) - rV = 0",
-
-        "d[S,S]_t = σ²(t)S²(t)dt",
-
-        "E[dW_t dW_s] = δ(t-s)dt ds",
-
-        "L(θ) = -½ ∑ [log(2πσ²) + (y-μ)²/σ²]",
-
-        "α_t = argmax E[U(W_T)]",
-
-        "H(p, q) = ½ p^T M^{-1} p + V(q)",
-
-        "C(S,t) = N(d₁)S - N(d₂)Ke^{-r(T-t)}",
-
-        "K(τ) = τ^{H - ½} / Γ(H + ½)",
-
-        "∇·E = ρ/ε₀",
-
-        "iℏ(∂Ψ/∂t) = HΨ"
+        "\\lim_{N\\to\\infty} \\prod_{n=1}^N \\left(1 - \\frac{x^2}{n^2\\pi^2}\\right) = \\frac{\\sin(x)}{x}"
 
     ];
 
 
 
-    class MathematicalDerivation {
+    class TrueLaTeXDerivation {
 
-        constructor() {
+        constructor(side, slotIndex, totalSlots) {
 
-            this.reset();
+            this.side = side;
+
+            this.slotIndex = slotIndex;
+
+            this.totalSlots = totalSlots;
+
+            
+
+            this.el = document.createElement('div');
+
+            this.el.style.position = 'absolute';
+
+            this.el.style.color = '#cbd5e1'; 
+
+            this.el.style.textShadow = '0 0 12px rgba(56, 189, 248, 0.45)';
+
+            this.el.style.whiteSpace = 'nowrap';
+
+            mathDOMContainer.appendChild(this.el);
+
+            
+
+            this.reset(true);
 
         }
 
-        
 
-        reset() {
 
-            this.equation = rigorousFormulations[Math.floor(Math.random() * rigorousFormulations.length)];
+        reset(isInit = false) {
 
-            this.x = Math.random() * (width * 0.8) + (width * 0.1);
+            const tex = rigorousLaTeX[Math.floor(Math.random() * rigorousLaTeX.length)];
 
-            this.y = Math.random() * (height * 0.8) + (height * 0.1);
+            katex.render(tex, this.el, { displayMode: true, throwOnError: false });
 
-            this.vx = (Math.random() - 0.5) * 0.2; 
 
-            this.vy = (Math.random() - 0.5) * 0.2; 
 
-            this.progress = 0;
+            const slotHeight = height / this.totalSlots;
 
-            this.typingSpeed = Math.random() * 0.3 + 0.1; 
+            const baseY = (this.slotIndex * slotHeight) + (slotHeight * 0.1);
 
-            this.state = 'formulating'; 
+            
 
-            this.holdTime = Math.random() * 200 + 100;
+            // Extreme Boundary Push: Left (2% - 6%), Right (78% - 85%)
 
-            this.opacity = 0;
+            this.x = this.side === 'left' 
 
-            this.maxOpacity = Math.random() * 0.15 + 0.1; 
+                ? (width * 0.02 + Math.random() * (width * 0.04)) 
 
-            this.fontSize = Math.random() * 10 + 14; 
+                : (width * 0.78 + Math.random() * (width * 0.07));
+
+            
+
+            this.y = baseY;
+
+            this.driftY = 0;
+
+            // Accelerated drifting up or down
+
+            this.vy = (Math.random() - 0.5) * 0.4; 
+
+
+
+            this.state = isInit ? (Math.random() > 0.5 ? 'wait' : 'reveal') : 'reveal';
+
+            this.revealProgress = isInit && this.state === 'wait' ? 100 : 0;
+
+            
+
+            // Accelerated writing speed
+
+            this.speed = Math.random() * 0.8 + 0.6; 
+
+
+
+            // Slashed suspension time
+
+            this.hold = Math.random() * 150 + 50;
+
+            
+
+            this.opacity = isInit ? (Math.random() * 0.25 + 0.15) : 0;
+
+            this.maxOpacity = Math.random() * 0.25 + 0.35; 
+
+            
+
+            let scale = Math.random() * 0.35 + 0.65;
+
+            this.el.style.transformOrigin = 'left center';
+
+            this.scaleString = `scale(${scale})`;
+
+
+
+            this.el.style.left = this.x + 'px';
+
+            this.el.style.top = this.y + 'px';
+
+            this.updateStyles();
+
+        }
+
+
+
+        updateStyles() {
+
+            this.el.style.opacity = this.opacity;
+
+            this.el.style.transform = `${this.scaleString} translateY(${this.driftY}px)`;
+
+            this.el.style.clipPath = `inset(0 ${100 - this.revealProgress}% 0 0)`;
 
         }
 
@@ -300,91 +360,43 @@ window.addEventListener('DOMContentLoaded', () => {
 
         update() {
 
-            this.x += this.vx;
-
-            this.y += this.vy;
+            this.driftY += this.vy;
 
 
 
-            if (this.state === 'formulating') {
+            if (this.state === 'reveal') {
 
-                this.opacity = Math.min(this.opacity + 0.01, this.maxOpacity);
+                this.opacity = Math.min(this.opacity + 0.025, this.maxOpacity);
 
-                this.progress += this.typingSpeed;
+                this.revealProgress += this.speed;
 
-                if (this.progress >= this.equation.length) {
+                if (this.revealProgress >= 100) {
 
-                    this.progress = this.equation.length;
+                    this.revealProgress = 100;
 
-                    this.state = 'suspension';
+                    this.state = 'wait';
 
                 }
 
-            } else if (this.state === 'suspension') {
+            } else if (this.state === 'wait') {
 
-                this.holdTime--;
+                this.hold--;
 
-                if (this.holdTime <= 0) {
+                if (this.hold <= 0) this.state = 'fade';
 
-                    this.state = Math.random() > 0.5 ? 'deconstructing' : 'decaying';
+            } else if (this.state === 'fade') {
 
-                }
+                // Accelerated fade-out sequence
 
-            } else if (this.state === 'deconstructing') {
+                this.opacity -= 0.015;
 
-                this.progress -= this.typingSpeed * 1.5;
-
-                if (this.progress <= 0) {
-
-                    this.reset();
-
-                }
-
-            } else if (this.state === 'decaying') {
-
-                this.opacity -= 0.005;
-
-                if (this.opacity <= 0) {
-
-                    this.reset();
-
-                }
+                if (this.opacity <= 0) this.reset();
 
             }
 
-        }
 
 
-
-        draw(ctx) {
-
-            if (this.opacity <= 0) return;
-
-            ctx.fillStyle = `rgba(226, 232, 240, ${this.opacity})`;
-
-            ctx.font = `italic ${this.fontSize}px "Cambria Math", "Times New Roman", serif`;
-
-            ctx.shadowBlur = 4;
-
-            ctx.shadowColor = `rgba(255, 255, 255, ${this.opacity * 0.5})`;
-
-            
-
-            const visibleText = this.equation.substring(0, Math.floor(this.progress));
-
-            ctx.fillText(visibleText, this.x, this.y);
-
-            
-
-            // Render typing cursor
-
-            if (this.state === 'formulating' && Math.floor(time * 50) % 2 === 0) {
-
-                const textWidth = ctx.measureText(visibleText).width;
-
-                ctx.fillRect(this.x + textWidth + 2, this.y - this.fontSize * 0.8, 2, this.fontSize);
-
-            }
+            this.updateStyles();
 
         }
 
@@ -392,39 +404,71 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-    const derivations = Array.from({ length: 18 }, () => new MathematicalDerivation());
+    const TOTAL_SLOTS = 6;
+
+    const derivations = [];
+
+    for (let i = 0; i < TOTAL_SLOTS; i++) derivations.push(new TrueLaTeXDerivation('left', i, TOTAL_SLOTS));
+
+    for (let i = 0; i < TOTAL_SLOTS; i++) derivations.push(new TrueLaTeXDerivation('right', i, TOTAL_SLOTS));
 
 
 
-    function renderDerivationEngine() {
+    // 6. Unified Execution Loop
 
-        ctx.clearRect(0, 0, width, height);
+    function engineLoop() {
 
-        derivations.forEach(d => {
+        requestAnimationFrame(engineLoop);
 
-            d.update();
+        
 
-            d.draw(ctx);
+        // Volatility Surface Fluid Dynamics
 
-        });
+        time += 0.012;
 
-        requestAnimationFrame(renderDerivationEngine);
+        let pos = wireframe.geometry.attributes.position;
+
+        let col = wireframe.geometry.attributes.color;
+
+        for (let i = 0; i < pos.count; i++) {
+
+            let x = pos.getX(i); let z = pos.getZ(i);
+
+            let y = Math.sin(x*0.008 + time) * Math.cos(z*0.008 + time) * 85;
+
+            pos.setY(i, y);
+
+            let hue = 0.75 + (y/350); 
+
+            colorObj.setHSL(hue, 1.0, 0.5);
+
+            col.setXYZ(i, colorObj.r, colorObj.g, colorObj.b);
+
+        }
+
+        pos.needsUpdate = true; col.needsUpdate = true;
+
+        renderer.render(scene, camera);
+
+
+
+        // Mathematical Lattice Updates
+
+        derivations.forEach(d => d.update());
 
     }
 
-    renderDerivationEngine();
+    engineLoop();
 
 
 
-    // 6. Global Resize Matrix
+    // 7. Dynamic Matrix Rescaling
 
     window.addEventListener('resize', () => {
 
-        width = mathCanvas.width = window.innerWidth;
+        width = window.innerWidth;
 
-        height = mathCanvas.height = window.innerHeight;
-
-        
+        height = window.innerHeight;
 
         camera.aspect = width / height;
 
@@ -432,12 +476,59 @@ window.addEventListener('DOMContentLoaded', () => {
 
         renderer.setSize(width, height);
 
+        
+
+        // Snap lattice derivations to extreme boundaries upon resize
+
+        derivations.forEach(d => {
+
+            d.x = d.side === 'left' ? (width * 0.02) : (width * 0.80);
+
+            d.el.style.left = d.x + 'px';
+
+            const slotHeight = height / TOTAL_SLOTS;
+
+            d.y = (d.slotIndex * slotHeight) + (slotHeight * 0.1);
+
+            d.el.style.top = d.y + 'px';
+
+        });
+
     });
 
 });
 
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -450,7 +541,7 @@ window.addEventListener('DOMContentLoaded', () => {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Gorazd Atanasovski</span>
+    <span class="navbar-title">GORAZD ATANASOVSKI</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -465,7 +556,7 @@ window.addEventListener('DOMContentLoaded', () => {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./research.html"> 
-<span class="menu-text">Mathematics</span></a>
+<span class="menu-text">Research</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./code.html" aria-current="page"> 
@@ -474,7 +565,7 @@ window.addEventListener('DOMContentLoaded', () => {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/gorazdbankscapital-sudo"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/gorazdatanasovski"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -501,32 +592,204 @@ window.addEventListener('DOMContentLoaded', () => {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Infrastructure</h1>
+
+
+
+<style>
+/* Institutional Quant Matrix Configuration */
+.terminal-core {
+    max-width: 1100px;
+    margin: 6rem auto 6rem;
+    background: rgba(2, 4, 10, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    border-radius: 4px;
+    padding: 4rem;
+    color: #e2e8f0;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.95);
+    position: relative;
+    z-index: 100;
+    font-family: 'Inter', sans-serif;
+}
+
+.terminal-core h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.2rem;
+}
+
+.terminal-core .subtitle {
+    font-size: 1.2rem;
+    color: #94a3b8;
+    margin-bottom: 3rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.terminal-core h2 {
+    font-size: 1.6rem;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border-bottom: 1px solid rgba(255, 0, 0, 0.4);
+    padding-bottom: 0.5rem;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+}
+
+.terminal-core ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.terminal-core li {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #cbd5e1;
+    margin-bottom: 1.2rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.terminal-core li::before {
+    content: "■";
+    color: #FF0000;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 0.8rem;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.4rem 1.2rem;
+    background: rgba(255, 0, 0, 0.08);
+    border: 1px solid #FF0000;
+    color: #FF0000;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-right: 1rem;
+    margin-bottom: 2rem;
+    letter-spacing: 0.05em;
+}
+
+.btn-deploy {
+    display: inline-block;
+    background: transparent;
+    color: #ffffff !important;
+    border: 1px solid #FF0000;
+    padding: 1rem 3rem;
+    border-radius: 2px;
+    font-weight: 700;
+    font-family: 'Roboto Mono', monospace;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    transition: all 0.3s ease;
+    margin: 1rem 0 3rem 0;
+}
+
+.btn-deploy:hover {
+    background: #FF0000;
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
+}
+
+.math-display {
+    background: rgba(10, 10, 10, 0.6);
+    border-left: 3px solid #FF0000;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    overflow-x: auto;
+}
+</style>
+<section id="gorazd" class="level1 terminal-core">
+<h1>GORAZD</h1>
+<div class="subtitle">
+Gradient-Optimized Regime-Aware Zero-allocation Dispatcher
 </div>
-
-<div>
-  <div class="description">
-    Documentation for the GORAZD Python Library
-  </div>
+<p><span class="status-badge">BUILD: 1.0.0</span> <span class="status-badge">LATENCY: &lt; 2μs</span> <span class="status-badge">TARGET: BARE-METAL</span> <span class="status-badge">ENV: PYTHON &gt;= 3.10</span></p>
+<p><br> <a href="https://pypi.org/project/gorazd/" target="_blank" class="btn-deploy">Initialize PyPI Matrix</a></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install gorazd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="universal-execution-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="universal-execution-matrix">01. Universal Execution Matrix</h2>
+<p>GORAZD is an elite, cross-platform quantitative execution engine designed for institutional deployment. It bridges the architectural gap between localized workstation simulation and bare-metal high-frequency deployment, physically bypassing the Python Global Interpreter Lock to achieve deterministic market synchronization.</p>
+<ul>
+<li><strong>Tactical Simulation:</strong> Synthesize, train, and backtest non-linear risk matrices locally utilizing total multicore concurrency and ZeroMQ tactical telemetry.</li>
+<li><strong>Live Deployment:</strong> Deploy the identical compiled codebase to a bare-metal server environment. GORAZD automatically targets Linux isolated CPUs and native C-libraries for physical execution.</li>
+</ul>
+</section>
+<section id="architectural-supremacy" class="level2">
+<h2 class="anchored" data-anchor-id="architectural-supremacy">02. Architectural Supremacy</h2>
+<ul>
+<li><strong>The 4-Core Hydra:</strong> Mechanically isolates and hijacks dedicated CPU cores for Asynchronous Ingestion, Routing, Risk Kill-Switch computation, and Concept Drift monitoring.</li>
+<li><strong>Page-Aligned Memory Mapping:</strong> Eradicates Operating System page faults by mapping monolithic tensors directly to physical RAM.</li>
+<li><strong>Lock-Free Inter-Process Communication:</strong> Data transfer mechanisms utilize C11 atomic pointers and strict 64-byte L1 cache-line padding to prevent false sharing cache misses.</li>
+<li><strong>Native C-API Inference:</strong> Bypasses Python wrappers entirely. Inference matrices are mapped directly to the underlying compiled C-library.</li>
+<li><strong>Microstructure Physics:</strong> Custom objective gradients are mathematically constrained by exchange routing rebates and execution latency thresholds.</li>
+<li><strong>Avellaneda-Stoikov Routing:</strong> Dynamic capital exposure is scaled by inverse volatility and skewed by real-time inventory risk constraints.</li>
+</ul>
+<p>The optimal reservation price is rigorously derived as:</p>
+<div class="math-display">
+<p><span class="math display">\[r(s,t) = s - q \gamma \sigma^2 (T-t)\]</span></p>
 </div>
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
+<p>The deterministic bid-ask spread is computed as:</p>
+<div class="math-display">
+<p><span class="math display">\[\delta^a + \delta^b = \gamma \sigma^2 (T-t) + \frac{2}{\gamma} \ln \left( 1 + \frac{\gamma k}{\kappa} \right)\]</span></p>
+</div>
+<ul>
+<li><strong>Immutable Parquet Ledger:</strong> Zero-blocking asynchronous trade journaling ensures absolute profit and loss persistence without interrupting the execution thread.</li>
+</ul>
+</section>
+<section id="environmental-configuration" class="level2">
+<h2 class="anchored" data-anchor-id="environmental-configuration">03. Environmental Configuration</h2>
+<p>Establish a strict environment file in the root execution directory to securely lock API credentials and structural risk parameters.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Execution Mode: RETAIL (Free APIs) or BLOOMBERG (B-Pipe)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">data_source</span><span class="op">=</span><span class="st">"RETAIL"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Physical API Infrastructure</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">tiingo_api_key</span><span class="op">=</span><span class="st">"SECURE_KEY_HASH"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="va">alpaca_api_key</span><span class="op">=</span><span class="st">"SECURE_KEY_HASH"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="va">alpaca_api_secret</span><span class="op">=</span><span class="st">"SECURE_SECRET_HASH"</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Structural Risk Constraints</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="va">max_leverage</span><span class="op">=</span>1.5</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="va">base_capital</span><span class="op">=</span>250000.0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="global-cli-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="global-cli-matrix">04. Global CLI Matrix</h2>
+<p>GORAZD establishes persistent daemons directly into the operating system path. Command the entire quantitative stack from the terminal layer.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gorazd-fetch</span>   <span class="co"># Polls physical APIs, calculates multipliers, locks Parquet tensors.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gorazd-train</span>   <span class="co"># Executes Purged Cross-Validation and Non-Linear Optimization.</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gorazd-ui</span>      <span class="co"># Ignites the ZeroMQ tactical terminal dashboard.</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">gorazd-ignite</span>  <span class="co"># Launches the 4-Core UHFT memory-mapped daemon.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="python-operational-api" class="level2">
+<h2 class="anchored" data-anchor-id="python-operational-api">05. Python Operational API</h2>
+<p>For deep strategic integration, the namespace is engineered for brutal operational brevity.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gorazd <span class="im">as</span> gz</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Phase 1: Synthesize Physical Tensors</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>compiler <span class="op">=</span> gz.TensorCompiler(target<span class="op">=</span><span class="st">"SPY"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>compiler.<span class="bu">compile</span>(start_date<span class="op">=</span><span class="st">"2016-01-01"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Phase 2: Optimize Physics-Aware Matrix</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> gz.Optimizer()</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>optimizer.fit(parquet_file<span class="op">=</span><span class="st">"SPY_institutional_matrix.parquet"</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Phase 3: Ignite Multicore Daemon</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>engine <span class="op">=</span> gz.Engine(target<span class="op">=</span><span class="st">"SPY"</span>, model_file<span class="op">=</span><span class="st">"core.ubj"</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>engine.ignite()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
 
 
 

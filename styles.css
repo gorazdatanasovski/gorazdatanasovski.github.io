@@ -1,4 +1,62 @@
-﻿:root {
+﻿@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Inter:wght@300;400;700;800&display=swap');
+
+/* ==========================================
+   THE GLOBAL NAVIGATION MATRIX (HUD)
+   ========================================== */
+#quarto-header {
+    background: rgba(4, 6, 14, 0.75) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 0, 0, 0.5) !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.95);
+}
+
+.navbar-brand {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    color: #ffffff !important;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.nav-link {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #64748b !important;
+    text-transform: uppercase;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    margin: 0 0.8rem;
+    padding: 0.5rem 0 !important;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #FF0000 !important;
+    border-bottom: 2px solid #FF0000;
+    text-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+    transform: translateY(-1px);
+}
+
+.navbar-nav .bi {
+    color: #64748b !important;
+    transition: all 0.2s ease;
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+}
+
+.navbar-nav .bi:hover {
+    color: #FF0000 !important;
+    filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.8));
+    transform: scale(1.15);
+}
+
+/* ==========================================
+   GLOBAL CORE VARIABLES
+   ========================================== */
+:root {
     --bg-base: #02040a;
     --quant-red: #FF0000;
 }
@@ -10,12 +68,9 @@ body, html, .quarto-container, #quarto-content, main {
     font-family: 'Inter', sans-serif;
 }
 
-/* Global Navigation */
-.navbar { border-bottom: 1px solid var(--quant-red) !important; background: rgba(5,5,5,0.95) !important; box-shadow: 0 4px 20px rgba(0,0,0,0.8); }
-.navbar-brand, .nav-link { text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; transition: 0.3s; }
-.nav-link:hover, .navbar-brand:hover { color: var(--quant-red) !important; text-shadow: 0 0 10px var(--quant-red); }
-
-/* Commercial USD Side-Panel */
+/* ==========================================
+   INSTITUTIONAL AFFILIATION PANEL
+   ========================================== */
 .usd-sponsor-panel {
     position: fixed; bottom: 30px; right: 30px; width: 220px;
     background: rgba(10, 10, 10, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-left: 3px solid var(--quant-red);
@@ -23,28 +78,131 @@ body, html, .quarto-container, #quarto-content, main {
     transition: all 0.3s ease; text-decoration: none; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
 }
 .usd-sponsor-panel:hover { border-color: var(--quant-red); transform: translateX(-5px); background: rgba(20, 20, 20, 0.95); }
-.usd-text-main { color: #ffffff; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; margin: 0 0 5px 0; letter-spacing: 0.05em; }
-.usd-text-sub { color: #888; font-size: 0.75rem; text-transform: uppercase; margin: 0; }
+.usd-text-main { color: #ffffff; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; margin: 0 0 5px 0; letter-spacing: 0.05em; font-family: 'Inter', sans-serif; }
+.usd-text-sub { color: #888; font-size: 0.75rem; text-transform: uppercase; margin: 0; font-family: 'JetBrains Mono', monospace; }
 
-/* Markdown Hero Section */
-.hero-container { text-align: center; max-width: 900px; margin: 6rem auto 4rem; position: relative; z-index: 10; }
-.hero-container h1 { font-size: 4.5rem; letter-spacing: -0.02em; background: linear-gradient(90deg, #ffffff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; margin-bottom: 0.5rem; }
-.hero-container h2 { color: var(--quant-red); font-size: 2.2rem; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; margin-top: 0; }
-.hero-container p { font-size: 1.25rem; color: #a1a1aa; line-height: 1.6; margin-top: 2rem; }
+/* ==========================================
+   HOME PAGE (INDEX.QMD) CORE MATRICES
+   ========================================== */
+.hero-container { text-align: center; max-width: 900px; margin: 6rem auto 3rem; position: relative; z-index: 10; pointer-events: none; }
+.hero-container h1 { font-size: 4.5rem; letter-spacing: -0.02em; background: linear-gradient(90deg, #ffffff, #94a3b8); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; margin-bottom: 0.5rem; font-family: 'Inter', sans-serif; }
+.hero-container h2 { color: var(--quant-red); font-size: 2.2rem; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; margin-top: 0; font-family: 'JetBrains Mono', monospace; text-shadow: 0 0 20px rgba(255, 0, 0, 0.3); }
+.hero-container p { font-size: 1.25rem; color: #a1a1aa; line-height: 1.6; margin-top: 2rem; pointer-events: auto; }
 
-/* Markdown Grid Layout */
-.grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem; max-width: 1200px; margin: 0 auto 6rem; position: relative; z-index: 10; }
+/* ==========================================
+   HOME PAGE: TELEMETRY & STACK (REFINED)
+   ========================================== */
+.telemetry-panel {
+    max-width: 1000px;
+    margin: 0 auto 5rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(255, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 0, 0, 0.2);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--quant-red);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+    letter-spacing: 0.15em;
+    position: relative;
+    z-index: 10;
+    background: transparent;
+}
+.telemetry-node { color: #cbd5e1; font-weight: 700; margin-left: 0.5rem; }
+
+.grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; max-width: 1200px; margin: 0 auto 6rem; position: relative; z-index: 10; pointer-events: auto;}
 
 .card-quant {
     background: rgba(10, 10, 10, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 4px; padding: 3rem;
     backdrop-filter: blur(15px); box-shadow: 0 10px 40px rgba(0,0,0,0.8); transition: transform 0.4s ease, border-color 0.4s ease;
 }
 .card-quant:hover { transform: translateY(-5px); border-color: var(--quant-red); box-shadow: 0 0 30px rgba(255, 0, 0, 0.2); }
-.card-quant h3 { font-size: 1.5rem; letter-spacing: 0.05em; color: #ffffff; text-transform: uppercase; margin-top: 0; }
-.card-quant p { color: #a1a1aa; line-height: 1.7; margin: 1.5rem 0 2rem; }
+.card-quant h3 { font-size: 1.4rem; letter-spacing: 0.05em; color: #ffffff; text-transform: uppercase; margin-top: 0; font-family: 'JetBrains Mono', monospace; }
+.card-quant p { color: #a1a1aa; line-height: 1.7; margin: 1.5rem 0 2rem; font-size: 1.05rem; }
 
 .btn-quant {
     display: inline-block; background: transparent; color: #fff !important; border: 1px solid var(--quant-red);
-    padding: 1rem 2rem; border-radius: 4px; font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem; transition: 0.3s ease;
+    padding: 1rem 2rem; border-radius: 4px; font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem; transition: 0.3s ease; font-family: 'JetBrains Mono', monospace;
 }
 .btn-quant:hover { background: var(--quant-red); box-shadow: 0 0 20px rgba(255, 0, 0, 0.4); transform: scale(1.05); }
+
+/* ==========================================
+   THEORETICAL CORE COMPETENCIES MATRIX
+   ========================================== */
+.stack-matrix {
+    max-width: 1200px;
+    margin: 0 auto 8rem;
+    position: relative;
+    z-index: 10;
+    background: rgba(5, 5, 5, 0.7);
+    border-top: 2px solid var(--quant-red);
+    padding: 4rem;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+}
+
+.stack-matrix h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.6rem;
+    color: #ffffff;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 3rem;
+    letter-spacing: 0.1em;
+}
+
+.stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); /* Expanded for mathematical density */
+    gap: 3.5rem 3rem;
+}
+
+.stack-item {
+    border-left: 2px solid rgba(255, 0, 0, 0.4);
+    padding-left: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.stack-item:hover {
+    border-left-color: var(--quant-red);
+}
+
+.stack-item h4 {
+    color: var(--quant-red);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.05rem;
+    margin: 0 0 1rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.4;
+}
+
+.stack-item p {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 0 0 1rem 0;
+}
+
+.stack-item .definition {
+    background: rgba(255, 0, 0, 0.05);
+    padding: 1rem;
+    border-radius: 2px;
+    font-family: 'Inter', sans-serif;
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-top: 1rem;
+    border-left: 1px solid var(--quant-red);
+}
+
+.stack-item .def-title {
+    color: #ffffff;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
