@@ -121,11 +121,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
 
-    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,229,255,0.02) 50%, rgba(0,229,255,0));
+    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,229,255,0.03) 50%, rgba(0,229,255,0));
 
     background-size: 100% 6px;
 
-    z-index: -2; pointer-events: none; opacity: 0.6;
+    z-index: -2; pointer-events: none; opacity: 0.7;
 
 }
 
@@ -137,9 +137,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
     z-index: -2; pointer-events: none;
 
-    background: radial-gradient(circle at 50% 40%, transparent 20%, rgba(1, 2, 4, 0.95) 100%);
+    background: radial-gradient(circle at 50% 40%, transparent 20%, rgba(1, 2, 4, 0.98) 100%);
 
-    box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.9);
+    box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.95);
 
 }
 
@@ -151,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
     color: #ffffff;
 
-    text-shadow: 0 0 10px rgba(0, 229, 255, 0.8), 0 0 20px rgba(0, 229, 255, 0.4), 0 0 40px rgba(0, 229, 255, 0.2), 2px 2px 2px rgba(0,0,0,0.9);
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.9), 0 0 25px rgba(0, 229, 255, 0.5), 0 0 50px rgba(0, 229, 255, 0.3), 2px 2px 4px rgba(0,0,0,1);
 
     white-space: nowrap;
 
@@ -169,11 +169,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
     position: absolute;
 
-    right: -8px; top: 10%; height: 80%; width: 3px;
+    right: -10px; top: 10%; height: 80%; width: 4px;
 
     background: #00ffff;
 
-    box-shadow: 0 0 15px #00ffff, 0 0 30px #ffffff;
+    box-shadow: 0 0 20px #00ffff, 0 0 40px #ffffff;
 
     opacity: 0;
 
@@ -185,13 +185,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
     opacity: 1;
 
-    animation: cursor-flicker 0.1s infinite alternate;
+    animation: cursor-flicker 0.08s infinite alternate;
 
 }
 
 @keyframes cursor-flicker {
 
-    0% { opacity: 0.5; height: 75%; }
+    0% { opacity: 0.4; height: 75%; }
 
     100% { opacity: 1; height: 85%; }
 
@@ -251,13 +251,13 @@ window.addEventListener('load', () => {
 
     // ==========================================
 
-    // APEX WEBGL VOLATILITY SURFACE (HOLOGRAPHIC)
+    // APEX WEBGL VOLATILITY SURFACE (SPACESHIP OVERDRIVE)
 
     // ==========================================
 
     let scene = new THREE.Scene();
 
-    scene.fog = new THREE.FogExp2(0x010204, 0.0016); // Infinite computing horizon
+    scene.fog = new THREE.FogExp2(0x010204, 0.0014); // Extended visibility horizon
 
 
 
@@ -273,13 +273,87 @@ window.addEventListener('load', () => {
 
     renderer.setSize(window.innerWidth, window.innerHeight);
 
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Supreme sharpness, clamped for performance
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); 
 
     bgContainer.appendChild(renderer.domElement);
 
 
 
-    let geometry = new THREE.PlaneGeometry(2400, 2400, 110, 110);
+    // ==========================================
+
+    // DEEP SPACE STARFIELD MATRIX (WARP PHYSICS)
+
+    // ==========================================
+
+    let starGeo = new THREE.BufferGeometry();
+
+    let starCount = 3500;
+
+    let starPos = new Float32Array(starCount * 3);
+
+    let starColors = new Float32Array(starCount * 3);
+
+    let starColorObj = new THREE.Color();
+
+
+
+    for(let i = 0; i < starCount; i++) {
+
+        starPos[i*3] = (Math.random() - 0.5) * 4000; // X
+
+        starPos[i*3+1] = Math.random() * 1500 - 200; // Y (Keep stars above and slightly below)
+
+        starPos[i*3+2] = (Math.random() - 0.5) * 4000; // Z
+
+        
+
+        // Stars alternate between Pure Cyan and Critical Red
+
+        let starHue = Math.random() > 0.85 ? 1.0 : 0.5; 
+
+        starColorObj.setHSL(starHue, 1.0, Math.random() * 0.4 + 0.6);
+
+        starColors[i*3] = starColorObj.r;
+
+        starColors[i*3+1] = starColorObj.g;
+
+        starColors[i*3+2] = starColorObj.b;
+
+    }
+
+    starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+
+    starGeo.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
+
+    
+
+    let starMat = new THREE.PointsMaterial({
+
+        size: 2.2, 
+
+        vertexColors: true, 
+
+        transparent: true, 
+
+        opacity: 0.85, 
+
+        blending: THREE.AdditiveBlending
+
+    });
+
+    let stars = new THREE.Points(starGeo, starMat);
+
+    scene.add(stars);
+
+
+
+    // ==========================================
+
+    // THE VOLATILITY MANIFOLD
+
+    // ==========================================
+
+    let geometry = new THREE.PlaneGeometry(2800, 2800, 120, 120); // Expanded geometry bounds
 
     geometry.rotateX(-Math.PI / 2);
 
@@ -291,11 +365,11 @@ window.addEventListener('load', () => {
 
     
 
-    // Wireframe Manifold
+    // Hyper-Luminous Wireframe
 
     let material = new THREE.MeshBasicMaterial({
 
-        vertexColors: true, wireframe: true, transparent: true, opacity: 0.08, blending: THREE.AdditiveBlending
+        vertexColors: true, wireframe: true, transparent: true, opacity: 0.22, blending: THREE.AdditiveBlending
 
     });
 
@@ -317,9 +391,9 @@ window.addEventListener('load', () => {
 
     pGrad.addColorStop(0, 'rgba(255, 255, 255, 1)');
 
-    pGrad.addColorStop(0.2, 'rgba(255, 255, 255, 0.8)');
+    pGrad.addColorStop(0.2, 'rgba(255, 255, 255, 0.9)');
 
-    pGrad.addColorStop(0.5, 'rgba(0, 229, 255, 0.2)');
+    pGrad.addColorStop(0.5, 'rgba(0, 229, 255, 0.3)');
 
     pGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
@@ -329,11 +403,11 @@ window.addEventListener('load', () => {
 
 
 
-    // Glowing Data Nodes
+    // Aggressive Glowing Data Nodes
 
     let pointsMaterial = new THREE.PointsMaterial({
 
-        size: 4.5, map: particleTexture, vertexColors: true, transparent: true, opacity: 0.85, blending: THREE.AdditiveBlending, depthWrite: false
+        size: 6.0, map: particleTexture, vertexColors: true, transparent: true, opacity: 1.0, blending: THREE.AdditiveBlending, depthWrite: false
 
     });
 
@@ -439,11 +513,9 @@ window.addEventListener('load', () => {
 
             this.driftY = 0;
 
-            // Parallax Z-depth drift for 3D illusion
+            this.z = (Math.random() - 0.5) * 150; // Enhanced Z-depth parallax
 
-            this.z = (Math.random() - 0.5) * 100;
-
-            this.vy = (Math.random() - 0.5) * 0.15; 
+            this.vy = (Math.random() - 0.5) * 0.25; // Faster drift
 
 
 
@@ -451,17 +523,17 @@ window.addEventListener('load', () => {
 
             this.revealProgress = isInit && this.state === 'wait' ? 100 : 0;
 
-            this.speed = Math.random() * 0.5 + 0.3; 
+            this.speed = Math.random() * 0.6 + 0.4; 
 
             this.hold = Math.random() * 300 + 150;
 
-            this.opacity = isInit ? (Math.random() * 0.4 + 0.2) : 0;
+            this.opacity = isInit ? (Math.random() * 0.4 + 0.3) : 0;
 
-            this.maxOpacity = Math.random() * 0.5 + 0.3; 
+            this.maxOpacity = Math.random() * 0.6 + 0.4; 
 
             
 
-            let scale = Math.random() * 0.35 + 0.70;
+            let scale = Math.random() * 0.45 + 0.75; // Increased scale for visibility
 
             this.el.style.transformOrigin = 'left center';
 
@@ -507,7 +579,7 @@ window.addEventListener('load', () => {
 
             if (this.state === 'reveal') {
 
-                this.opacity = Math.min(this.opacity + 0.02, this.maxOpacity);
+                this.opacity = Math.min(this.opacity + 0.025, this.maxOpacity);
 
                 this.revealProgress += this.speed;
 
@@ -527,7 +599,7 @@ window.addEventListener('load', () => {
 
             } else if (this.state === 'fade') {
 
-                this.opacity -= 0.006;
+                this.opacity -= 0.008;
 
                 if (this.opacity <= 0) this.reset();
 
@@ -553,7 +625,7 @@ window.addEventListener('load', () => {
 
     // ==========================================
 
-    // UNIFIED EXECUTION LOOP
+    // UNIFIED SPACESHIP EXECUTION LOOP
 
     // ==========================================
 
@@ -563,7 +635,39 @@ window.addEventListener('load', () => {
 
         
 
-        time += 0.008; 
+        time += 0.012; // Accelerated temporal flow
+
+        
+
+        // 1. Camera Banking (Spaceship Drift)
+
+        camera.position.x = Math.sin(time * 0.3) * 80;
+
+        camera.lookAt(0, -40, 0);
+
+
+
+        // 2. Deep Space Starfield Warp Physics
+
+        let sPos = stars.geometry.attributes.position;
+
+        for(let i = 0; i < starCount; i++) {
+
+            let z = sPos.getZ(i);
+
+            z += 6.0; // Warp speed velocity
+
+            if(z > 1000) z = -3000; // Recycle stars into the deep horizon
+
+            sPos.setZ(i, z);
+
+        }
+
+        sPos.needsUpdate = true;
+
+
+
+        // 3. Volatility Manifold Deformation
 
         let pos = wireframe.geometry.attributes.position;
 
@@ -577,13 +681,13 @@ window.addEventListener('load', () => {
 
             
 
-            // Tri-Layered Stochastic Deformation (Macro, Meso, Micro)
+            // Hyper-Aggressive Tri-Layered Deformation
 
-            let y = Math.sin(x*0.004 + time) * Math.cos(z*0.004 + time) * 110; 
+            let y = Math.sin(x*0.004 + time) * Math.cos(z*0.004 + time) * 150; 
 
-            y += Math.sin(x*0.015 - time*1.2) * Math.cos(z*0.015 + time*1.2) * 25; 
+            y += Math.sin(x*0.015 - time*1.5) * Math.cos(z*0.015 + time*1.2) * 40; 
 
-            y += Math.sin(x*0.05 + time*3) * 5; 
+            y += Math.sin(x*0.05 + time*3) * 8; 
 
             
 
@@ -591,21 +695,17 @@ window.addEventListener('load', () => {
 
             
 
-            // Absolute Spectrum Clamping: Cyan (0.5) -> Magenta (0.83) -> Red (1.0)
+            // Absolute Spectrum Clamping: Cyan -> Magenta -> Red
 
-            // Normalized height mapping to strictly enforce the color bounds
-
-            let normalizedHeight = (y + 140) / 280; 
+            let normalizedHeight = (y + 190) / 380; 
 
             let hue = 0.5 + (normalizedHeight * 0.5); 
-
-            // Clamp hue between 0.5 (Cyan) and 1.0 (Red)
 
             hue = Math.max(0.5, Math.min(1.0, hue));
 
             
 
-            colorObj.setHSL(hue, 1.0, 0.55);
+            colorObj.setHSL(hue, 1.0, 0.60); // Increased luminosity
 
             col.setXYZ(i, colorObj.r, colorObj.g, colorObj.b);
 
@@ -755,132 +855,256 @@ window.Quarto = {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title display-7">GORAZD</h1></header>
 
 
 
 
 <style>
-/* Institutional Quant Matrix Configuration */
+/* ==========================================
+   APEX TERMINAL AESTHETICS - THE BARE-METAL MATRIX
+   ========================================== */
+
+/* ABSOLUTE X-AXIS LOCK */
+html, body { overflow-x: hidden !important; width: 100%; margin: 0; padding: 0; background-color: #010204; }
+
+/* Microscopic CRT Hardware Grain */
+.crt-noise {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -4; pointer-events: none; opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* QUANTUM CORE RESONANCE */
+.quantum-core-glow {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+    width: 150%; height: 150%;
+    background: radial-gradient(circle, rgba(0, 229, 255, 0.06) 0%, rgba(255, 0, 0, 0.04) 35%, transparent 65%);
+    z-index: -3; pointer-events: none; 
+    animation: coreBreathe 10s ease-in-out infinite alternate;
+}
+@keyframes coreBreathe { 0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.7; } 100% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; } }
+
+/* 3D Volumetric Spaceship Grid */
+.grid-topology-bg {
+    position: fixed; top: 0; left: -25%; right: -25%; bottom: -50%;
+    background-image: linear-gradient(rgba(0, 229, 255, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 229, 255, 0.15) 1px, transparent 1px);
+    background-size: 60px 60px; background-position: center top; z-index: -2;
+    transform: perspective(600px) rotateX(75deg); transform-origin: center center;
+    mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 60%); 
+    -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 60%);
+    animation: gridWarp 3s linear infinite; pointer-events: none;
+}
+@keyframes gridWarp { 0% { transform: perspective(600px) rotateX(75deg) translateY(0px); } 100% { transform: perspective(600px) rotateX(75deg) translateY(60px); } }
+
+/* ==========================================
+   INSTITUTIONAL QUANT MATRIX CONFIGURATION
+   ========================================== */
+
+/* FLUID-STATE GLASSMORPHISM TERMINAL CORE */
 .terminal-core {
-    max-width: 1100px;
-    margin: 6rem auto 6rem;
-    background: rgba(2, 4, 10, 0.85);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 0, 0, 0.3);
+    max-width: 1050px; 
+    margin: 6rem auto 6rem auto;
+    background: linear-gradient(135deg, rgba(4, 6, 14, 0.95) 0%, rgba(20, 2, 5, 0.85) 50%, rgba(2, 10, 15, 0.95) 100%);
+    background-size: 200% 200%; 
+    animation: fluidGlass 10s ease infinite;
+    backdrop-filter: blur(25px) saturate(140%); 
+    -webkit-backdrop-filter: blur(25px) saturate(140%);
+    border: 1px solid rgba(255, 0, 0, 0.3); 
+    border-top: 3px solid #FF0000; 
     border-radius: 4px;
-    padding: 4rem;
+    padding: 5rem 4rem; 
     color: #e2e8f0;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.95);
-    position: relative;
-    z-index: 100;
-    font-family: 'Inter', sans-serif;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.95), inset 0 1px 0 rgba(255,255,255,0.1); 
+    position: relative; 
+    z-index: 10; 
+    font-family: 'Inter', sans-serif; 
+    overflow: hidden;
 }
 
+@keyframes fluidGlass { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+/* Hyper-Visible Continuous Quantum Data Stream (Border Sweep) */
+.terminal-core::before {
+    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 4px;
+    background: linear-gradient(90deg, transparent, #00ffff, #FF0000, #00ffff, transparent);
+    box-shadow: 0 0 20px #00ffff, 0 0 40px #FF0000;
+    animation: cardScan 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite; z-index: 10;
+}
+@keyframes cardScan { 0% { left: -100%; } 100% { left: 100%; } }
+
+/* SYNCHRONIZED TYPOGRAPHY GRADIENT - TITLE */
+.terminal-header { text-align: center; position: relative; margin-bottom: 0.5rem; }
 .terminal-core h1 {
-    font-size: 3.5rem;
-    font-weight: 800;
-    color: #ffffff;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.2rem;
+    font-family: 'JetBrains Mono', monospace; 
+    font-size: clamp(3rem, 5vw, 4.5rem); 
+    white-space: nowrap; 
+    font-weight: 800; 
+    text-transform: uppercase; 
+    background: linear-gradient(105deg, #ffffff 0%, #ffffff 40%, #FF0000 50%, #ffffff 60%, #ffffff 100%);
+    background-size: 300% auto; 
+    color: transparent; 
+    -webkit-background-clip: text; 
+    background-clip: text;
+    animation: synchronizedSweep 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+    letter-spacing: -0.02em; 
+    margin: 0; padding: 0;
+    text-shadow: 0 0 40px rgba(0, 229, 255, 0.2);
+    line-height: 1.1; 
+    position: relative; 
+    display: inline-block;
 }
 
-.terminal-core .subtitle {
-    font-size: 1.2rem;
-    color: #94a3b8;
-    margin-bottom: 3rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-family: 'Roboto Mono', monospace;
+/* SYNCHRONIZED VISCERAL RED LASER ON TITLE */
+.terminal-core h1::after {
+    content: '';
+    position: absolute; top: -15%; left: -5%; width: 6px; height: 130%; background: #ffffff;
+    box-shadow: 0 0 20px #FF0000, 0 0 40px #FF0000, 0 0 80px #FF0000, inset 0 0 5px #00ffff;
+    z-index: 11; pointer-events: none;
+    animation: synchronizedLaser 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+    transform: rotate(15deg); border-radius: 10px;
 }
 
-.terminal-core h2 {
-    font-size: 1.6rem;
-    color: #ffffff;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    border-bottom: 1px solid rgba(255, 0, 0, 0.4);
-    padding-bottom: 0.5rem;
-    margin-top: 4rem;
-    margin-bottom: 2rem;
-}
+@keyframes synchronizedSweep { 0% { background-position: 82.5% center; } 100% { background-position: 17.5% center; } }
+@keyframes synchronizedLaser { 0% { left: -5%; } 100% { left: 105%; } }
 
-.terminal-core ul {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-.terminal-core li {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #cbd5e1;
-    margin-bottom: 1.2rem;
+/* DYNAMIC PLASMA SUBTITLE */
+.terminal-subtitle {
+    font-family: 'JetBrains Mono', monospace; 
+    font-size: clamp(0.9rem, 1.8vw, 1.3rem);
+    font-weight: 800; 
+    text-transform: uppercase; 
+    letter-spacing: 0.25em; 
+    margin-top: 1rem; 
+    margin-bottom: 3.5rem; 
+    background: linear-gradient(90deg, #FF0000 0%, #FF0000 40%, #00ffff 48%, #ffffff 50%, #00ffff 52%, #FF0000 60%, #FF0000 100%);
+    background-size: 300% auto; 
+    color: transparent; 
+    -webkit-background-clip: text; 
+    background-clip: text;
+    animation: driverSweep 4s cubic-bezier(0.8, 0, 0.2, 1) infinite;
+    display: block; 
+    text-align: center;
+    z-index: 10; 
+    text-shadow: 0 0 20px rgba(255, 0, 0, 0.4); 
     position: relative;
-    padding-left: 1.5rem;
 }
+@keyframes driverSweep { 0% { background-position: 100% center; } 100% { background-position: -50% center; } }
+
+/* Status Badges */
+.badge-container { text-align: center; margin-bottom: 2.5rem; }
+.status-badge {
+    display: inline-block; padding: 0.5rem 1.2rem; background: rgba(255, 0, 0, 0.08);
+    border: 1px solid rgba(255, 0, 0, 0.6); color: #FF0000; font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem; font-weight: 800; text-transform: uppercase; margin: 0 0.5rem 1rem 0.5rem;
+    letter-spacing: 0.1em; box-shadow: 0 0 15px rgba(255, 0, 0, 0.15);
+}
+
+/* KINETIC EXECUTION NODE (Button) */
+.deploy-container { text-align: center; margin-bottom: 4rem; padding-bottom: 2rem; border-bottom: 1px dashed rgba(255,0,0,0.3); }
+.btn-deploy {
+    display: inline-block; background: linear-gradient(90deg, rgba(255, 0, 0, 0.1), rgba(0, 229, 255, 0.2), rgba(255, 0, 0, 0.1));
+    background-size: 200% auto; animation: btnFlow 3s linear infinite;
+    border: 1px solid rgba(255, 0, 0, 0.7); color: #FF0000 !important; text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+    letter-spacing: 0.25em; font-weight: 800; font-family: 'JetBrains Mono', monospace; text-transform: uppercase;
+    font-size: 1rem; position: relative; overflow: hidden; padding: 1.5rem 3.5rem; z-index: 1;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.2); transition: all 0.3s ease; text-decoration: none;
+}
+.btn-deploy::after {
+    content: ''; position: absolute; bottom: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.6), transparent); transition: all 0.4s ease; z-index: -1;
+}
+.btn-deploy:hover::after { left: 100%; }
+.btn-deploy:hover {
+    background: rgba(255, 0, 0, 1); color: #ffffff !important; box-shadow: 0 0 35px rgba(255, 0, 0, 0.9);
+    text-shadow: none; border-color: #FF0000;
+}
+@keyframes btnFlow { to { background-position: 200% center; } }
+
+/* MARKDOWN STYLING INSIDE TERMINAL */
+.terminal-core h2 {
+    font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; color: #ffffff; text-transform: uppercase;
+    letter-spacing: 0.15em; border-bottom: 1px dashed rgba(255, 0, 0, 0.5); padding-bottom: 0.8rem;
+    margin-top: 5.5rem; margin-bottom: 2.5rem; text-shadow: 0 0 15px rgba(255,255,255,0.3);
+}
+
+.terminal-core ul { list-style-type: none; padding-left: 0; }
+.terminal-core li { font-size: 1.15rem; line-height: 1.8; color: #cbd5e1; margin-bottom: 1.5rem; position: relative; padding-left: 2rem; }
 
 .terminal-core li::before {
-    content: "■";
-    color: #FF0000;
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-size: 0.8rem;
+    content: "■"; color: #FF0000; position: absolute; left: 0; top: 2px; font-size: 0.9rem;
+    text-shadow: 0 0 10px #FF0000; animation: pulseBullet 2s infinite alternate;
+}
+@keyframes pulseBullet { 0% { opacity: 0.5; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1.2); } }
+
+.terminal-core p { font-size: 1.15rem; line-height: 1.8; color: #cbd5e1; margin-bottom: 1.5rem; }
+
+/* HARDWARE-ACCELERATED SYNTAX BLOCKS */
+pre.sourceCode, .sourceCode {
+    background: rgba(2, 4, 10, 0.95) !important;
+    border: 1px solid rgba(0, 229, 255, 0.3) !important;
+    border-left: 4px solid #00ffff !important;
+    border-radius: 4px !important;
+    padding: 3rem 2rem 2rem !important; 
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 25px rgba(0,0,0,1), 0 15px 40px rgba(0,0,0,0.8) !important;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 1.05rem !important;
+    margin-bottom: 3rem !important;
 }
 
-.status-badge {
-    display: inline-block;
-    padding: 0.4rem 1.2rem;
-    background: rgba(255, 0, 0, 0.08);
-    border: 1px solid #FF0000;
-    color: #FF0000;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin-right: 1rem;
-    margin-bottom: 2rem;
-    letter-spacing: 0.05em;
+pre.sourceCode::before {
+    content: 'root@gorazd-core:~# exec'; position: absolute; top: 0px; left: 0px;
+    background: #00ffff; color: #02040a; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 800;
+    padding: 4px 12px; letter-spacing: 0.15em; box-shadow: 0 0 20px rgba(0, 229, 255, 0.9); z-index: 2;
+    transition: all 0.4s ease;
 }
 
-.btn-deploy {
-    display: inline-block;
-    background: transparent;
-    color: #ffffff !important;
-    border: 1px solid #FF0000;
-    padding: 1rem 3rem;
-    border-radius: 2px;
-    font-weight: 700;
-    font-family: 'Roboto Mono', monospace;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    transition: all 0.3s ease;
-    margin: 1rem 0 3rem 0;
+pre.sourceCode:hover {
+    border-left: 4px solid #FF0000 !important; border-color: rgba(255, 0, 0, 0.4) !important;
+    box-shadow: inset 0 0 30px rgba(0,0,0,1), 0 20px 50px rgba(255,0,0,0.15) !important;
+    transform: scale(1.01);
 }
 
-.btn-deploy:hover {
-    background: #FF0000;
-    box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
+pre.sourceCode:hover::before {
+    background: #FF0000; color: #ffffff; content: 'root@gorazd-core:~# sudo kill -9';
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.9);
 }
 
+/* KINETIC MATHEMATICS CONTAINERS */
 .math-display {
-    background: rgba(10, 10, 10, 0.6);
-    border-left: 3px solid #FF0000;
-    padding: 1.5rem;
-    margin: 2rem 0;
-    overflow-x: auto;
+    position: relative; background: rgba(2, 4, 10, 0.95); border-left: 4px solid #FF0000; border-radius: 2px;
+    padding: 2.5rem; margin: 3.5rem 0; overflow-x: auto; overflow-y: hidden; font-size: 1.35rem;
+    box-shadow: inset 0 0 30px rgba(0,0,0,1), 0 15px 40px rgba(0,0,0,0.8); display: block; text-align: center;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.math-display::before {
+    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 3px;
+    background: linear-gradient(90deg, transparent, #00ffff, #FF0000, transparent); box-shadow: 0 0 15px #00ffff;
+    animation: mathScan 3s linear infinite; z-index: 10;
+}
+.math-display:hover {
+    transform: scale(1.02); border-left: 4px solid #00ffff; background: rgba(6, 8, 16, 0.98);
+    box-shadow: inset 0 0 30px rgba(0,0,0,1), 0 20px 50px rgba(0, 229, 255, 0.2);
 }
 </style>
-<section id="gorazd" class="level1 terminal-core">
-<h1>GORAZD</h1>
-<div class="subtitle">
-Gradient-Optimized Regime-Aware Zero-allocation Dispatcher
-</div>
+
+<div class="crt-noise"></div>
+<div class="quantum-core-glow"></div>
+<div class="grid-topology-bg"></div>
+<div class="terminal-core">
+<section id="gorazd" class="level1 terminal-header">
+
+</section>
+<p><span class="terminal-subtitle">Gradient-Optimized Regime-Aware Zero-allocation Dispatcher</span></p>
+<div class="badge-container">
 <p><span class="status-badge">BUILD: 1.0.0</span> <span class="status-badge">LATENCY: &lt; 2μs</span> <span class="status-badge">TARGET: BARE-METAL</span> <span class="status-badge">ENV: PYTHON &gt;= 3.10</span></p>
-<p><br> <a href="https://pypi.org/project/gorazd/" target="_blank" class="btn-deploy">Initialize PyPI Matrix</a></p>
+</div>
+<div class="deploy-container">
+<p><a href="https://pypi.org/project/gorazd/" class="btn-deploy" target="_blank">Initialize PyPI Matrix</a></p>
+</div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install gorazd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="universal-execution-matrix" class="level2">
 <h2 class="anchored" data-anchor-id="universal-execution-matrix">01. Universal Execution Matrix</h2>
@@ -952,7 +1176,7 @@ Gradient-Optimized Regime-Aware Zero-allocation Dispatcher
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>engine <span class="op">=</span> gz.Engine(target<span class="op">=</span><span class="st">"SPY"</span>, model_file<span class="op">=</span><span class="st">"core.ubj"</span>)</span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>engine.ignite()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-</section>
+</div>
 
 
 

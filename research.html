@@ -86,11 +86,11 @@ ul.task-list li input[type="checkbox"] {
 
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
 
-    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,229,255,0.02) 50%, rgba(0,229,255,0));
+    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,229,255,0.03) 50%, rgba(0,229,255,0));
 
     background-size: 100% 6px;
 
-    z-index: -2; pointer-events: none; opacity: 0.6;
+    z-index: -2; pointer-events: none; opacity: 0.7;
 
 }
 
@@ -102,9 +102,9 @@ ul.task-list li input[type="checkbox"] {
 
     z-index: -2; pointer-events: none;
 
-    background: radial-gradient(circle at 50% 40%, transparent 20%, rgba(1, 2, 4, 0.95) 100%);
+    background: radial-gradient(circle at 50% 40%, transparent 20%, rgba(1, 2, 4, 0.98) 100%);
 
-    box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.9);
+    box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.95);
 
 }
 
@@ -116,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
 
     color: #ffffff;
 
-    text-shadow: 0 0 10px rgba(0, 229, 255, 0.8), 0 0 20px rgba(0, 229, 255, 0.4), 0 0 40px rgba(0, 229, 255, 0.2), 2px 2px 2px rgba(0,0,0,0.9);
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.9), 0 0 25px rgba(0, 229, 255, 0.5), 0 0 50px rgba(0, 229, 255, 0.3), 2px 2px 4px rgba(0,0,0,1);
 
     white-space: nowrap;
 
@@ -134,11 +134,11 @@ ul.task-list li input[type="checkbox"] {
 
     position: absolute;
 
-    right: -8px; top: 10%; height: 80%; width: 3px;
+    right: -10px; top: 10%; height: 80%; width: 4px;
 
     background: #00ffff;
 
-    box-shadow: 0 0 15px #00ffff, 0 0 30px #ffffff;
+    box-shadow: 0 0 20px #00ffff, 0 0 40px #ffffff;
 
     opacity: 0;
 
@@ -150,13 +150,13 @@ ul.task-list li input[type="checkbox"] {
 
     opacity: 1;
 
-    animation: cursor-flicker 0.1s infinite alternate;
+    animation: cursor-flicker 0.08s infinite alternate;
 
 }
 
 @keyframes cursor-flicker {
 
-    0% { opacity: 0.5; height: 75%; }
+    0% { opacity: 0.4; height: 75%; }
 
     100% { opacity: 1; height: 85%; }
 
@@ -216,13 +216,13 @@ window.addEventListener('load', () => {
 
     // ==========================================
 
-    // APEX WEBGL VOLATILITY SURFACE (HOLOGRAPHIC)
+    // APEX WEBGL VOLATILITY SURFACE (SPACESHIP OVERDRIVE)
 
     // ==========================================
 
     let scene = new THREE.Scene();
 
-    scene.fog = new THREE.FogExp2(0x010204, 0.0016); // Infinite computing horizon
+    scene.fog = new THREE.FogExp2(0x010204, 0.0014); // Extended visibility horizon
 
 
 
@@ -238,13 +238,87 @@ window.addEventListener('load', () => {
 
     renderer.setSize(window.innerWidth, window.innerHeight);
 
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Supreme sharpness, clamped for performance
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); 
 
     bgContainer.appendChild(renderer.domElement);
 
 
 
-    let geometry = new THREE.PlaneGeometry(2400, 2400, 110, 110);
+    // ==========================================
+
+    // DEEP SPACE STARFIELD MATRIX (WARP PHYSICS)
+
+    // ==========================================
+
+    let starGeo = new THREE.BufferGeometry();
+
+    let starCount = 3500;
+
+    let starPos = new Float32Array(starCount * 3);
+
+    let starColors = new Float32Array(starCount * 3);
+
+    let starColorObj = new THREE.Color();
+
+
+
+    for(let i = 0; i < starCount; i++) {
+
+        starPos[i*3] = (Math.random() - 0.5) * 4000; // X
+
+        starPos[i*3+1] = Math.random() * 1500 - 200; // Y (Keep stars above and slightly below)
+
+        starPos[i*3+2] = (Math.random() - 0.5) * 4000; // Z
+
+        
+
+        // Stars alternate between Pure Cyan and Critical Red
+
+        let starHue = Math.random() > 0.85 ? 1.0 : 0.5; 
+
+        starColorObj.setHSL(starHue, 1.0, Math.random() * 0.4 + 0.6);
+
+        starColors[i*3] = starColorObj.r;
+
+        starColors[i*3+1] = starColorObj.g;
+
+        starColors[i*3+2] = starColorObj.b;
+
+    }
+
+    starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+
+    starGeo.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
+
+    
+
+    let starMat = new THREE.PointsMaterial({
+
+        size: 2.2, 
+
+        vertexColors: true, 
+
+        transparent: true, 
+
+        opacity: 0.85, 
+
+        blending: THREE.AdditiveBlending
+
+    });
+
+    let stars = new THREE.Points(starGeo, starMat);
+
+    scene.add(stars);
+
+
+
+    // ==========================================
+
+    // THE VOLATILITY MANIFOLD
+
+    // ==========================================
+
+    let geometry = new THREE.PlaneGeometry(2800, 2800, 120, 120); // Expanded geometry bounds
 
     geometry.rotateX(-Math.PI / 2);
 
@@ -256,11 +330,11 @@ window.addEventListener('load', () => {
 
     
 
-    // Wireframe Manifold
+    // Hyper-Luminous Wireframe
 
     let material = new THREE.MeshBasicMaterial({
 
-        vertexColors: true, wireframe: true, transparent: true, opacity: 0.08, blending: THREE.AdditiveBlending
+        vertexColors: true, wireframe: true, transparent: true, opacity: 0.22, blending: THREE.AdditiveBlending
 
     });
 
@@ -282,9 +356,9 @@ window.addEventListener('load', () => {
 
     pGrad.addColorStop(0, 'rgba(255, 255, 255, 1)');
 
-    pGrad.addColorStop(0.2, 'rgba(255, 255, 255, 0.8)');
+    pGrad.addColorStop(0.2, 'rgba(255, 255, 255, 0.9)');
 
-    pGrad.addColorStop(0.5, 'rgba(0, 229, 255, 0.2)');
+    pGrad.addColorStop(0.5, 'rgba(0, 229, 255, 0.3)');
 
     pGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
@@ -294,11 +368,11 @@ window.addEventListener('load', () => {
 
 
 
-    // Glowing Data Nodes
+    // Aggressive Glowing Data Nodes
 
     let pointsMaterial = new THREE.PointsMaterial({
 
-        size: 4.5, map: particleTexture, vertexColors: true, transparent: true, opacity: 0.85, blending: THREE.AdditiveBlending, depthWrite: false
+        size: 6.0, map: particleTexture, vertexColors: true, transparent: true, opacity: 1.0, blending: THREE.AdditiveBlending, depthWrite: false
 
     });
 
@@ -404,11 +478,9 @@ window.addEventListener('load', () => {
 
             this.driftY = 0;
 
-            // Parallax Z-depth drift for 3D illusion
+            this.z = (Math.random() - 0.5) * 150; // Enhanced Z-depth parallax
 
-            this.z = (Math.random() - 0.5) * 100;
-
-            this.vy = (Math.random() - 0.5) * 0.15; 
+            this.vy = (Math.random() - 0.5) * 0.25; // Faster drift
 
 
 
@@ -416,17 +488,17 @@ window.addEventListener('load', () => {
 
             this.revealProgress = isInit && this.state === 'wait' ? 100 : 0;
 
-            this.speed = Math.random() * 0.5 + 0.3; 
+            this.speed = Math.random() * 0.6 + 0.4; 
 
             this.hold = Math.random() * 300 + 150;
 
-            this.opacity = isInit ? (Math.random() * 0.4 + 0.2) : 0;
+            this.opacity = isInit ? (Math.random() * 0.4 + 0.3) : 0;
 
-            this.maxOpacity = Math.random() * 0.5 + 0.3; 
+            this.maxOpacity = Math.random() * 0.6 + 0.4; 
 
             
 
-            let scale = Math.random() * 0.35 + 0.70;
+            let scale = Math.random() * 0.45 + 0.75; // Increased scale for visibility
 
             this.el.style.transformOrigin = 'left center';
 
@@ -472,7 +544,7 @@ window.addEventListener('load', () => {
 
             if (this.state === 'reveal') {
 
-                this.opacity = Math.min(this.opacity + 0.02, this.maxOpacity);
+                this.opacity = Math.min(this.opacity + 0.025, this.maxOpacity);
 
                 this.revealProgress += this.speed;
 
@@ -492,7 +564,7 @@ window.addEventListener('load', () => {
 
             } else if (this.state === 'fade') {
 
-                this.opacity -= 0.006;
+                this.opacity -= 0.008;
 
                 if (this.opacity <= 0) this.reset();
 
@@ -518,7 +590,7 @@ window.addEventListener('load', () => {
 
     // ==========================================
 
-    // UNIFIED EXECUTION LOOP
+    // UNIFIED SPACESHIP EXECUTION LOOP
 
     // ==========================================
 
@@ -528,7 +600,39 @@ window.addEventListener('load', () => {
 
         
 
-        time += 0.008; 
+        time += 0.012; // Accelerated temporal flow
+
+        
+
+        // 1. Camera Banking (Spaceship Drift)
+
+        camera.position.x = Math.sin(time * 0.3) * 80;
+
+        camera.lookAt(0, -40, 0);
+
+
+
+        // 2. Deep Space Starfield Warp Physics
+
+        let sPos = stars.geometry.attributes.position;
+
+        for(let i = 0; i < starCount; i++) {
+
+            let z = sPos.getZ(i);
+
+            z += 6.0; // Warp speed velocity
+
+            if(z > 1000) z = -3000; // Recycle stars into the deep horizon
+
+            sPos.setZ(i, z);
+
+        }
+
+        sPos.needsUpdate = true;
+
+
+
+        // 3. Volatility Manifold Deformation
 
         let pos = wireframe.geometry.attributes.position;
 
@@ -542,13 +646,13 @@ window.addEventListener('load', () => {
 
             
 
-            // Tri-Layered Stochastic Deformation (Macro, Meso, Micro)
+            // Hyper-Aggressive Tri-Layered Deformation
 
-            let y = Math.sin(x*0.004 + time) * Math.cos(z*0.004 + time) * 110; 
+            let y = Math.sin(x*0.004 + time) * Math.cos(z*0.004 + time) * 150; 
 
-            y += Math.sin(x*0.015 - time*1.2) * Math.cos(z*0.015 + time*1.2) * 25; 
+            y += Math.sin(x*0.015 - time*1.5) * Math.cos(z*0.015 + time*1.2) * 40; 
 
-            y += Math.sin(x*0.05 + time*3) * 5; 
+            y += Math.sin(x*0.05 + time*3) * 8; 
 
             
 
@@ -556,21 +660,17 @@ window.addEventListener('load', () => {
 
             
 
-            // Absolute Spectrum Clamping: Cyan (0.5) -> Magenta (0.83) -> Red (1.0)
+            // Absolute Spectrum Clamping: Cyan -> Magenta -> Red
 
-            // Normalized height mapping to strictly enforce the color bounds
-
-            let normalizedHeight = (y + 140) / 280; 
+            let normalizedHeight = (y + 190) / 380; 
 
             let hue = 0.5 + (normalizedHeight * 0.5); 
-
-            // Clamp hue between 0.5 (Cyan) and 1.0 (Red)
 
             hue = Math.max(0.5, Math.min(1.0, hue));
 
             
 
-            colorObj.setHSL(hue, 1.0, 0.55);
+            colorObj.setHSL(hue, 1.0, 0.60); // Increased luminosity
 
             col.setXYZ(i, colorObj.r, colorObj.g, colorObj.b);
 
@@ -725,41 +825,103 @@ window.Quarto = {
 
 
 
+<hr>
+<section id="page-layout-custom" class="level2">
+<h2 class="anchored" data-anchor-id="page-layout-custom">page-layout: custom</h2>
 <style>
+/* ==========================================
+   APEX TERMINAL AESTHETICS - THE RESEARCH VAULT
+   ========================================== */
+
+/* ABSOLUTE X-AXIS LOCK */
+html, body { overflow-x: hidden !important; width: 100%; margin: 0; padding: 0; background-color: #010204; }
+
+/* Global Optical Overlay - CRT Scanline */
+body::before {
+    content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%);
+    background-size: 100% 4px; z-index: 9999; pointer-events: none; opacity: 0.35;
+}
+
+/* QUANTUM CORE RESONANCE */
+.quantum-core-glow {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) translateZ(0); width: 150vw; height: 150vh;
+    background: radial-gradient(circle, rgba(0, 229, 255, 0.05) 0%, rgba(255, 0, 0, 0.03) 35%, transparent 65%);
+    z-index: -2; pointer-events: none; animation: coreBreathe 10s ease-in-out infinite alternate;
+}
+@keyframes coreBreathe {
+    0% { transform: translate(-50%, -50%) scale(0.9) translateZ(0); opacity: 0.7; }
+    100% { transform: translate(-50%, -50%) scale(1.15) translateZ(0); opacity: 1; }
+}
+
+/* 3D Volumetric Spaceship Grid (Accelerating Floor) */
+.grid-topology-bg {
+    position: fixed; top: 0; left: -50vw; right: -50vw; bottom: -50vh;
+    background-image: linear-gradient(rgba(0, 229, 255, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 229, 255, 0.15) 1px, transparent 1px);
+    background-size: 60px 60px; background-position: center top; z-index: -1;
+    transform: perspective(600px) rotateX(75deg) translateZ(0); transform-origin: center center;
+    mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 60%);
+    -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 60%);
+    animation: gridWarp 3s linear infinite; pointer-events: none;
+}
+@keyframes gridWarp {
+    0% { transform: perspective(600px) rotateX(75deg) translateY(0px) translateZ(0); }
+    100% { transform: perspective(600px) rotateX(75deg) translateY(60px) translateZ(0); }
+}
+
 /* Absolute Supremacy Research Overrides */
 .research-matrix {
     max-width: 1100px;
     margin: 8rem auto 6rem;
-    background: rgba(4, 6, 14, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: linear-gradient(135deg, rgba(4, 6, 14, 0.85) 0%, rgba(20, 2, 5, 0.75) 50%, rgba(2, 10, 15, 0.85) 100%);
+    background-size: 200% 200%;
+    animation: fluidGlass 10s ease infinite;
+    backdrop-filter: blur(35px) saturate(140%);
+    -webkit-backdrop-filter: blur(35px) saturate(140%);
     border: 1px solid rgba(255, 0, 0, 0.25);
+    border-top: 3px solid #FF0000;
     border-radius: 4px;
-    padding: 4rem;
+    padding: 5rem 4rem;
     color: #e2e8f0;
-    box-shadow: 0 15px 50px rgba(0,0,0,0.9);
+    box-shadow: 0 25px 70px rgba(0,0,0,0.95), inset 0 1px 0 rgba(255,255,255,0.1);
     position: relative;
     z-index: 10;
     font-family: 'Inter', sans-serif;
 }
 
+@keyframes fluidGlass {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 .research-matrix h1 {
-    font-size: 3.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 800;
     color: #ffffff;
     text-transform: uppercase;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.5rem;
+    letter-spacing: -0.05em;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
+    position: relative;
 }
 
 .subtitle-research {
-    font-size: 1.5rem; 
-    color: #94a3b8; 
-    margin-bottom: 3.5rem; 
-    letter-spacing: 0.1em; 
-    text-transform: uppercase;
     font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 4rem;
+    background: linear-gradient(90deg, #FF0000 0%, #00ffff 25%, #FF0000 50%, #00ffff 75%, #FF0000 100%);
+    background-size: 200% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: textGradientSweep 6s linear infinite reverse;
 }
+@keyframes textGradientSweep { to { background-position: 200% center; } }
 
 .research-matrix h2 {
     font-family: 'JetBrains Mono', monospace;
@@ -767,56 +929,80 @@ window.Quarto = {
     color: #ffffff;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    border-bottom: 1px solid rgba(255, 0, 0, 0.4);
-    padding-bottom: 0.5rem;
-    margin-top: 4.5rem;
-    margin-bottom: 2rem;
+    border-bottom: 1px dashed rgba(255, 0, 0, 0.5);
+    padding-bottom: 0.8rem;
+    margin-top: 5.5rem;
+    margin-bottom: 2.5rem;
+    text-shadow: 0 0 15px rgba(255,255,255,0.3);
 }
 
 .research-matrix p {
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     line-height: 1.8;
     color: #cbd5e1;
-    margin-bottom: 1.8rem;
+    margin-bottom: 2rem;
 }
 
 .status-badge {
     display: inline-block;
-    padding: 0.4rem 1rem;
-    background: rgba(255, 0, 0, 0.05);
-    border: 1px solid #FF0000;
+    padding: 0.5rem 1.2rem;
+    background: rgba(255, 0, 0, 0.08);
+    border: 1px solid rgba(255, 0, 0, 0.6);
     color: #FF0000;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.85rem;
-    font-weight: 700;
+    font-weight: 800;
     text-transform: uppercase;
     margin-right: 1rem;
-    margin-bottom: 2rem;
-    letter-spacing: 0.05em;
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.1em;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.15);
 }
 
+/* KINETIC MATHEMATICS CONTAINERS */
 .math-block {
-    background: rgba(6, 8, 16, 0.6);
-    border-left: 2px solid #FF0000;
-    padding: 1.5rem 2rem;
-    margin: 2.5rem 0;
+    position: relative;
+    background: rgba(2, 4, 10, 0.95);
+    border-left: 4px solid #FF0000;
+    border-radius: 2px;
+    padding: 2rem;
+    margin: 3.5rem 0;
     overflow-x: auto;
     overflow-y: hidden;
-    font-size: 1.25rem;
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+    font-size: 1.35rem;
+    box-shadow: inset 0 0 30px rgba(0,0,0,1), 0 15px 40px rgba(0,0,0,0.8);
     display: block;
     text-align: center;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.math-block::before {
+    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 3px;
+    background: linear-gradient(90deg, transparent, #00ffff, #FF0000, transparent);
+    box-shadow: 0 0 15px #00ffff;
+    animation: mathScan 3s linear infinite;
+    z-index: 10;
+}
+@keyframes mathScan { 0% { left: -100%; } 100% { left: 100%; } }
+
+.math-block:hover {
+    transform: scale(1.02) translateZ(0);
+    border-left: 4px solid #00ffff;
+    background: rgba(6, 8, 16, 0.98);
+    box-shadow: inset 0 0 30px rgba(0,0,0,1), 0 20px 50px rgba(0, 229, 255, 0.2);
 }
 
 /* Institutional Telemetry Canvas */
 .distribution-container {
     width: 100%;
     height: 550px;
-    background: #02040a;
-    border: 1px solid rgba(0, 229, 255, 0.3);
+    background: rgba(2, 4, 10, 0.9);
+    border: 1px solid rgba(0, 229, 255, 0.4);
+    border-radius: 4px;
     margin: 4rem 0;
     position: relative;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.95), inset 0 0 40px rgba(0, 229, 255, 0.1);
+    overflow: hidden;
 }
 
 .distribution-overlay {
@@ -826,10 +1012,11 @@ window.Quarto = {
     font-family: 'JetBrains Mono', monospace;
     color: #00ffff;
     font-size: 0.95rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
+    font-weight: 800;
+    letter-spacing: 0.15em;
     pointer-events: none;
-    text-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+    z-index: 2;
 }
 
 .distribution-axes {
@@ -841,29 +1028,31 @@ window.Quarto = {
     font-size: 0.8rem;
     letter-spacing: 0.15em;
     pointer-events: none;
+    z-index: 2;
 }
 
-/* Academic Preprint Vault (Aesthetic Refinement) */
+/* Academic Preprint Vault (Cryptographic Refinement) */
 .embargo-wrapper {
     position: relative;
-    margin-top: 4rem;
-    border: 1px solid rgba(255, 0, 0, 0.3);
-    background: rgba(2, 4, 10, 0.9);
+    margin-top: 5rem;
+    border: 1px solid rgba(255, 0, 0, 0.5);
+    background: rgba(2, 4, 10, 0.95);
     overflow: hidden;
     border-radius: 4px;
     min-height: 500px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.95);
 }
 
 .embargo-content {
     padding: 3rem;
-    filter: blur(6px);
-    opacity: 0.4;
+    filter: blur(8px);
+    opacity: 0.3;
     user-select: none;
     pointer-events: none;
     font-family: 'JetBrains Mono', monospace;
     color: #cbd5e1;
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 90%);
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 90%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
 }
 
 .embargo-content h3 {
@@ -888,43 +1077,55 @@ window.Quarto = {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: rgba(4, 6, 14, 0.45);
+    background: radial-gradient(circle, rgba(4, 6, 14, 0.6) 0%, rgba(2, 4, 10, 0.95) 80%);
     z-index: 10;
     text-align: center;
     padding: 2rem;
 }
 
 .lock-icon {
-    font-size: 3rem;
+    font-size: 3.5rem;
     color: #FF0000;
-    margin-bottom: 1.2rem;
-    text-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 30px rgba(255, 0, 0, 0.9);
+    animation: svgHover 4s ease-in-out infinite alternate;
+}
+@keyframes svgHover {
+    0% { transform: translateY(-5px); }
+    100% { transform: translateY(5px); }
 }
 
 .embargo-text {
     font-family: 'JetBrains Mono', monospace;
     color: #ffffff;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 800;
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    margin-bottom: 1rem;
-    text-shadow: 0 0 10px rgba(0,0,0,0.9);
+    margin-bottom: 1.2rem;
+    text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
 }
 
 .embargo-date {
     font-family: 'JetBrains Mono', monospace;
-    color: #FF0000;
-    font-size: 1.05rem;
+    color: #00ffff;
+    font-size: 1.1rem;
     font-weight: 800;
     letter-spacing: 0.2em;
-    background: rgba(10, 10, 10, 0.8);
-    padding: 0.8rem 2rem;
-    border: 1px solid #FF0000;
+    background: rgba(0, 229, 255, 0.05);
+    padding: 0.8rem 2.5rem;
+    border: 1px solid rgba(0, 229, 255, 0.5);
     border-radius: 2px;
-    box-shadow: 0 0 20px rgba(255,0,0,0.2);
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
 }
 </style>
+<div class="quantum-core-glow">
+
+</div>
+<div class="grid-topology-bg">
+
+</div>
+</section>
 <section id="theoretical-research" class="level1 research-matrix">
 <h1>Theoretical Research</h1>
 <div class="subtitle-research">
@@ -996,7 +1197,7 @@ window.addEventListener('load', () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         // Terminal Grid Matrix Rendering
-        ctx.strokeStyle = 'rgba(0, 255, 255, 0.04)';
+        ctx.strokeStyle = 'rgba(0, 255, 255, 0.05)';
         ctx.lineWidth = 1;
         for(let i = 0; i < canvas.width; i += 60) {
             ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, canvas.height); ctx.stroke();
@@ -1042,7 +1243,6 @@ window.addEventListener('load', () => {
             let y = canvas.height - (density * canvas.height * 0.75);
             distPath.lineTo(x, y);
 
-            // Clamp the sweep line strictly to the manifold boundary
             if (Math.abs(x - sweepX) <= 1) {
                 curveYAtSweep = y;
             }

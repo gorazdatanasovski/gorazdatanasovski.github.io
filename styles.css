@@ -206,3 +206,188 @@ body, html, .quarto-container, #quarto-content, main {
     display: block;
     margin-bottom: 0.5rem;
 }
+/* ==========================================
+   GLOBAL APEX TERMINAL AESTHETICS
+   ========================================== */
+
+/* ABSOLUTE X-AXIS LOCK & VOID BACKGROUND */
+html {
+    background-color: #010204 !important;
+    overflow-x: hidden !important;
+}
+
+body { 
+    overflow-x: hidden !important; 
+    width: 100%; 
+    margin: 0; 
+    padding: 0; 
+    background-color: transparent !important; /* VAPORIZED OPAQUE SHIELD: ALLOWS WEBGL SURFACE TO BLEED THROUGH */
+}
+
+/* Global Optical Overlay - CRT Scanline Simulation */
+body::after {
+    content: ""; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%);
+    background-size: 100% 4px; z-index: 9999; pointer-events: none; opacity: 0.35;
+}
+
+/* Custom Bare-Metal Hardware Scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+    background: #010204;
+    border-left: 1px solid rgba(0, 229, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 0, 0, 0.5);
+    border-radius: 2px;
+    border: 1px solid #010204;
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #00ffff;
+    box-shadow: inset 0 0 10px rgba(0, 229, 255, 0.8);
+}
+
+/* ==========================================
+   SUPERIOR NAVIGATION BAR ARCHITECTURE
+   ========================================== */
+.navbar {
+    background: rgba(2, 4, 10, 0.85) !important;
+    backdrop-filter: blur(25px) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(25px) saturate(150%) !important;
+    border-bottom: 1px solid rgba(255, 0, 0, 0.4) !important;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.95), 0 0 20px rgba(255, 0, 0, 0.15) !important;
+    padding: 1.5rem 3rem !important;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    z-index: 9000 !important;
+}
+
+.navbar-brand {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-weight: 800 !important;
+    font-size: 1.5rem !important;
+    color: #ffffff !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.15em !important;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3) !important;
+    position: relative;
+}
+
+/* Persistent Glowing Baseline for Brand */
+.navbar-brand::after {
+    content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, #FF0000, #00ffff);
+}
+
+.nav-link {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    color: #94a3b8 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.2em !important;
+    padding: 0.5rem 1.5rem !important;
+    margin: 0 0.5rem !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    position: relative;
+}
+
+/* Hover and Active State Typography Ignition */
+.nav-link:hover, .nav-link.active {
+    color: #00ffff !important;
+    text-shadow: 0 0 15px rgba(0, 229, 255, 0.8) !important;
+    transform: translateY(-2px);
+}
+
+/* Kinetic Target Lock (Underline Expansion) */
+.nav-link::before {
+    content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 0%; height: 2px;
+    background: #FF0000;
+    box-shadow: 0 0 10px #FF0000;
+    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link:hover::before, .nav-link.active::before {
+    width: 80%;
+}
+/* ==========================================
+   GLOBAL APEX TERMINAL AESTHETICS
+   ========================================== */
+
+html { background-color: #010204 !important; overflow-x: hidden !important; }
+
+body { 
+    overflow-x: hidden !important; width: 100%; margin: 0; padding: 0; 
+    background-color: transparent !important; 
+}
+
+/* Global Optical Overlay - CRT Scanline */
+body::after {
+    content: ""; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%);
+    background-size: 100% 4px; z-index: 9999; pointer-events: none; opacity: 0.35;
+}
+
+/* ==========================================
+   DYNAMIC NAVIGATION ARCHITECTURE
+   ========================================== */
+.navbar {
+    background: rgba(2, 4, 10, 0.9) !important;
+    backdrop-filter: blur(25px) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(25px) saturate(150%) !important;
+    border-bottom: 1px solid rgba(255, 0, 0, 0.2) !important;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.95) !important;
+    padding: 1.2rem 3rem !important;
+    position: relative; overflow: hidden; z-index: 9000 !important;
+}
+
+/* THE CONTINUOUS NAVIGATION LASER */
+.navbar::after {
+    content: ''; position: absolute; bottom: 0; left: -100%;
+    width: 60%; height: 2px;
+    background: linear-gradient(90deg, transparent, #00ffff, #FF0000, #00ffff, transparent);
+    box-shadow: 0 0 15px #00ffff, 0 0 25px #FF0000;
+    animation: navbarScan 4s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+}
+
+@keyframes navbarScan {
+    0% { left: -60%; }
+    100% { left: 100%; }
+}
+
+.navbar-brand {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-weight: 800 !important; font-size: 1.5rem !important;
+    color: #ffffff !important; text-transform: uppercase !important;
+    letter-spacing: 0.15em !important; text-shadow: 0 0 15px rgba(255, 255, 255, 0.3) !important;
+}
+
+.nav-link {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.9rem !important; font-weight: 700 !important;
+    color: #94a3b8 !important; text-transform: uppercase !important;
+    letter-spacing: 0.2em !important; padding: 0.5rem 1.5rem !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #00ffff !important; text-shadow: 0 0 15px #00ffff !important;
+    transform: translateY(-1px);
+}
+
+/* Target Lock Animation on Hover */
+.nav-link::before {
+    content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 0%; height: 2px; background: #FF0000; box-shadow: 0 0 10px #FF0000;
+    transition: width 0.3s ease;
+}
+.nav-link:hover::before { width: 100%; }
+
+/* HARDWARE SCROLLBAR */
+::-webkit-scrollbar { width: 8px; background: #010204; }
+::-webkit-scrollbar-thumb { 
+    background: linear-gradient(#FF0000, #00ffff); border-radius: 4px; 
+}
