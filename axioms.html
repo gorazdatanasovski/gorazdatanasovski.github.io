@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Gorazd Atanasovski</title>
+<title>axioms – Gorazd Atanasovski</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -728,35 +728,6 @@ window.addEventListener('load', () => {
 
 </script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -779,7 +750,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
@@ -791,7 +762,7 @@ window.Quarto = {
 <span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./axioms.html"> 
+    <a class="nav-link active" href="./axioms.html" aria-current="page"> 
 <span class="menu-text">Axioms</span></a>
   </li>  
 </ul>
@@ -829,527 +800,522 @@ window.Quarto = {
 
 <link rel="stylesheet" href="[https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css](https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css)">
 <script src="[https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js](https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js)"></script>
-
 <style>
 /* ==========================================
-   APEX TERMINAL AESTHETICS - THE MONA LISA MATRIX
+   APEX TERMINAL AESTHETICS - THE AXIOM VAULT
    ========================================== */
 
-/* ABSOLUTE X-AXIS LOCK - PREVENTS ALL HORIZONTAL FRACTURES */
-html, body {
-    overflow-x: hidden !important;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: #010204;
-}
-
-/* Global Optical Overlay - CRT Scanline Simulation */
-body::before {
-    content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%);
-    background-size: 100% 4px; z-index: 9999; pointer-events: none; opacity: 0.35;
+/* ABSOLUTE X-AXIS LOCK & VIEWPORT STABILIZATION */
+html, body { 
+    overflow-x: hidden !important; 
+    width: 100%; 
+    max-width: 100%;
+    margin: 0; 
+    padding: 0; 
+    background-color: #010204; 
 }
 
 /* Microscopic CRT Hardware Grain */
 .crt-noise {
-    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    z-index: 9998; pointer-events: none; opacity: 0.04;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -4; pointer-events: none; opacity: 0.04;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='[http://www.w3.org/2000/svg'%3E%3Cfilter](http://www.w3.org/2000/svg'%3E%3Cfilter) id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-/* QUANTUM CORE RESONANCE - BREATHING DEEP BACKGROUND ENGINE */
+/* QUANTUM CORE RESONANCE */
 .quantum-core-glow {
-    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) translateZ(0);
-    width: 150vw; height: 150vh;
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+    width: 150%; height: 150%;
     background: radial-gradient(circle, rgba(0, 229, 255, 0.06) 0%, rgba(255, 0, 0, 0.04) 35%, transparent 65%);
-    z-index: -2; pointer-events: none;
-    will-change: transform, opacity;
+    z-index: -3; pointer-events: none; 
     animation: coreBreathe 10s ease-in-out infinite alternate;
 }
-
-@keyframes coreBreathe {
-    0% { transform: translate(-50%, -50%) scale(0.9) translateZ(0); opacity: 0.7; }
-    100% { transform: translate(-50%, -50%) scale(1.15) translateZ(0); opacity: 1; }
+@keyframes coreBreathe { 
+    0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.7; } 
+    100% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; } 
 }
 
-/* 3D Volumetric Spaceship Grid (Accelerating Floor) */
+/* 3D Volumetric Spaceship Grid */
 .grid-topology-bg {
-    position: fixed; top: 0; left: -50vw; right: -50vw; bottom: -50vh;
-    background-image: 
-        linear-gradient(rgba(0, 229, 255, 0.15) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 229, 255, 0.15) 1px, transparent 1px);
-    background-size: 60px 60px; 
-    background-position: center top;
-    z-index: -1;
-    transform: perspective(600px) rotateX(75deg) translateZ(0);
-    transform-origin: center center;
-    mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 60%);
+    position: fixed; top: 0; left: -25%; right: -25%; bottom: -50%;
+    background-image: linear-gradient(rgba(0, 229, 255, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 229, 255, 0.15) 1px, transparent 1px);
+    background-size: 60px 60px; background-position: center top; z-index: -2;
+    transform: perspective(600px) rotateX(75deg); transform-origin: center center;
+    mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 60%); 
     -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 60%);
-    will-change: transform;
-    animation: gridWarp 3s linear infinite;
-    pointer-events: none;
+    animation: gridWarp 3s linear infinite; pointer-events: none;
 }
-
-@keyframes gridWarp {
-    0% { transform: perspective(600px) rotateX(75deg) translateY(0px) translateZ(0); }
-    100% { transform: perspective(600px) rotateX(75deg) translateY(60px) translateZ(0); }
-}
-
-/* Absolute Supremacy Hero Overrides - TIGHTENED SPACING */
-.hero-container {
-    max-width: 1050px; 
-    margin: 6rem auto 1rem; 
-    position: relative; 
-    padding: 4rem 2rem 1rem; 
-    background: radial-gradient(ellipse at center, rgba(4, 6, 14, 0.95) 0%, rgba(2, 4, 10, 0.6) 50%, transparent 85%);
-    border-radius: 4px; display: flex; flex-direction: column; align-items: center; 
-    text-align: center; overflow: hidden; 
-}
-
-/* STOCHASTIC SYMBOL RAIN PHYSICS - REFINED LUMINOSITY */
-.quant-rain-container {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    z-index: 1; pointer-events: none; overflow: hidden;
-}
-
-.quant-drop {
-    position: absolute; top: -15%;
-    color: rgba(0, 229, 255, 0.6); 
-    font-family: 'Cambria Math', 'Times New Roman', serif;
-    font-size: 1.5rem; 
-    text-shadow: 0 0 8px rgba(0, 229, 255, 0.4), 0 0 15px rgba(0, 229, 255, 0.2);
-    will-change: transform, opacity;
-    animation: dataRain linear forwards;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-@keyframes dataRain {
-    0% { transform: translateY(0) rotate(0deg) translateZ(-100px); opacity: 0; }
-    20% { opacity: 0.85; } 
-    80% { opacity: 0.85; } 
-    100% { transform: translateY(120vh) rotate(5deg) translateZ(-100px); opacity: 0; }
-}
-
-/* The Unbreakable Monolithic Name Wrapper */
-.name-wrapper {
-    position: relative;
-    display: inline-block;
-    padding: 0 20px; 
-    z-index: 10;
-}
-
-/* SYNCHRONIZED TYPOGRAPHY GRADIENT - EXACT MATHEMATICAL ALIGNMENT */
-.quant-hero-name {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: clamp(2.5rem, 4.5vw, 5.5rem); 
-    white-space: nowrap; 
-    font-weight: 800;
-    text-transform: uppercase !important; 
-    background: linear-gradient(105deg, #ffffff 0%, #ffffff 40%, #FF0000 50%, #ffffff 60%, #ffffff 100%);
-    background-size: 300% auto;
-    color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
-    will-change: background-position;
-    animation: synchronizedSweep 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
-    letter-spacing: -0.05em; margin-bottom: 0.5rem;
-    text-shadow: 0 0 40px rgba(0, 229, 255, 0.2);
-    line-height: 1.1; position: relative; display: inline-block;
-}
-
-@keyframes synchronizedSweep {
-    0% { background-position: 82.5% center; }
-    100% { background-position: 17.5% center; }
-}
-
-/* SYNCHRONIZED VISCERAL RED LASER */
-.name-laser {
-    position: absolute; top: -15%; width: 6px; height: 130%;
-    background: #ffffff;
-    box-shadow: 0 0 20px #FF0000, 0 0 40px #FF0000, 0 0 80px #FF0000, inset 0 0 5px #00ffff;
-    z-index: 11; pointer-events: none;
-    will-change: left;
-    animation: synchronizedLaser 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
-    transform: rotate(15deg) translateZ(0);
-    border-radius: 10px;
-}
-
-@keyframes synchronizedLaser {
-    0% { left: -5%; }
-    100% { left: 105%; }
-}
-
-/* DYNAMIC PLASMA SUBTITLE - FIBER OPTIC DRIVER EFFECT */
-.quant-hero-subtitle {
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: clamp(0.9rem, 1.8vw, 1.7rem);
-    font-weight: 800; 
-    text-transform: uppercase; 
-    letter-spacing: 0.35em;
-    margin: 1.5rem 0 2.5rem; 
-    background: linear-gradient(90deg, #FF0000 0%, #FF0000 40%, #00ffff 48%, #ffffff 50%, #00ffff 52%, #FF0000 60%, #FF0000 100%);
-    background-size: 300% auto;
-    color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
-    will-change: background-position;
-    animation: driverSweep 4s cubic-bezier(0.8, 0, 0.2, 1) infinite;
-    display: inline-block; 
-    z-index: 10;
-    text-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
-    position: relative;
-}
-
-@keyframes driverSweep {
-    0% { background-position: 100% center; }
-    100% { background-position: -50% center; }
-}
-
-.quant-hero-subtitle::after {
-    content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
-    width: 60%; height: 2px;
-    background: linear-gradient(90deg, transparent, #FF0000, #00ffff, transparent);
-    box-shadow: 0 0 15px #FF0000;
-}
-
-/* ELECTRICAL TYPOGRAPHY HUM */
-.quant-hero-desc {
-    font-family: 'Inter', sans-serif; font-size: clamp(1.1rem, 1.5vw, 1.4rem); color: #cbd5e1; line-height: 1.8;
-    max-width: 880px; margin: 0 auto; font-weight: 300; 
-    position: relative; z-index: 10; text-align: center;
-    will-change: text-shadow, color;
-    animation: textHum 6s ease-in-out infinite alternate;
-}
-
-@keyframes textHum {
-    0% { color: #cbd5e1; text-shadow: 0 2px 5px rgba(0,0,0,0.9), 0 0 5px rgba(0, 229, 255, 0.05); }
-    100% { color: #e2e8f0; text-shadow: 0 2px 5px rgba(0,0,0,0.9), 0 0 15px rgba(0, 229, 255, 0.3); }
-}
-
-/* Enhanced Optical Telemetry Pulse & Scanner */
-.telemetry-panel {
-    border-top: 1px solid rgba(255,0,0,0.5); border-bottom: 1px solid rgba(255,0,0,0.5); 
-    padding: 2rem 1rem; display: flex; flex-wrap: nowrap; justify-content: center; align-items: center;
-    gap: clamp(1rem, 2.5vw, 5rem); text-transform: uppercase; font-family: 'JetBrains Mono', monospace; 
-    font-size: clamp(0.65rem, 1.1vw, 1rem); letter-spacing: 0.15em; background: rgba(2, 4, 10, 0.85);
-    backdrop-filter: blur(20px); position: relative; overflow: hidden; box-shadow: 0 15px 50px rgba(0,0,0,0.9);
-    white-space: nowrap; width: 100%; box-sizing: border-box; z-index: 10;
-}
-
-.telemetry-panel::before {
-    content: ''; position: absolute; top: 0; left: -100%; width: 30%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.5), transparent);
-    will-change: left;
-    animation: scan 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite; pointer-events: none;
-}
-
-@keyframes scan { 0% { left: -100%; } 100% { left: 200%; } }
-
-.optical-pulse {
-    display: inline-block; width: 10px; height: 10px; background-color: #FF0000;
-    border-radius: 50%; margin-right: 12px; box-shadow: 0 0 12px #FF0000, 0 0 25px #FF0000;
-    will-change: transform, box-shadow;
-    animation: pulse 1.2s infinite alternate; vertical-align: middle;
-}
-
-@keyframes pulse {
-    0% { transform: scale(0.85) translateZ(0); box-shadow: 0 0 8px rgba(255, 0, 0, 0.6); opacity: 0.75;}
-    100% { transform: scale(1.2) translateZ(0); box-shadow: 0 0 25px rgba(255, 0, 0, 1); opacity: 1;}
-}
-
-.grid-container { margin-top: 5rem; gap: 3.5rem; position: relative; z-index: 10; }
-
-/* FLUID-STATE GLASSMORPHISM CARDS WITH OBSERVER TRACKING */
-.card-quant {
-    --mouse-x: 50%;
-    --mouse-y: 50%;
-    background: linear-gradient(135deg, rgba(4, 6, 14, 0.8) 0%, rgba(20, 2, 5, 0.7) 50%, rgba(2, 10, 15, 0.8) 100%);
-    background-size: 200% 200%;
-    will-change: background-position, transform;
-    animation: fluidGlass 10s ease infinite;
-    border: 1px solid rgba(148, 163, 184, 0.15); 
-    border-top: 2px solid rgba(255, 0, 0, 0.5); border-radius: 4px; padding: 4rem 3rem;
-    backdrop-filter: blur(35px) saturate(140%); -webkit-backdrop-filter: blur(35px) saturate(140%);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.95), inset 0 1px 0 rgba(255,255,255,0.1); 
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    position: relative; overflow: hidden;
-}
-
-/* Coordinate Tracking Radial Glow */
-.card-quant::after {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(circle 350px at var(--mouse-x) var(--mouse-y), rgba(0, 229, 255, 0.08), transparent 80%);
-    z-index: -1; pointer-events: none;
-    transition: background 0.3s ease;
-}
-
-@keyframes fluidGlass {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Hyper-Visible Continuous Quantum Data Stream (Border Sweep) */
-.card-sweep {
-    position: absolute; top: 0; left: -100%; width: 100%; height: 4px;
-    background: linear-gradient(90deg, transparent, #00ffff, #FF0000, #00ffff, transparent);
-    box-shadow: 0 0 20px #00ffff, 0 0 40px #FF0000;
-    will-change: left;
-    animation: cardScan 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite; z-index: 10;
-}
-.card-quant:nth-child(1) .card-sweep { animation-delay: 0s; }
-.card-quant:nth-child(2) .card-sweep { animation-delay: 0.8s; }
-.card-quant:nth-child(3) .card-sweep { animation-delay: 1.6s; }
-
-@keyframes cardScan { 0% { left: -100%; } 100% { left: 100%; } }
-
-.card-quant::before {
-    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle at top right, rgba(0, 229, 255, 0.15), transparent 60%);
-    pointer-events: none;
-}
-
-.card-quant:hover { 
-    transform: translateY(-12px) scale(1.03) translateZ(0); 
-    border-top: 2px solid #00ffff; box-shadow: 0 30px 80px rgba(0,0,0,1), 0 0 50px rgba(0, 229, 255, 0.3); 
-}
-
-.card-quant:hover::after {
-    background: radial-gradient(circle 400px at var(--mouse-x) var(--mouse-y), rgba(255, 0, 0, 0.15), rgba(0, 229, 255, 0.05) 50%, transparent 80%);
-}
-
-.card-quant h3 {
-    font-size: 1.6rem; color: #ffffff; letter-spacing: 0.15em;
-    text-shadow: 0 0 15px rgba(255,255,255,0.4); margin-bottom: 1.5rem;
-}
-
-.card-quant p { font-size: 1.15rem; color: #94a3b8; line-height: 1.8; }
-
-/* HYPER-KINETIC EXECUTION NODES (Buttons) */
-.btn-quant {
-    display: inline-block; 
-    background: linear-gradient(90deg, rgba(255, 0, 0, 0.1), rgba(0, 229, 255, 0.2), rgba(255, 0, 0, 0.1));
-    background-size: 200% auto;
-    will-change: background-position;
-    animation: btnFlow 3s linear infinite;
-    border: 1px solid rgba(255, 0, 0, 0.7);
-    color: #FF0000 !important; text-shadow: 0 0 10px rgba(255, 0, 0, 0.8); letter-spacing: 0.25em;
-    font-size: 0.9rem; position: relative; overflow: hidden; padding: 1.2rem 2.5rem; margin-top: 2rem; z-index: 1;
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
-    transition: all 0.3s ease;
-}
-
-@keyframes btnFlow {
-    to { background-position: 200% center; }
-}
-
-.btn-quant::after {
-    content: ''; position: absolute; bottom: 0; left: -100%; width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.6), transparent);
-    transition: all 0.4s ease; z-index: -1;
-}
-
-.btn-quant:hover::after { left: 100%; }
-.btn-quant:hover {
-    background: rgba(255, 0, 0, 1); color: #ffffff !important; box-shadow: 0 0 35px rgba(255, 0, 0, 0.9);
-    text-shadow: none; border-color: #FF0000;
-}
-
-/* Math Blocks */
-.definition {
-    background: rgba(2, 4, 10, 0.95); padding: 2.5rem; border-radius: 4px; font-family: 'Inter', sans-serif;
-    color: #cbd5e1; font-size: 1.1rem; line-height: 1.8; margin-top: 2.5rem; border-left: 4px solid #FF0000;
-    box-shadow: inset 0 0 30px rgba(0,0,0,1), 0 15px 40px rgba(0,0,0,0.8); position: relative; transition: all 0.4s ease;
-}
-
-.definition:hover {
-    background: rgba(6, 8, 16, 0.98); box-shadow: inset 0 0 30px rgba(0,0,0,1), 0 15px 50px rgba(255,0,0,0.2);
-}
-
-.definition::before {
-    content: '0x' attr(data-hash); position: absolute; top: 10px; right: 15px;
-    font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(255,255,255,0.2);
-    animation: hexGlitch 5s infinite;
-}
-
-@keyframes hexGlitch {
-    0%, 94%, 98%, 100% { opacity: 0.2; color: rgba(255,255,255,0.2); text-shadow: none; }
-    96% { opacity: 1; color: #00ffff; text-shadow: 0 0 12px #00ffff; }
-}
-
-.definition::after {
-    content: ''; position: absolute; bottom: -2px; right: -2px; width: 25px; height: 25px;
-    border-bottom: 2px solid #00ffff; border-right: 2px solid #00ffff;
-    box-shadow: 2px 2px 10px rgba(0,229,255,0.5);
-}
-
-.def-title {
-    color: #ffffff; font-weight: 800; font-family: 'JetBrains Mono', monospace; font-size: 1rem;
-    display: inline-block; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.2em;
-    border-bottom: 1px dashed rgba(255,0,0,0.6); padding-bottom: 6px; text-shadow: 0 0 15px rgba(255,255,255,0.4);
-}
-
-.diagram-block {
-    margin: 3rem 0; border: 1px solid rgba(0, 229, 255, 0.5); background: rgba(2, 4, 10, 0.85);
-    padding: 3rem 1.5rem 1.5rem; border-radius: 4px;
-    box-shadow: 0 20px 50px rgba(0,0,0,1), inset 0 0 40px rgba(0, 229, 255, 0.15);
-    text-align: center; position: relative; overflow: hidden;
-}
-.diagram-block::before {
-    content: 'OPTICAL RENDER // PROCEDURAL MANIFOLD'; position: absolute; top: 0px; left: 0px;
-    background: #00ffff; color: #02040a; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 800;
-    padding: 4px 12px; letter-spacing: 0.15em; box-shadow: 0 0 20px rgba(0, 229, 255, 0.9); z-index: 2;
-}
-.diagram-block::after {
-    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(180deg, rgba(0,229,255,0.2) 0%, transparent 15%, transparent 85%, rgba(0,229,255,0.2) 100%);
-    pointer-events: none;
-}
-
-.ambient-float { will-change: transform, filter; animation: svgHover 5s ease-in-out infinite alternate; }
-@keyframes svgHover {
-    0% { transform: translateY(-4px) scale(0.99) translateZ(0); filter: drop-shadow(0 5px 20px rgba(0,229,255,0.2)); }
-    100% { transform: translateY(4px) scale(1.02) translateZ(0); filter: drop-shadow(0 20px 35px rgba(0,229,255,0.4)); }
-}
-
-.svg-pulse { will-change: opacity, filter; animation: svgPulse 3.5s infinite alternate; }
-@keyframes svgPulse {
-    0% { opacity: 0.7; filter: drop-shadow(0 0 8px rgba(0,255,255,0.5)); }
-    100% { opacity: 1; filter: drop-shadow(0 0 25px rgba(0,255,255,1)); }
-}
-.svg-dash { stroke-dasharray: 2000; stroke-dashoffset: 2000; animation: drawPath 6s ease-in-out infinite alternate; }
-@keyframes drawPath { to { stroke-dashoffset: 0; } }
-
-.stack-matrix {
-    margin: 0 auto 8rem; background: rgba(4, 6, 14, 0.85); border-top: 4px solid #FF0000;
-    padding: 6rem 5rem; backdrop-filter: blur(30px); box-shadow: 0 40px 100px rgba(0,0,0,1);
-    position: relative; border-radius: 0 0 8px 8px; z-index: 10;
-}
-
-.stack-matrix h3 {
-    text-align: center; font-size: 2.2rem; margin-bottom: 5rem;
-    text-shadow: 0 0 25px rgba(255,255,255,0.4); letter-spacing: 0.15em; font-family: 'JetBrains Mono', monospace;
+@keyframes gridWarp { 
+    0% { transform: perspective(600px) rotateX(75deg) translateY(0px); } 
+    100% { transform: perspective(600px) rotateX(75deg) translateY(60px); } 
 }
 
 /* ==========================================
-   SUPERIOR NAVIGATION BAR ARCHITECTURE
+   THEORETICAL VAULT HEADER
    ========================================== */
-.navbar {
-    background: rgba(2, 4, 10, 0.85) !important;
-    backdrop-filter: blur(25px) saturate(150%) !important;
-    -webkit-backdrop-filter: blur(25px) saturate(150%) !important;
-    border-bottom: 1px solid rgba(255, 0, 0, 0.4) !important;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.95), 0 0 20px rgba(255, 0, 0, 0.15) !important;
-    padding: 1.5rem 3rem !important;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-.navbar-brand {
-    font-family: 'JetBrains Mono', monospace !important;
-    font-weight: 800 !important;
-    font-size: 1.5rem !important;
-    color: #ffffff !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.15em !important;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3) !important;
+.axiom-header-core {
+    max-width: 1400px;
+    margin: 6rem auto 3rem auto;
+    background: linear-gradient(135deg, rgba(4, 6, 14, 0.95) 0%, rgba(20, 2, 5, 0.85) 50%, rgba(2, 10, 15, 0.95) 100%);
+    background-size: 200% 200%;
+    animation: fluidGlass 10s ease infinite;
+    backdrop-filter: blur(25px) saturate(140%);
+    -webkit-backdrop-filter: blur(25px) saturate(140%);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    border-top: 3px solid #00ffff;
+    border-radius: 4px;
+    padding: 4rem 4rem;
+    color: #e2e8f0;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.95), inset 0 1px 0 rgba(255,255,255,0.1);
     position: relative;
+    z-index: 10;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    overflow: hidden;
 }
 
-.navbar-brand::after {
-    content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 2px;
-    background: linear-gradient(90deg, transparent, #FF0000, #00ffff);
-}
+@keyframes fluidGlass { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
-.nav-link {
-    font-family: 'JetBrains Mono', monospace !important;
-    font-size: 0.95rem !important;
-    font-weight: 700 !important;
-    color: #94a3b8 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.2em !important;
-    padding: 0.5rem 1.5rem !important;
-    margin: 0 0.5rem !important;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+/* SYNCHRONIZED TYPOGRAPHY GRADIENT - TITLE */
+.axiom-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    white-space: nowrap;
+    font-weight: 800;
+    text-transform: uppercase;
+    background: linear-gradient(105deg, #ffffff 0%, #ffffff 40%, #00ffff 50%, #ffffff 60%, #ffffff 100%);
+    background-size: 300% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: synchronizedSweep 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+    letter-spacing: -0.02em;
+    margin-bottom: 0;
+    text-shadow: 0 0 40px rgba(0, 229, 255, 0.4);
+    line-height: 1.1;
     position: relative;
+    display: inline-block;
 }
 
-.nav-link:hover, .nav-link.active {
-    color: #00ffff !important;
-    text-shadow: 0 0 15px rgba(0, 229, 255, 0.8) !important;
-    transform: translateY(-2px);
+/* SYNCHRONIZED VISCERAL CYAN LASER ON TITLE */
+.axiom-laser {
+    position: absolute; top: -15%; left: -5%; width: 6px; height: 130%; background: #ffffff;
+    box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 80px #00ffff, inset 0 0 5px #ffffff;
+    z-index: 11; pointer-events: none;
+    animation: synchronizedLaser 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+    transform: rotate(15deg); border-radius: 10px;
 }
 
-.nav-link::before {
-    content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-    width: 0%; height: 2px;
-    background: #FF0000;
-    box-shadow: 0 0 10px #FF0000;
-    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+@keyframes synchronizedSweep { 0% { background-position: 82.5% center; } 100% { background-position: 17.5% center; } }
+@keyframes synchronizedLaser { 0% { left: -5%; } 100% { left: 105%; } }
+
+.axiom-subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(0.9rem, 1.8vw, 1.3rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, #00ffff 0%, #00ffff 40%, #FF0000 48%, #ffffff 50%, #FF0000 52%, #00ffff 60%, #00ffff 100%);
+    background-size: 300% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: driverSweep 4s cubic-bezier(0.8, 0, 0.2, 1) infinite;
+    display: inline-block;
+    z-index: 10;
+    text-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+}
+@keyframes driverSweep { 0% { background-position: 100% center; } 100% { background-position: -50% center; } }
+
+/* ==========================================
+   THE DATA CARTRIDGE GRID (LIBRARY)
+   ========================================== */
+.codex-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 3rem auto 8rem auto;
+    position: relative;
+    z-index: 10;
+    padding: 0 2rem;
 }
 
-.nav-link:hover::before, .nav-link.active::before {
-    width: 80%;
+/* DYNAMIC HOVER SPOTLIGHT TRACKING */
+.codex-module {
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+    background: linear-gradient(135deg, rgba(4, 6, 14, 0.85) 0%, rgba(2, 10, 15, 0.95) 100%);
+    border: 1px solid rgba(0, 229, 255, 0.15);
+    border-left: 3px solid #FF0000;
+    padding: 2.5rem 2rem;
+    border-radius: 4px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.8), 0 10px 30px rgba(0,0,0,0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Hardware Boot Animation Initial State */
+    opacity: 0;
+    transform: translateY(30px);
+    will-change: transform, opacity;
+}
+
+/* Javascript Intersection Observer Class */
+.codex-module.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.codex-module::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle 350px at var(--mouse-x) var(--mouse-y), rgba(0, 229, 255, 0.12), transparent 80%);
+    z-index: -1; pointer-events: none;
+    transition: background 0.3s ease;
+    opacity: 0;
+}
+
+/* Scanning Laser Animation on Hover */
+.codex-module::before {
+    content: ''; position: absolute; top: -100%; left: 0; width: 100%; height: 2px;
+    background: #00ffff; box-shadow: 0 0 15px #00ffff, 0 0 30px #ffffff;
+    transition: top 0.4s ease;
+    z-index: 5;
+}
+
+.codex-module:hover {
+    transform: translateY(-8px) scale(1.02) translateZ(0);
+    border-color: rgba(0, 229, 255, 0.5);
+    border-left: 4px solid #00ffff;
+    background: rgba(6, 8, 16, 0.98);
+    box-shadow: inset 0 0 30px rgba(0,0,0,1), 0 20px 50px rgba(0, 229, 255, 0.25);
+}
+
+.codex-module:hover::after {
+    opacity: 1;
+    background: radial-gradient(circle 400px at var(--mouse-x) var(--mouse-y), rgba(0, 229, 255, 0.15), rgba(255, 0, 0, 0.05) 50%, transparent 80%);
+}
+
+.codex-module:hover::before {
+    top: 100%; transition: top 0.6s linear;
+}
+
+.codex-hex {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: #FF0000;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.15em;
+    opacity: 0.9;
+    font-weight: 800;
+    transition: all 0.3s ease;
+}
+
+.codex-module:hover .codex-hex {
+    color: #00ffff;
+    text-shadow: 0 0 15px #00ffff;
+}
+
+.codex-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+    color: #ffffff;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    text-shadow: 0 0 15px rgba(255,255,255,0.1);
+    position: relative;
+    z-index: 2;
+}
+
+/* Absolute Author Geometry Mapping */
+.codex-author {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #64748b;
+    border-top: 1px dashed rgba(255, 0, 0, 0.3);
+    padding-top: 1.2rem;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+    /* Strict Topographical Bounding Constraints */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.codex-module:hover .codex-author {
+    color: #ffffff;
+    border-color: rgba(0, 229, 255, 0.6);
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
 }
 </style>
 
+<div class="crt-noise"></div>
+<div class="quantum-core-glow"></div>
+<div class="grid-topology-bg"></div>
+
+<div class="axiom-header-core">
+    <div style="position: relative; display: inline-block;">
+        <div class="axiom-laser"></div>
+        <div class="axiom-title">AXIOMS</div>
+    </div>
+    <br>
+    <div class="axiom-subtitle">Quantitative Library &amp; Theoretical Topology</div>
+</div>
+
+<div class="codex-grid" id="library-matrix">
+    <div class="codex-module">
+        <div class="codex-hex">0x00A1</div>
+        <div class="codex-title">Brownian Motion and Stochastic Calculus</div>
+        <div class="codex-author">AUTHORS: Karatzas &amp; Shreve</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x00A2</div>
+        <div class="codex-title">Calculus Vol. I One-Variable Calculus with an Introduction to Linear Algebra</div>
+        <div class="codex-author">AUTHOR: Apostol</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x00A3</div>
+        <div class="codex-title">Calculus Vol. II Multi-Variable Calculus and Linear Algebra with Applications</div>
+        <div class="codex-author">AUTHOR: Apostol</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x00B1</div>
+        <div class="codex-title">Foundations of Modern Probability</div>
+        <div class="codex-author">AUTHOR: Kallenberg</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x00B2</div>
+        <div class="codex-title">Bayesian Data Analysis</div>
+        <div class="codex-author">AUTHORS: Gelman, Carlin, Stern, et al.</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x00B3</div>
+        <div class="codex-title">Probability Theory and Examples</div>
+        <div class="codex-author">AUTHOR: Durrett</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x00C1</div>
+        <div class="codex-title">Fundamentals of Nonparametric Bayesian Inference</div>
+        <div class="codex-author">AUTHORS: Ghosal &amp; van der Vaart</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x00C2</div>
+        <div class="codex-title">Probability Theory and Examples Solutions Manual</div>
+        <div class="codex-author">AUTHOR: Durrett</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x00C3</div>
+        <div class="codex-title">Mathematical Analysis I</div>
+        <div class="codex-author">AUTHORS: Zorich &amp; Cooke</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x00D1</div>
+        <div class="codex-title">Theoretical Statistics Topics for a Core Course</div>
+        <div class="codex-author">AUTHOR: Keener</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x00D2</div>
+        <div class="codex-title">Mathematical Analysis II</div>
+        <div class="codex-author">AUTHORS: Zorich &amp; Cooke</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x00D3</div>
+        <div class="codex-title">High-Dimensional Statistics A Non-Asymptotic Viewpoint</div>
+        <div class="codex-author">AUTHOR: Wainwright</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x00E1</div>
+        <div class="codex-title">Trades Quotes and Prices Financial Markets Under the Microscope</div>
+        <div class="codex-author">AUTHORS: Bouchaud, Bonart, Donier, et al.</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x00E2</div>
+        <div class="codex-title">Continuous-Time Asset Pricing Theory A Martingale-Based Approach</div>
+        <div class="codex-author">AUTHOR: Jarrow</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x00E3</div>
+        <div class="codex-title">Advances in Financial Machine Learning</div>
+        <div class="codex-author">AUTHOR: Lopez de Prado</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x00F1</div>
+        <div class="codex-title">Stochastic Calculus for Finance</div>
+        <div class="codex-author">AUTHOR: Shreve</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x00F2</div>
+        <div class="codex-title">Rough Volatility</div>
+        <div class="codex-author">AUTHORS: Bayer, Friz, Fukasawa, et al.</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x00F3</div>
+        <div class="codex-title">Finite-Dimensional Vector Spaces</div>
+        <div class="codex-author">AUTHOR: Halmos</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x01A1</div>
+        <div class="codex-title">Ordinary Differential Equations</div>
+        <div class="codex-author">AUTHOR: Arnold</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x01A2</div>
+        <div class="codex-title">Mathematical Statistics</div>
+        <div class="codex-author">AUTHOR: Shao</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x01A3</div>
+        <div class="codex-title">Asymptotic Statistics</div>
+        <div class="codex-author">AUTHOR: van der Vaart</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x01B1</div>
+        <div class="codex-title">Brownian Motion and Stochastic Calculus</div>
+        <div class="codex-author">AUTHORS: Karatzas &amp; Shreve</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x01B2</div>
+        <div class="codex-title">Stochastic Integration and Differential Equations</div>
+        <div class="codex-author">AUTHOR: Protter</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x01B3</div>
+        <div class="codex-title">The Malliavin Calculus and Related Topics</div>
+        <div class="codex-author">AUTHOR: Nualart</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x01C1</div>
+        <div class="codex-title">A Course on Rough Paths</div>
+        <div class="codex-author">AUTHORS: Friz &amp; Hairer</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x01C2</div>
+        <div class="codex-title">Stochastic Calculus for Fractional Brownian Motion and Related Processes</div>
+        <div class="codex-author">AUTHOR: Mishura</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x01C3</div>
+        <div class="codex-title">Fractional Brownian Motion in Financial Models</div>
+        <div class="codex-author">AUTHORS: Biagini, Hu, Øksendal, Zhang</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x01D1</div>
+        <div class="codex-title">Information Geometry and Its Applications</div>
+        <div class="codex-author">AUTHOR: Amari</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x01D2</div>
+        <div class="codex-title">Martingale Optimal Transport</div>
+        <div class="codex-author">AUTHOR: Henry-Labordère</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x01D3</div>
+        <div class="codex-title">Optimal Transport for Applied Mathematicians</div>
+        <div class="codex-author">AUTHOR: Santambrogio</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x01E1</div>
+        <div class="codex-title">High-Dimensional Probability An Introduction with Applications in Data Science</div>
+        <div class="codex-author">AUTHOR: Vershynin</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x01E2</div>
+        <div class="codex-title">Statistical Theory and Methods for Complex High-Dimensional Data</div>
+        <div class="codex-author">AUTHORS: Bühlmann &amp; van de Geer</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x01E3</div>
+        <div class="codex-title">The Mathematical Foundations of Learning Theory</div>
+        <div class="codex-author">AUTHORS: Cucker &amp; Zhou</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x01F1</div>
+        <div class="codex-title">Functional Itô Calculus</div>
+        <div class="codex-author">AUTHOR: Dupire</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x01F2</div>
+        <div class="codex-title">Machine Learning in Finance From Theory to Practice</div>
+        <div class="codex-author">AUTHORS: Dixon, Halperin, Bilokon</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x01F3</div>
+        <div class="codex-title">Stochastic Volatility Modeling</div>
+        <div class="codex-author">AUTHOR: Bergomi</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x02A1</div>
+        <div class="codex-title">Limit Order Books</div>
+        <div class="codex-author">AUTHORS: Abergel, Bouchaud, Foucault, et al.</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x02A2</div>
+        <div class="codex-title">Nonlinear Option Pricing</div>
+        <div class="codex-author">AUTHORS: Guyon &amp; Henry-Labordère</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x02A3</div>
+        <div class="codex-title">Algorithmic and High-Frequency Trading</div>
+        <div class="codex-author">AUTHORS: Cartea, Jaimungal, Penalva</div>
+    </div>
+
+    <div class="codex-module">
+        <div class="codex-hex">0x02B1</div>
+        <div class="codex-title">Market Microstructure in Practice</div>
+        <div class="codex-author">AUTHORS: Lehalle &amp; Laruelle</div>
+    </div>
+</div>
+
 <script>
 window.addEventListener('DOMContentLoaded', () => {
-    // 1. DENSE STOCHASTIC MATH SYMBOL ENGINE - REFINED LUMINOSITY
-    const rainContainer = document.querySelector('.quant-rain-container');
-    if(rainContainer) {
-        const mathSymbols = [
-            "\\nabla", "\\int", "\\iint", "\\oint", "\\partial", "\\infty", "\\sum", "\\prod",
-            "\\sigma", "\\mu", "\\lambda", "\\theta", "\\Omega", "\\Delta", "\\Gamma", "\\Phi",
-            "\\alpha", "\\beta", "\\gamma", "\\rho", "\\tau", "\\xi", "\\zeta", "\\aleph",
-            "\\mathbb{E}", "\\mathbb{P}", "\\mathbb{R}", "\\mathbb{Q}", "\\mathcal{F}", "\\mathcal{L}"
-        ];
-
-        function generateHoloFeed() {
-            const drop = document.createElement('div');
-            drop.className = 'quant-drop';
-            
-            const xPos = Math.random() * 95;
-            const duration = Math.random() * 4 + 4; 
-            const scale = Math.random() * 0.7 + 1.0; 
-            const isRed = Math.random() > 0.85; 
-            
-            drop.style.left = `${xPos}%`;
-            drop.style.animationDuration = `${duration}s`;
-            drop.style.transform = `scale(${scale}) translateZ(-100px)`; 
-            
-            if(isRed) {
-                drop.style.color = 'rgba(255, 0, 0, 0.65)'; 
-                drop.style.textShadow = '0 0 10px rgba(255, 0, 0, 0.4), 0 0 20px rgba(255, 0, 0, 0.2)'; 
-            } else {
-                drop.style.color = 'rgba(0, 229, 255, 0.6)'; 
-                drop.style.textShadow = '0 0 10px rgba(0, 229, 255, 0.4), 0 0 20px rgba(0, 229, 255, 0.2)'; 
-            }
-
-            const sym = mathSymbols[Math.floor(Math.random() * mathSymbols.length)];
-            const mathSpan = document.createElement('span');
-            katex.render(sym, mathSpan, { displayMode: false, throwOnError: false });
-            drop.appendChild(mathSpan);
-
-            rainContainer.appendChild(drop);
-
-            setTimeout(() => {
-                if(drop.parentNode) drop.parentNode.removeChild(drop);
-            }, duration * 1000);
-        }
-
-        for(let i=0; i<25; i++) {
-            setTimeout(generateHoloFeed, Math.random() * 3000);
-        }
-        
-        setInterval(generateHoloFeed, 400);
-    }
-
-    // 2. DYNAMIC OBSERVER TRACKING (Spotlight Physics)
-    document.querySelectorAll('.card-quant').forEach(card => {
+    // 1. DYNAMIC OBSERVER TRACKING (Spotlight Physics)
+    document.querySelectorAll('.codex-module').forEach(card => {
         card.addEventListener('mousemove', e => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
@@ -1358,137 +1324,31 @@ window.addEventListener('DOMContentLoaded', () => {
             card.style.setProperty('--mouse-y', `${y}px`);
         });
     });
+
+    // 2. HARDWARE CASCADING BOOT ANIMATION
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                // Add staggered delay based on relative index for smooth cascading
+                setTimeout(() => {
+                    entry.target.classList.add('is-visible');
+                }, index * 75);
+                observer.unobserve(entry.target); // Only animate once
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.codex-module').forEach(module => {
+        observer.observe(module);
+    });
 });
 </script>
-<div class="crt-noise">
-
-</div>
-<div class="quantum-core-glow">
-
-</div>
-<div class="grid-topology-bg">
-
-</div>
-<div class="quant-rain-container">
-
-</div>
-<div class="hero-container">
-<div class="name-wrapper">
-<div class="name-laser">
-
-</div>
-<div class="quant-hero-name">
-Gorazd Atanasovski
-</div>
-</div>
-<div class="quant-hero-subtitle">
-Axiomatic Research &amp; Stochastic State-Space Execution
-</div>
-<div class="quant-hero-desc">
-<p>This centralized manifold aggregates formal theoretical derivations, bridged directly into an isomorphic execution mapping. Theoretical frameworks are engineered not for physical hardware, but as rigorous solutions to continuous-time state-space filtrations.</p>
-</div>
-</div>
-<div class="telemetry-panel">
-<p><span><span class="optical-pulse"></span><span style="color: #64748b; margin-right: 10px;">SYSTEM TOPOLOGY</span><span style="color: #FF0000; font-weight: 800; text-shadow: 0 0 20px rgba(255,0,0,0.8);">ISOMORPHIC</span></span> <span><span class="optical-pulse"></span><span style="color: #64748b; margin-right: 10px;">MEASURE</span><span style="color: #FF0000; font-weight: 800; text-shadow: 0 0 20px rgba(255,0,0,0.8);">LEBESGUE-STIELTJES</span></span> <span><span class="optical-pulse"></span><span style="color: #64748b; margin-right: 10px;">FILTRATION</span><span style="color: #FF0000; font-weight: 800; text-shadow: 0 0 20px rgba(255,0,0,0.8);">ADAPTED</span></span></p>
-</div>
-<div class="grid-container">
-<div class="card-quant">
-<div class="card-sweep"></div>
-<section id="theoretical-research" class="level3">
-<h3 data-anchor-id="theoretical-research">Theoretical Research</h3>
-<p>Rigorous formalization of microstructural point processes, continuous-time martingale representations, and advanced measure theory. Heuristic approximations are systematically eradicated in favor of exact analytical bounds and fractional stochastic derivations.</p>
-<p><br> <a href="./research.html" class="btn-quant">Initialize Research</a></p>
-</section>
-</div>
-<div class="card-quant">
-<div class="card-sweep"></div>
-<section id="analytical-manifold" class="level3">
-<h3 data-anchor-id="analytical-manifold">Analytical Manifold</h3>
-<p>High-dimensional filtration environments abandoning standard algorithmic design. Featuring GORAZD: defined not as empirical machine learning descent, but as the exact analytical evaluation of infinite-dimensional Fréchet derivatives within a Sobolev space.</p>
-<p><br> <a href="./code.html" class="btn-quant">Deploy Infrastructure</a></p>
-</section>
-</div>
-<div class="card-quant">
-<div class="card-sweep"></div>
-<section id="measure-theoretic-isomorphisms" class="level3">
-<h3 data-anchor-id="measure-theoretic-isomorphisms">Measure-Theoretic Isomorphisms</h3>
-<p>The operational nexus. We synthesize Radon-Nikodym derivatives, spectral filtrations of non-stationary stochastic processes, and rigorous optimal control deployments into asymmetric, probability-weighted execution mappings.</p>
-<p><br> <a href="#" class="btn-quant">Access Telemetry</a></p>
-</section>
-</div>
-</div>
-<section id="core-competencies-theoretical-architecture" class="level3 stack-matrix">
-<h3 data-anchor-id="core-competencies-theoretical-architecture">Core Competencies &amp; Theoretical Architecture</h3>
-<div class="stack-grid">
-<section id="i.-advanced-stochastic-frameworks-rough-volatility" class="level4 stack-item">
-<h4 data-anchor-id="i.-advanced-stochastic-frameworks-rough-volatility">I. Advanced Stochastic Frameworks &amp; Rough Volatility</h4>
-<p>Formulation of exact analytical boundaries for martingale pricing within non-Markovian environments. Derivation of fractional stochastic processes, eradicating the need for heuristic smoothing.</p>
-<div class="diagram-block">
-<svg class="svg-pulse ambient-float" viewbox="0 0 500 150" style="width:100%; height:150px; display:block;">
-    <polyline class="svg-dash" fill="none" stroke="#00ffff" stroke-width="2.5" points="0,75 25,45 50,85 75,35 100,95 125,55 150,110 175,60 200,85 225,40 250,100 275,65 300,90 325,45 350,115 375,50 400,95 425,60 450,105 475,70 500,80"></polyline>
-    <polyline fill="none" stroke="#FF0000" stroke-width="2" opacity="0.8" points="0,85 25,55 50,95 75,45 100,105 125,65 150,120 175,70 200,95 225,50 250,110 275,75 300,100 325,55 350,125 375,60 400,105 425,70 450,115 475,80 500,90"></polyline>
-</svg>
-</div>
-<div class="definition">
-<span class="def-title">Definition 1 (Volatility Formulation):</span>
-<p>The volatility process is strictly formulated as a fractional Brownian motion defined by its covariance structure, yielding exact pathwise regularity.</p>
-<p><span class="math display">\[
-\mathbb{E}[B_H(t)B_H(s)] = \frac{1}{2} \left( |t|^{2H} + |s|^{2H} - |t-s|^{2H} \right)
-\]</span></p>
-<p>The Hurst parameter is strictly bounded to preserve roughness:</p>
-<p><span class="math display">\[
-H \in \left(0, \frac{1}{2}\right)
-\]</span></p>
-</div>
-</section>
-<section id="ii.-measure-theoretic-filtration-state-space-dynamics" class="level4 stack-item">
-<h4 data-anchor-id="ii.-measure-theoretic-filtration-state-space-dynamics">II. Measure-Theoretic Filtration &amp; State Space Dynamics</h4>
-<p>Abandoning empirical machine learning in favor of exact analytical solutions to Stochastic Partial Differential Equations. Application of Girsanov transformations for formal probability measure shifts.</p>
-<div class="definition">
-<span class="def-title">Non-Linear Paradigm:</span>
-<p>Optimal control functions are bounded by unassailable analytical inequalities. We formalize the state dynamics via the rigorously derived Backward Stochastic Differential Equation:</p>
-<p><span class="math display">\[
--dY_t = f(t, X_t, Y_t, Z_t)dt - Z_t dW_t
-\]</span></p>
-</div>
-</section>
-<section id="iii.-topological-data-structures" class="level4 stack-item">
-<h4 data-anchor-id="iii.-topological-data-structures">III. Topological Data Structures</h4>
-<p>Rejecting standard data engineering workflows for pure measure-theoretic data filtration. Construction of high-dimensional statistical architectures utilizing Banach and Hilbert space embeddings.</p>
-<div class="diagram-block">
-<svg class="svg-pulse ambient-float" viewbox="0 0 500 150" style="width:100%; height:150px; display:block;">
-    <ellipse class="svg-dash" cx="250" cy="75" rx="180" ry="45" fill="none" stroke="#FF0000" stroke-width="3" stroke-dasharray="10 5"></ellipse>
-    <ellipse cx="250" cy="75" rx="45" ry="140" fill="none" stroke="#00ffff" stroke-width="2.5" transform="rotate(35 250 75)" opacity="0.9"></ellipse>
-    <ellipse cx="250" cy="75" rx="45" ry="140" fill="none" stroke="#00ffff" stroke-width="2.5" transform="rotate(-35 250 75)" opacity="0.9"></ellipse>
-    <circle cx="250" cy="75" r="6" fill="#ffffff" style="filter: drop-shadow(0 0 15px #ffffff);"></circle>
-</svg>
-</div>
-<div class="definition">
-<span class="def-title">Ingestion Axiom:</span>
-<p>Data ingestion is formalized strictly as a continuous mapping of observable phenomena onto a rigorously defined Polish space, ensuring absolute Borel measurability.</p>
-</div>
-</section>
-<section id="iv.-microstructural-limit-order-book-asymptotics" class="level4 stack-item">
-<h4 data-anchor-id="iv.-microstructural-limit-order-book-asymptotics">IV. Microstructural Limit Order Book Asymptotics</h4>
-<p>Eliminating reliance on standard broker routing. Modeling optimal order execution dynamics via marked point processes and Hawkes process formulations.</p>
-<div class="diagram-block">
-<svg class="ambient-float" viewbox="0 0 500 150" style="width:100%; height:150px; display:block;">
-    <line x1="250" y1="10" x2="250" y2="140" stroke="#ffffff" stroke-width="1.5" opacity="0.4" stroke-dasharray="4 4"></line>
-    <line x1="10" y1="75" x2="490" y2="75" stroke="#ffffff" stroke-width="1.5" opacity="0.4" stroke-dasharray="4 4"></line>
-    <path class="svg-dash" d="M10,130 Q125,10 250,75 T490,20" fill="none" stroke="#00ffff" stroke-width="4" style="filter: drop-shadow(0 0 12px #00ffff);"></path>
-    <path class="svg-dash" d="M10,140 Q125,25 250,90 T490,35" fill="none" stroke="#FF0000" stroke-width="3" style="filter: drop-shadow(0 0 10px #FF0000);" opacity="0.85"></path>
-</svg>
-</div>
-<div class="definition">
-<span class="def-title">Theorem 1 (Execution Optimality):</span>
-<p>Optimal execution routing is formulated as a rigorously proven solution to a stochastic optimal control problem. The value function is the unique viscosity solution to the Hamilton-Jacobi-Bellman equation under strict martingale constraints:</p>
-<p><span class="math display">\[
-\partial_t v + \sup_{u \in \mathcal{U}} \left\{ \mathcal{L}^u v + f(t,x,u) \right\} = 0
-\]</span></p>
-</div>
-</section>
-</div>
-</section>
 
 
 
