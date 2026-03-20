@@ -830,525 +830,111 @@ window.Quarto = {
 <link rel="stylesheet" href="[https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css](https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css)">
 <script src="[https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js](https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js)"></script>
 
-<style>
-/* ==========================================
-   APEX TERMINAL AESTHETICS - THE MONA LISA MATRIX
-   ========================================== */
-
-/* ABSOLUTE X-AXIS LOCK - PREVENTS ALL HORIZONTAL FRACTURES */
-html, body {
-    overflow-x: hidden !important;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: #010204;
-}
-
-/* Global Optical Overlay - CRT Scanline Simulation */
-body::before {
-    content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%);
-    background-size: 100% 4px; z-index: 9999; pointer-events: none; opacity: 0.35;
-}
-
-/* Microscopic CRT Hardware Grain */
-.crt-noise {
-    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    z-index: 9998; pointer-events: none; opacity: 0.04;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='[http://www.w3.org/2000/svg'%3E%3Cfilter](http://www.w3.org/2000/svg'%3E%3Cfilter) id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-}
-
-/* QUANTUM CORE RESONANCE - BREATHING DEEP BACKGROUND ENGINE */
-.quantum-core-glow {
-    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) translateZ(0);
-    width: 150vw; height: 150vh;
-    background: radial-gradient(circle, rgba(0, 229, 255, 0.06) 0%, rgba(255, 0, 0, 0.04) 35%, transparent 65%);
-    z-index: -2; pointer-events: none;
-    will-change: transform, opacity;
-    animation: coreBreathe 10s ease-in-out infinite alternate;
-}
-
-@keyframes coreBreathe {
-    0% { transform: translate(-50%, -50%) scale(0.9) translateZ(0); opacity: 0.7; }
-    100% { transform: translate(-50%, -50%) scale(1.15) translateZ(0); opacity: 1; }
-}
-
-/* 3D Volumetric Spaceship Grid (Accelerating Floor) */
-.grid-topology-bg {
-    position: fixed; top: 0; left: -50vw; right: -50vw; bottom: -50vh;
-    background-image: 
-        linear-gradient(rgba(0, 229, 255, 0.15) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 229, 255, 0.15) 1px, transparent 1px);
-    background-size: 60px 60px; 
-    background-position: center top;
-    z-index: -1;
-    transform: perspective(600px) rotateX(75deg) translateZ(0);
-    transform-origin: center center;
-    mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 60%);
-    -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 60%);
-    will-change: transform;
-    animation: gridWarp 3s linear infinite;
-    pointer-events: none;
-}
-
-@keyframes gridWarp {
-    0% { transform: perspective(600px) rotateX(75deg) translateY(0px) translateZ(0); }
-    100% { transform: perspective(600px) rotateX(75deg) translateY(60px) translateZ(0); }
-}
-
-/* Absolute Supremacy Hero Overrides - TIGHTENED SPACING */
-.hero-container {
-    max-width: 1050px; 
-    margin: 6rem auto 1rem; 
-    position: relative; 
-    padding: 4rem 2rem 1rem; 
-    background: radial-gradient(ellipse at center, rgba(4, 6, 14, 0.95) 0%, rgba(2, 4, 10, 0.6) 50%, transparent 85%);
-    border-radius: 4px; display: flex; flex-direction: column; align-items: center; 
-    text-align: center; overflow: hidden; 
-}
-
-/* STOCHASTIC SYMBOL RAIN PHYSICS - REFINED LUMINOSITY */
-.quant-rain-container {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    z-index: 1; pointer-events: none; overflow: hidden;
-}
-
-.quant-drop {
-    position: absolute; top: -15%;
-    color: rgba(0, 229, 255, 0.6); 
-    font-family: 'Cambria Math', 'Times New Roman', serif;
-    font-size: 1.5rem; 
-    text-shadow: 0 0 8px rgba(0, 229, 255, 0.4), 0 0 15px rgba(0, 229, 255, 0.2);
-    will-change: transform, opacity;
-    animation: dataRain linear forwards;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-@keyframes dataRain {
-    0% { transform: translateY(0) rotate(0deg) translateZ(-100px); opacity: 0; }
-    20% { opacity: 0.85; } 
-    80% { opacity: 0.85; } 
-    100% { transform: translateY(120vh) rotate(5deg) translateZ(-100px); opacity: 0; }
-}
-
-/* The Unbreakable Monolithic Name Wrapper */
-.name-wrapper {
-    position: relative;
-    display: inline-block;
-    padding: 0 20px; 
-    z-index: 10;
-}
-
-/* SYNCHRONIZED TYPOGRAPHY GRADIENT - EXACT MATHEMATICAL ALIGNMENT */
-.quant-hero-name {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: clamp(2.5rem, 4.5vw, 5.5rem); 
-    white-space: nowrap; 
-    font-weight: 800;
-    text-transform: uppercase !important; 
-    background: linear-gradient(105deg, #ffffff 0%, #ffffff 40%, #FF0000 50%, #ffffff 60%, #ffffff 100%);
-    background-size: 300% auto;
-    color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
-    will-change: background-position;
-    animation: synchronizedSweep 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
-    letter-spacing: -0.05em; margin-bottom: 0.5rem;
-    text-shadow: 0 0 40px rgba(0, 229, 255, 0.2);
-    line-height: 1.1; position: relative; display: inline-block;
-}
-
-@keyframes synchronizedSweep {
-    0% { background-position: 82.5% center; }
-    100% { background-position: 17.5% center; }
-}
-
-/* SYNCHRONIZED VISCERAL RED LASER */
-.name-laser {
-    position: absolute; top: -15%; width: 6px; height: 130%;
-    background: #ffffff;
-    box-shadow: 0 0 20px #FF0000, 0 0 40px #FF0000, 0 0 80px #FF0000, inset 0 0 5px #00ffff;
-    z-index: 11; pointer-events: none;
-    will-change: left;
-    animation: synchronizedLaser 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
-    transform: rotate(15deg) translateZ(0);
-    border-radius: 10px;
-}
-
-@keyframes synchronizedLaser {
-    0% { left: -5%; }
-    100% { left: 105%; }
-}
-
-/* DYNAMIC PLASMA SUBTITLE - FIBER OPTIC DRIVER EFFECT */
-.quant-hero-subtitle {
-    font-family: 'JetBrains Mono', monospace; 
-    font-size: clamp(0.9rem, 1.8vw, 1.7rem);
-    font-weight: 800; 
-    text-transform: uppercase; 
-    letter-spacing: 0.35em;
-    margin: 1.5rem 0 2.5rem; 
-    background: linear-gradient(90deg, #FF0000 0%, #FF0000 40%, #00ffff 48%, #ffffff 50%, #00ffff 52%, #FF0000 60%, #FF0000 100%);
-    background-size: 300% auto;
-    color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
-    will-change: background-position;
-    animation: driverSweep 4s cubic-bezier(0.8, 0, 0.2, 1) infinite;
-    display: inline-block; 
-    z-index: 10;
-    text-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
-    position: relative;
-}
-
-@keyframes driverSweep {
-    0% { background-position: 100% center; }
-    100% { background-position: -50% center; }
-}
-
-.quant-hero-subtitle::after {
-    content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
-    width: 60%; height: 2px;
-    background: linear-gradient(90deg, transparent, #FF0000, #00ffff, transparent);
-    box-shadow: 0 0 15px #FF0000;
-}
-
-/* ELECTRICAL TYPOGRAPHY HUM */
-.quant-hero-desc {
-    font-family: 'Inter', sans-serif; font-size: clamp(1.1rem, 1.5vw, 1.4rem); color: #cbd5e1; line-height: 1.8;
-    max-width: 880px; margin: 0 auto; font-weight: 300; 
-    position: relative; z-index: 10; text-align: center;
-    will-change: text-shadow, color;
-    animation: textHum 6s ease-in-out infinite alternate;
-}
-
-@keyframes textHum {
-    0% { color: #cbd5e1; text-shadow: 0 2px 5px rgba(0,0,0,0.9), 0 0 5px rgba(0, 229, 255, 0.05); }
-    100% { color: #e2e8f0; text-shadow: 0 2px 5px rgba(0,0,0,0.9), 0 0 15px rgba(0, 229, 255, 0.3); }
-}
-
-/* Enhanced Optical Telemetry Pulse & Scanner */
-.telemetry-panel {
-    border-top: 1px solid rgba(255,0,0,0.5); border-bottom: 1px solid rgba(255,0,0,0.5); 
-    padding: 2rem 1rem; display: flex; flex-wrap: nowrap; justify-content: center; align-items: center;
-    gap: clamp(1rem, 2.5vw, 5rem); text-transform: uppercase; font-family: 'JetBrains Mono', monospace; 
-    font-size: clamp(0.65rem, 1.1vw, 1rem); letter-spacing: 0.15em; background: rgba(2, 4, 10, 0.85);
-    backdrop-filter: blur(20px); position: relative; overflow: hidden; box-shadow: 0 15px 50px rgba(0,0,0,0.9);
-    white-space: nowrap; width: 100%; box-sizing: border-box; z-index: 10;
-}
-
-.telemetry-panel::before {
-    content: ''; position: absolute; top: 0; left: -100%; width: 30%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.5), transparent);
-    will-change: left;
-    animation: scan 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite; pointer-events: none;
-}
-
-@keyframes scan { 0% { left: -100%; } 100% { left: 200%; } }
-
-.optical-pulse {
-    display: inline-block; width: 10px; height: 10px; background-color: #FF0000;
-    border-radius: 50%; margin-right: 12px; box-shadow: 0 0 12px #FF0000, 0 0 25px #FF0000;
-    will-change: transform, box-shadow;
-    animation: pulse 1.2s infinite alternate; vertical-align: middle;
-}
-
-@keyframes pulse {
-    0% { transform: scale(0.85) translateZ(0); box-shadow: 0 0 8px rgba(255, 0, 0, 0.6); opacity: 0.75;}
-    100% { transform: scale(1.2) translateZ(0); box-shadow: 0 0 25px rgba(255, 0, 0, 1); opacity: 1;}
-}
-
-.grid-container { margin-top: 5rem; gap: 3.5rem; position: relative; z-index: 10; }
-
-/* FLUID-STATE GLASSMORPHISM CARDS WITH OBSERVER TRACKING */
-.card-quant {
-    --mouse-x: 50%;
-    --mouse-y: 50%;
-    background: linear-gradient(135deg, rgba(4, 6, 14, 0.8) 0%, rgba(20, 2, 5, 0.7) 50%, rgba(2, 10, 15, 0.8) 100%);
-    background-size: 200% 200%;
-    will-change: background-position, transform;
-    animation: fluidGlass 10s ease infinite;
-    border: 1px solid rgba(148, 163, 184, 0.15); 
-    border-top: 2px solid rgba(255, 0, 0, 0.5); border-radius: 4px; padding: 4rem 3rem;
-    backdrop-filter: blur(35px) saturate(140%); -webkit-backdrop-filter: blur(35px) saturate(140%);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.95), inset 0 1px 0 rgba(255,255,255,0.1); 
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    position: relative; overflow: hidden;
-}
-
-/* Coordinate Tracking Radial Glow */
-.card-quant::after {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(circle 350px at var(--mouse-x) var(--mouse-y), rgba(0, 229, 255, 0.08), transparent 80%);
-    z-index: -1; pointer-events: none;
-    transition: background 0.3s ease;
-}
-
-@keyframes fluidGlass {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Hyper-Visible Continuous Quantum Data Stream (Border Sweep) */
-.card-sweep {
-    position: absolute; top: 0; left: -100%; width: 100%; height: 4px;
-    background: linear-gradient(90deg, transparent, #00ffff, #FF0000, #00ffff, transparent);
-    box-shadow: 0 0 20px #00ffff, 0 0 40px #FF0000;
-    will-change: left;
-    animation: cardScan 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite; z-index: 10;
-}
-.card-quant:nth-child(1) .card-sweep { animation-delay: 0s; }
-.card-quant:nth-child(2) .card-sweep { animation-delay: 0.8s; }
-.card-quant:nth-child(3) .card-sweep { animation-delay: 1.6s; }
-
-@keyframes cardScan { 0% { left: -100%; } 100% { left: 100%; } }
-
-.card-quant::before {
-    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle at top right, rgba(0, 229, 255, 0.15), transparent 60%);
-    pointer-events: none;
-}
-
-.card-quant:hover { 
-    transform: translateY(-12px) scale(1.03) translateZ(0); 
-    border-top: 2px solid #00ffff; box-shadow: 0 30px 80px rgba(0,0,0,1), 0 0 50px rgba(0, 229, 255, 0.3); 
-}
-
-.card-quant:hover::after {
-    background: radial-gradient(circle 400px at var(--mouse-x) var(--mouse-y), rgba(255, 0, 0, 0.15), rgba(0, 229, 255, 0.05) 50%, transparent 80%);
-}
-
-.card-quant h3 {
-    font-size: 1.6rem; color: #ffffff; letter-spacing: 0.15em;
-    text-shadow: 0 0 15px rgba(255,255,255,0.4); margin-bottom: 1.5rem;
-}
-
-.card-quant p { font-size: 1.15rem; color: #94a3b8; line-height: 1.8; }
-
-/* HYPER-KINETIC EXECUTION NODES (Buttons) */
-.btn-quant {
-    display: inline-block; 
-    background: linear-gradient(90deg, rgba(255, 0, 0, 0.1), rgba(0, 229, 255, 0.2), rgba(255, 0, 0, 0.1));
-    background-size: 200% auto;
-    will-change: background-position;
-    animation: btnFlow 3s linear infinite;
-    border: 1px solid rgba(255, 0, 0, 0.7);
-    color: #FF0000 !important; text-shadow: 0 0 10px rgba(255, 0, 0, 0.8); letter-spacing: 0.25em;
-    font-size: 0.9rem; position: relative; overflow: hidden; padding: 1.2rem 2.5rem; margin-top: 2rem; z-index: 1;
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
-    transition: all 0.3s ease;
-}
-
-@keyframes btnFlow {
-    to { background-position: 200% center; }
-}
-
-.btn-quant::after {
-    content: ''; position: absolute; bottom: 0; left: -100%; width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.6), transparent);
-    transition: all 0.4s ease; z-index: -1;
-}
-
-.btn-quant:hover::after { left: 100%; }
-.btn-quant:hover {
-    background: rgba(255, 0, 0, 1); color: #ffffff !important; box-shadow: 0 0 35px rgba(255, 0, 0, 0.9);
-    text-shadow: none; border-color: #FF0000;
-}
-
-/* Math Blocks */
-.definition {
-    background: rgba(2, 4, 10, 0.95); padding: 2.5rem; border-radius: 4px; font-family: 'Inter', sans-serif;
-    color: #cbd5e1; font-size: 1.1rem; line-height: 1.8; margin-top: 2.5rem; border-left: 4px solid #FF0000;
-    box-shadow: inset 0 0 30px rgba(0,0,0,1), 0 15px 40px rgba(0,0,0,0.8); position: relative; transition: all 0.4s ease;
-}
-
-.definition:hover {
-    background: rgba(6, 8, 16, 0.98); box-shadow: inset 0 0 30px rgba(0,0,0,1), 0 15px 50px rgba(255,0,0,0.2);
-}
-
-.definition::before {
-    content: '0x' attr(data-hash); position: absolute; top: 10px; right: 15px;
-    font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(255,255,255,0.2);
-    animation: hexGlitch 5s infinite;
-}
-
-@keyframes hexGlitch {
-    0%, 94%, 98%, 100% { opacity: 0.2; color: rgba(255,255,255,0.2); text-shadow: none; }
-    96% { opacity: 1; color: #00ffff; text-shadow: 0 0 12px #00ffff; }
-}
-
-.definition::after {
-    content: ''; position: absolute; bottom: -2px; right: -2px; width: 25px; height: 25px;
-    border-bottom: 2px solid #00ffff; border-right: 2px solid #00ffff;
-    box-shadow: 2px 2px 10px rgba(0,229,255,0.5);
-}
-
-.def-title {
-    color: #ffffff; font-weight: 800; font-family: 'JetBrains Mono', monospace; font-size: 1rem;
-    display: inline-block; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.2em;
-    border-bottom: 1px dashed rgba(255,0,0,0.6); padding-bottom: 6px; text-shadow: 0 0 15px rgba(255,255,255,0.4);
-}
-
-.diagram-block {
-    margin: 3rem 0; border: 1px solid rgba(0, 229, 255, 0.5); background: rgba(2, 4, 10, 0.85);
-    padding: 3rem 1.5rem 1.5rem; border-radius: 4px;
-    box-shadow: 0 20px 50px rgba(0,0,0,1), inset 0 0 40px rgba(0, 229, 255, 0.15);
-    text-align: center; position: relative; overflow: hidden;
-}
-.diagram-block::before {
-    content: 'OPTICAL RENDER // PROCEDURAL MANIFOLD'; position: absolute; top: 0px; left: 0px;
-    background: #00ffff; color: #02040a; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 800;
-    padding: 4px 12px; letter-spacing: 0.15em; box-shadow: 0 0 20px rgba(0, 229, 255, 0.9); z-index: 2;
-}
-.diagram-block::after {
-    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(180deg, rgba(0,229,255,0.2) 0%, transparent 15%, transparent 85%, rgba(0,229,255,0.2) 100%);
-    pointer-events: none;
-}
-
-.ambient-float { will-change: transform, filter; animation: svgHover 5s ease-in-out infinite alternate; }
-@keyframes svgHover {
-    0% { transform: translateY(-4px) scale(0.99) translateZ(0); filter: drop-shadow(0 5px 20px rgba(0,229,255,0.2)); }
-    100% { transform: translateY(4px) scale(1.02) translateZ(0); filter: drop-shadow(0 20px 35px rgba(0,229,255,0.4)); }
-}
-
-.svg-pulse { will-change: opacity, filter; animation: svgPulse 3.5s infinite alternate; }
-@keyframes svgPulse {
-    0% { opacity: 0.7; filter: drop-shadow(0 0 8px rgba(0,255,255,0.5)); }
-    100% { opacity: 1; filter: drop-shadow(0 0 25px rgba(0,255,255,1)); }
-}
-.svg-dash { stroke-dasharray: 2000; stroke-dashoffset: 2000; animation: drawPath 6s ease-in-out infinite alternate; }
-@keyframes drawPath { to { stroke-dashoffset: 0; } }
-
-.stack-matrix {
-    margin: 0 auto 8rem; background: rgba(4, 6, 14, 0.85); border-top: 4px solid #FF0000;
-    padding: 6rem 5rem; backdrop-filter: blur(30px); box-shadow: 0 40px 100px rgba(0,0,0,1);
-    position: relative; border-radius: 0 0 8px 8px; z-index: 10;
-}
-
-.stack-matrix h3 {
-    text-align: center; font-size: 2.2rem; margin-bottom: 5rem;
-    text-shadow: 0 0 25px rgba(255,255,255,0.4); letter-spacing: 0.15em; font-family: 'JetBrains Mono', monospace;
-}
-
-/* ==========================================
-   SUPERIOR NAVIGATION BAR ARCHITECTURE
-   ========================================== */
-.navbar {
-    background: rgba(2, 4, 10, 0.85) !important;
-    backdrop-filter: blur(25px) saturate(150%) !important;
-    -webkit-backdrop-filter: blur(25px) saturate(150%) !important;
-    border-bottom: 1px solid rgba(255, 0, 0, 0.4) !important;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.95), 0 0 20px rgba(255, 0, 0, 0.15) !important;
-    padding: 1.5rem 3rem !important;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-.navbar-brand {
-    font-family: 'JetBrains Mono', monospace !important;
-    font-weight: 800 !important;
-    font-size: 1.5rem !important;
-    color: #ffffff !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.15em !important;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3) !important;
-    position: relative;
-}
-
-.navbar-brand::after {
-    content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 2px;
-    background: linear-gradient(90deg, transparent, #FF0000, #00ffff);
-}
-
-.nav-link {
-    font-family: 'JetBrains Mono', monospace !important;
-    font-size: 0.95rem !important;
-    font-weight: 700 !important;
-    color: #94a3b8 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.2em !important;
-    padding: 0.5rem 1.5rem !important;
-    margin: 0 0.5rem !important;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    position: relative;
-}
-
-.nav-link:hover, .nav-link.active {
-    color: #00ffff !important;
-    text-shadow: 0 0 15px rgba(0, 229, 255, 0.8) !important;
-    transform: translateY(-2px);
-}
-
-.nav-link::before {
-    content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-    width: 0%; height: 2px;
-    background: #FF0000;
-    box-shadow: 0 0 10px #FF0000;
-    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.nav-link:hover::before, .nav-link.active::before {
-    width: 80%;
-}
-</style>
-
 <script>
 window.addEventListener('DOMContentLoaded', () => {
-    // 1. DENSE STOCHASTIC MATH SYMBOL ENGINE - REFINED LUMINOSITY
+    // ==========================================
+    // 1. GHOST PROTOCOL (AWAITING TELEMETRY)
+    // ==========================================
+    const defaultTitle = "GORAZD | State-Space Execution";
+    let defaultFavicon = document.querySelector("link[rel~='icon']");
+    
+    if (!defaultFavicon) {
+        defaultFavicon = document.createElement('link');
+        defaultFavicon.rel = 'icon';
+        document.head.appendChild(defaultFavicon);
+    }
+
+    const activeIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB4PSIyMCIgeT0iODAiIGZvbnQtZmFtaWx5PSJUaW1lcyBOZXcgUm9tYW4sIHNlcmlmIiBmb250LXNpemU9IjkwIiBmb250LXN0eWxlPSJpdGFsaWMiIGZpbGw9IiNjMTEyMWYiPiYjeDIyMkI7PC90ZXh0Pjx0ZXh0IHg9IjUwIiB5PSI5NSIgZm9udC1mYW1pbHk9IlRpbWVzIE5ldyBSb21hbiwgc2VyaWYiIGZvbnQtc2l6ZT0iNDAiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjYzExMjFmIj5HPC90ZXh0Pjwvc3ZnPg==";
+    const suspendedIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB4PSIyMCIgeT0iODAiIGZvbnQtZmFtaWx5PSJUaW1lcyBOZXcgUm9tYW4sIHNlcmlmIiBmb250LXNpemU9IjkwIiBmb250LXN0eWxlPSJpdGFsaWMiIGZpbGw9IiM2NDc0OGIiPiYjeDIyMkI7PC90ZXh0Pjx0ZXh0IHg9IjUwIiB5PSI5NSIgZm9udC1mYW1pbHk9IlRpbWVzIE5ldyBSb21hbiwgc2VyaWYiIGZvbnQtc2l6ZT0iNDAiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjNjQ3NDhiIj5HPC90ZXh0Pjwvc3ZnPg==";
+
+    defaultFavicon.href = activeIcon;
+    document.title = defaultTitle;
+
+    window.addEventListener("blur", () => {
+        document.title = "GORAZD | Awaiting Telemetry";
+        defaultFavicon.href = suspendedIcon;
+    });
+
+    window.addEventListener("focus", () => {
+        document.title = defaultTitle;
+        defaultFavicon.href = activeIcon;
+    });
+
+    // ==========================================
+    // 2. STOCHASTIC LEVITATION ENGINE (DEEP AMBIENT RAIN)
+    // ==========================================
     const rainContainer = document.querySelector('.quant-rain-container');
     if(rainContainer) {
         const mathSymbols = [
-            "\\nabla", "\\int", "\\iint", "\\oint", "\\partial", "\\infty", "\\sum", "\\prod",
-            "\\sigma", "\\mu", "\\lambda", "\\theta", "\\Omega", "\\Delta", "\\Gamma", "\\Phi",
-            "\\alpha", "\\beta", "\\gamma", "\\rho", "\\tau", "\\xi", "\\zeta", "\\aleph",
-            "\\mathbb{E}", "\\mathbb{P}", "\\mathbb{R}", "\\mathbb{Q}", "\\mathcal{F}", "\\mathcal{L}"
+            "\\nabla", "\\int_{0}^{T}", "\\iint", "\\oint", "\\partial_t", "\\infty", 
+            "\\sum_{i=1}^{N}", "\\prod", "\\sigma", "\\mu", "\\lambda", "\\theta", 
+            "\\Omega", "\\Delta", "\\Gamma", "\\Phi", "\\alpha", "\\beta", "\\gamma", 
+            "\\rho", "\\tau", "\\xi", "\\zeta", "\\aleph_0", "\\mathbb{E}", "\\mathbb{P}", 
+            "\\mathbb{R}", "\\mathbb{Q}", "\\mathcal{F}_t", "\\mathcal{L}", "dW_t", "dB_H(t)"
         ];
 
         function generateHoloFeed() {
             const drop = document.createElement('div');
             drop.className = 'quant-drop';
             
-            const xPos = Math.random() * 95;
-            const duration = Math.random() * 4 + 4; 
-            const scale = Math.random() * 0.7 + 1.0; 
-            const isRed = Math.random() > 0.85; 
+            /* Full Viewport Dispersion */
+            const xPos = Math.random() * 96 + 2; 
             
-            drop.style.left = `${xPos}%`;
+            /* Ultra-Slow, Elegant Duration (30 to 50 seconds) */
+            const duration = Math.random() * 20 + 30; 
+            
+            /* Delicate Scaling */
+            const scale = Math.random() * 0.3 + 0.4; 
+            
+            /* Anomaly Isolation */
+            const isRed = Math.random() > 0.90; 
+            
+            /* Gentle X-Axis Sway */
+            const driftDirection = (Math.random() - 0.5) * 8; 
+            
+            drop.style.left = `${xPos}vw`;
             drop.style.animationDuration = `${duration}s`;
-            drop.style.transform = `scale(${scale}) translateZ(-100px)`; 
+            drop.style.setProperty('--drift', `${driftDirection}vw`);
+            drop.style.transform = `scale(${scale})`; 
             
+            /* DEEP BACKGROUND LUMINOSITY MATRIX */
             if(isRed) {
-                drop.style.color = 'rgba(255, 0, 0, 0.65)'; 
-                drop.style.textShadow = '0 0 10px rgba(255, 0, 0, 0.4), 0 0 20px rgba(255, 0, 0, 0.2)'; 
+                drop.style.color = 'rgba(193, 18, 31, 0.15)'; 
+                drop.style.textShadow = '0 0 15px rgba(193, 18, 31, 0.1)'; 
+                drop.style.zIndex = 0;
             } else {
-                drop.style.color = 'rgba(0, 229, 255, 0.6)'; 
-                drop.style.textShadow = '0 0 10px rgba(0, 229, 255, 0.4), 0 0 20px rgba(0, 229, 255, 0.2)'; 
+                drop.style.color = 'rgba(72, 202, 228, 0.1)'; 
+                drop.style.textShadow = '0 0 15px rgba(72, 202, 228, 0.05)'; 
+                drop.style.zIndex = 0;
             }
 
             const sym = mathSymbols[Math.floor(Math.random() * mathSymbols.length)];
             const mathSpan = document.createElement('span');
+            
             katex.render(sym, mathSpan, { displayMode: false, throwOnError: false });
+            
             drop.appendChild(mathSpan);
-
             rainContainer.appendChild(drop);
 
-            setTimeout(() => {
-                if(drop.parentNode) drop.parentNode.removeChild(drop);
+            setTimeout(() => { 
+                if(drop.parentNode) {
+                    drop.parentNode.removeChild(drop); 
+                }
             }, duration * 1000);
         }
 
-        for(let i=0; i<25; i++) {
-            setTimeout(generateHoloFeed, Math.random() * 3000);
+        /* Initial Sparse Seeding */
+        for(let i = 0; i < 20; i++) {
+            setTimeout(generateHoloFeed, Math.random() * 5000);
         }
         
-        setInterval(generateHoloFeed, 400);
+        /* Slowed Interval to prevent clutter */
+        setInterval(generateHoloFeed, 1000);
     }
 
-    // 2. DYNAMIC OBSERVER TRACKING (Spotlight Physics)
+    // ==========================================
+    // 3. DYNAMIC OBSERVER TRACKING (Soft Spotlight)
+    // ==========================================
     document.querySelectorAll('.card-quant').forEach(card => {
         card.addEventListener('mousemove', e => {
             const rect = card.getBoundingClientRect();
@@ -1360,6 +946,803 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 });
 </script>
+
+<style>
+/* ==========================================
+   THE "SKINCARE" TYPOGRAPHY IMPORT MATRIX
+   ========================================== */
+@import url('[https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@100;200;300;400;500;600&display=swap](https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@100;200;300;400;500;600&display=swap)');
+
+/* ==========================================
+   GLOBAL CORE TOPOLOGY (THE DEEP VOID)
+   ========================================== */
+:root {
+    --bg-base: #010204;
+    --quant-red: #c1121f; 
+    --quant-cyan: #48cae4; 
+    --visor-height: 70px;
+}
+
+html {
+    overflow-x: hidden !important;
+    background-color: var(--bg-base) !important;
+}
+
+body {
+    overflow-x: hidden !important;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: transparent !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    color: #f8fafc;
+    scroll-behavior: smooth;
+}
+
+.quarto-container, 
+#quarto-content, 
+main {
+    background-color: transparent !important;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* CRT SCANLINE SHIELD - Ultra Soft */
+body::before {
+    content: ""; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh;
+    background: linear-gradient(rgba(10, 10, 12, 0) 50%, rgba(0, 0, 0, 0.15) 50%);
+    background-size: 100% 4px; 
+    z-index: 9999; 
+    pointer-events: none; 
+    opacity: 0.25;
+}
+
+/* Microscopic CRT Hardware Grain */
+.crt-noise {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh;
+    z-index: 9998; 
+    pointer-events: none; 
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='[http://www.w3.org/2000/svg'%3E%3Cfilter](http://www.w3.org/2000/svg'%3E%3Cfilter) id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* QUANTUM CORE RESONANCE - BREATHING DEEP BACKGROUND ENGINE */
+.quantum-core-glow {
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%) translateZ(0);
+    width: 150vw; 
+    height: 150vh;
+    background: radial-gradient(circle, rgba(72, 202, 228, 0.03) 0%, rgba(193, 18, 31, 0.02) 35%, transparent 65%);
+    z-index: -2; 
+    pointer-events: none;
+    will-change: transform, opacity;
+    animation: coreBreathe 12s ease-in-out infinite alternate;
+}
+
+@keyframes coreBreathe {
+    0% { transform: translate(-50%, -50%) scale(0.9) translateZ(0); opacity: 0.7; }
+    100% { transform: translate(-50%, -50%) scale(1.1) translateZ(0); opacity: 1; }
+}
+
+/* ==========================================
+   THE 3D SURFACE (ELEGANT SYNCED GRID)
+   ========================================== */
+.grid-topology-bg {
+    position: fixed; 
+    top: 0; 
+    left: -50vw; 
+    right: -50vw; 
+    bottom: -50vh;
+    background-image: 
+        linear-gradient(rgba(72, 202, 228, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(193, 18, 31, 0.05) 1px, transparent 1px);
+    background-size: 80px 80px; 
+    background-position: center top;
+    z-index: -1;
+    transform: perspective(800px) rotateX(75deg) translateZ(0);
+    transform-origin: center center;
+    mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 65%);
+    -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 65%);
+    will-change: transform;
+    animation: gridWarp 5s linear infinite;
+    pointer-events: none;
+    opacity: 0.7; /* Softened elegance */
+}
+
+@keyframes gridWarp {
+    0% { transform: perspective(800px) rotateX(75deg) translateY(0px) translateZ(0); }
+    100% { transform: perspective(800px) rotateX(75deg) translateY(80px) translateZ(0); }
+}
+
+/* ==========================================
+   ELEGANT BACKGROUND LATEX FORMULAS
+   ========================================== */
+.katex {
+    color: rgba(255, 255, 255, 0.4) !important; /* Soft, background transparency */
+    text-shadow: none !important;
+    font-weight: 300 !important;
+}
+
+.katex-display {
+    background: transparent !important; /* VAPORIZED BOXES */
+    padding: 1rem 0 !important;
+    border: none !important; /* VAPORIZED LINES */
+    box-shadow: none !important; /* VAPORIZED SHADOWS */
+    margin: 1.5rem 0 !important;
+}
+
+/* ==========================================
+   HARDWARE-ACCELERATED SCROLLBAR
+   ========================================== */
+::-webkit-scrollbar {
+    width: 8px;
+    background: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(193, 18, 31, 0.3);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(72, 202, 228, 0.5);
+}
+::selection {
+    background: rgba(72, 202, 228, 0.2) !important;
+    color: #ffffff !important;
+    text-shadow: none !important;
+}
+::-moz-selection {
+    background: rgba(72, 202, 228, 0.2) !important;
+    color: #ffffff !important;
+    text-shadow: none !important;
+}
+
+/* ==========================================
+   PERFECT SYMMETRY COMMAND VISOR (NAVBAR)
+   ========================================== */
+#quarto-header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: var(--visor-height) !important;
+    background: rgba(2, 4, 10, 0.6) !important; /* Ultra sheer */
+    backdrop-filter: blur(20px) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    z-index: 999999 !important; 
+}
+
+.navbar {
+    background: transparent !important;
+    padding: 0.6rem 4rem !important; 
+    position: relative;
+    overflow: visible !important; 
+}
+
+.navbar-collapse {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    align-items: center !important;
+}
+
+ul.navbar-nav {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+}
+
+ul.navbar-nav.navbar-right,
+.navbar-nav:not(.navbar-nav-scroll) {
+    margin-left: auto !important; 
+    justify-content: flex-end !important;
+}
+
+.navbar-brand-container {
+    display: flex !important;
+    align-items: center !important;
+    margin-right: auto !important; 
+}
+
+/* ELEGANT SCANNER LINE */
+.navbar::after {
+    content: ''; 
+    position: absolute; 
+    bottom: -1px; 
+    left: -100%;
+    width: 25%; 
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: apexScanner 5s cubic-bezier(0.6, 0, 0.4, 1) infinite;
+    z-index: 10;
+}
+
+@keyframes apexScanner { 
+    0% { left: -100%; opacity: 0; } 
+    50% { opacity: 1; } 
+    100% { left: 200%; opacity: 0; } 
+}
+
+/* NAVBAR BRAND TYPOGRAPHY: LUXURY SERIF */
+.navbar-brand {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-weight: 600 !important;
+    font-size: 1.4rem !important; 
+    color: #ffffff !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.25em !important;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.1) !important;
+    position: relative;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    transition: all 0.4s ease !important;
+}
+
+.navbar-brand:hover {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5) !important;
+}
+
+.nav-link {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 0.75rem !important;
+    font-weight: 300 !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.25em !important;
+    padding: 0.8rem 1.5rem !important;
+    margin: 0 0.5rem !important;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    position: relative;
+    z-index: 1;
+}
+
+.nav-link::before {
+    content: ''; 
+    position: absolute; 
+    bottom: 0px; 
+    left: 50%; 
+    transform: translateX(-50%);
+    width: 0%; 
+    height: 1px;
+    background: #ffffff;
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: -1;
+}
+
+.nav-link:hover::before, 
+.nav-link.active::before {
+    width: 40%;
+}
+
+.nav-link:hover, 
+.nav-link.active {
+    color: #ffffff !important;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3) !important;
+}
+
+.navbar-nav .bi,
+#quarto-search-trigger {
+    color: rgba(255, 255, 255, 0.5) !important;
+    transition: all 0.4s ease;
+    font-size: 1.1rem;
+    margin-left: 1.5rem !important; 
+    padding: 0 !important; 
+    display: flex;
+    align-items: center;
+}
+
+#quarto-search-trigger {
+    margin-right: 1.5rem !important; 
+}
+
+.navbar-nav .bi:hover,
+#quarto-search-trigger:hover {
+    color: #ffffff !important;
+    transform: scale(1.1);
+}
+
+/* ==========================================
+   STOCHASTIC LEVITATION PHYSICS (DEEP RAIN)
+   ========================================== */
+.quant-rain-container {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh;
+    z-index: 0; /* CRITICAL: Stays permanently behind the UI */
+    pointer-events: none; 
+    overflow: hidden;
+}
+
+.quant-drop {
+    position: absolute; 
+    font-family: 'KaTeX_Main', 'Times New Roman', serif;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    will-change: transform, opacity;
+    animation: dataRain linear forwards;
+}
+
+@keyframes dataRain {
+    0% { transform: translateY(-10vh) translateX(0vw) rotate(0deg); opacity: 0; }
+    25% { opacity: 0.8; } /* Visible but pushed to z-index 0 */
+    75% { opacity: 0.8; } 
+    100% { transform: translateY(110vh) translateX(var(--drift)) rotate(5deg); opacity: 0; }
+}
+
+/* ==========================================
+   ABSOLUTE ELEGANCE HERO OVERRIDES
+   ========================================== */
+.hero-container {
+    max-width: 900px; 
+    margin: 14rem auto 2rem; 
+    position: relative; 
+    padding: 4rem 2rem; 
+    border-radius: 8px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center; 
+    overflow: visible; 
+    z-index: 10;
+}
+
+.name-wrapper {
+    position: relative;
+    display: inline-block;
+    padding: 0 30px; 
+    z-index: 10;
+}
+
+/* THE LUXURY SIGNATURE */
+.quant-hero-name {
+    font-family: 'Cormorant Garamond', serif; 
+    font-size: clamp(2.5rem, 4.5vw, 4.2rem); 
+    white-space: nowrap; 
+    font-weight: 500;
+    text-transform: uppercase !important; 
+    background: linear-gradient(120deg, #ffffff 0%, #cbd5e1 40%, #ffffff 60%, #94a3b8 100%);
+    background-size: 200% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    will-change: background-position;
+    animation: luxurySweep 8s ease-in-out infinite alternate;
+    letter-spacing: 0.2em; 
+    margin-bottom: 1rem;
+    text-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
+    line-height: 1.2; 
+    position: relative; 
+    display: inline-block;
+}
+
+@keyframes luxurySweep {
+    0% { background-position: 0% center; }
+    100% { background-position: 100% center; }
+}
+
+.name-laser {
+    position: absolute; 
+    top: 10%; 
+    left: -5%;
+    width: 1px; 
+    height: 80%;
+    background: rgba(255, 255, 255, 0.4);
+    z-index: 11; 
+    pointer-events: none;
+    will-change: transform, opacity;
+    animation: breathLaser 4s ease-in-out infinite alternate;
+}
+
+@keyframes breathLaser {
+    0% { transform: scaleY(0.8); opacity: 0.1; }
+    100% { transform: scaleY(1.1); opacity: 0.6; }
+}
+
+.quant-hero-subtitle {
+    font-family: 'Montserrat', sans-serif; 
+    font-size: clamp(0.75rem, 1.2vw, 0.95rem);
+    font-weight: 300; 
+    text-transform: uppercase; 
+    letter-spacing: 0.4em;
+    margin: 1.5rem 0 3rem; 
+    color: rgba(255, 255, 255, 0.6);
+    display: inline-block; 
+    z-index: 10;
+    position: relative;
+}
+
+.quant-hero-subtitle::after {
+    content: ''; 
+    position: absolute; 
+    bottom: -15px; 
+    left: 50%; 
+    transform: translateX(-50%);
+    width: 30px; 
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.quant-hero-desc {
+    font-family: 'Montserrat', sans-serif; 
+    font-size: clamp(1rem, 1.3vw, 1.15rem); 
+    color: #94a3b8; 
+    line-height: 2.2;
+    max-width: 750px; 
+    margin: 0 auto; 
+    font-weight: 200; 
+    position: relative; 
+    z-index: 10; 
+    text-align: center;
+}
+
+/* ==========================================
+   TELEMETRY PANEL - ELEGANT SINGLE LINE MATRIX
+   ========================================== */
+.telemetry-panel {
+    margin: 6rem auto 4rem auto; /* MASSIVE TOP CLEARANCE FOR ELEGANCE */
+    border-top: 1px solid rgba(255, 255, 255, 0.05); 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+    padding: 1.5rem 2rem; 
+    display: flex; 
+    flex-direction: row; 
+    flex-wrap: wrap; 
+    justify-content: space-evenly; /* PERFECT CENTERING AND SPACING */
+    align-items: center;
+    background: transparent; /* VAPORIZED HEAVY BACKGROUND */
+    position: relative; 
+    overflow: hidden; 
+    width: 95%; 
+    max-width: 1100px;
+    box-sizing: border-box; 
+    z-index: 10;
+}
+
+.telemetry-item {
+    display: flex;
+    align-items: center;
+    text-transform: uppercase; 
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 0.7rem; /* ULTRA SMALL ELEGANT LETTERS */
+    font-weight: 300;
+    letter-spacing: 0.3em; 
+    white-space: nowrap;
+    padding: 0.5rem 1rem;
+}
+
+.optical-pulse {
+    display: inline-block; 
+    width: 4px; 
+    height: 4px; 
+    background-color: var(--quant-cyan);
+    border-radius: 50%; 
+    margin-right: 12px; 
+    box-shadow: 0 0 8px var(--quant-cyan);
+    will-change: opacity;
+    animation: softPulse 3s infinite alternate ease-in-out; 
+}
+
+@keyframes softPulse {
+    0% { opacity: 0.2; }
+    100% { opacity: 0.8; }
+}
+
+.tel-label {
+    color: rgba(255, 255, 255, 0.4); 
+    margin-right: 10px;
+}
+
+.tel-value {
+    color: #ffffff; 
+    font-weight: 500; 
+}
+
+/* ==========================================
+   FLUID-STATE GLASSMORPHISM CARDS MATRIX
+   ========================================== */
+.grid-container { 
+    margin-top: 3rem; 
+    gap: 3.5rem; 
+    position: relative; 
+    z-index: 10; 
+    align-items: stretch; 
+}
+
+.card-quant {
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+    background: rgba(10, 12, 18, 0.3); /* Ultra sheer */
+    border: 1px solid rgba(255, 255, 255, 0.03); 
+    border-top: 1px solid rgba(255, 255, 255, 0.1); 
+    border-radius: 4px; 
+    padding: 4rem 3rem;
+    backdrop-filter: blur(25px); 
+    -webkit-backdrop-filter: blur(25px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative; 
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.card-quant::after {
+    content: ''; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0;
+    background: radial-gradient(circle 400px at var(--mouse-x) var(--mouse-y), rgba(72, 202, 228, 0.05), transparent 80%);
+    z-index: -1; 
+    pointer-events: none;
+    transition: background 0.3s ease;
+}
+
+.card-sweep {
+    position: absolute; 
+    top: 0; 
+    left: -100%; 
+    width: 100%; 
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    will-change: left;
+    animation: cardScan 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite; 
+    z-index: 10;
+}
+
+.card-quant:nth-child(1) .card-sweep { animation-delay: 0s; }
+.card-quant:nth-child(2) .card-sweep { animation-delay: 1.2s; }
+.card-quant:nth-child(3) .card-sweep { animation-delay: 2.4s; }
+
+@keyframes cardScan { 
+    0% { left: -100%; } 
+    100% { left: 100%; } 
+}
+
+.card-quant:hover { 
+    transform: translateY(-10px); 
+    border-color: rgba(255, 255, 255, 0.15); 
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(72, 202, 228, 0.03); 
+}
+
+.card-quant:hover::after {
+    background: radial-gradient(circle 400px at var(--mouse-x) var(--mouse-y), rgba(72, 202, 228, 0.08), transparent 80%);
+}
+
+.card-quant h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; 
+    font-weight: 500;
+    color: #ffffff; 
+    letter-spacing: 0.08em;
+    margin-bottom: 1.5rem;
+}
+
+.card-quant p { 
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem; 
+    color: rgba(255, 255, 255, 0.6); 
+    line-height: 1.9; 
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+}
+
+/* ==========================================
+   HYPER-ELEGANT EXECUTION NODES (BUTTONS)
+   ========================================== */
+.btn-quant-wrapper {
+    margin-top: auto; 
+    display: flex; 
+    justify-content: flex-start; 
+    width: 100%; 
+    z-index: 10;
+}
+
+.btn-quant {
+    display: inline-flex; 
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15); 
+    color: rgba(255, 255, 255, 0.8) !important; 
+    letter-spacing: 0.25em;
+    font-size: 0.7rem; 
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    position: relative; 
+    overflow: hidden; 
+    padding: 1rem 2.2rem; 
+    border-radius: 40px; 
+    z-index: 1;
+    transition: all 0.4s ease;
+    text-decoration: none;
+}
+
+.btn-quant::after {
+    content: ''; 
+    position: absolute; 
+    top: 0; 
+    left: -100%; 
+    width: 100%; 
+    height: 100%;
+    background: #ffffff;
+    transition: all 0.4s ease; 
+    z-index: -1;
+}
+
+.btn-quant:hover::after { 
+    left: 0; 
+}
+
+.btn-quant:hover {
+    color: #010204 !important; 
+    border-color: #ffffff;
+}
+
+/* ==========================================
+   MATHEMATICAL AXIOM DEFINITIONS
+   ========================================== */
+.definition {
+    background: rgba(10, 12, 18, 0.2); 
+    padding: 3rem; 
+    border-radius: 4px; 
+    font-family: 'Montserrat', sans-serif;
+    color: rgba(255, 255, 255, 0.7) !important; 
+    font-size: 1rem; 
+    font-weight: 300;
+    line-height: 1.9; 
+    margin-top: 3rem; 
+    border-left: 1px solid rgba(255, 255, 255, 0.15); 
+    position: relative; 
+    transition: all 0.5s ease;
+}
+
+.definition:hover {
+    background: rgba(15, 18, 25, 0.4); 
+    border-left-color: rgba(255, 255, 255, 0.4);
+}
+
+.def-title {
+    color: #ffffff !important; 
+    font-weight: 400; 
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 0.8rem;
+    display: inline-block; 
+    margin-bottom: 2rem; 
+    text-transform: uppercase; 
+    letter-spacing: 0.3em;
+    border-bottom: 1px solid rgba(255,255,255,0.1); 
+    padding-bottom: 8px; 
+}
+
+/* ==========================================
+   DIAGRAM BLOCK ARCHITECTURE
+   ========================================== */
+.diagram-block {
+    margin: 4rem 0; 
+    border: 1px solid rgba(255, 255, 255, 0.05); 
+    background: rgba(10, 12, 18, 0.2);
+    padding: 4rem 2rem 2rem; 
+    border-radius: 4px;
+    text-align: center; 
+    position: relative; 
+    overflow: hidden;
+}
+
+.diagram-block::before {
+    content: '◈ PROCEDURAL MANIFOLD'; 
+    position: absolute; 
+    top: 15px; 
+    left: 20px;
+    color: rgba(255, 255, 255, 0.3); 
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 0.65rem; 
+    font-weight: 300;
+    letter-spacing: 0.25em; 
+    z-index: 2;
+}
+
+.ambient-float { 
+    will-change: transform, filter; 
+    animation: svgHover 8s ease-in-out infinite alternate; 
+}
+
+@keyframes svgHover {
+    0% { transform: translateY(-5px); filter: drop-shadow(0 10px 20px rgba(72,202,228,0.02)); }
+    100% { transform: translateY(5px); filter: drop-shadow(0 20px 30px rgba(72,202,228,0.08)); }
+}
+
+.svg-pulse { 
+    will-change: opacity, filter; 
+    animation: svgPulse 4s infinite alternate; 
+}
+
+@keyframes svgPulse {
+    0% { opacity: 0.4; }
+    100% { opacity: 0.9; }
+}
+
+.svg-dash { 
+    stroke-dasharray: 2000; 
+    stroke-dashoffset: 2000; 
+    animation: drawPath 8s ease-in-out infinite alternate; 
+}
+
+@keyframes drawPath { to { stroke-dashoffset: 0; } }
+
+/* ==========================================
+   STACK MATRIX (BOTTOM ANCHOR) 
+   ========================================== */
+.stack-matrix {
+    margin: 0 auto 8rem; 
+    background: transparent; 
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 6rem 2rem; 
+    position: relative; 
+    z-index: 10;
+}
+
+.stack-matrix h3 {
+    text-align: center; 
+    font-size: 2rem; 
+    margin-bottom: 6rem;
+    color: #ffffff !important;
+    letter-spacing: 0.15em; 
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+}
+
+.stack-matrix h4 {
+    color: #ffffff !important;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+}
+
+.stack-matrix p {
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-size: 0.95rem;
+    line-height: 1.9;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+}
+
+/* ==========================================
+   SPONSOR PANEL OVERRIDE
+   ========================================== */
+.usd-sponsor-panel {
+    display: none !important; 
+}
+</style>
+<div class="quant-rain-container">
+
+</div>
 <div class="crt-noise">
 
 </div>
@@ -1369,53 +1752,44 @@ window.addEventListener('DOMContentLoaded', () => {
 <div class="grid-topology-bg">
 
 </div>
-<div class="quant-rain-container">
-
-</div>
 <div class="hero-container">
-<div class="name-wrapper">
-<div class="name-laser">
+    <div class="name-wrapper">
+        <div class="name-laser"></div>
+        <div class="quant-hero-name">Gorazd Atanasovski</div>
+    </div>
+    <div class="quant-hero-subtitle">Axiomatic Research &amp; State-Space Execution</div>
+    <div class="quant-hero-desc">
+        Synthesis of continuous-time filtration manifolds. Engineering absolute market dominance through rigorous measure-theoretic isomorphisms and high-dimensional state-space dynamics.
+    </div>
+</div>
 
-</div>
-<div class="quant-hero-name">
-Gorazd Atanasovski
-</div>
-</div>
-<div class="quant-hero-subtitle">
-Axiomatic Research &amp; Stochastic State-Space Execution
-</div>
-<div class="quant-hero-desc">
-<p>This centralized manifold aggregates formal theoretical derivations, bridged directly into an isomorphic execution mapping. Theoretical frameworks are engineered not for physical hardware, but as rigorous solutions to continuous-time state-space filtrations.</p>
-</div>
-</div>
 <div class="telemetry-panel">
-<p><span><span class="optical-pulse"></span><span style="color: #64748b; margin-right: 10px;">SYSTEM TOPOLOGY</span><span style="color: #FF0000; font-weight: 800; text-shadow: 0 0 20px rgba(255,0,0,0.8);">ISOMORPHIC</span></span> <span><span class="optical-pulse"></span><span style="color: #64748b; margin-right: 10px;">MEASURE</span><span style="color: #FF0000; font-weight: 800; text-shadow: 0 0 20px rgba(255,0,0,0.8);">LEBESGUE-STIELTJES</span></span> <span><span class="optical-pulse"></span><span style="color: #64748b; margin-right: 10px;">FILTRATION</span><span style="color: #FF0000; font-weight: 800; text-shadow: 0 0 20px rgba(255,0,0,0.8);">ADAPTED</span></span></p>
+    <div class="telemetry-item"><span class="optical-pulse"></span><span class="tel-label">SYSTEM TOPOLOGY</span><span class="tel-value">ISOMORPHIC</span></div>
+    <div class="telemetry-item"><span class="optical-pulse"></span><span class="tel-label">ALGO TRADING SOCIETY</span><span class="tel-value">FOUNDER &amp; LEAD</span></div>
+    <div class="telemetry-item"><span class="optical-pulse"></span><span class="tel-label">DATA TERMINAL</span><span class="tel-value">BLOOMBERG INTEGRATED</span></div>
 </div>
 <div class="grid-container">
-<div class="card-quant">
-<div class="card-sweep"></div>
-<section id="theoretical-research" class="level3">
+<section id="theoretical-research" class="level3 card-quant">
 <h3 data-anchor-id="theoretical-research">Theoretical Research</h3>
 <p>Rigorous formalization of microstructural point processes, continuous-time martingale representations, and advanced measure theory. Heuristic approximations are systematically eradicated in favor of exact analytical bounds and fractional stochastic derivations.</p>
-<p><br> <a href="./research.html" class="btn-quant">Initialize Research</a></p>
-</section>
+<div class="btn-quant-wrapper">
+    <a href="./research.html" class="btn-quant">Initialize Research</a>
 </div>
-<div class="card-quant">
-<div class="card-sweep"></div>
-<section id="analytical-manifold" class="level3">
+</section>
+<section id="analytical-manifold" class="level3 card-quant">
 <h3 data-anchor-id="analytical-manifold">Analytical Manifold</h3>
 <p>High-dimensional filtration environments abandoning standard algorithmic design. Featuring GORAZD: defined not as empirical machine learning descent, but as the exact analytical evaluation of infinite-dimensional Fréchet derivatives within a Sobolev space.</p>
-<p><br> <a href="./code.html" class="btn-quant">Deploy Infrastructure</a></p>
-</section>
+<div class="btn-quant-wrapper">
+    <a href="./code.html" class="btn-quant">Deploy Infrastructure</a>
 </div>
-<div class="card-quant">
-<div class="card-sweep"></div>
-<section id="measure-theoretic-isomorphisms" class="level3">
+</section>
+<section id="measure-theoretic-isomorphisms" class="level3 card-quant">
 <h3 data-anchor-id="measure-theoretic-isomorphisms">Measure-Theoretic Isomorphisms</h3>
 <p>The operational nexus. We synthesize Radon-Nikodym derivatives, spectral filtrations of non-stationary stochastic processes, and rigorous optimal control deployments into asymmetric, probability-weighted execution mappings.</p>
-<p><br> <a href="#" class="btn-quant">Access Telemetry</a></p>
-</section>
+<div class="btn-quant-wrapper">
+    <a href="#" class="btn-quant">Access Telemetry</a>
 </div>
+</section>
 </div>
 <section id="core-competencies-theoretical-architecture" class="level3 stack-matrix">
 <h3 data-anchor-id="core-competencies-theoretical-architecture">Core Competencies &amp; Theoretical Architecture</h3>
@@ -1425,8 +1799,8 @@ Axiomatic Research &amp; Stochastic State-Space Execution
 <p>Formulation of exact analytical boundaries for martingale pricing within non-Markovian environments. Derivation of fractional stochastic processes, eradicating the need for heuristic smoothing.</p>
 <div class="diagram-block">
 <svg class="svg-pulse ambient-float" viewbox="0 0 500 150" style="width:100%; height:150px; display:block;">
-    <polyline class="svg-dash" fill="none" stroke="#00ffff" stroke-width="2.5" points="0,75 25,45 50,85 75,35 100,95 125,55 150,110 175,60 200,85 225,40 250,100 275,65 300,90 325,45 350,115 375,50 400,95 425,60 450,105 475,70 500,80"></polyline>
-    <polyline fill="none" stroke="#FF0000" stroke-width="2" opacity="0.8" points="0,85 25,55 50,95 75,45 100,105 125,65 150,120 175,70 200,95 225,50 250,110 275,75 300,100 325,55 350,125 375,60 400,105 425,70 450,115 475,80 500,90"></polyline>
+    <polyline class="svg-dash" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1" points="0,75 25,45 50,85 75,35 100,95 125,55 150,110 175,60 200,85 225,40 250,100 275,65 300,90 325,45 350,115 375,50 400,95 425,60 450,105 475,70 500,80"></polyline>
+    <polyline fill="none" stroke="#48cae4" stroke-width="1.5" opacity="0.6" points="0,85 25,55 50,95 75,45 100,105 125,65 150,120 175,70 200,95 225,50 250,110 275,75 300,100 325,55 350,125 375,60 400,105 425,70 450,115 475,80 500,90"></polyline>
 </svg>
 </div>
 <div class="definition">
@@ -1457,10 +1831,10 @@ H \in \left(0, \frac{1}{2}\right)
 <p>Rejecting standard data engineering workflows for pure measure-theoretic data filtration. Construction of high-dimensional statistical architectures utilizing Banach and Hilbert space embeddings.</p>
 <div class="diagram-block">
 <svg class="svg-pulse ambient-float" viewbox="0 0 500 150" style="width:100%; height:150px; display:block;">
-    <ellipse class="svg-dash" cx="250" cy="75" rx="180" ry="45" fill="none" stroke="#FF0000" stroke-width="3" stroke-dasharray="10 5"></ellipse>
-    <ellipse cx="250" cy="75" rx="45" ry="140" fill="none" stroke="#00ffff" stroke-width="2.5" transform="rotate(35 250 75)" opacity="0.9"></ellipse>
-    <ellipse cx="250" cy="75" rx="45" ry="140" fill="none" stroke="#00ffff" stroke-width="2.5" transform="rotate(-35 250 75)" opacity="0.9"></ellipse>
-    <circle cx="250" cy="75" r="6" fill="#ffffff" style="filter: drop-shadow(0 0 15px #ffffff);"></circle>
+    <ellipse class="svg-dash" cx="250" cy="75" rx="180" ry="45" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="10 5"></ellipse>
+    <ellipse cx="250" cy="75" rx="45" ry="140" fill="none" stroke="#48cae4" stroke-width="1" transform="rotate(35 250 75)" opacity="0.5"></ellipse>
+    <ellipse cx="250" cy="75" rx="45" ry="140" fill="none" stroke="#48cae4" stroke-width="1" transform="rotate(-35 250 75)" opacity="0.5"></ellipse>
+    <circle cx="250" cy="75" r="3" fill="#ffffff" style="filter: drop-shadow(0 0 5px #ffffff);"></circle>
 </svg>
 </div>
 <div class="definition">
@@ -1473,10 +1847,10 @@ H \in \left(0, \frac{1}{2}\right)
 <p>Eliminating reliance on standard broker routing. Modeling optimal order execution dynamics via marked point processes and Hawkes process formulations.</p>
 <div class="diagram-block">
 <svg class="ambient-float" viewbox="0 0 500 150" style="width:100%; height:150px; display:block;">
-    <line x1="250" y1="10" x2="250" y2="140" stroke="#ffffff" stroke-width="1.5" opacity="0.4" stroke-dasharray="4 4"></line>
-    <line x1="10" y1="75" x2="490" y2="75" stroke="#ffffff" stroke-width="1.5" opacity="0.4" stroke-dasharray="4 4"></line>
-    <path class="svg-dash" d="M10,130 Q125,10 250,75 T490,20" fill="none" stroke="#00ffff" stroke-width="4" style="filter: drop-shadow(0 0 12px #00ffff);"></path>
-    <path class="svg-dash" d="M10,140 Q125,25 250,90 T490,35" fill="none" stroke="#FF0000" stroke-width="3" style="filter: drop-shadow(0 0 10px #FF0000);" opacity="0.85"></path>
+    <line x1="250" y1="10" x2="250" y2="140" stroke="#ffffff" stroke-width="1" opacity="0.15" stroke-dasharray="4 4"></line>
+    <line x1="10" y1="75" x2="490" y2="75" stroke="#ffffff" stroke-width="1" opacity="0.15" stroke-dasharray="4 4"></line>
+    <path class="svg-dash" d="M10,130 Q125,10 250,75 T490,20" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"></path>
+    <path class="svg-dash" d="M10,140 Q125,25 250,90 T490,35" fill="none" stroke="#48cae4" stroke-width="1" opacity="0.6"></path>
 </svg>
 </div>
 <div class="definition">

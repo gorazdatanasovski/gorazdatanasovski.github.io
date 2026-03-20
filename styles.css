@@ -1,19 +1,32 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Inter:wght@200;300;400;500&family=JetBrains+Mono:wght@200;300;400;700&display=swap');
 
 /* ==========================================
    GLOBAL CORE VARIABLES & BASE VOID
    ========================================== */
+::selection {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5) !important;
+}
+::-moz-selection {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5) !important;
+}
+
 :root {
-    --bg-base: #010204;
-    --quant-red: #FF0000;
-    --quant-cyan: #00ffff;
+    --bg-base: #020203;
+    --quant-crimson: #8A0303;
+    --quant-pearl: #f8fafc;
+    --quant-slate: #64748b;
+    --spatial-x: 2.5rem; /* The Universal Structural Constant */
 }
 
 html, body, .quarto-container, #quarto-content, main {
     background-color: transparent !important;
-    color: #f3f4f6;
-    font-family: 'Rajdhani', sans-serif;
-    font-weight: 500;
+    color: var(--quant-pearl);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
     overflow-x: hidden !important;
     width: 100%;
     margin: 0;
@@ -24,236 +37,358 @@ html {
     background-color: var(--bg-base) !important;
 }
 
-/* Global Optical Overlay - CRT Scanline Simulation */
+/* Elegant, Ultra-Subtle Atmospheric Grain */
 body::after {
     content: ""; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%);
-    background-size: 100% 4px; z-index: 9998; pointer-events: none; opacity: 0.35;
+    background: linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.15) 50%);
+    background-size: 100% 4px; z-index: 9998; pointer-events: none; opacity: 0.25;
 }
 
-/* Custom Bare-Metal Hardware Scrollbar */
+/* High-End Minimalist Scrollbar */
 ::-webkit-scrollbar {
-    width: 12px;
+    width: 4px;
     background: var(--bg-base);
-    border-left: 1px solid rgba(0, 229, 255, 0.1);
 }
 ::-webkit-scrollbar-thumb {
-    background: rgba(255, 0, 0, 0.5);
-    border-radius: 2px;
-    border: 1px solid var(--bg-base);
-    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--quant-cyan);
-    box-shadow: inset 0 0 10px rgba(0, 229, 255, 0.8);
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
 }
 
 /* ==========================================
-   APEX COMMAND VISOR (EDGE-TO-EDGE HUD)
+   APEX COMMAND VISOR - THE MONA LISA MATRIX
    ========================================== */
-#quarto-header {
+body #quarto-header {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     width: 100vw !important;
-    background: rgba(2, 4, 10, 0.92) !important;
-    backdrop-filter: blur(25px) saturate(200%) !important;
-    -webkit-backdrop-filter: blur(25px) saturate(200%) !important;
-    border-bottom: 1px solid rgba(255, 0, 0, 0.4) !important;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.95), 0 0 20px rgba(255, 0, 0, 0.15) !important;
-    z-index: 999999 !important; /* ABSOLUTE TOPOLOGICAL SUPREMACY */
+    /* Pure, virtually invisible liquid frost */
+    background: rgba(2, 2, 3, 0.2) !important;
+    backdrop-filter: blur(60px) saturate(100%) !important;
+    -webkit-backdrop-filter: blur(60px) saturate(100%) !important;
+    /* Microscopic crystalline boundary */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03) !important;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6) !important;
+    z-index: 999999 !important;
 }
 
-.navbar {
+/* ANNIHILATE QUARTO'S INNER CONTAINER RESTRAINTS */
+body #quarto-header .navbar > .container-fluid, 
+body #quarto-header .navbar > .navbar-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    max-width: none !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+body #quarto-header .navbar {
     background: transparent !important;
-    padding: 1.2rem 4rem !important;
-    position: relative;
+    padding: 1.5rem 4rem !important; 
+    position: relative !important;
     overflow: visible !important; 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
 }
 
-/* HYPER-VELOCITY PLASMA SCANNER (GLOBAL SWEEP) */
-.navbar::after {
-    content: ''; position: absolute; bottom: -1px; left: -100%;
-    width: 30%; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--quant-cyan), var(--quant-red), var(--quant-cyan), transparent);
-    box-shadow: 0 0 20px var(--quant-cyan), 0 0 40px var(--quant-red);
-    animation: apexScanner 3.5s cubic-bezier(0.8, 0, 0.2, 1) infinite;
-    z-index: 10;
-}
-@keyframes apexScanner { 
-    0% { left: -100%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { left: 200%; opacity: 0; } 
+/* 1. ABSOLUTE LEFT SHIFT FOR BRAND */
+body #quarto-header .navbar-brand-container {
+    display: flex !important;
+    align-items: center !important;
+    margin-right: auto !important; 
+    margin-left: -4rem !important; /* Pushed left to perfectly center the tabs */
 }
 
-.navbar-brand {
-    font-family: 'Orbitron', sans-serif !important;
-    font-weight: 900 !important;
-    font-size: 1.8rem !important;
-    color: #ffffff !important;
+/* 2. ABSOLUTE RIGHT SHIFT FOR NAV LINKS */
+body #quarto-header #navbarCollapse, 
+body #quarto-header .navbar-collapse {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-end !important;
+    width: 100% !important;
+    align-items: center !important;
+}
+
+/* Universal Spatial Constant X Applied to Flex Gap */
+body #quarto-header ul.navbar-nav {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-left: auto !important;
+    justify-content: flex-end !important;
+    gap: var(--spatial-x) !important; 
+}
+
+/* Eradicate internal list formatting */
+body #quarto-header .nav-item {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* THE AESTHETIC MASTERPIECE: INSTITUTIONAL BRAND NODE */
+body #quarto-header .navbar-brand {
+    font-family: 'Cinzel', serif !important;
+    font-weight: 600 !important;
+    font-size: 1.45rem !important;
+    color: var(--quant-pearl) !important;
     text-transform: uppercase !important;
-    letter-spacing: 0.25em !important;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3) !important;
+    letter-spacing: 0.15em !important;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1) !important;
     position: relative;
     white-space: nowrap !important;
     flex-shrink: 0 !important;
-    transition: all 0.3s ease !important;
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.navbar-brand:hover {
-    text-shadow: 0 0 20px var(--quant-red), 0 0 40px var(--quant-cyan) !important;
+body #quarto-header .navbar-brand:hover {
+    letter-spacing: 0.22em !important;
+    text-shadow: 0 0 35px rgba(255, 255, 255, 0.5) !important;
 }
 
-/* Persistent Glowing Baseline for Brand */
-.navbar-brand::after {
-    content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--quant-red), var(--quant-cyan));
-}
-
-.nav-link {
-    font-family: 'Orbitron', sans-serif !important;
-    font-size: 0.85rem !important;
-    font-weight: 700 !important;
-    color: rgba(148, 163, 184, 0.6) !important;
+/* DOPAMINE-SPIKE NAV LINKS - LIVING ELEGANCE */
+body #quarto-header .nav-link {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.75rem !important;
+    font-weight: 300 !important;
+    color: rgba(248, 250, 252, 0.4) !important;
     text-transform: uppercase !important;
     letter-spacing: 0.3em !important;
-    padding: 0.8rem 1.5rem !important;
-    margin: 0 0.2rem !important;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) !important; /* Elastic snap */
     position: relative;
     z-index: 1;
 }
 
-/* EXACT HITBOX TARGET LOCK - NO SKEW OVERLAP */
-.nav-link::before {
-    content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-    width: 0%; height: 2px;
-    background: var(--quant-red);
-    box-shadow: 0 0 15px var(--quant-red), 0 0 25px var(--quant-cyan);
-    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: -1;
+/* Dynamic Soul Breath / Hover Line */
+body #quarto-header .nav-link::after {
+    content: ''; 
+    position: absolute; 
+    bottom: -6px; 
+    left: 50%; 
+    transform: translateX(-50%);
+    width: 0%; 
+    height: 1px;
+    background: #ffffff;
+    box-shadow: 0 0 10px #00e5ff, 0 0 20px #00e5ff;
+    transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease;
+    opacity: 0;
+    border-radius: 50%;
 }
 
-.nav-link:hover::before, .nav-link.active::before {
+body #quarto-header .nav-link:hover::after {
     width: 100%;
+    opacity: 1;
+    border-radius: 0;
 }
 
-.nav-link:hover, .nav-link.active {
-    color: #ffffff !important;
-    background: rgba(0, 229, 255, 0.05) !important;
-    text-shadow: 0 0 10px var(--quant-cyan), 0 0 20px var(--quant-cyan) !important;
-    transform: translateY(-2px);
+/* Continuous breathing state for the active tab */
+body #quarto-header .nav-link.active::after {
+    width: 100%;
+    opacity: 1;
+    animation: activeTabPulse 3s infinite alternate ease-in-out;
 }
 
-/* Icons in Navbar */
-.navbar-nav .bi {
-    color: rgba(148, 163, 184, 0.6) !important;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    font-size: 1.3rem;
-    margin-left: 0.8rem;
+@keyframes activeTabPulse {
+    0% { opacity: 0.7; box-shadow: 0 0 10px #00e5ff; height: 1px; }
+    100% { opacity: 1; box-shadow: 0 0 15px #ffffff, 0 0 25px #00e5ff; height: 2px; }
 }
-.navbar-nav .bi:hover {
+
+/* Zoom-in and Luminous Bloom on Hover/Active */
+body #quarto-header .nav-link:hover {
     color: #ffffff !important;
-    text-shadow: -2px 0 0 rgba(255, 0, 0, 0.9), 2px 0 0 rgba(0, 229, 255, 0.9) !important;
-    filter: drop-shadow(0 0 15px var(--quant-cyan));
-    transform: scale(1.15) translateY(-2px);
+    text-shadow: 0 0 25px rgba(255, 255, 255, 0.6) !important;
+    letter-spacing: 0.35em !important;
+    transform: translateY(-2px) scale(1.05) !important; /* The precise zoom effect */
+}
+
+body #quarto-header .nav-link.active {
+    color: #ffffff !important;
+    font-weight: 400 !important;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8) !important;
+    letter-spacing: 0.35em !important;
+    transform: scale(1.05) !important;
+}
+
+/* ==========================================
+   3. ISOMORPHIC SEARCH & SOCIAL CLUSTER
+   ========================================== */
+
+/* Strict Euclidean Equivalence */
+body #quarto-header #quarto-search {
+    margin: 0 0 0 var(--spatial-x) !important; /* Forces exact spatial constant X from the UL */
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+body #quarto-header #quarto-search-trigger {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: none !important;
+    background: transparent !important;
+}
+
+/* Unified Icon Topology */
+body #quarto-header .navbar-nav .bi,
+body #quarto-header #quarto-search-trigger .bi-search {
+    color: rgba(248, 250, 252, 0.4) !important;
+    font-size: 1.15rem !important; /* Mathematically identical sizing */
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transform-origin: center center !important;
+}
+
+/* Haunting, Liquid Bloom Interaction */
+body #quarto-header .navbar-nav .bi:hover,
+body #quarto-header #quarto-search-trigger:hover .bi-search {
+    color: #ffffff !important;
+    text-shadow: 0 0 25px rgba(255, 255, 255, 0.8) !important;
+    transform: scale(1.15) translateY(-2px) !important;
 }
 
 /* ==========================================
    INSTITUTIONAL AFFILIATION PANEL
    ========================================== */
 .usd-sponsor-panel {
-    position: fixed; bottom: 30px; right: 30px; width: 220px;
-    background: rgba(10, 10, 10, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-left: 3px solid var(--quant-red);
-    padding: 15px; border-radius: 4px; backdrop-filter: blur(10px); z-index: 100;
-    transition: all 0.3s ease; text-decoration: none; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    position: fixed; bottom: 40px; right: 40px; width: 240px;
+    background: rgba(5, 5, 8, 0.6); border: 1px solid rgba(255, 255, 255, 0.03); 
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 1.5rem; border-radius: 2px; backdrop-filter: blur(20px); z-index: 100;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); text-decoration: none; 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
 }
-.usd-sponsor-panel:hover { border-color: var(--quant-red); transform: translateX(-5px); background: rgba(20, 20, 20, 0.95); }
-.usd-text-main { color: #ffffff; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; margin: 0 0 5px 0; letter-spacing: 0.1em; font-family: 'Orbitron', sans-serif; }
-.usd-text-sub { color: #888; font-size: 0.75rem; text-transform: uppercase; margin: 0; font-family: 'Space Mono', monospace; }
+.usd-sponsor-panel:hover { 
+    border-left-color: var(--quant-pearl); transform: translateX(-5px); 
+    background: rgba(10, 10, 15, 0.8); 
+}
+.usd-text-main { 
+    color: #ffffff; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; 
+    margin: 0 0 0.5rem 0; letter-spacing: 0.15em; font-family: 'Cinzel', serif; 
+}
+.usd-text-sub { 
+    color: var(--quant-slate); font-size: 0.65rem; text-transform: uppercase; 
+    margin: 0; font-family: 'Inter', sans-serif; letter-spacing: 0.2em; font-weight: 400;
+}
 
 /* ==========================================
    HOME PAGE (INDEX.QMD) CORE MATRICES
    ========================================== */
 .hero-container { 
     text-align: center; 
-    max-width: 900px; 
-    margin: 12rem auto 3rem; 
+    max-width: 1000px; 
+    margin: 14rem auto 4rem; 
     position: relative; 
     z-index: 10; 
     pointer-events: none; 
 }
-.hero-container h1 { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 4.5rem; letter-spacing: 0.05em; background: linear-gradient(90deg, #ffffff, #94a3b8); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; margin-bottom: 0.5rem; }
-.hero-container h2 { font-family: 'Space Mono', monospace; color: var(--quant-red); font-size: 1.8rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; margin-top: 0; text-shadow: 0 0 20px rgba(255, 0, 0, 0.3); }
-.hero-container p { font-size: 1.35rem; color: #a1a1aa; line-height: 1.6; margin-top: 2rem; pointer-events: auto; }
+.hero-container h1 { 
+    font-family: 'Cinzel', serif; font-weight: 700; font-size: 5rem; 
+    letter-spacing: 0.05em; color: #ffffff; text-transform: uppercase; 
+    margin-bottom: 1.5rem; text-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 40px rgba(255,255,255,0.1); 
+}
+.hero-container h2 { 
+    font-family: 'Inter', sans-serif; color: var(--quant-slate); font-size: 1.2rem; 
+    font-weight: 300; letter-spacing: 0.3em; text-transform: uppercase; margin-top: 0; 
+}
+.hero-container p { 
+    font-family: 'Inter', sans-serif; font-size: 1.15rem; font-weight: 300; 
+    color: #94a3b8; line-height: 2; margin-top: 3rem; pointer-events: auto; 
+    max-width: 800px; margin-left: auto; margin-right: auto;
+}
 
 /* ==========================================
-   HOME PAGE: TELEMETRY & STACK (REFINED)
+   HOME PAGE: TELEMETRY & STACK
    ========================================== */
 .telemetry-panel {
-    max-width: 1000px; margin: 0 auto 5rem; padding: 1.5rem 0;
-    border-top: 1px solid rgba(255, 0, 0, 0.2); border-bottom: 1px solid rgba(255, 0, 0, 0.2);
-    font-family: 'Space Mono', monospace; font-size: 0.95rem; color: var(--quant-red); font-weight: 700;
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 3rem; letter-spacing: 0.15em;
+    max-width: 1100px; margin: 0 auto 6rem; padding: 2rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--quant-slate); font-weight: 400;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 4rem; letter-spacing: 0.2em;
     position: relative; z-index: 10; background: transparent;
 }
-.telemetry-node { color: #cbd5e1; font-weight: 700; margin-left: 0.5rem; }
+.telemetry-node { color: #ffffff; font-weight: 400; margin-left: 0.8rem; }
 
-.grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; max-width: 1200px; margin: 0 auto 6rem; position: relative; z-index: 10; pointer-events: auto;}
+.grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 3rem; max-width: 1300px; margin: 0 auto 8rem; position: relative; z-index: 10; pointer-events: auto;}
 
 .card-quant {
-    background: rgba(10, 10, 10, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 4px; padding: 3rem;
-    backdrop-filter: blur(15px); box-shadow: 0 10px 40px rgba(0,0,0,0.8); transition: transform 0.4s ease, border-color 0.4s ease;
+    background: rgba(5, 5, 8, 0.4); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 2px; padding: 4rem 3.5rem;
+    backdrop-filter: blur(30px); box-shadow: 0 20px 50px rgba(0,0,0,0.5); 
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.card-quant:hover { transform: translateY(-5px); border-color: var(--quant-red); box-shadow: 0 0 30px rgba(255, 0, 0, 0.2); }
-.card-quant h3 { font-family: 'Orbitron', sans-serif; font-size: 1.4rem; letter-spacing: 0.1em; font-weight: 700; color: #ffffff; text-transform: uppercase; margin-top: 0; }
-.card-quant p { color: #a1a1aa; line-height: 1.7; margin: 1.5rem 0 2rem; font-size: 1.15rem; }
+.card-quant:hover { 
+    transform: translateY(-10px); 
+    background: rgba(10, 10, 15, 0.6);
+    border-color: rgba(255, 255, 255, 0.1); 
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 255, 255, 0.05); 
+}
+.card-quant h3 { font-family: 'Cinzel', serif; font-size: 1.4rem; letter-spacing: 0.1em; font-weight: 600; color: #ffffff; text-transform: uppercase; margin-top: 0; }
+.card-quant p { font-family: 'Inter', sans-serif; font-weight: 300; color: #94a3b8; line-height: 1.9; margin: 2rem 0 3rem; font-size: 1rem; }
 
 .btn-quant {
-    display: inline-block; background: transparent; color: #fff !important; border: 1px solid var(--quant-red);
-    padding: 1rem 2rem; border-radius: 4px; font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.85rem; transition: 0.3s ease; font-family: 'Orbitron', sans-serif;
+    display: inline-block; background: transparent; color: #ffffff !important; border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1.2rem 2.5rem; border-radius: 2px; font-weight: 400; text-decoration: none; text-transform: uppercase; 
+    letter-spacing: 0.25em; font-size: 0.75rem; transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); font-family: 'Inter', sans-serif;
 }
-.btn-quant:hover { background: var(--quant-red); box-shadow: 0 0 20px rgba(255, 0, 0, 0.4); transform: scale(1.05); }
+.btn-quant:hover { background: #ffffff; color: #000000 !important; box-shadow: 0 0 30px rgba(255, 255, 255, 0.3); transform: scale(1.02); }
 
 /* ==========================================
    THEORETICAL CORE COMPETENCIES MATRIX
    ========================================== */
 .stack-matrix {
-    max-width: 1200px; margin: 0 auto 8rem; position: relative; z-index: 10;
-    background: rgba(5, 5, 5, 0.7); border-top: 2px solid var(--quant-red); padding: 4rem;
-    backdrop-filter: blur(15px); box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+    max-width: 1300px; margin: 0 auto 10rem; position: relative; z-index: 10;
+    background: rgba(4, 4, 6, 0.5); border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 6rem 5rem;
+    backdrop-filter: blur(40px); box-shadow: 0 30px 80px rgba(0,0,0,0.6); border-radius: 2px;
 }
 
 .stack-matrix h3 {
-    font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 700; color: #ffffff;
-    text-transform: uppercase; margin-top: 0; margin-bottom: 3rem; letter-spacing: 0.15em;
+    font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 600; color: #ffffff;
+    text-transform: uppercase; margin-top: 0; margin-bottom: 5rem; letter-spacing: 0.15em; text-align: center;
 }
 
 .stack-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 3.5rem 3rem;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 5rem 4rem;
 }
 
 .stack-item {
-    border-left: 2px solid rgba(255, 0, 0, 0.4); padding-left: 1.5rem; transition: all 0.3s ease;
+    border-left: 1px solid rgba(255, 255, 255, 0.1); padding-left: 2.5rem; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.stack-item:hover { border-left-color: var(--quant-red); }
+.stack-item:hover { border-left-color: rgba(255, 255, 255, 0.5); transform: translateX(5px); }
 
 .stack-item h4 {
-    color: var(--quant-red); font-family: 'Space Mono', monospace; font-size: 1.1rem; font-weight: 700;
-    margin: 0 0 1rem 0; text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.4;
+    color: #ffffff; font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 500;
+    margin: 0 0 1.5rem 0; text-transform: uppercase; letter-spacing: 0.2em; line-height: 1.6;
 }
 
-.stack-item p { color: #94a3b8; font-size: 1.1rem; line-height: 1.7; margin: 0 0 1rem 0; }
+.stack-item p { font-family: 'Inter', sans-serif; font-weight: 300; color: #64748b; font-size: 1rem; line-height: 1.9; margin: 0 0 2rem 0; }
 
 .stack-item .definition {
-    background: rgba(255, 0, 0, 0.05); padding: 1rem; border-radius: 2px;
-    font-family: 'Rajdhani', sans-serif; color: #cbd5e1; font-size: 1.05rem; font-weight: 600;
-    line-height: 1.6; margin-top: 1rem; border-left: 1px solid var(--quant-red);
+    background: rgba(255, 255, 255, 0.02); padding: 2rem; border-radius: 2px;
+    font-family: 'Inter', sans-serif; font-weight: 300; color: #94a3b8; font-size: 0.95rem;
+    line-height: 1.8; margin-top: 2rem; border-left: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .stack-item .def-title {
-    color: #ffffff; font-weight: 700; font-family: 'Space Mono', monospace;
-    font-size: 0.85rem; display: block; margin-bottom: 0.5rem;
+    color: #ffffff; font-weight: 500; font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; display: block; margin-bottom: 1rem; letter-spacing: 0.15em; text-transform: uppercase;
 }
