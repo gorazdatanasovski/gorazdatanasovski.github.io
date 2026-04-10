@@ -794,6 +794,10 @@ window.Quarto = {
     <a class="nav-link" href="./axioms.html"> 
 <span class="menu-text">Axioms</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./quantai/index.html"> 
+<span class="menu-text">QuantAI</span></a>
+  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
@@ -859,9 +863,51 @@ window.addEventListener('DOMContentLoaded', () => {
         document.title = defaultTitle;
         defaultFavicon.href = activeIcon;
     });
+    
 
     // ==========================================
-    // 2. STOCHASTIC LEVITATION ENGINE (DEEP AMBIENT RAIN)
+    // 2. CRYPTOGRAPHIC INTERCEPT PROTOCOL (GITHUB LOCK)
+    // ==========================================
+    document.addEventListener('click', function(e) {
+        const githubLink = e.target.closest('a[href*="github.com"]');
+        if (githubLink) {
+            e.preventDefault(); 
+            spawnQuantumWarning();
+        }
+    });
+
+    function spawnQuantumWarning() {
+        let existing = document.getElementById('quant-warning-modal');
+        if (existing) {
+            existing.remove();
+        }
+        
+        const modal = document.createElement('div');
+        modal.id = 'quant-warning-modal';
+        modal.innerHTML = `
+            <div class="quant-warning-content">
+                <div class="quant-warning-icon">◈</div>
+                <div class="quant-warning-title">ACCESS RESTRICTED</div>
+                <div class="quant-warning-text">Source architecture is currently undergoing topological cryptographic sealing. Repository access is temporarily suspended to prevent algorithmic extraction. Stand by.</div>
+                <div class="quant-warning-loader"></div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+        
+        setTimeout(() => { 
+            modal.classList.add('active'); 
+        }, 10);
+        
+        setTimeout(() => { 
+            modal.classList.remove('active'); 
+            setTimeout(() => {
+                modal.remove();
+            }, 800);
+        }, 5000);
+    }
+
+    // ==========================================
+    // 3. STOCHASTIC LEVITATION ENGINE (HARDWARE-ACCELERATED GLASS)
     // ==========================================
     const rainContainer = document.querySelector('.quant-rain-container');
     if(rainContainer) {
@@ -877,34 +923,28 @@ window.addEventListener('DOMContentLoaded', () => {
             const drop = document.createElement('div');
             drop.className = 'quant-drop';
             
-            /* Full Viewport Dispersion */
             const xPos = Math.random() * 96 + 2; 
-            
-            /* Ultra-Slow, Elegant Duration (30 to 50 seconds) */
             const duration = Math.random() * 20 + 30; 
-            
-            /* Delicate Scaling */
-            const scale = Math.random() * 0.3 + 0.4; 
-            
-            /* Anomaly Isolation */
+            const scale = Math.random() * 0.25 + 0.35; 
             const isRed = Math.random() > 0.90; 
-            
-            /* Gentle X-Axis Sway */
             const driftDirection = (Math.random() - 0.5) * 8; 
             
             drop.style.left = `${xPos}vw`;
             drop.style.animationDuration = `${duration}s`;
             drop.style.setProperty('--drift', `${driftDirection}vw`);
-            drop.style.transform = `scale(${scale})`; 
             
-            /* DEEP BACKGROUND LUMINOSITY MATRIX */
+            // hardware compositing operator
+            drop.style.transform = `translate3d(0, 0, 0) scale(${scale})`; 
+            drop.style.willChange = 'transform, opacity';
+            
+            /* ELEVATED LUMINOUS REFRACTION (WHITE CORES) */
             if(isRed) {
-                drop.style.color = 'rgba(193, 18, 31, 0.15)'; 
-                drop.style.textShadow = '0 0 15px rgba(193, 18, 31, 0.1)'; 
+                drop.style.color = 'rgba(255, 255, 255, 0.18)'; 
+                drop.style.textShadow = '0 0 15px rgba(193, 18, 31, 0.4), 0 0 30px rgba(193, 18, 31, 0.2)'; 
                 drop.style.zIndex = 0;
             } else {
-                drop.style.color = 'rgba(72, 202, 228, 0.1)'; 
-                drop.style.textShadow = '0 0 15px rgba(72, 202, 228, 0.05)'; 
+                drop.style.color = 'rgba(255, 255, 255, 0.15)'; 
+                drop.style.textShadow = '0 0 15px rgba(72, 202, 228, 0.3), 0 0 30px rgba(72, 202, 228, 0.1)'; 
                 drop.style.zIndex = 0;
             }
 
@@ -923,17 +963,14 @@ window.addEventListener('DOMContentLoaded', () => {
             }, duration * 1000);
         }
 
-        /* Initial Sparse Seeding */
         for(let i = 0; i < 20; i++) {
             setTimeout(generateHoloFeed, Math.random() * 5000);
         }
-        
-        /* Slowed Interval to prevent clutter */
         setInterval(generateHoloFeed, 1000);
     }
 
     // ==========================================
-    // 3. DYNAMIC OBSERVER TRACKING (Soft Spotlight)
+    // 4. DYNAMIC OBSERVER TRACKING (Liquid Spotlight)
     // ==========================================
     document.querySelectorAll('.card-quant').forEach(card => {
         card.addEventListener('mousemove', e => {
@@ -949,17 +986,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
 <style>
 /* ==========================================
-   THE "SKINCARE" TYPOGRAPHY IMPORT MATRIX
+   THE ABSOLUTE LUXURY TYPOGRAPHY MATRIX
    ========================================== */
-@import url('[https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@100;200;300;400;500;600&display=swap](https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@100;200;300;400;500;600&display=swap)');
+@import url('[https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@100;200;300;400;500;600&family=Space+Mono:wght@400;700&display=swap](https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@100;200;300;400;500;600&family=Space+Mono:wght@400;700&display=swap)');
 
 /* ==========================================
    GLOBAL CORE TOPOLOGY (THE DEEP VOID)
    ========================================== */
 :root {
     --bg-base: #010204;
-    --quant-red: #c1121f; 
-    --quant-cyan: #48cae4; 
+    --quant-red: #FF0000; 
+    --quant-cyan: #00ffff; 
     --visor-height: 70px;
 }
 
@@ -978,6 +1015,11 @@ body {
     font-weight: 300;
     color: #f8fafc;
     scroll-behavior: smooth;
+    
+    /* HARDWARE-ACCELERATED ANTI-ALIASING FOR LUXURY RENDERING */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 .quarto-container, 
@@ -987,9 +1029,10 @@ main {
     width: 100%;
     margin: 0;
     padding: 0;
+    transform: translate3d(0,0,0);
 }
 
-/* CRT SCANLINE SHIELD - Ultra Soft */
+/* CRT SCANLINE SHIELD - Whisper Thin */
 body::before {
     content: ""; 
     position: fixed; 
@@ -1001,7 +1044,8 @@ body::before {
     background-size: 100% 4px; 
     z-index: 9999; 
     pointer-events: none; 
-    opacity: 0.25;
+    opacity: 0.2;
+    transform: translate3d(0,0,0);
 }
 
 /* Microscopic CRT Hardware Grain */
@@ -1013,28 +1057,29 @@ body::before {
     height: 100vh;
     z-index: 9998; 
     pointer-events: none; 
-    opacity: 0.03;
+    opacity: 0.025;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='[http://www.w3.org/2000/svg'%3E%3Cfilter](http://www.w3.org/2000/svg'%3E%3Cfilter) id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    transform: translate3d(0,0,0);
 }
 
-/* QUANTUM CORE RESONANCE - BREATHING DEEP BACKGROUND ENGINE */
+/* QUANTUM CORE RESONANCE */
 .quantum-core-glow {
     position: fixed; 
     top: 50%; 
     left: 50%; 
-    transform: translate(-50%, -50%) translateZ(0);
+    transform: translate3d(-50%, -50%, 0);
     width: 150vw; 
     height: 150vh;
-    background: radial-gradient(circle, rgba(72, 202, 228, 0.03) 0%, rgba(193, 18, 31, 0.02) 35%, transparent 65%);
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.03) 0%, rgba(255, 0, 0, 0.02) 35%, transparent 65%);
     z-index: -2; 
     pointer-events: none;
     will-change: transform, opacity;
-    animation: coreBreathe 12s ease-in-out infinite alternate;
+    animation: coreBreathe 15s ease-in-out infinite alternate;
 }
 
 @keyframes coreBreathe {
-    0% { transform: translate(-50%, -50%) scale(0.9) translateZ(0); opacity: 0.7; }
-    100% { transform: translate(-50%, -50%) scale(1.1) translateZ(0); opacity: 1; }
+    0% { transform: translate3d(-50%, -50%, 0) scale(0.9); opacity: 0.6; }
+    100% { transform: translate3d(-50%, -50%, 0) scale(1.1); opacity: 1; }
 }
 
 /* ==========================================
@@ -1047,71 +1092,90 @@ body::before {
     right: -50vw; 
     bottom: -50vh;
     background-image: 
-        linear-gradient(rgba(72, 202, 228, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(193, 18, 31, 0.05) 1px, transparent 1px);
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
     background-size: 80px 80px; 
     background-position: center top;
     z-index: -1;
-    transform: perspective(800px) rotateX(75deg) translateZ(0);
     transform-origin: center center;
     mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 65%);
     -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 65%);
-    will-change: transform;
-    animation: gridWarp 5s linear infinite;
+    will-change: transform, filter;
+    animation: gridWarp 6s linear infinite, gridBreathe 8s ease-in-out infinite alternate;
     pointer-events: none;
-    opacity: 0.7; /* Softened elegance */
+    opacity: 0.7; 
 }
 
 @keyframes gridWarp {
-    0% { transform: perspective(800px) rotateX(75deg) translateY(0px) translateZ(0); }
-    100% { transform: perspective(800px) rotateX(75deg) translateY(80px) translateZ(0); }
+    0% { transform: perspective(800px) rotateX(75deg) translate3d(0, 0px, 0); }
+    100% { transform: perspective(800px) rotateX(75deg) translate3d(0, 80px, 0); }
+}
+
+@keyframes gridBreathe {
+    0% { filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.03)); opacity: 0.5; }
+    100% { filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.05)); opacity: 0.8; }
 }
 
 /* ==========================================
-   ELEGANT BACKGROUND LATEX FORMULAS
+   ELEGANT LATEX FORMULA STERILIZATION
    ========================================== */
 .katex {
-    color: rgba(255, 255, 255, 0.4) !important; /* Soft, background transparency */
-    text-shadow: none !important;
+    color: rgba(255, 255, 255, 0.6) !important; 
+    text-shadow: 0 0 5px rgba(255,255,255,0.1) !important;
     font-weight: 300 !important;
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transform: translate3d(0,0,0);
 }
 
 .katex-display {
-    background: transparent !important; /* VAPORIZED BOXES */
-    padding: 1rem 0 !important;
-    border: none !important; /* VAPORIZED LINES */
-    box-shadow: none !important; /* VAPORIZED SHADOWS */
+    background: transparent !important; 
+    padding: 1.5rem 0 !important;
     margin: 1.5rem 0 !important;
+    border: none !important; 
+    border-left: none !important;
+    border-right: none !important;
+    border-top: none !important;
+    border-bottom: none !important;
+    outline: none !important;
+    box-shadow: none !important; 
+    transform: translate3d(0,0,0);
+}
+
+.definition:hover .katex,
+.katex:hover {
+    color: #ffffff !important;
+    text-shadow: 0 0 25px rgba(0, 255, 255, 0.5), 0 0 40px rgba(255, 255, 255, 0.8) !important;
+    transform: translate3d(0,0,0) scale(1.02);
 }
 
 /* ==========================================
    HARDWARE-ACCELERATED SCROLLBAR
    ========================================== */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
     background: var(--bg-base);
 }
 ::-webkit-scrollbar-thumb {
-    background: rgba(193, 18, 31, 0.3);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(72, 202, 228, 0.5);
+    background: rgba(0, 255, 255, 0.4);
 }
 ::selection {
-    background: rgba(72, 202, 228, 0.2) !important;
+    background: rgba(0, 255, 255, 0.15) !important;
     color: #ffffff !important;
     text-shadow: none !important;
 }
 ::-moz-selection {
-    background: rgba(72, 202, 228, 0.2) !important;
+    background: rgba(0, 255, 255, 0.15) !important;
     color: #ffffff !important;
     text-shadow: none !important;
 }
 
 /* ==========================================
-   PERFECT SYMMETRY COMMAND VISOR (NAVBAR)
+   R3 VOLUMETRIC COMMAND VISOR (NAVBAR)
    ========================================== */
 #quarto-header {
     position: fixed !important;
@@ -1119,11 +1183,15 @@ body::before {
     left: 0 !important;
     width: 100vw !important;
     height: var(--visor-height) !important;
-    background: rgba(2, 4, 10, 0.6) !important; /* Ultra sheer */
-    backdrop-filter: blur(20px) saturate(150%) !important;
-    -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+    background: rgba(2, 4, 10, 0.5) !important; 
+    backdrop-filter: blur(40px) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(40px) saturate(150%) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    box-shadow: inset 0 -1px 0 rgba(255,255,255,0.05), 0 10px 40px rgba(0, 0, 0, 0.8) !important;
     z-index: 999999 !important; 
+    perspective: 1200px !important;
+    transform: translate3d(0,0,0);
+    will-change: transform, backdrop-filter;
 }
 
 .navbar {
@@ -1131,6 +1199,7 @@ body::before {
     padding: 0.6rem 4rem !important; 
     position: relative;
     overflow: visible !important; 
+    transform-style: preserve-3d !important;
 }
 
 .navbar-collapse {
@@ -1139,12 +1208,14 @@ body::before {
     justify-content: space-between !important;
     width: 100% !important;
     align-items: center !important;
+    transform-style: preserve-3d !important;
 }
 
 ul.navbar-nav {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
+    transform-style: preserve-3d !important;
 }
 
 ul.navbar-nav.navbar-right,
@@ -1157,9 +1228,10 @@ ul.navbar-nav.navbar-right,
     display: flex !important;
     align-items: center !important;
     margin-right: auto !important; 
+    transform-style: preserve-3d !important;
 }
 
-/* ELEGANT SCANNER LINE */
+/* ELEGANT SCANNER LINE - Pushed into Z-Axis */
 .navbar::after {
     content: ''; 
     position: absolute; 
@@ -1168,8 +1240,11 @@ ul.navbar-nav.navbar-right,
     width: 25%; 
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    box-shadow: 0 0 10px rgba(255,255,255,0.2);
     animation: apexScanner 5s cubic-bezier(0.6, 0, 0.4, 1) infinite;
     z-index: 10;
+    transform: translate3d(0,0,10px) !important;
+    will-change: left, opacity;
 }
 
 @keyframes apexScanner { 
@@ -1178,11 +1253,11 @@ ul.navbar-nav.navbar-right,
     100% { left: 200%; opacity: 0; } 
 }
 
-/* NAVBAR BRAND TYPOGRAPHY: LUXURY SERIF */
+/* VOLUMETRIC BRAND TYPOGRAPHY */
 .navbar-brand {
     font-family: 'Cormorant Garamond', serif !important;
     font-weight: 600 !important;
-    font-size: 1.4rem !important; 
+    font-size: 1.5rem !important; 
     color: #ffffff !important;
     text-transform: uppercase !important;
     letter-spacing: 0.25em !important;
@@ -1190,25 +1265,31 @@ ul.navbar-nav.navbar-right,
     position: relative;
     white-space: nowrap !important;
     flex-shrink: 0 !important;
-    transition: all 0.4s ease !important;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transform: translate3d(0,0,40px) !important;
+    will-change: transform, text-shadow, letter-spacing;
 }
 
 .navbar-brand:hover {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5) !important;
+    text-shadow: 0 0 25px rgba(255, 255, 255, 0.8), 0 0 10px var(--quant-cyan) !important;
+    letter-spacing: 0.3em !important;
+    transform: translate3d(0,-3px,60px) !important;
 }
 
 .nav-link {
     font-family: 'Montserrat', sans-serif !important;
     font-size: 0.75rem !important;
-    font-weight: 300 !important;
-    color: rgba(255, 255, 255, 0.5) !important;
+    font-weight: 400 !important;
+    color: rgba(255, 255, 255, 0.8) !important;
     text-transform: uppercase !important;
     letter-spacing: 0.25em !important;
     padding: 0.8rem 1.5rem !important;
     margin: 0 0.5rem !important;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
     position: relative;
     z-index: 1;
+    transform: translate3d(0,0,30px) !important;
+    will-change: transform, color, text-shadow;
 }
 
 .nav-link::before {
@@ -1216,12 +1297,14 @@ ul.navbar-nav.navbar-right,
     position: absolute; 
     bottom: 0px; 
     left: 50%; 
-    transform: translateX(-50%);
+    transform: translate3d(-50%,0,0);
     width: 0%; 
     height: 1px;
     background: #ffffff;
-    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 0 10px #ffffff;
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: -1;
+    opacity: 0.5;
 }
 
 .nav-link:hover::before, 
@@ -1232,18 +1315,23 @@ ul.navbar-nav.navbar-right,
 .nav-link:hover, 
 .nav-link.active {
     color: #ffffff !important;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3) !important;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8) !important;
+    letter-spacing: 0.3em !important;
+    transform: translate3d(0,-2px,50px) !important;
 }
 
 .navbar-nav .bi,
 #quarto-search-trigger {
-    color: rgba(255, 255, 255, 0.5) !important;
-    transition: all 0.4s ease;
+    color: rgba(255, 255, 255, 0.7) !important;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
     font-size: 1.1rem;
     margin-left: 1.5rem !important; 
     padding: 0 !important; 
     display: flex;
     align-items: center;
+    cursor: pointer;
+    transform: translate3d(0,0,35px) !important;
+    will-change: transform, filter;
 }
 
 #quarto-search-trigger {
@@ -1253,7 +1341,102 @@ ul.navbar-nav.navbar-right,
 .navbar-nav .bi:hover,
 #quarto-search-trigger:hover {
     color: #ffffff !important;
-    transform: scale(1.1);
+    transform: translate3d(0,-2px,60px) scale(1.15) !important;
+    filter: drop-shadow(0 0 15px rgba(255,255,255,0.8));
+}
+
+/* ==========================================
+   CRYPTOGRAPHIC GITHUB MODAL HUD
+   ========================================== */
+#quant-warning-modal {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(1, 2, 4, 0.85);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    z-index: 9999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    transform: translate3d(0,0,0);
+}
+
+#quant-warning-modal.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.quant-warning-content {
+    background: rgba(10, 12, 18, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 0, 0, 0.5);
+    padding: 4rem 5rem;
+    border-radius: 8px;
+    max-width: 550px;
+    text-align: center;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.9), inset 0 1px 2px rgba(255,255,255,0.05);
+    transform: translate3d(0,30px,0) scale(0.95);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+}
+
+#quant-warning-modal.active .quant-warning-content {
+    transform: translate3d(0,0,0) scale(1);
+}
+
+.quant-warning-icon {
+    font-size: 2.5rem;
+    color: var(--quant-red);
+    margin-bottom: 1.5rem;
+    animation: warningPulse 3s infinite alternate ease-in-out;
+}
+
+@keyframes warningPulse {
+    0% { opacity: 0.4; filter: drop-shadow(0 0 10px var(--quant-red)); }
+    100% { opacity: 1; filter: drop-shadow(0 0 30px var(--quant-red)); }
+}
+
+.quant-warning-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.25em;
+    margin-bottom: 1.5rem;
+}
+
+.quant-warning-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 2;
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+}
+
+.quant-warning-loader {
+    width: 100%;
+    height: 1px;
+    background: rgba(255,255,255,0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.quant-warning-loader::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -50%; width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,0,0,0.6), transparent);
+    animation: warningLoad 2.5s infinite cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: left;
+}
+
+@keyframes warningLoad {
+    0% { left: -50%; }
+    100% { left: 100%; }
 }
 
 /* ==========================================
@@ -1265,9 +1448,10 @@ ul.navbar-nav.navbar-right,
     left: 0; 
     width: 100vw; 
     height: 100vh;
-    z-index: 0; /* CRITICAL: Stays permanently behind the UI */
+    z-index: 0; 
     pointer-events: none; 
     overflow: hidden;
+    transform: translate3d(0,0,0);
 }
 
 .quant-drop {
@@ -1282,10 +1466,30 @@ ul.navbar-nav.navbar-right,
 }
 
 @keyframes dataRain {
-    0% { transform: translateY(-10vh) translateX(0vw) rotate(0deg); opacity: 0; }
-    25% { opacity: 0.8; } /* Visible but pushed to z-index 0 */
+    0% { transform: translate3d(0vw, -10vh, 0) rotate(0deg); opacity: 0; }
+    25% { opacity: 0.8; } 
     75% { opacity: 0.8; } 
-    100% { transform: translateY(110vh) translateX(var(--drift)) rotate(5deg); opacity: 0; }
+    100% { transform: translate3d(var(--drift), 110vh, 0) rotate(5deg); opacity: 0; }
+}
+
+/* ==========================================
+   GLOBAL ANIMATION ENTRY MATRIX
+   ========================================== */
+.entry-animate {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+    animation: elegantFadeIn 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    will-change: transform, opacity, filter;
+}
+
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.5s; }
+.delay-3 { animation-delay: 0.8s; }
+.delay-4 { animation-delay: 1.1s; }
+
+@keyframes elegantFadeIn {
+    0% { opacity: 0; transform: translate3d(0, 20px, 0); filter: blur(5px); }
+    100% { opacity: 1; transform: translate3d(0, 0, 0); filter: blur(0px); }
 }
 
 /* ==========================================
@@ -1303,6 +1507,7 @@ ul.navbar-nav.navbar-right,
     text-align: center; 
     overflow: visible; 
     z-index: 10;
+    transform: translate3d(0,0,0);
 }
 
 .name-wrapper {
@@ -1312,31 +1517,51 @@ ul.navbar-nav.navbar-right,
     z-index: 10;
 }
 
-/* THE LUXURY SIGNATURE */
+/* THE SPECULAR GLASS SIGNATURE (APPLE-TIER FRESNEL) */
 .quant-hero-name {
     font-family: 'Cormorant Garamond', serif; 
-    font-size: clamp(2.5rem, 4.5vw, 4.2rem); 
+    font-size: clamp(1.8rem, 3vw, 2.4rem); 
     white-space: nowrap; 
-    font-weight: 500;
+    font-weight: 400; 
     text-transform: uppercase !important; 
-    background: linear-gradient(120deg, #ffffff 0%, #cbd5e1 40%, #ffffff 60%, #94a3b8 100%);
-    background-size: 200% auto;
+    
+    background: linear-gradient(
+        120deg, 
+        rgba(248, 250, 252, 0.6) 0%, 
+        rgba(248, 250, 252, 0.6) 40%, 
+        #ffffff 45%, 
+        #00ffff 50%, 
+        #ffffff 55%, 
+        rgba(248, 250, 252, 0.6) 60%, 
+        rgba(248, 250, 252, 0.6) 100%
+    );
+    background-size: 300% auto;
     color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
-    will-change: background-position;
-    animation: luxurySweep 8s ease-in-out infinite alternate;
-    letter-spacing: 0.2em; 
-    margin-bottom: 1rem;
-    text-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
+    will-change: background-position, transform, letter-spacing;
+    animation: specularSweep 5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    letter-spacing: 0.4em; 
+    margin-bottom: 1.5rem;
+    text-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
     line-height: 1.2; 
     position: relative; 
     display: inline-block;
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translate3d(0,0,0);
 }
 
-@keyframes luxurySweep {
-    0% { background-position: 0% center; }
-    100% { background-position: 100% center; }
+@keyframes specularSweep {
+    0% { background-position: 100% center; }
+    100% { background-position: 0% center; }
+}
+
+.quant-hero-name:hover {
+    background: linear-gradient(120deg, #ffffff 0%, #ffffff 100%);
+    -webkit-background-clip: text;
+    letter-spacing: 0.55em; 
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.9), 0 0 15px rgba(0, 255, 255, 0.6);
+    transform: translate3d(0, -3px, 0);
 }
 
 .name-laser {
@@ -1345,29 +1570,39 @@ ul.navbar-nav.navbar-right,
     left: -5%;
     width: 1px; 
     height: 80%;
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.2);
     z-index: 11; 
     pointer-events: none;
     will-change: transform, opacity;
-    animation: breathLaser 4s ease-in-out infinite alternate;
+    animation: breathLaser 5s ease-in-out infinite alternate;
 }
 
 @keyframes breathLaser {
-    0% { transform: scaleY(0.8); opacity: 0.1; }
-    100% { transform: scaleY(1.1); opacity: 0.6; }
+    0% { transform: scaleY(0.8) translate3d(0,0,0); opacity: 0.1; }
+    100% { transform: scaleY(1.1) translate3d(0,0,0); opacity: 0.5; }
 }
 
 .quant-hero-subtitle {
     font-family: 'Montserrat', sans-serif; 
-    font-size: clamp(0.75rem, 1.2vw, 0.95rem);
-    font-weight: 300; 
+    font-size: clamp(0.7rem, 1vw, 0.8rem); 
+    font-weight: 400; 
     text-transform: uppercase; 
-    letter-spacing: 0.4em;
+    letter-spacing: 0.5em;
     margin: 1.5rem 0 3rem; 
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.7);
     display: inline-block; 
     z-index: 10;
     position: relative;
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translate3d(0,0,0);
+    will-change: transform, color, letter-spacing;
+}
+
+.quant-hero-subtitle:hover {
+    color: #ffffff;
+    letter-spacing: 0.7em; 
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    transform: translate3d(0,0,0);
 }
 
 .quant-hero-subtitle::after {
@@ -1375,45 +1610,70 @@ ul.navbar-nav.navbar-right,
     position: absolute; 
     bottom: -15px; 
     left: 50%; 
-    transform: translateX(-50%);
+    transform: translate3d(-50%,0,0);
     width: 30px; 
     height: 1px;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.quant-hero-subtitle:hover::after {
+    width: 100px;
+    background: #ffffff;
+    box-shadow: 0 0 10px #ffffff;
 }
 
 .quant-hero-desc {
     font-family: 'Montserrat', sans-serif; 
-    font-size: clamp(1rem, 1.3vw, 1.15rem); 
-    color: #94a3b8; 
+    font-size: clamp(0.9rem, 1.1vw, 1.05rem); 
+    color: rgba(255, 255, 255, 0.85); 
     line-height: 2.2;
-    max-width: 750px; 
+    max-width: 700px; 
     margin: 0 auto; 
-    font-weight: 200; 
+    font-weight: 300; 
     position: relative; 
     z-index: 10; 
     text-align: center;
+    transition: all 0.6s ease;
+    transform: translate3d(0,0,0);
+    will-change: color, text-shadow;
+    text-shadow: 0 0 1px rgba(255,255,255,0.1);
+}
+
+.quant-hero-desc:hover {
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
 }
 
 /* ==========================================
    TELEMETRY PANEL - ELEGANT SINGLE LINE MATRIX
    ========================================== */
 .telemetry-panel {
-    margin: 6rem auto 4rem auto; /* MASSIVE TOP CLEARANCE FOR ELEGANCE */
+    margin: 4rem auto 2rem auto; 
     border-top: 1px solid rgba(255, 255, 255, 0.05); 
     border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
     padding: 1.5rem 2rem; 
     display: flex; 
     flex-direction: row; 
     flex-wrap: wrap; 
-    justify-content: space-evenly; /* PERFECT CENTERING AND SPACING */
+    justify-content: space-evenly; 
     align-items: center;
-    background: transparent; /* VAPORIZED HEAVY BACKGROUND */
+    background: transparent; 
     position: relative; 
     overflow: hidden; 
     width: 95%; 
     max-width: 1100px;
     box-sizing: border-box; 
     z-index: 10;
+    transform: translate3d(0,0,0);
+    will-change: transform, backdrop-filter, border-color, background;
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.telemetry-panel:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(10, 12, 18, 0.2);
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.05);
 }
 
 .telemetry-item {
@@ -1421,23 +1681,44 @@ ul.navbar-nav.navbar-right,
     align-items: center;
     text-transform: uppercase; 
     font-family: 'Montserrat', sans-serif; 
-    font-size: 0.7rem; /* ULTRA SMALL ELEGANT LETTERS */
-    font-weight: 300;
-    letter-spacing: 0.3em; 
+    font-size: 0.65rem; 
+    font-weight: 400;
+    letter-spacing: 0.25em; 
     white-space: nowrap;
     padding: 0.5rem 1rem;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: default;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
+    transform: translate3d(0,0,0);
+    will-change: transform, letter-spacing, text-shadow;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* 100% LUMINOUS WHITE HOVER ON TELEMETRY */
+.telemetry-item:hover {
+    transform: translate3d(0, -3px, 0);
+    letter-spacing: 0.35em;
+    color: #ffffff;
 }
 
 .optical-pulse {
     display: inline-block; 
     width: 4px; 
     height: 4px; 
-    background-color: var(--quant-cyan);
+    background-color: rgba(255,255,255,0.5);
     border-radius: 50%; 
     margin-right: 12px; 
-    box-shadow: 0 0 8px var(--quant-cyan);
-    will-change: opacity;
+    box-shadow: 0 0 8px rgba(255,255,255,0.2);
+    will-change: opacity, transform;
     animation: softPulse 3s infinite alternate ease-in-out; 
+    transition: all 0.6s ease;
+    transform: translate3d(0,0,0);
+}
+
+.telemetry-item:hover .optical-pulse {
+    background-color: var(--quant-cyan);
+    box-shadow: 0 0 15px var(--quant-cyan);
+    transform: translate3d(0,0,0) scale(1.5);
 }
 
 @keyframes softPulse {
@@ -1446,17 +1727,29 @@ ul.navbar-nav.navbar-right,
 }
 
 .tel-label {
-    color: rgba(255, 255, 255, 0.4); 
+    color: rgba(255, 255, 255, 0.5); 
     margin-right: 10px;
+    transition: color 0.6s ease;
+}
+
+.telemetry-item:hover .tel-label {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .tel-value {
-    color: #ffffff; 
+    color: rgba(255, 255, 255, 0.85); 
     font-weight: 500; 
+    transition: color 0.6s ease;
+}
+
+.telemetry-item:hover .tel-value {
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
 }
 
 /* ==========================================
-   FLUID-STATE GLASSMORPHISM CARDS MATRIX
+   FLUID-STATE GLASSMORPHISM CARDS MATRIX (CRYSTALLINE EDGE)
    ========================================== */
 .grid-container { 
     margin-top: 3rem; 
@@ -1464,19 +1757,25 @@ ul.navbar-nav.navbar-right,
     position: relative; 
     z-index: 10; 
     align-items: stretch; 
+    transform: translate3d(0,0,0);
 }
 
 .card-quant {
     --mouse-x: 50%;
     --mouse-y: 50%;
-    background: rgba(10, 12, 18, 0.3); /* Ultra sheer */
-    border: 1px solid rgba(255, 255, 255, 0.03); 
-    border-top: 1px solid rgba(255, 255, 255, 0.1); 
-    border-radius: 4px; 
+    /* Schlick's Approximation Simulation for Specular Edge */
+    background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(10,12,18,0.3) 20%, rgba(10,12,18,0.4) 100%);
+    background-size: 200% 200%;
+    animation: fluidGlass 10s ease infinite;
+    border: 1px solid rgba(255, 255, 255, 0.05); 
+    border-top: 1px solid rgba(255, 255, 255, 0.25); 
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px; 
     padding: 4rem 3rem;
-    backdrop-filter: blur(25px); 
-    -webkit-backdrop-filter: blur(25px);
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(40px) saturate(180%); 
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 1px 2px rgba(255,255,255,0.1); 
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative; 
     overflow: hidden;
     display: flex;
@@ -1484,6 +1783,23 @@ ul.navbar-nav.navbar-right,
     justify-content: flex-start;
     height: 100%;
     box-sizing: border-box;
+    transform: translate3d(0, 0, 0);
+    will-change: transform, backdrop-filter, box-shadow;
+}
+
+/* Specular Light Sheen */
+.card-quant::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: 300%;
+    height: 300%;
+    background: linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.03) 50%, transparent 55%);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: -1;
+    pointer-events: none;
+    transform: translate3d(0,0,0);
 }
 
 .card-quant::after {
@@ -1493,10 +1809,10 @@ ul.navbar-nav.navbar-right,
     left: 0; 
     right: 0; 
     bottom: 0;
-    background: radial-gradient(circle 400px at var(--mouse-x) var(--mouse-y), rgba(72, 202, 228, 0.05), transparent 80%);
+    background: radial-gradient(circle 400px at var(--mouse-x) var(--mouse-y), rgba(0, 255, 255, 0.03), transparent 80%);
     z-index: -1; 
     pointer-events: none;
-    transition: background 0.3s ease;
+    transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card-sweep {
@@ -1505,10 +1821,11 @@ ul.navbar-nav.navbar-right,
     left: -100%; 
     width: 100%; 
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
     will-change: left;
-    animation: cardScan 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite; 
+    animation: cardScan 4s cubic-bezier(0.4, 0, 0.2, 1) infinite; 
     z-index: 10;
+    transform: translate3d(0,0,0);
 }
 
 .card-quant:nth-child(1) .card-sweep { animation-delay: 0s; }
@@ -1520,36 +1837,63 @@ ul.navbar-nav.navbar-right,
     100% { left: 100%; } 
 }
 
+/* THE LIQUID HOVER TENSOR FOR CARDS */
 .card-quant:hover { 
-    transform: translateY(-10px); 
-    border-color: rgba(255, 255, 255, 0.15); 
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(72, 202, 228, 0.03); 
+    transform: translate3d(0, -15px, 60px) scale(1.02); 
+    background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(15,18,25,0.5) 20%, rgba(15,18,25,0.7) 100%);
+    border-color: rgba(255, 255, 255, 0.1); 
+    border-top-color: rgba(255, 255, 255, 0.4); 
+    box-shadow: 
+        0 30px 80px rgba(0,0,0,0.9), 
+        0 0 50px rgba(0, 255, 255, 0.05),
+        inset 0 1px 3px rgba(255,255,255,0.15); 
+}
+
+.card-quant:hover::before {
+    top: 0%;
+    left: 0%;
 }
 
 .card-quant:hover::after {
-    background: radial-gradient(circle 400px at var(--mouse-x) var(--mouse-y), rgba(72, 202, 228, 0.08), transparent 80%);
+    background: radial-gradient(circle 500px at var(--mouse-x) var(--mouse-y), rgba(0, 255, 255, 0.08), transparent 80%);
 }
 
+/* 100% LUMINOUS WHITE HOVER ON CARD TYPOGRAPHY */
 .card-quant h3 {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.6rem; 
     font-weight: 500;
-    color: #ffffff; 
+    color: rgba(255, 255, 255, 0.9); 
     letter-spacing: 0.08em;
     margin-bottom: 1.5rem;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translate3d(0,0,0);
+}
+
+.card-quant:hover h3 {
+    color: #ffffff;
+    letter-spacing: 0.15em;
+    text-shadow: 0 0 25px rgba(255, 255, 255, 0.7);
 }
 
 .card-quant p { 
     font-family: 'Montserrat', sans-serif;
     font-size: 0.95rem; 
-    color: rgba(255, 255, 255, 0.6); 
+    color: rgba(255, 255, 255, 0.8); 
     line-height: 1.9; 
     margin-bottom: 2.5rem;
     font-weight: 300;
+    transition: all 0.6s ease;
+    transform: translate3d(0,0,0);
+}
+
+.card-quant:hover p {
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
 }
 
 /* ==========================================
-   HYPER-ELEGANT EXECUTION NODES (BUTTONS)
+   OBSIDIAN PILL EXECUTION NODES (BUTTONS)
    ========================================== */
 .btn-quant-wrapper {
     margin-top: auto; 
@@ -1557,27 +1901,33 @@ ul.navbar-nav.navbar-right,
     justify-content: flex-start; 
     width: 100%; 
     z-index: 10;
+    transform: translate3d(0,0,0);
 }
 
 .btn-quant {
+    isolation: isolate; 
     display: inline-flex; 
     align-items: center;
     justify-content: center;
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.15); 
-    color: rgba(255, 255, 255, 0.8) !important; 
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    border-top: 1px solid rgba(255, 255, 255, 0.2); 
+    color: rgba(255, 255, 255, 0.85) !important; 
     letter-spacing: 0.25em;
     font-size: 0.7rem; 
     font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
+    font-weight: 500;
     text-transform: uppercase;
     position: relative; 
     overflow: hidden; 
     padding: 1rem 2.2rem; 
-    border-radius: 40px; 
+    border-radius: 50px; 
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.05), 0 5px 15px rgba(0,0,0,0.5);
     z-index: 1;
-    transition: all 0.4s ease;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     text-decoration: none;
+    transform: translate3d(0,0,0);
+    will-change: transform, letter-spacing, padding;
 }
 
 .btn-quant::after {
@@ -1588,53 +1938,100 @@ ul.navbar-nav.navbar-right,
     width: 100%; 
     height: 100%;
     background: #ffffff;
-    transition: all 0.4s ease; 
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
     z-index: -1;
+    transform: translate3d(0,0,0);
+}
+
+/* LIQUID TYPOGRAPHY EXPANSION ON HOVER */
+.btn-quant:hover {
+    color: #010204 !important; 
+    border-color: #ffffff;
+    letter-spacing: 0.4em; 
+    padding: 1rem 3.5rem; 
+    box-shadow: 0 15px 35px rgba(255, 255, 255, 0.4);
+    transform: translate3d(0,-2px,0);
 }
 
 .btn-quant:hover::after { 
     left: 0; 
 }
 
-.btn-quant:hover {
-    color: #010204 !important; 
-    border-color: #ffffff;
-}
-
 /* ==========================================
-   MATHEMATICAL AXIOM DEFINITIONS
+   MATHEMATICAL AXIOM DEFINITIONS (CRYSTALLINE)
    ========================================== */
 .definition {
-    background: rgba(10, 12, 18, 0.2); 
+    background: rgba(10, 12, 18, 0.25); 
     padding: 3rem; 
-    border-radius: 4px; 
+    border-radius: 6px; 
     font-family: 'Montserrat', sans-serif;
-    color: rgba(255, 255, 255, 0.7) !important; 
+    color: rgba(255, 255, 255, 0.8) !important; 
     font-size: 1rem; 
     font-weight: 300;
     line-height: 1.9; 
     margin-top: 3rem; 
-    border-left: 1px solid rgba(255, 255, 255, 0.15); 
+    border: 1px solid rgba(255, 255, 255, 0.02) !important; 
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important; 
+    border-left: 3px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 
+        0 15px 40px rgba(0,0,0,0.6),
+        inset 0 1px 2px rgba(255,255,255,0.05); 
     position: relative; 
-    transition: all 0.5s ease;
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translate3d(0,0,0);
+    will-change: transform, box-shadow;
 }
 
+/* 100% LUMINOUS WHITE HOVER ON DEFINITIONS */
 .definition:hover {
     background: rgba(15, 18, 25, 0.4); 
-    border-left-color: rgba(255, 255, 255, 0.4);
+    transform: translate3d(0, -8px, 20px);
+    border-left-color: #ffffff !important;
+    box-shadow: 
+        0 25px 60px rgba(0,0,0,0.8),
+        inset 0 1px 3px rgba(255,255,255,0.15);
+    color: #ffffff !important;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4) !important;
+}
+
+.definition::before {
+    content: '0x' attr(data-hash); 
+    position: absolute; 
+    top: 15px; 
+    right: 20px;
+    font-family: 'Space Mono', monospace; 
+    font-size: 0.6rem; 
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.15em;
+    transition: all 0.6s ease;
+    transform: translate3d(0,0,0);
+}
+
+.definition:hover::before {
+    color: rgba(0, 255, 255, 0.5);
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
 }
 
 .def-title {
-    color: #ffffff !important; 
-    font-weight: 400; 
+    color: rgba(255, 255, 255, 0.9) !important; 
+    font-weight: 500; 
     font-family: 'Montserrat', sans-serif; 
     font-size: 0.8rem;
     display: inline-block; 
     margin-bottom: 2rem; 
     text-transform: uppercase; 
     letter-spacing: 0.3em;
-    border-bottom: 1px solid rgba(255,255,255,0.1); 
+    border-bottom: 1px solid rgba(255,255,255,0.2); 
     padding-bottom: 8px; 
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translate3d(0,0,0);
+}
+
+.definition:hover .def-title {
+    color: #ffffff !important;
+    letter-spacing: 0.45em;
+    border-bottom-color: rgba(255, 255, 255, 0.6);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
 }
 
 /* ==========================================
@@ -1642,13 +2039,26 @@ ul.navbar-nav.navbar-right,
    ========================================== */
 .diagram-block {
     margin: 4rem 0; 
-    border: 1px solid rgba(255, 255, 255, 0.05); 
     background: rgba(10, 12, 18, 0.2);
     padding: 4rem 2rem 2rem; 
-    border-radius: 4px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.02); 
+    border-top: 1px solid rgba(255, 255, 255, 0.1); 
+    box-shadow: 
+        0 15px 40px rgba(0,0,0,0.6),
+        inset 0 1px 2px rgba(255,255,255,0.05); 
     text-align: center; 
     position: relative; 
     overflow: hidden;
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translate3d(0,0,0);
+    will-change: transform, box-shadow;
+}
+
+.diagram-block:hover {
+    transform: translate3d(0,0,10px) scale(1.02);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.8);
 }
 
 .diagram-block::before {
@@ -1662,26 +2072,36 @@ ul.navbar-nav.navbar-right,
     font-weight: 300;
     letter-spacing: 0.25em; 
     z-index: 2;
+    transition: all 0.6s ease;
+    transform: translate3d(0,0,0);
+}
+
+.diagram-block:hover::before {
+    color: #ffffff;
+    letter-spacing: 0.35em;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
 }
 
 .ambient-float { 
     will-change: transform, filter; 
     animation: svgHover 8s ease-in-out infinite alternate; 
+    transform: translate3d(0,0,0);
 }
 
 @keyframes svgHover {
-    0% { transform: translateY(-5px); filter: drop-shadow(0 10px 20px rgba(72,202,228,0.02)); }
-    100% { transform: translateY(5px); filter: drop-shadow(0 20px 30px rgba(72,202,228,0.08)); }
+    0% { transform: translate3d(0,-5px,0); filter: drop-shadow(0 10px 20px rgba(0,255,255,0.02)); }
+    100% { transform: translate3d(0,5px,0); filter: drop-shadow(0 20px 40px rgba(0,255,255,0.15)); }
 }
 
 .svg-pulse { 
     will-change: opacity, filter; 
     animation: svgPulse 4s infinite alternate; 
+    transform: translate3d(0,0,0);
 }
 
 @keyframes svgPulse {
-    0% { opacity: 0.4; }
-    100% { opacity: 0.9; }
+    0% { opacity: 0.4; filter: drop-shadow(0 0 10px rgba(255,255,255,0.1)); }
+    100% { opacity: 1; filter: drop-shadow(0 0 30px rgba(255,255,255,0.6)); }
 }
 
 .svg-dash { 
@@ -1698,39 +2118,64 @@ ul.navbar-nav.navbar-right,
 .stack-matrix {
     margin: 0 auto 8rem; 
     background: transparent; 
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding: 6rem 2rem; 
     position: relative; 
     z-index: 10;
+    transform: translate3d(0,0,0);
 }
 
+/* 100% LUMINOUS WHITE HOVER ON STACK TEXT */
 .stack-matrix h3 {
     text-align: center; 
-    font-size: 2rem; 
+    font-size: 2.2rem; 
     margin-bottom: 6rem;
-    color: #ffffff !important;
+    color: rgba(255, 255, 255, 0.9) !important;
     letter-spacing: 0.15em; 
     font-family: 'Cormorant Garamond', serif;
     font-weight: 500;
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translate3d(0,0,0);
+}
+
+.stack-matrix:hover h3 {
+    color: #ffffff !important;
+    text-shadow: 0 0 35px rgba(255,255,255,0.8); 
+    letter-spacing: 0.25em;
 }
 
 .stack-matrix h4 {
-    color: #ffffff !important;
+    color: rgba(255, 255, 255, 0.9) !important;
     font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
+    font-size: 1.05rem;
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.1em;
     line-height: 1.6;
     margin: 0 0 1.5rem 0;
+    transition: all 0.6s ease;
+    transform: translate3d(0,0,0);
+}
+
+.stack-item:hover h4 {
+    color: #ffffff !important;
+    text-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.15em;
 }
 
 .stack-matrix p {
-    color: rgba(255, 255, 255, 0.6) !important;
+    color: rgba(255, 255, 255, 0.8) !important; 
     font-size: 0.95rem;
     line-height: 1.9;
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
+    transition: all 0.6s ease;
+    transform: translate3d(0,0,0);
+}
+
+.stack-item:hover p {
+    color: #ffffff !important;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5) !important;
 }
 
 /* ==========================================
@@ -1752,7 +2197,7 @@ ul.navbar-nav.navbar-right,
 <div class="grid-topology-bg">
 
 </div>
-<div class="hero-container">
+<div class="hero-container entry-animate delay-1">
     <div class="name-wrapper">
         <div class="name-laser"></div>
         <div class="quant-hero-name">Gorazd Atanasovski</div>
@@ -1763,53 +2208,65 @@ ul.navbar-nav.navbar-right,
     </div>
 </div>
 
-<div class="telemetry-panel">
+<div class="telemetry-panel entry-animate delay-2">
     <div class="telemetry-item"><span class="optical-pulse"></span><span class="tel-label">SYSTEM TOPOLOGY</span><span class="tel-value">ISOMORPHIC</span></div>
     <div class="telemetry-item"><span class="optical-pulse"></span><span class="tel-label">ALGO TRADING SOCIETY</span><span class="tel-value">FOUNDER &amp; LEAD</span></div>
     <div class="telemetry-item"><span class="optical-pulse"></span><span class="tel-label">DATA TERMINAL</span><span class="tel-value">BLOOMBERG INTEGRATED</span></div>
 </div>
-<div class="grid-container">
+<div class="grid-container entry-animate delay-3">
 <section id="theoretical-research" class="level3 card-quant">
 <h3 data-anchor-id="theoretical-research">Theoretical Research</h3>
-<p>Rigorous formalization of microstructural point processes, continuous-time martingale representations, and advanced measure theory. Heuristic approximations are systematically eradicated in favor of exact analytical bounds and fractional stochastic derivations.</p>
+<p>
+Rigorous formalization of microstructural point processes, continuous-time martingale representations, and advanced measure theory. Heuristic approximations are systematically eradicated in favor of exact analytical bounds and fractional stochastic derivations.
+</p>
 <div class="btn-quant-wrapper">
     <a href="./research.html" class="btn-quant">Initialize Research</a>
 </div>
 </section>
 <section id="analytical-manifold" class="level3 card-quant">
 <h3 data-anchor-id="analytical-manifold">Analytical Manifold</h3>
-<p>High-dimensional filtration environments abandoning standard algorithmic design. Featuring GORAZD: defined not as empirical machine learning descent, but as the exact analytical evaluation of infinite-dimensional Fréchet derivatives within a Sobolev space.</p>
+<p>
+High-dimensional filtration environments abandoning standard algorithmic design. Featuring GORAZD: defined not as empirical machine learning descent, but as the exact analytical evaluation of infinite-dimensional Fréchet derivatives within a Sobolev space.
+</p>
 <div class="btn-quant-wrapper">
     <a href="./code.html" class="btn-quant">Deploy Infrastructure</a>
 </div>
 </section>
 <section id="measure-theoretic-isomorphisms" class="level3 card-quant">
 <h3 data-anchor-id="measure-theoretic-isomorphisms">Measure-Theoretic Isomorphisms</h3>
-<p>The operational nexus. We synthesize Radon-Nikodym derivatives, spectral filtrations of non-stationary stochastic processes, and rigorous optimal control deployments into asymmetric, probability-weighted execution mappings.</p>
+<p>
+The operational nexus. We synthesize Radon-Nikodym derivatives, spectral filtrations of non-stationary stochastic processes, and rigorous optimal control deployments into asymmetric, probability-weighted execution mappings.
+</p>
 <div class="btn-quant-wrapper">
     <a href="#" class="btn-quant">Access Telemetry</a>
 </div>
 </section>
 </div>
-<section id="core-competencies-theoretical-architecture" class="level3 stack-matrix">
+<section id="core-competencies-theoretical-architecture" class="level3 stack-matrix entry-animate delay-4">
 <h3 data-anchor-id="core-competencies-theoretical-architecture">Core Competencies &amp; Theoretical Architecture</h3>
 <div class="stack-grid">
 <section id="i.-advanced-stochastic-frameworks-rough-volatility" class="level4 stack-item">
 <h4 data-anchor-id="i.-advanced-stochastic-frameworks-rough-volatility">I. Advanced Stochastic Frameworks &amp; Rough Volatility</h4>
-<p>Formulation of exact analytical boundaries for martingale pricing within non-Markovian environments. Derivation of fractional stochastic processes, eradicating the need for heuristic smoothing.</p>
+<p>
+Formulation of exact analytical boundaries for martingale pricing within non-Markovian environments. Derivation of fractional stochastic processes, eradicating the need for heuristic smoothing.
+</p>
 <div class="diagram-block">
 <svg class="svg-pulse ambient-float" viewbox="0 0 500 150" style="width:100%; height:150px; display:block;">
     <polyline class="svg-dash" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1" points="0,75 25,45 50,85 75,35 100,95 125,55 150,110 175,60 200,85 225,40 250,100 275,65 300,90 325,45 350,115 375,50 400,95 425,60 450,105 475,70 500,80"></polyline>
-    <polyline fill="none" stroke="#48cae4" stroke-width="1.5" opacity="0.6" points="0,85 25,55 50,95 75,45 100,105 125,65 150,120 175,70 200,95 225,50 250,110 275,75 300,100 325,55 350,125 375,60 400,105 425,70 450,115 475,80 500,90"></polyline>
+    <polyline fill="none" stroke="#00ffff" stroke-width="1.5" opacity="0.6" points="0,85 25,55 50,95 75,45 100,105 125,65 150,120 175,70 200,95 225,50 250,110 275,75 300,100 325,55 350,125 375,60 400,105 425,70 450,115 475,80 500,90"></polyline>
 </svg>
 </div>
 <div class="definition">
 <span class="def-title">Definition 1 (Volatility Formulation):</span>
-<p>The volatility process is strictly formulated as a fractional Brownian motion defined by its covariance structure, yielding exact pathwise regularity.</p>
+<p>
+The volatility process is strictly formulated as a fractional Brownian motion defined by its covariance structure, yielding exact pathwise regularity.
+</p>
 <p><span class="math display">\[
 \mathbb{E}[B_H(t)B_H(s)] = \frac{1}{2} \left( |t|^{2H} + |s|^{2H} - |t-s|^{2H} \right)
 \]</span></p>
-<p>The Hurst parameter is strictly bounded to preserve roughness:</p>
+<p>
+The Hurst parameter is strictly bounded to preserve roughness:
+</p>
 <p><span class="math display">\[
 H \in \left(0, \frac{1}{2}\right)
 \]</span></p>
@@ -1817,10 +2274,14 @@ H \in \left(0, \frac{1}{2}\right)
 </section>
 <section id="ii.-measure-theoretic-filtration-state-space-dynamics" class="level4 stack-item">
 <h4 data-anchor-id="ii.-measure-theoretic-filtration-state-space-dynamics">II. Measure-Theoretic Filtration &amp; State Space Dynamics</h4>
-<p>Abandoning empirical machine learning in favor of exact analytical solutions to Stochastic Partial Differential Equations. Application of Girsanov transformations for formal probability measure shifts.</p>
+<p>
+Abandoning empirical machine learning in favor of exact analytical solutions to Stochastic Partial Differential Equations. Application of Girsanov transformations for formal probability measure shifts.
+</p>
 <div class="definition">
 <span class="def-title">Non-Linear Paradigm:</span>
-<p>Optimal control functions are bounded by unassailable analytical inequalities. We formalize the state dynamics via the rigorously derived Backward Stochastic Differential Equation:</p>
+<p>
+Optimal control functions are bounded by unassailable analytical inequalities. We formalize the state dynamics via the rigorously derived Backward Stochastic Differential Equation:
+</p>
 <p><span class="math display">\[
 -dY_t = f(t, X_t, Y_t, Z_t)dt - Z_t dW_t
 \]</span></p>
@@ -1828,34 +2289,42 @@ H \in \left(0, \frac{1}{2}\right)
 </section>
 <section id="iii.-topological-data-structures" class="level4 stack-item">
 <h4 data-anchor-id="iii.-topological-data-structures">III. Topological Data Structures</h4>
-<p>Rejecting standard data engineering workflows for pure measure-theoretic data filtration. Construction of high-dimensional statistical architectures utilizing Banach and Hilbert space embeddings.</p>
+<p>
+Rejecting standard data engineering workflows for pure measure-theoretic data filtration. Construction of high-dimensional statistical architectures utilizing Banach and Hilbert space embeddings.
+</p>
 <div class="diagram-block">
 <svg class="svg-pulse ambient-float" viewbox="0 0 500 150" style="width:100%; height:150px; display:block;">
     <ellipse class="svg-dash" cx="250" cy="75" rx="180" ry="45" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="10 5"></ellipse>
-    <ellipse cx="250" cy="75" rx="45" ry="140" fill="none" stroke="#48cae4" stroke-width="1" transform="rotate(35 250 75)" opacity="0.5"></ellipse>
-    <ellipse cx="250" cy="75" rx="45" ry="140" fill="none" stroke="#48cae4" stroke-width="1" transform="rotate(-35 250 75)" opacity="0.5"></ellipse>
+    <ellipse cx="250" cy="75" rx="45" ry="140" fill="none" stroke="#00ffff" stroke-width="1" transform="rotate(35 250 75)" opacity="0.5"></ellipse>
+    <ellipse cx="250" cy="75" rx="45" ry="140" fill="none" stroke="#00ffff" stroke-width="1" transform="rotate(-35 250 75)" opacity="0.5"></ellipse>
     <circle cx="250" cy="75" r="3" fill="#ffffff" style="filter: drop-shadow(0 0 5px #ffffff);"></circle>
 </svg>
 </div>
 <div class="definition">
 <span class="def-title">Ingestion Axiom:</span>
-<p>Data ingestion is formalized strictly as a continuous mapping of observable phenomena onto a rigorously defined Polish space, ensuring absolute Borel measurability.</p>
+<p>
+Data ingestion is formalized strictly as a continuous mapping of observable phenomena onto a rigorously defined Polish space, ensuring absolute Borel measurability.
+</p>
 </div>
 </section>
 <section id="iv.-microstructural-limit-order-book-asymptotics" class="level4 stack-item">
 <h4 data-anchor-id="iv.-microstructural-limit-order-book-asymptotics">IV. Microstructural Limit Order Book Asymptotics</h4>
-<p>Eliminating reliance on standard broker routing. Modeling optimal order execution dynamics via marked point processes and Hawkes process formulations.</p>
+<p>
+Eliminating reliance on standard broker routing. Modeling optimal order execution dynamics via marked point processes and Hawkes process formulations.
+</p>
 <div class="diagram-block">
 <svg class="ambient-float" viewbox="0 0 500 150" style="width:100%; height:150px; display:block;">
     <line x1="250" y1="10" x2="250" y2="140" stroke="#ffffff" stroke-width="1" opacity="0.15" stroke-dasharray="4 4"></line>
     <line x1="10" y1="75" x2="490" y2="75" stroke="#ffffff" stroke-width="1" opacity="0.15" stroke-dasharray="4 4"></line>
     <path class="svg-dash" d="M10,130 Q125,10 250,75 T490,20" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"></path>
-    <path class="svg-dash" d="M10,140 Q125,25 250,90 T490,35" fill="none" stroke="#48cae4" stroke-width="1" opacity="0.6"></path>
+    <path class="svg-dash" d="M10,140 Q125,25 250,90 T490,35" fill="none" stroke="#00ffff" stroke-width="1" opacity="0.6"></path>
 </svg>
 </div>
 <div class="definition">
 <span class="def-title">Theorem 1 (Execution Optimality):</span>
-<p>Optimal execution routing is formulated as a rigorously proven solution to a stochastic optimal control problem. The value function is the unique viscosity solution to the Hamilton-Jacobi-Bellman equation under strict martingale constraints:</p>
+<p>
+Optimal execution routing is formulated as a rigorously proven solution to a stochastic optimal control problem. The value function is the unique viscosity solution to the Hamilton-Jacobi-Bellman equation under strict martingale constraints:
+</p>
 <p><span class="math display">\[
 \partial_t v + \sup_{u \in \mathcal{U}} \left\{ \mathcal{L}^u v + f(t,x,u) \right\} = 0
 \]</span></p>

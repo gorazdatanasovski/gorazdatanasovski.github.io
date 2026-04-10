@@ -31,6 +31,9 @@ html, body, .quarto-container, #quarto-content, main {
     width: 100%;
     margin: 0;
     padding: 0;
+    text-rendering: geometricPrecision !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
 }
 
 html {
@@ -60,21 +63,47 @@ body::after {
 }
 
 /* ==========================================
-   APEX COMMAND VISOR - THE MONA LISA MATRIX
+   APEX COMMAND VISOR - THE HARDWARE ACCELERATED MATRIX
    ========================================== */
 body #quarto-header {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     width: 100vw !important;
-    /* Pure, virtually invisible liquid frost */
-    background: rgba(2, 2, 3, 0.2) !important;
-    backdrop-filter: blur(60px) saturate(100%) !important;
-    -webkit-backdrop-filter: blur(60px) saturate(100%) !important;
-    /* Microscopic crystalline boundary */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03) !important;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6) !important;
+    background: rgba(12, 12, 16, 0.4) !important;
+    backdrop-filter: blur(40px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(40px) saturate(180%) !important;
+    border: none !important;
+    box-shadow: 
+        inset 0 1px 1px rgba(255, 255, 255, 0.12), 
+        inset 0 -1px 1px rgba(0, 0, 0, 0.3), 
+        0 20px 40px rgba(0, 0, 0, 0.8) !important;
     z-index: 999999 !important;
+    perspective: 1200px !important;
+    transform: translate3d(0, 0, 0) !important;
+    backface-visibility: hidden !important;
+    will-change: backdrop-filter, box-shadow !important;
+}
+
+/* THE SOUL: PURE WHITE DIAMOND RESONANCE */
+body #quarto-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 75%;
+    height: 2px; 
+    background: radial-gradient(ellipse 50% 100% at 50% 50%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.05) 50%, transparent 100%);
+    border-radius: 50%;
+    box-shadow: 0 1px 15px rgba(255, 255, 255, 0.2);
+    animation: diamondPulse 4s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+}
+
+@keyframes diamondPulse {
+    0% { width: 60%; opacity: 0.4; }
+    100% { width: 85%; opacity: 1; box-shadow: 0 1px 25px rgba(255, 255, 255, 0.5); }
 }
 
 /* ANNIHILATE QUARTO'S INNER CONTAINER RESTRAINTS */
@@ -98,6 +127,7 @@ body #quarto-header .navbar {
     align-items: center !important;
     justify-content: space-between !important;
     width: 100% !important;
+    transform-style: preserve-3d !important;
 }
 
 /* 1. ABSOLUTE LEFT SHIFT FOR BRAND */
@@ -105,32 +135,79 @@ body #quarto-header .navbar-brand-container {
     display: flex !important;
     align-items: center !important;
     margin-right: auto !important; 
-    margin-left: -4rem !important; /* Pushed left to perfectly center the tabs */
+    margin-left: -1.5rem !important; 
 }
 
-/* 2. ABSOLUTE RIGHT SHIFT FOR NAV LINKS */
+body #quarto-header .navbar-brand {
+    font-family: 'Cinzel', serif !important;
+    font-weight: 600 !important;
+    font-size: 1.45rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.15em !important;
+    position: relative;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    background: linear-gradient(
+        110deg, 
+        rgba(248, 250, 252, 0.5) 0%, 
+        rgba(248, 250, 252, 0.5) 40%, 
+        rgba(255, 255, 255, 1) 48%, 
+        rgba(0, 229, 255, 0.9) 50%, 
+        rgba(255, 255, 255, 1) 52%, 
+        rgba(248, 250, 252, 0.5) 60%, 
+        rgba(248, 250, 252, 0.5) 100%
+    );
+    background-size: 250% auto;
+    color: transparent !important;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: specularGlint 6s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+    will-change: transform, filter; 
+}
+
+@keyframes specularGlint {
+    0% { background-position: 250% center; filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.05)); }
+    15% { filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 30px rgba(0, 229, 255, 0.3)); }
+    30%, 100% { background-position: -50% center; filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.05)); }
+}
+
+body #quarto-header .navbar-brand:hover {
+    letter-spacing: 0.22em !important;
+    text-shadow: 0 0 35px rgba(255, 255, 255, 0.5) !important;
+    transform: scale(1.02) translateZ(10px) !important;
+}
+
+/* Kinetic Absorption on Click */
+body #quarto-header .navbar-brand:active {
+    transform: scale(0.96) translateZ(0) !important;
+    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* 2. OPTICAL LEFT-SHIFT CORRECTION FOR TABS */
 body #quarto-header #navbarCollapse, 
 body #quarto-header .navbar-collapse {
     display: flex !important;
     flex-direction: row !important;
-    justify-content: flex-end !important;
+    justify-content: center !important;
     width: 100% !important;
     align-items: center !important;
 }
 
-/* Universal Spatial Constant X Applied to Flex Gap */
-body #quarto-header ul.navbar-nav {
+body #quarto-header ul.navbar-nav:not(.ms-auto) {
+    position: absolute !important;
+    left: 50% !important;
+    /* THE APEX OPTICAL CORRECTION SCALAR: Perfectly shifts tabs to counterweight the right icons */
+    transform: translateX(calc(-50% - 4.5rem)) !important; 
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
     margin: 0 !important;
     padding: 0 !important;
-    margin-left: auto !important;
-    justify-content: flex-end !important;
-    gap: var(--spatial-x) !important; 
+    gap: 3.5rem !important; 
+    transform-style: preserve-3d !important;
 }
 
-/* Eradicate internal list formatting */
 body #quarto-header .nav-item {
     margin: 0 !important;
     padding: 0 !important;
@@ -138,27 +215,7 @@ body #quarto-header .nav-item {
     align-items: center !important;
 }
 
-/* THE AESTHETIC MASTERPIECE: INSTITUTIONAL BRAND NODE */
-body #quarto-header .navbar-brand {
-    font-family: 'Cinzel', serif !important;
-    font-weight: 600 !important;
-    font-size: 1.45rem !important;
-    color: var(--quant-pearl) !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.15em !important;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1) !important;
-    position: relative;
-    white-space: nowrap !important;
-    flex-shrink: 0 !important;
-    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-body #quarto-header .navbar-brand:hover {
-    letter-spacing: 0.22em !important;
-    text-shadow: 0 0 35px rgba(255, 255, 255, 0.5) !important;
-}
-
-/* DOPAMINE-SPIKE NAV LINKS - LIVING ELEGANCE */
+/* KINETIC NAV LINKS - VOLUMETRIC TYPOGRAPHY */
 body #quarto-header .nav-link {
     font-family: 'Inter', sans-serif !important;
     font-size: 0.75rem !important;
@@ -168,68 +225,91 @@ body #quarto-header .nav-link {
     letter-spacing: 0.3em !important;
     padding: 0 !important;
     margin: 0 !important;
-    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) !important; /* Elastic snap */
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1) !important;
     position: relative;
     z-index: 1;
+    will-change: transform, text-shadow; 
 }
 
-/* Dynamic Soul Breath / Hover Line */
+/* THE AFFINE TRANSFORMATION: TRUE GEOMETRIC DIAMOND */
 body #quarto-header .nav-link::after {
     content: ''; 
     position: absolute; 
-    bottom: -6px; 
+    bottom: -10px; 
     left: 50%; 
-    transform: translateX(-50%);
-    width: 0%; 
-    height: 1px;
+    transform: translateX(-50%) scaleX(0) scaleY(0) rotate(45deg) translateZ(0);
+    width: 10px; 
+    height: 10px;
     background: #ffffff;
-    box-shadow: 0 0 10px #00e5ff, 0 0 20px #00e5ff;
-    transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease;
+    box-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease;
     opacity: 0;
-    border-radius: 50%;
+    border-radius: 1px;
 }
 
 body #quarto-header .nav-link:hover::after {
-    width: 100%;
     opacity: 1;
-    border-radius: 0;
+    transform: translateX(-50%) scaleX(6) scaleY(0.15) rotate(45deg) translateZ(0);
 }
 
-/* Continuous breathing state for the active tab */
-body #quarto-header .nav-link.active::after {
-    width: 100%;
-    opacity: 1;
-    animation: activeTabPulse 3s infinite alternate ease-in-out;
-}
-
-@keyframes activeTabPulse {
-    0% { opacity: 0.7; box-shadow: 0 0 10px #00e5ff; height: 1px; }
-    100% { opacity: 1; box-shadow: 0 0 15px #ffffff, 0 0 25px #00e5ff; height: 2px; }
-}
-
-/* Zoom-in and Luminous Bloom on Hover/Active */
 body #quarto-header .nav-link:hover {
     color: #ffffff !important;
-    text-shadow: 0 0 25px rgba(255, 255, 255, 0.6) !important;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8) !important;
     letter-spacing: 0.35em !important;
-    transform: translateY(-2px) scale(1.05) !important; /* The precise zoom effect */
+    transform: translateY(-2px) scale(1.05) translateZ(15px) !important;
 }
 
+/* Kinetic Absorption on Click */
+body #quarto-header .nav-link:active {
+    transform: scale(0.96) translateZ(0) !important;
+    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.4) !important;
+}
+
+/* THE ACTIVE NODE: PULSING GEOMETRIC BREATH */
 body #quarto-header .nav-link.active {
     color: #ffffff !important;
     font-weight: 400 !important;
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.8) !important;
     letter-spacing: 0.35em !important;
-    transform: scale(1.05) !important;
+    transform: scale(1.05) translateZ(10px) !important;
+}
+
+body #quarto-header .nav-link.active::after {
+    opacity: 1;
+    animation: trueDiamondBreath 3s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes trueDiamondBreath {
+    0% { 
+        transform: translateX(-50%) scaleX(5) scaleY(0.12) rotate(45deg) translateZ(0); 
+        opacity: 0.6; 
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.4); 
+    }
+    100% { 
+        transform: translateX(-50%) scaleX(8) scaleY(0.18) rotate(45deg) translateZ(0); 
+        opacity: 1; 
+        box-shadow: 0 0 20px #ffffff, 0 0 35px rgba(255, 255, 255, 0.8); 
+    }
 }
 
 /* ==========================================
    3. ISOMORPHIC SEARCH & SOCIAL CLUSTER
    ========================================== */
+body #quarto-header ul.navbar-nav.ms-auto {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    margin: 0 !important;
+    margin-left: auto !important;
+    padding: 0 !important;
+    gap: var(--spatial-x) !important; 
+    transform-style: preserve-3d !important;
+}
 
 /* Strict Euclidean Equivalence */
 body #quarto-header #quarto-search {
-    margin: 0 0 0 var(--spatial-x) !important; /* Forces exact spatial constant X from the UL */
+    margin: 0 0 0 var(--spatial-x) !important; 
     padding: 0 !important;
     display: flex !important;
     align-items: center !important;
@@ -250,20 +330,29 @@ body #quarto-header #quarto-search-trigger {
 body #quarto-header .navbar-nav .bi,
 body #quarto-header #quarto-search-trigger .bi-search {
     color: rgba(248, 250, 252, 0.4) !important;
-    font-size: 1.15rem !important; /* Mathematically identical sizing */
+    font-size: 1.15rem !important; 
     margin: 0 !important;
     padding: 0 !important;
     display: block !important;
-    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1) !important;
     transform-origin: center center !important;
+    will-change: transform, filter; 
 }
 
-/* Haunting, Liquid Bloom Interaction */
+/* Spatial Z-Axis Depth Injection on Hover */
 body #quarto-header .navbar-nav .bi:hover,
 body #quarto-header #quarto-search-trigger:hover .bi-search {
     color: #ffffff !important;
-    text-shadow: 0 0 25px rgba(255, 255, 255, 0.8) !important;
-    transform: scale(1.15) translateY(-2px) !important;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.9) !important;
+    transform: scale(1.15) translateY(-2px) translateZ(20px) !important;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+}
+
+/* Kinetic Absorption on Click */
+body #quarto-header .navbar-nav .bi:active,
+body #quarto-header #quarto-search-trigger .bi-search:active {
+    transform: scale(0.9) translateY(-1px) translateZ(0) !important;
+    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 /* ==========================================
