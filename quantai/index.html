@@ -1,95 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>QuantAI</title>
-<link rel="stylesheet" href="./styles.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>QuantAI</title>
+
+  <!-- ── Typographic Soul ── Cormorant Garamond × Montserrat ── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-<aside class="sidebar" id="sidebar">
-  <div class="sidebar-inner">
-    <div class="sidebar-top">
-      <a class="sidebar-item" href="./" title="New chat">
-        <span class="sidebar-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none">
-            <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
-          </svg>
-        </span>
-        <span class="sidebar-label">New chat</span>
-      </a>
-      <button class="sidebar-item sidebar-button" type="button" title="Search chats">
-        <span class="sidebar-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none">
-            <circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="1.8"/>
-            <path d="M16 16l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-          </svg>
-        </span>
-        <span class="sidebar-label">Search chats</span>
-      </button>
-      <button class="sidebar-item sidebar-button" type="button" title="Projects">
-        <span class="sidebar-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none">
-            <path d="M4.5 7.5a2 2 0 0 1 2-2h4l1.5 1.8h5.5a2 2 0 0 1 2 2v6.2a2 2 0 0 1-2 2H6.5a2 2 0 0 1-2-2z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
-          </svg>
-        </span>
-        <span class="sidebar-label">Projects</span>
-      </button>
-      <button class="sidebar-item sidebar-button" type="button" title="More">
-        <span class="sidebar-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <circle cx="6" cy="12" r="1.7"/>
-            <circle cx="12" cy="12" r="1.7"/>
-            <circle cx="18" cy="12" r="1.7"/>
-          </svg>
-        </span>
-        <span class="sidebar-label">More</span>
-      </button>
-      <div class="sidebar-section-label">Recents</div>
+  <div class="cursor-light" aria-hidden="true"></div>
+  <div class="ambient ambient-a" aria-hidden="true"></div>
+  <div class="ambient ambient-b" aria-hidden="true"></div>
+  <div class="ambient-grid" aria-hidden="true"></div>
+  <div class="ambient-noise" aria-hidden="true"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-inner">
+      <div class="sidebar-top">
+        <a class="sidebar-item" href="./" title="New chat">
+          <span class="sidebar-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="sidebar-label">New chat</span>
+        </a>
+
+        <button class="sidebar-item sidebar-button" type="button" title="Search chats">
+          <span class="sidebar-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M16 16l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="sidebar-label">Search chats</span>
+        </button>
+
+        <button class="sidebar-item sidebar-button" type="button" title="Projects">
+          <span class="sidebar-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4.5 7.5a2 2 0 0 1 2-2h4l1.5 1.8h5.5a2 2 0 0 1 2 2v6.2a2 2 0 0 1-2 2H6.5a2 2 0 0 1-2-2z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="sidebar-label">Projects</span>
+        </button>
+
+        <button class="sidebar-item sidebar-button" type="button" title="More">
+          <span class="sidebar-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <circle cx="6" cy="12" r="1.7"/>
+              <circle cx="12" cy="12" r="1.7"/>
+              <circle cx="18" cy="12" r="1.7"/>
+            </svg>
+          </span>
+          <span class="sidebar-label">More</span>
+        </button>
+
+        <div class="sidebar-section-label">Recents</div>
+
+        <div class="sidebar-recents">
+          <div class="sidebar-recents-empty">
+            <span class="sidebar-recents-empty-dot"></span>
+            <span class="sidebar-recents-empty-text">No recent chats yet</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-bottom">
+        <button class="sidebar-item sidebar-button sidebar-account" type="button" title="Account">
+          <span class="sidebar-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.7"/>
+              <path d="M5.5 19c1.4-3.1 4-4.7 6.5-4.7S17.1 15.9 18.5 19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="sidebar-label">Account</span>
+        </button>
+      </div>
     </div>
-    <div class="sidebar-bottom">
-      <button class="sidebar-item sidebar-button sidebar-account" type="button" title="Account">
-        <span class="sidebar-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.7"/>
-            <path d="M5.5 19c1.4-3.1 4-4.7 6.5-4.7S17.1 15.9 18.5 19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-          </svg>
-        </span>
-        <span class="sidebar-label">Account</span>
+  </aside>
+
+  <header class="topbar">
+    <a class="brand" href="./" title="Refresh QuantAI">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-text">QuantAI</span>
+    </a>
+
+    <div class="top-actions">
+      <button class="top-action" id="shareButton" type="button" title="Share">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M12 16V5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M8 9l4-4 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 18.5h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <button class="top-action" id="menuButton" type="button" title="More">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <circle cx="6" cy="12" r="1.75"/>
+          <circle cx="12" cy="12" r="1.75"/>
+          <circle cx="18" cy="12" r="1.75"/>
+        </svg>
       </button>
     </div>
-  </div>
-</aside>
-<header class="topbar">
-  <a class="brand" href="./" title="Refresh QuantAI">QuantAI</a>
-  <div class="top-actions">
-    <button class="top-action" id="shareButton" type="button" title="Share">
-      <svg viewBox="0 0 24 24" fill="none">
-        <path d="M12 16V5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M8 9l4-4 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M6 18.5h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-      </svg>
-    </button>
-    <button class="top-action" id="menuButton" type="button" title="More">
-      <svg viewBox="0 0 24 24" fill="currentColor">
-        <circle cx="6" cy="12" r="1.75"/>
-        <circle cx="12" cy="12" r="1.75"/>
-        <circle cx="18" cy="12" r="1.75"/>
-      </svg>
-    </button>
-  </div>
-</header>
-<main class="app-shell" id="appShell">
-  <section class="hero" id="hero">
-    <h1 class="headline">What are you working on?</h1>
-    <div class="composer-wrap composer-wrap-top" id="composerWrapTop">
-      <form id="composerTop" class="composer" autocomplete="off">
+  </header>
+
+  <main class="app-shell" id="appShell">
+    <section class="hero" id="hero">
+      <h1 class="headline">What are you working on?</h1>
+
+      <div class="composer-wrap composer-wrap-top" id="composerWrapTop">
+        <form id="composerTop" class="composer" autocomplete="off">
+          <div class="composer-shine" aria-hidden="true"></div>
+
+          <div class="mode-cluster">
+            <button class="mode-button" id="modeButtonTop" type="button" aria-label="Choose mode">
+              <span class="mode-label" id="modeLabelTop">Auto</span>
+              <span class="mode-chevron">▾</span>
+            </button>
+
+            <div id="modeMenuTop" class="mode-menu hidden">
+              <button type="button" data-mode="auto">Auto</button>
+              <button type="button" data-mode="evidence">Evidence</button>
+              <button type="button" data-mode="theorem">Theorem</button>
+              <button type="button" data-mode="options_surface_memory">Surface</button>
+              <button type="button" data-mode="market_memory">Memory</button>
+              <button type="button" data-mode="market_live_snapshot">Live</button>
+              <button type="button" data-mode="market_calibration">Calibration</button>
+            </div>
+          </div>
+
+          <textarea
+            id="promptTop"
+            class="prompt-input"
+            rows="1"
+            placeholder="Ask anything"
+            aria-label="Ask anything"
+          ></textarea>
+
+          <button class="send-button" id="sendTop" type="submit" aria-label="Send">
+            <span class="send-orbit" aria-hidden="true"></span>
+            <span class="send-label">↑</span>
+            <span class="send-loader" aria-hidden="true"></span>
+          </button>
+        </form>
+      </div>
+
+      <div class="site-note site-note-top">© Gorazd Atanasovski 2026 · QuantAI can make mistakes.</div>
+    </section>
+
+    <section class="messages" id="messages"></section>
+
+    <div class="composer-wrap composer-wrap-bottom" id="composerWrapBottom">
+      <form id="composerBottom" class="composer" autocomplete="off">
+        <div class="composer-shine" aria-hidden="true"></div>
+
         <div class="mode-cluster">
-          <button class="mode-button" id="modeButtonTop" type="button" aria-label="Choose mode">
-            <span id="modeLabelTop">Auto</span>
+          <button class="mode-button" id="modeButtonBottom" type="button" aria-label="Choose mode">
+            <span class="mode-label" id="modeLabelBottom">Auto</span>
             <span class="mode-chevron">▾</span>
           </button>
-          <div id="modeMenuTop" class="mode-menu hidden">
+
+          <div id="modeMenuBottom" class="mode-menu hidden">
             <button type="button" data-mode="auto">Auto</button>
             <button type="button" data-mode="evidence">Evidence</button>
             <button type="button" data-mode="theorem">Theorem</button>
@@ -99,61 +178,217 @@
             <button type="button" data-mode="market_calibration">Calibration</button>
           </div>
         </div>
-        <textarea id="promptTop" class="prompt-input" rows="1" placeholder="Ask anything" aria-label="Ask anything"></textarea>
-        <button class="send-button" id="sendTop" type="submit" aria-label="Send">↑</button>
+
+        <textarea
+          id="promptBottom"
+          class="prompt-input"
+          rows="1"
+          placeholder="Ask anything"
+          aria-label="Ask anything"
+        ></textarea>
+
+        <button class="send-button" id="sendBottom" type="submit" aria-label="Send">
+          <span class="send-orbit" aria-hidden="true"></span>
+          <span class="send-label">↑</span>
+          <span class="send-loader" aria-hidden="true"></span>
+        </button>
       </form>
     </div>
-    <div class="site-note site-note-top">© Gorazd Atanasovski 2026</div>
-  </section>
-  <section class="messages" id="messages"></section>
-  <div class="composer-wrap composer-wrap-bottom" id="composerWrapBottom">
-    <form id="composerBottom" class="composer" autocomplete="off">
-      <div class="mode-cluster">
-        <button class="mode-button" id="modeButtonBottom" type="button" aria-label="Choose mode">
-          <span id="modeLabelBottom">Auto</span>
-          <span class="mode-chevron">▾</span>
+
+    <div class="site-note site-note-bottom">© Gorazd Atanasovski 2026 · QuantAI can make mistakes.</div>
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- ── Original Publication Notice Modal (preserved) ── -->
+  <div class="launch-overlay hidden" id="launchOverlay" aria-hidden="true">
+    <div class="launch-backdrop"></div>
+    <div class="launch-modal" role="dialog" aria-modal="true" aria-labelledby="launchTitle">
+      <div class="launch-badge">Publication Notice</div>
+      <div class="launch-overline">Free model</div>
+      <h2 class="launch-title" id="launchTitle">Atanasovski Quant 1.0</h2>
+      <p class="launch-copy">Releases June 30.</p>
+      <a class="launch-home" href="../">Home</a>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       PRICING MODAL — GLASSMORPHIC QUARTZ EDITION
+       Three-tier matrix. Zero thermodynamic rendering friction.
+  ══════════════════════════════════════════════════════════════ -->
+  <div
+    class="pricing-overlay hidden"
+    id="pricingOverlay"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="pricingTitle"
+    aria-hidden="true"
+  >
+    <!-- Frosted glass backdrop — click to dismiss -->
+    <div class="pricing-backdrop" id="pricingBackdrop"></div>
+
+    <!-- Scrollable shell (handles tall viewports) -->
+    <div class="pricing-scroll-container">
+      <div class="pricing-modal">
+
+        <!-- ── Close Glyph ── -->
+        <button class="pricing-close-btn" id="pricingClose" aria-label="Close pricing modal">
+          <svg viewBox="0 0 24 24" fill="none" width="13" height="13">
+            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </button>
-        <div id="modeMenuBottom" class="mode-menu hidden">
-          <button type="button" data-mode="auto">Auto</button>
-          <button type="button" data-mode="evidence">Evidence</button>
-          <button type="button" data-mode="theorem">Theorem</button>
-          <button type="button" data-mode="options_surface_memory">Surface</button>
-          <button type="button" data-mode="market_memory">Memory</button>
-          <button type="button" data-mode="market_live_snapshot">Live</button>
-          <button type="button" data-mode="market_calibration">Calibration</button>
+
+        <!-- ── Header ── -->
+        <header class="pricing-header">
+          <div class="pricing-eyebrow">Atanasovski Quant &middot; Pricing</div>
+          <h2 class="pricing-title" id="pricingTitle">Select Your Edge</h2>
+          <p class="pricing-subtitle">Three tiers. One asymmetric advantage. Zero compromise.</p>
+        </header>
+
+        <!-- ── Three-Column Grid ── -->
+        <div class="pricing-grid">
+
+          <!-- ──────────── Card 1 · Free (Base Model) ──────────── -->
+          <article class="pricing-card card-free">
+            <div class="card-crystal-edge" aria-hidden="true"></div>
+            <div class="card-inner-shimmer" aria-hidden="true"></div>
+
+            <div class="card-tier-label">Base Model</div>
+            <h3 class="card-model-name">Quant 1.0</h3>
+
+            <div class="card-price-block">
+              <span class="card-price-amount card-price-free">Free</span>
+              <span class="card-price-sub">forever</span>
+            </div>
+
+            <p class="card-description">
+              Foundation-grade quantitative intelligence. Built for exploration and
+              initial inquiry into market structure and price dynamics.
+            </p>
+
+            <ul class="card-feature-list">
+              <li>Core market query engine</li>
+              <li>SPX Index coverage</li>
+              <li>Standard inference latency</li>
+              <li>Public data synthesis</li>
+            </ul>
+
+            <div class="card-spacer"></div>
+
+            <div class="card-release-notice">
+              <span class="release-dot" aria-hidden="true"></span>
+              Releasing June 30, 2026
+            </div>
+
+            <button class="card-cta-btn" type="button">
+              <span>Reserve Access</span>
+            </button>
+          </article>
+
+          <!-- ──────────── Card 2 · Pro ($99 / mo) ──────────── -->
+          <article class="pricing-card card-pro">
+            <div class="card-crystal-edge" aria-hidden="true"></div>
+            <div class="card-inner-shimmer" aria-hidden="true"></div>
+            <div class="card-featured-aura" aria-hidden="true"></div>
+
+            <div class="card-badge">Bloomberg-Trained Core</div>
+            <div class="card-tier-label">Pro Model</div>
+            <h3 class="card-model-name">Quant Pro</h3>
+
+            <div class="card-price-block">
+              <span class="card-price-currency">$</span>
+              <span class="card-price-amount">99</span>
+              <span class="card-price-period">/month</span>
+            </div>
+
+            <p class="card-description">
+              Institutional-grade terminal intelligence, refined for precision
+              operators navigating complex multi-asset market topologies.
+            </p>
+
+            <ul class="card-feature-list">
+              <li>Bloomberg terminal training corpus</li>
+              <li>Multi-security fusion retrieval</li>
+              <li>Evidence + Theorem modes</li>
+              <li>Options surface memory</li>
+              <li>Priority inference latency</li>
+            </ul>
+
+            <div class="card-spacer"></div>
+
+            <button class="card-cta-btn" type="button">
+              <span>Begin Pro</span>
+            </button>
+          </article>
+
+          <!-- ──────────── Card 3 · Ultra ($299 / mo) ──────────── -->
+          <article class="pricing-card card-ultra">
+            <div class="card-crystal-edge" aria-hidden="true"></div>
+            <div class="card-inner-shimmer" aria-hidden="true"></div>
+
+            <div class="card-badge card-badge-apex">Apex Engine</div>
+            <div class="card-tier-label">Ultra Model</div>
+            <h3 class="card-model-name">Quant Ultra</h3>
+
+            <div class="card-price-block">
+              <span class="card-price-currency">$</span>
+              <span class="card-price-amount">299</span>
+              <span class="card-price-period">/month</span>
+            </div>
+
+            <p class="card-description">
+              The absolute apex Bloomberg-trained engine for maximum institutional
+              superiority and uncompromising quantitative dominance.
+            </p>
+
+            <ul class="card-feature-list">
+              <li>Full Bloomberg corpus + proprietary overlay</li>
+              <li>Live market calibration engine</li>
+              <li>All modes + unlimited memory</li>
+              <li>Institutional SLA — sub-200ms</li>
+              <li>White-glove onboarding</li>
+              <li>Dedicated inference infrastructure</li>
+            </ul>
+
+            <div class="card-spacer"></div>
+
+            <button class="card-cta-btn" type="button">
+              <span>Acquire Ultra</span>
+            </button>
+          </article>
+
         </div>
+        <!-- /pricing-grid -->
+
+        <!-- ── Footer ── -->
+        <footer class="pricing-footer">
+          <p>All tiers include access to the QuantAI interface. Institutional licensing available upon request.</p>
+        </footer>
+
       </div>
-      <textarea id="promptBottom" class="prompt-input" rows="1" placeholder="Ask anything" aria-label="Ask anything"></textarea>
-      <button class="send-button" id="sendBottom" type="submit" aria-label="Send">↑</button>
-    </form>
+      <!-- /pricing-modal -->
+    </div>
+    <!-- /pricing-scroll-container -->
   </div>
-  <div class="site-note site-note-bottom">© Gorazd Atanasovski 2026</div>
-</main>
-<div class="toast" id="toast"></div>
-<div class="launch-overlay hidden" id="launchOverlay" aria-hidden="true">
-  <div class="launch-backdrop"></div>
-  <div class="launch-modal" role="dialog" aria-modal="true" aria-labelledby="launchTitle">
-    <div class="launch-badge">Publication Notice</div>
-    <div class="launch-overline">Free model</div>
-    <h2 class="launch-title" id="launchTitle">ATAX-1 1.0</h2>
-    <p class="launch-copy">Releases June 30.</p>
-    <a class="launch-home" href="../">Home</a>
-  </div>
-</div>
-<template id="userMessageTemplate">
-  <article class="message message-user">
-    <div class="message-user-bubble"></div>
-  </article>
-</template>
-<template id="assistantMessageTemplate">
-  <article class="message message-assistant">
-    <div class="message-assistant-text"></div>
-    <details class="details hidden">
-      <summary>Sources</summary>
-      <div class="details-body"></div>
-    </details>
-  </article>
-</template>
-<script src="./app.js"></script>
+  <!-- /pricing-overlay -->
+
+  <!-- ── Message Templates (preserved) ── -->
+  <template id="userMessageTemplate">
+    <article class="message message-user">
+      <div class="message-user-bubble"></div>
+    </article>
+  </template>
+
+  <template id="assistantMessageTemplate">
+    <article class="message message-assistant">
+      <div class="message-assistant-text"></div>
+      <details class="details hidden">
+        <summary>Sources</summary>
+        <div class="details-body"></div>
+      </details>
+    </article>
+  </template>
+
+  <script src="./app.js"></script>
 </body>
 </html>
