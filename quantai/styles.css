@@ -2139,6 +2139,19 @@ body.chat-started .site-note-top{
   margin: 0 0 14px 0;
 }
 
+.brand-globe {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #6b4fbb, #2d1b69, #0d0720);
+  /* specular highlight */
+  box-shadow: 
+    inset -4px -4px 12px rgba(0,0,0,0.6),
+    inset 3px 3px 10px rgba(150,100,255,0.3),
+    0 0 20px rgba(100,50,200,0.4);
+  position: relative;
+}
+
 .waitlist-confirm-sub {
   font-family: 'Montserrat', ui-sans-serif, sans-serif;
   font-size: 0.76rem;
