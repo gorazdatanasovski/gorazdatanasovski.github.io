@@ -15,6 +15,26 @@ window.addEventListener("DOMContentLoaded", () => {
   const pricingBackdrop  = document.getElementById("pricingBackdrop");
   const pricingCloseBtn  = document.getElementById("pricingClose");
 
+  // ── Auth modal elements ─────────────────────────────────────────────────
+  const authOverlay   = document.getElementById("authOverlay");
+  const authBackdrop  = document.getElementById("authBackdrop");
+  const authCloseBtn  = document.getElementById("authCloseBtn");
+  const authSubmitBtn = document.getElementById("authSubmitBtn");
+  const authNameInput = document.getElementById("auth-name");
+  const authEmailInput = document.getElementById("auth-email");
+  const authError     = document.getElementById("authError");
+  const authFormInner = document.getElementById("authFormInner");
+  const authConfirm   = document.getElementById("authConfirm");
+  const accountLabel  = document.getElementById("accountLabel");
+
+  // ── Sidebar navigation elements ─────────────────────────────────────────
+  const newChatBtn    = document.getElementById("newChatBtn");
+  const searchChatsBtn = document.getElementById("searchChatsBtn");
+  const projectsBtn   = document.getElementById("projectsBtn");
+  const copyLastBtn   = document.getElementById("copyLastBtn");
+  const copyIconSvg   = document.getElementById("copyIconSvg");
+  const accountBtn    = document.getElementById("accountBtn");
+
   const userTemplate = document.getElementById("userMessageTemplate");
   const assistantTemplate = document.getElementById("assistantMessageTemplate");
 
@@ -148,22 +168,14 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // ══════════════════════════════════════════════════════════════════════════
   //  PRICING MODAL — show / close
-  //  Triggered by Enter on the composer when PUBLICATION_GATE is true.
-  //  Closes via: Escape key, backdrop click, or the X button.
   // ══════════════════════════════════════════════════════════════════════════
 
   function showPricingModal() {
     if (!pricingOverlay) return;
-
-    // Ensure we're starting from a clean state (no lingering close animation)
     pricingOverlay.classList.remove("pricing-closing");
     pricingOverlay.classList.remove("hidden");
     pricingOverlay.setAttribute("aria-hidden", "false");
-
-    // Blur background using the shared modal-open class
     body.classList.add("modal-open");
-
-    // Trap focus to the modal — move focus to close button for a11y
     if (pricingCloseBtn) {
       pricingCloseBtn.focus({ preventScroll: true });
     }
@@ -172,17 +184,258 @@ window.addEventListener("DOMContentLoaded", () => {
   function closePricingModal() {
     if (!pricingOverlay) return;
     if (pricingOverlay.classList.contains("hidden")) return;
-
-    // Add closing class — CSS animation fires for the exit keyframe
     pricingOverlay.classList.add("pricing-closing");
-
-    // After exit animation completes (280ms), hide fully and remove blur
     setTimeout(() => {
       pricingOverlay.classList.add("hidden");
       pricingOverlay.classList.remove("pricing-closing");
       pricingOverlay.setAttribute("aria-hidden", "true");
       body.classList.remove("modal-open");
     }, 290);
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  //  AUTH MODAL — show / close / submit
+  //  Glassmorphic identity node. Mirrors waitlist popup geometry.
+  // ══════════════════════════════════════════════════════════════════════════
+
+  let authAutoCloseTimer = null;
+
+  function showAuthModal() {
+    if (!authOverlay) return;
+
+    // Reset to intake state (handles re-open after prior confirmation)
+    if (authFormInner) authFormInner.classList.remove("form-fading");
+    if (authConfirm)   authConfirm.classList.remove("confirm-visible");
+    if (authNameInput)  authNameInput.value = "";
+    if (authEmailInput) authEmailInput.value = "";
+    if (authError)      authError.classList.remove("visible");
+    clearTimeout(authAutoCloseTimer);
+
+    // Reveal
+    authOverlay.classList.remove("hidden");
+    authOverlay.classList.remove("auth-closing");
+    authOverlay.setAttribute("aria-hidden", "false");
+    body.classList.add("modal-open");
+
+    // Trap focus to name input after animation settles
+    setTimeout(() => {
+      if (authNameInput) authNameInput.focus({ preventScroll: true });
+    }, 300);
+  }
+
+  function closeAuthModal() {
+    if (!authOverlay) return;
+    if (authOverlay.classList.contains("hidden")) return;
+
+    clearTimeout(authAutoCloseTimer);
+
+    authOverlay.classList.add("auth-closing");
+    setTimeout(() => {
+      authOverlay.classList.add("hidden");
+      authOverlay.classList.remove("auth-closing");
+      authOverlay.setAttribute("aria-hidden", "true");
+      body.classList.remove("modal-open");
+    }, 290);
+  }
+
+  function handleAuthSubmit() {
+    const nameVal  = authNameInput  ? (authNameInput.value  || "").trim() : "";
+    const emailVal = authEmailInput ? (authEmailInput.value || "").trim() : "";
+
+    // RFC-minimal email validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!emailPattern.test(emailVal)) {
+      if (authError) authError.classList.add("visible");
+      if (authEmailInput) authEmailInput.focus();
+      return;
+    }
+
+    if (authError) authError.classList.remove("visible");
+
+    // Phase 1: fade form layer out
+    if (authFormInner) authFormInner.classList.add("form-fading");
+
+    // Phase 2: bloom confirmation layer
+    setTimeout(() => {
+      if (authConfirm) authConfirm.classList.add("confirm-visible");
+
+      // Update sidebar Account label to the user's entered name (if provided)
+      const displayName = nameVal || emailVal.split("@")[0];
+      if (accountLabel && displayName) {
+        accountLabel.textContent = displayName;
+      }
+
+      // Phase 3: auto-dismiss
+      clearTimeout(authAutoCloseTimer);
+      authAutoCloseTimer = setTimeout(() => {
+        closeAuthModal();
+      }, 3400);
+    }, 310);
+  }
+
+  // ── Auth modal: close button ─────────────────────────────────────────────
+
+  if (authCloseBtn) {
+    authCloseBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      closeAuthModal();
+    });
+  }
+
+  // ── Auth modal: backdrop click dismisses ────────────────────────────────
+
+  if (authBackdrop) {
+    authBackdrop.addEventListener("click", () => {
+      closeAuthModal();
+    });
+  }
+
+  // ── Auth modal: prevent clicks on card from closing ──────────────────────
+
+  if (authOverlay) {
+    const authCardEl = authOverlay.querySelector(".auth-card");
+    if (authCardEl) {
+      authCardEl.addEventListener("click", (e) => {
+        e.stopPropagation();
+      });
+    }
+  }
+
+  // ── Auth modal: Enter key in inputs ─────────────────────────────────────
+
+  if (authNameInput) {
+    authNameInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        if (authEmailInput) authEmailInput.focus();
+      }
+    });
+    // Clear validation on input
+    authNameInput.addEventListener("input", () => {
+      if (authError) authError.classList.remove("visible");
+    });
+  }
+
+  if (authEmailInput) {
+    authEmailInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        handleAuthSubmit();
+      }
+    });
+    authEmailInput.addEventListener("input", () => {
+      if (authError) authError.classList.remove("visible");
+    });
+  }
+
+  // ── Auth modal: submit button ────────────────────────────────────────────
+
+  if (authSubmitBtn) {
+    authSubmitBtn.addEventListener("click", () => {
+      handleAuthSubmit();
+    });
+  }
+
+  // ── Account sidebar button → open auth modal ────────────────────────────
+
+  if (accountBtn) {
+    accountBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      showAuthModal();
+    });
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  //  NEW CHAT BUTTON — hard geometric reset via page reload
+  // ══════════════════════════════════════════════════════════════════════════
+
+  if (newChatBtn) {
+    newChatBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.location.reload();
+    });
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  //  SEARCH CHATS BUTTON — focus active composer + pulse animation
+  // ══════════════════════════════════════════════════════════════════════════
+
+  if (searchChatsBtn) {
+    searchChatsBtn.addEventListener("click", () => {
+      // Determine which composer is currently active
+      const activePrompt = body.classList.contains("chat-started") ? promptBottom : promptTop;
+      const activeComposer = body.classList.contains("chat-started") ? composerBottom : composerTop;
+
+      if (activePrompt) {
+        activePrompt.focus();
+      }
+
+      // Trigger pulse animation on the composer border
+      if (activeComposer) {
+        activeComposer.classList.remove("search-pulse");
+        // Force reflow to restart animation
+        void activeComposer.offsetWidth;
+        activeComposer.classList.add("search-pulse");
+
+        // Remove class after animation completes to allow re-triggering
+        setTimeout(() => {
+          activeComposer.classList.remove("search-pulse");
+        }, 900);
+      }
+    });
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  //  PROJECTS BUTTON — smooth auto-scroll to absolute bottom of chat
+  // ══════════════════════════════════════════════════════════════════════════
+
+  if (projectsBtn) {
+    projectsBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth",
+      });
+    });
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  //  COPY LAST (MORE) BUTTON — extract last assistant response → clipboard
+  //  Visual feedback: icon blooms Ice Blue (#00ffff) for 1.5 seconds
+  // ══════════════════════════════════════════════════════════════════════════
+
+  if (copyLastBtn) {
+    copyLastBtn.addEventListener("click", async () => {
+      // Find the most recent assistant message text node
+      const allAssistantTexts = messages
+        ? messages.querySelectorAll(".message-assistant-text")
+        : [];
+      const lastResponse = allAssistantTexts.length > 0
+        ? allAssistantTexts[allAssistantTexts.length - 1]
+        : null;
+
+      const textToCopy = lastResponse ? lastResponse.innerText.trim() : "";
+
+      if (!textToCopy) {
+        showToast("No response to copy.");
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(textToCopy);
+
+        // Ice Blue visual feedback on the icon
+        if (copyIconSvg) {
+          copyIconSvg.classList.add("copy-active");
+          setTimeout(() => {
+            copyIconSvg.classList.remove("copy-active");
+          }, 1500);
+        }
+
+        showToast("Response copied.");
+      } catch {
+        showToast("Copy failed.");
+      }
+    });
   }
 
   // ── HTML escape ─────────────────────────────────────────────────────────
@@ -378,11 +631,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ── Handle submit — now opens the pricing modal ──────────────────────────
-  //
-  //  The pricing modal is the primary gate while PUBLICATION_GATE is true.
-  //  The original showLaunchModal() is preserved above for programmatic use.
-  //
+  // ── Handle submit — opens the pricing modal when gate is active ──────────
 
   async function handleSubmit(source) {
     if (requestInFlight) return;
@@ -390,14 +639,10 @@ window.addEventListener("DOMContentLoaded", () => {
     if (!query) return;
 
     if (PUBLICATION_GATE) {
-      // Brief pulse on the send button for tactile feedback
       briefSendPulse();
-
-      // Small delay so the pulse completes before the modal blooms
       setTimeout(() => {
         showPricingModal();
       }, 180);
-
       return;
     }
 
@@ -502,10 +747,16 @@ window.addEventListener("DOMContentLoaded", () => {
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
-      // Close pricing modal if open — takes priority
+      // Close auth modal first (highest z-index)
+      if (authOverlay && !authOverlay.classList.contains("hidden")) {
+        closeAuthModal();
+        return;
+      }
+
+      // Close pricing modal if open
       if (pricingOverlay && !pricingOverlay.classList.contains("hidden")) {
         closePricingModal();
-        return; // Don't propagate to dropdown close on same keystroke
+        return;
       }
 
       // Otherwise close any open dropdowns
@@ -526,10 +777,18 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Cmd/Ctrl + K — search chats toast
+    // Cmd/Ctrl + K — search chats: focus + pulse
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
       e.preventDefault();
-      showToast("Search chats");
+      const activePrompt   = body.classList.contains("chat-started") ? promptBottom : promptTop;
+      const activeComposer = body.classList.contains("chat-started") ? composerBottom : composerTop;
+      if (activePrompt) activePrompt.focus();
+      if (activeComposer) {
+        activeComposer.classList.remove("search-pulse");
+        void activeComposer.offsetWidth;
+        activeComposer.classList.add("search-pulse");
+        setTimeout(() => activeComposer.classList.remove("search-pulse"), 900);
+      }
     }
   });
 
@@ -561,15 +820,37 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ── Share button ─────────────────────────────────────────────────────────
+  // ── Share button — Web Share API with clipboard fallback ─────────────────
 
   if (shareButton) {
     shareButton.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(window.location.href);
-        showToast("Link copied");
-      } catch {
-        showToast("Copy failed");
+      const shareData = {
+        title: "QuantAI Analysis",
+        url: window.location.href,
+      };
+
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+        } catch (err) {
+          // User cancelled share or API failed — silent fallback
+          if (err && err.name !== "AbortError") {
+            try {
+              await navigator.clipboard.writeText(window.location.href);
+              showToast("Link copied");
+            } catch {
+              showToast("Share unavailable");
+            }
+          }
+        }
+      } else {
+        // Fallback: copy URL to clipboard
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          showToast("Link copied");
+        } catch {
+          showToast("Copy failed");
+        }
       }
     });
   }
@@ -587,3 +868,334 @@ window.addEventListener("DOMContentLoaded", () => {
   autosize(promptTop);
   autosize(promptBottom);
 });
+
+// ══════════════════════════════════════════════════════════════════════════
+//  PRICING CTA ROUTING
+//  ─────────────────────────────────────────────────────────────────────────
+//  · Free  card  → Waitlist Capture HUD (dynamically injected singleton)
+//  · Pro   card  → Stripe payment link
+//  · Ultra card  → Stripe payment link
+//
+//  Escape handler registered in capture phase (priority over existing
+//  bubble-phase handlers). Pricing-modal closure mirrors the internal
+//  logic of closePricingModal() exactly — no external call required.
+// ══════════════════════════════════════════════════════════════════════════
+
+(function initPricingCTARouting() {
+
+  // ── Stripe Payment Links ───────────────────────────────────────────────
+  const STRIPE_PRO   = "https://buy.stripe.com/test_4gMeV6cvm0h5cDT9vq7AI00";
+  const STRIPE_ULTRA = "https://buy.stripe.com/test_4gMbIU3YQd3RbzP3727AI01";
+
+  // ── Waitlist singleton refs ────────────────────────────────────────────
+  let waitlistOverlay  = null;
+  let autoCloseTimer   = null;
+
+  // ════════════════════════════════════════════════════════════════════════
+  //  BUILD — constructs the overlay DOM once and appends to <body>
+  // ════════════════════════════════════════════════════════════════════════
+
+  function buildWaitlistOverlay() {
+    if (waitlistOverlay) return;
+
+    const overlay = document.createElement("div");
+    overlay.className    = "waitlist-overlay";
+    overlay.id           = "waitlistOverlay";
+    overlay.setAttribute("role",            "dialog");
+    overlay.setAttribute("aria-modal",      "true");
+    overlay.setAttribute("aria-labelledby", "waitlistTitle");
+    overlay.setAttribute("aria-hidden",     "true");
+
+    overlay.innerHTML = `
+      <!-- Frosted backdrop — click to dismiss -->
+      <div class="waitlist-backdrop" id="waitlistBackdrop"></div>
+
+      <!-- Quartz card -->
+      <div class="waitlist-card" id="waitlistCard">
+
+        <!-- Close glyph -->
+        <button class="waitlist-close-btn" id="waitlistCloseBtn" aria-label="Close waitlist">
+          <svg viewBox="0 0 24 24" fill="none" width="13" height="13">
+            <path d="M18 6L6 18M6 6l12 12"
+              stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <!-- ── Intake form layer ── -->
+        <div class="waitlist-form-inner" id="waitlistFormInner">
+
+          <div class="waitlist-eyebrow">Atanasovski Quant &middot; Early Access</div>
+
+          <h2 class="waitlist-title" id="waitlistTitle">
+            Reserve State&#8209;Space Access
+          </h2>
+
+          <p class="waitlist-sub">
+            Quant&nbsp;1.0 deploys June&nbsp;30,&nbsp;2026. Secure your position
+            in the initial allocation. No commitment. No noise. Pure signal.
+          </p>
+
+          <div class="waitlist-input-wrap">
+            <input
+              type="email"
+              id="waitlistEmail"
+              class="waitlist-email-input"
+              placeholder="your@institution.com"
+              autocomplete="email"
+              spellcheck="false"
+              aria-label="Email address"
+              aria-describedby="waitlistError"
+            />
+            <div class="waitlist-error" id="waitlistError" role="alert" aria-live="assertive">
+              Enter a valid email address.
+            </div>
+          </div>
+
+          <button class="waitlist-cta-btn" id="waitlistSubmitBtn" type="button">
+            <span>Reserve Access</span>
+          </button>
+
+        </div>
+        <!-- /waitlist-form-inner -->
+
+        <!-- ── Confirmation layer — morphs in after submit ── -->
+        <div class="waitlist-confirm" id="waitlistConfirm" aria-live="polite">
+          <div class="waitlist-confirm-glyph" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" width="18" height="18">
+              <path d="M5 12.5l5 5L19 7"
+                stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="waitlist-confirm-title">Position Secured</h3>
+          <p class="waitlist-confirm-sub">
+            First&#8209;access credentials will be issued at launch.<br>
+            Maintain signal clarity.
+          </p>
+        </div>
+        <!-- /waitlist-confirm -->
+
+      </div>
+      <!-- /waitlist-card -->
+    `;
+
+    document.body.appendChild(overlay);
+    waitlistOverlay = overlay;
+
+    // ── Internal event wiring ──────────────────────────────────────────
+
+    const backdrop   = overlay.querySelector("#waitlistBackdrop");
+    const card       = overlay.querySelector("#waitlistCard");
+    const closeBtn   = overlay.querySelector("#waitlistCloseBtn");
+    const emailInput = overlay.querySelector("#waitlistEmail");
+    const errorEl    = overlay.querySelector("#waitlistError");
+    const submitBtn  = overlay.querySelector("#waitlistSubmitBtn");
+    const formInner  = overlay.querySelector("#waitlistFormInner");
+    const confirmEl  = overlay.querySelector("#waitlistConfirm");
+
+    // Backdrop dismisses; card absorbs clicks to prevent propagation
+    backdrop.addEventListener("click", closeWaitlistModal);
+    card.addEventListener("click", (e) => e.stopPropagation());
+
+    // Close button
+    closeBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      closeWaitlistModal();
+    });
+
+    // Clear validation state as user edits
+    emailInput.addEventListener("input", () => {
+      errorEl.classList.remove("visible");
+    });
+
+    // Enter key submits
+    emailInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        handleSubmitWaitlist(emailInput, errorEl, formInner, confirmEl);
+      }
+    });
+
+    // CTA click submits
+    submitBtn.addEventListener("click", () => {
+      handleSubmitWaitlist(emailInput, errorEl, formInner, confirmEl);
+    });
+  }
+
+  // ════════════════════════════════════════════════════════════════════════
+  //  SUBMIT HANDLER — validates, morphs card to confirmation state
+  // ════════════════════════════════════════════════════════════════════════
+
+  function handleSubmitWaitlist(emailInput, errorEl, formInner, confirmEl) {
+    const val = (emailInput.value || "").trim();
+
+    // RFC-minimal email check — no library dependency
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!emailPattern.test(val)) {
+      errorEl.classList.add("visible");
+      emailInput.focus();
+      return;
+    }
+
+    errorEl.classList.remove("visible");
+
+    // ── Phase 1: fade the form layer out ────────────────────────────────
+    formInner.classList.add("form-fading");
+
+    // ── Phase 2: bloom the confirmation layer (after form fades) ─────────
+    setTimeout(() => {
+      confirmEl.classList.add("confirm-visible");
+
+      // ── Phase 3: auto-dismiss after the user has read the confirmation ──
+      clearTimeout(autoCloseTimer);
+      autoCloseTimer = setTimeout(() => {
+        closeWaitlistModal();
+      }, 3400);
+    }, 310);
+  }
+
+  // ════════════════════════════════════════════════════════════════════════
+  //  OPEN — resets state, makes overlay visible, traps focus
+  // ════════════════════════════════════════════════════════════════════════
+
+  function openWaitlistModal() {
+    buildWaitlistOverlay();
+
+    // Reset to intake state (handles re-open after prior confirm)
+    const formInner  = waitlistOverlay.querySelector("#waitlistFormInner");
+    const confirmEl  = waitlistOverlay.querySelector("#waitlistConfirm");
+    const emailInput = waitlistOverlay.querySelector("#waitlistEmail");
+    const errorEl    = waitlistOverlay.querySelector("#waitlistError");
+
+    formInner.classList.remove("form-fading");
+    confirmEl.classList.remove("confirm-visible");
+    emailInput.value = "";
+    errorEl.classList.remove("visible");
+    clearTimeout(autoCloseTimer);
+
+    // Apply background blur via shared modal-open class
+    document.body.classList.add("modal-open");
+
+    // Reveal
+    waitlistOverlay.setAttribute("aria-hidden", "false");
+    waitlistOverlay.classList.remove("waitlist-closing");
+    waitlistOverlay.classList.add("waitlist-visible");
+
+    // Focus email after card entry animation settles (~half the easing curve)
+    setTimeout(() => {
+      const input = waitlistOverlay.querySelector("#waitlistEmail");
+      if (input) input.focus({ preventScroll: true });
+    }, 300);
+  }
+
+  // ════════════════════════════════════════════════════════════════════════
+  //  CLOSE — opacity exit, then fully hides and restores body state
+  // ════════════════════════════════════════════════════════════════════════
+
+  function closeWaitlistModal() {
+    if (!waitlistOverlay) return;
+    if (!waitlistOverlay.classList.contains("waitlist-visible")) return;
+
+    clearTimeout(autoCloseTimer);
+
+    waitlistOverlay.classList.remove("waitlist-visible");
+    waitlistOverlay.classList.add("waitlist-closing");
+
+    setTimeout(() => {
+      waitlistOverlay.classList.remove("waitlist-closing");
+      waitlistOverlay.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modal-open");
+    }, 400);
+  }
+
+  // ════════════════════════════════════════════════════════════════════════
+  //  PRICING OVERLAY CLOSE — mirrors closePricingModal() internal logic
+  //  Called before opening the waitlist HUD so modals don't stack.
+  // ════════════════════════════════════════════════════════════════════════
+
+  function dismissPricingOverlay(callback) {
+    const po = document.getElementById("pricingOverlay");
+    if (!po || po.classList.contains("hidden")) {
+      // Pricing already closed — proceed immediately
+      if (callback) callback();
+      return;
+    }
+
+    po.classList.add("pricing-closing");
+
+    setTimeout(() => {
+      po.classList.add("hidden");
+      po.classList.remove("pricing-closing");
+      po.setAttribute("aria-hidden", "true");
+      // Note: do NOT remove modal-open here — the waitlist will re-apply it
+      if (callback) callback();
+    }, 290);
+  }
+
+  // ════════════════════════════════════════════════════════════════════════
+  //  ESCAPE KEY — capture phase so it fires before existing bubble handlers
+  //  Priority: waitlist (z-index 400) > pricing modal (z-index 300)
+  // ════════════════════════════════════════════════════════════════════════
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+
+    if (
+      waitlistOverlay &&
+      waitlistOverlay.classList.contains("waitlist-visible")
+    ) {
+      // Stop here — don't let the pricing modal's keydown handler also fire
+      e.stopImmediatePropagation();
+      closeWaitlistModal();
+    }
+  }, /* capture */ true);
+
+  // ════════════════════════════════════════════════════════════════════════
+  //  ATTACH CTA BUTTONS — after DOM is ready
+  // ════════════════════════════════════════════════════════════════════════
+
+  function attachPricingButtons() {
+    const pricingOverlayEl = document.getElementById("pricingOverlay");
+    if (!pricingOverlayEl) return;
+
+    // Card order in the HTML: [0] Free · [1] Pro · [2] Ultra
+    const cards = pricingOverlayEl.querySelectorAll(".pricing-card");
+
+    cards.forEach((card, idx) => {
+      const btn = card.querySelector(".card-cta-btn");
+      if (!btn) return;
+
+      if (idx === 0) {
+        // ── Free → Waitlist HUD ──────────────────────────────────────────
+        btn.addEventListener("click", () => {
+          dismissPricingOverlay(() => {
+            // Brief gap so the pricing exit animation completes visually
+            setTimeout(() => openWaitlistModal(), 80);
+          });
+        });
+
+      } else if (idx === 1) {
+        // ── Pro → Stripe ─────────────────────────────────────────────────
+        btn.addEventListener("click", () => {
+          window.location.href = STRIPE_PRO;
+        });
+
+      } else if (idx === 2) {
+        // ── Ultra → Stripe ───────────────────────────────────────────────
+        btn.addEventListener("click", () => {
+          window.location.href = STRIPE_ULTRA;
+        });
+      }
+    });
+  }
+
+  // ── Init ──────────────────────────────────────────────────────────────
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", attachPricingButtons);
+  } else {
+    // DOM already parsed — attach immediately
+    attachPricingButtons();
+  }
+
+})();

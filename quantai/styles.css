@@ -216,11 +216,17 @@ body.modal-open .app-shell{
   place-items:center;
   color:#e5e5e5;
   opacity:0.96;
+  transition:color 0.3s ease;
 }
 
 .sidebar-icon svg{
   width:18px;
   height:18px;
+}
+
+.sidebar-icon.copy-active{
+  color:#00ffff !important;
+  filter:drop-shadow(0 0 6px rgba(0,255,255,0.55));
 }
 
 .sidebar-label{
@@ -315,35 +321,48 @@ body.modal-open .app-shell{
   z-index:110;
 }
 
+/* ── Brand anchor — force white, no visited purple ── */
 .brand{
   display:inline-flex;
   align-items:center;
   gap:10px;
-  color:var(--text);
-  text-decoration:none;
+  color:#ffffff !important;
+  text-decoration:none !important;
   font-size:1.08rem;
   font-weight:600;
   letter-spacing:-0.03em;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
   transition:opacity 0.16s ease;
+  -webkit-text-decoration:none !important;
+}
+
+.brand:visited{
+  color:#ffffff !important;
+  text-decoration:none !important;
 }
 
 .brand:hover{
   opacity:0.92;
 }
 
-.brand-mark{
-  width:10px;
-  height:10px;
-  border-radius:999px;
-  background:radial-gradient(circle at 35% 35%, #ffffff 0%, #cfd9ff 38%, rgba(180,198,255,0.42) 68%, rgba(180,198,255,0.08) 100%);
-  box-shadow:
-    0 0 14px rgba(205,220,255,0.42),
-    0 0 34px rgba(180,198,255,0.18);
+/* ── Logo image — constrained, glowing ── */
+.brand-logo{
+  max-height:38px;
+  width:auto;
+  object-fit:contain;
+  display:block;
+  flex-shrink:0;
+  filter:drop-shadow(0 0 10px rgba(255,255,255,0.15));
+  transition:filter 0.22s ease;
+}
+
+.brand:hover .brand-logo{
+  filter:drop-shadow(0 0 16px rgba(255,255,255,0.28));
 }
 
 .brand-text{
   transform:translateY(-0.5px);
+  color:#ffffff !important;
 }
 
 .top-actions{
@@ -514,6 +533,18 @@ body.chat-started .composer-wrap-bottom{
 
 .composer:focus-within{
   border-color:var(--border-3);
+}
+
+/* ── Input pulse animation — triggered on search focus ── */
+@keyframes inputPulse{
+  0%   { border-color: var(--border-3); box-shadow: var(--shadow), 0 0 0 0 rgba(255,255,255,0.0); }
+  30%  { border-color: rgba(255,255,255,0.42); box-shadow: var(--shadow), 0 0 0 5px rgba(255,255,255,0.06); }
+  60%  { border-color: rgba(255,255,255,0.28); box-shadow: var(--shadow), 0 0 0 9px rgba(255,255,255,0.03); }
+  100% { border-color: var(--border-3); box-shadow: var(--shadow), 0 0 0 0 rgba(255,255,255,0.0); }
+}
+
+.composer.search-pulse{
+  animation: inputPulse 0.78s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .composer-shine{
@@ -1823,5 +1854,619 @@ body.chat-started .site-note-top{
 
   .card-price-free {
     font-size: 2.9rem;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   WAITLIST MODAL — injected dynamically via JS (styles preserved here)
+═══════════════════════════════════════════════════════════════════════ */
+
+.waitlist-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.32s ease;
+}
+
+.waitlist-overlay.waitlist-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.waitlist-overlay.waitlist-closing {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.38s ease;
+}
+
+.waitlist-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 5, 8, 0.72);
+  backdrop-filter: blur(22px) saturate(0.82);
+  -webkit-backdrop-filter: blur(22px) saturate(0.82);
+  cursor: pointer;
+}
+
+.waitlist-card {
+  position: relative;
+  z-index: 1;
+  width: min(500px, calc(100vw - 32px));
+  padding: 52px 46px 44px;
+  border-radius: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-top-color: rgba(255, 255, 255, 0.18);
+  background:
+    radial-gradient(ellipse 70% 40% at 50% 0%, rgba(255,255,255,0.048) 0%, transparent 100%),
+    linear-gradient(170deg, rgba(14, 16, 24, 0.99) 0%, rgba(7, 8, 13, 0.99) 100%);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 60px 140px rgba(0, 0, 0, 0.78),
+    0 24px 56px rgba(0, 0, 0, 0.48),
+    inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  animation: waitlistCardIn 0.52s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes waitlistCardIn {
+  from { opacity: 0; transform: translateY(28px) scale(0.980); filter: blur(3px); }
+  to   { opacity: 1; transform: translateY(0)   scale(1);     filter: blur(0);   }
+}
+
+.waitlist-close-btn {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.30);
+  cursor: pointer;
+  transition:
+    background 0.22s ease,
+    border-color 0.22s ease,
+    color 0.22s ease,
+    transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 5;
+}
+
+.waitlist-close-btn:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.88);
+  transform: rotate(90deg) scale(1.05);
+}
+
+.waitlist-eyebrow {
+  font-family: 'Montserrat', ui-sans-serif, sans-serif;
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.22);
+  margin-bottom: 20px;
+  user-select: none;
+}
+
+.waitlist-title {
+  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  font-size: clamp(2.2rem, 4vw, 2.9rem);
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0 0 18px 0;
+  line-height: 1.06;
+}
+
+.waitlist-sub {
+  font-family: 'Montserrat', ui-sans-serif, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 300;
+  line-height: 1.75;
+  letter-spacing: 0.03em;
+  color: rgba(255, 255, 255, 0.30);
+  margin: 0 0 32px 0;
+}
+
+.waitlist-input-wrap {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.waitlist-email-input {
+  width: 100%;
+  height: 50px;
+  padding: 0 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-top-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.88);
+  font-family: 'Montserrat', ui-sans-serif, sans-serif;
+  font-size: 0.84rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  outline: none;
+  transition: border-color 0.22s ease, background 0.22s ease;
+}
+
+.waitlist-email-input::placeholder {
+  color: rgba(255, 255, 255, 0.22);
+}
+
+.waitlist-email-input:focus {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.waitlist-error {
+  font-family: 'Montserrat', ui-sans-serif, sans-serif;
+  font-size: 0.70rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: rgba(255, 140, 140, 0.80);
+  margin-top: 7px;
+  padding-left: 4px;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  pointer-events: none;
+}
+
+.waitlist-error.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.waitlist-cta-btn {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(7, 8, 13, 0.94);
+  color: rgba(255, 255, 255, 0.40);
+  cursor: pointer;
+  overflow: hidden;
+  padding: 0 18px;
+  margin-top: 8px;
+  transition:
+    border-color 0.36s ease,
+    padding      0.36s cubic-bezier(0.4, 0, 0.1, 1),
+    transform    0.18s ease;
+}
+
+.waitlist-cta-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  border-radius: 999px;
+  transform: translateX(-101%);
+  transition: transform 0.44s cubic-bezier(0.4, 0, 0.08, 1);
+}
+
+.waitlist-cta-btn span {
+  position: relative;
+  z-index: 2;
+  font-family: 'Montserrat', ui-sans-serif, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.44);
+  transition: color 0.34s ease;
+  white-space: nowrap;
+}
+
+.waitlist-cta-btn:hover {
+  border-color: transparent;
+  padding: 0 30px;
+}
+
+.waitlist-cta-btn:hover::before {
+  transform: translateX(0);
+}
+
+.waitlist-cta-btn:hover span {
+  color: #080910;
+}
+
+.waitlist-cta-btn:active {
+  transform: scale(0.975);
+}
+
+.waitlist-form-inner {
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+.waitlist-form-inner.form-fading {
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+}
+
+.waitlist-confirm {
+  position: absolute;
+  inset: 52px 46px 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.32s ease 0.05s, transform 0.32s ease 0.05s;
+  pointer-events: none;
+}
+
+.waitlist-confirm.confirm-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.waitlist-confirm-glyph {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.72);
+  margin-bottom: 22px;
+}
+
+.waitlist-confirm-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.2rem;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.90);
+  margin: 0 0 14px 0;
+}
+
+.waitlist-confirm-sub {
+  font-family: 'Montserrat', ui-sans-serif, sans-serif;
+  font-size: 0.76rem;
+  font-weight: 300;
+  line-height: 1.78;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.28);
+  margin: 0;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ACCOUNT AUTHENTICATION MODAL — GLASSMORPHIC QUARTZ EDITION
+   Identity node. Mirrors waitlist popup design geometry exactly.
+═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Overlay shell ── */
+.auth-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 420;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.auth-overlay.hidden {
+  display: none;
+}
+
+/* ── Frosted dark backdrop ── */
+.auth-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 5, 8, 0.74);
+  backdrop-filter: blur(22px) saturate(0.82);
+  -webkit-backdrop-filter: blur(22px) saturate(0.82);
+  cursor: pointer;
+}
+
+/* ── Quartz card ── */
+.auth-card {
+  position: relative;
+  z-index: 1;
+  width: min(500px, calc(100vw - 32px));
+  padding: 52px 46px 44px;
+  border-radius: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-top-color: rgba(255, 255, 255, 0.18);
+  background:
+    radial-gradient(ellipse 70% 40% at 50% 0%, rgba(255,255,255,0.048) 0%, transparent 100%),
+    linear-gradient(170deg, rgba(14, 16, 24, 0.99) 0%, rgba(7, 8, 13, 0.99) 100%);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 60px 140px rgba(0, 0, 0, 0.78),
+    0 24px 56px rgba(0, 0, 0, 0.48),
+    inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  animation: authCardIn 0.52s cubic-bezier(0.16, 1, 0.3, 1) both;
+  overflow: hidden;
+}
+
+@keyframes authCardIn {
+  from { opacity: 0; transform: translateY(28px) scale(0.980); filter: blur(3px); }
+  to   { opacity: 1; transform: translateY(0)   scale(1);     filter: blur(0);   }
+}
+
+/* Auth modal exit keyframe */
+.auth-overlay.auth-closing .auth-card {
+  animation: authCardOut 0.28s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+}
+
+@keyframes authCardOut {
+  from { opacity: 1; transform: translateY(0) scale(1); filter: blur(0px); }
+  to   { opacity: 0; transform: translateY(18px) scale(0.986); filter: blur(4px); }
+}
+
+/* ── Close button ── */
+.auth-close-btn {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.30);
+  cursor: pointer;
+  transition:
+    background 0.22s ease,
+    border-color 0.22s ease,
+    color 0.22s ease,
+    transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 5;
+}
+
+.auth-close-btn:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.88);
+  transform: rotate(90deg) scale(1.05);
+}
+
+/* ── Eyebrow ── */
+.auth-eyebrow {
+  font-family: 'Montserrat', ui-sans-serif, sans-serif;
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.22);
+  margin-bottom: 20px;
+  user-select: none;
+}
+
+/* ── Title ── */
+.auth-title {
+  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  font-size: clamp(2.2rem, 4vw, 2.9rem);
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0 0 18px 0;
+  line-height: 1.06;
+}
+
+/* ── Subtitle ── */
+.auth-sub {
+  font-family: 'Montserrat', ui-sans-serif, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 300;
+  line-height: 1.75;
+  letter-spacing: 0.03em;
+  color: rgba(255, 255, 255, 0.30);
+  margin: 0 0 32px 0;
+}
+
+/* ── Input wrapper ── */
+.auth-input-wrap {
+  position: relative;
+  margin-bottom: 14px;
+}
+
+/* ── Text & email inputs — unified quartz style ── */
+.auth-text-input {
+  width: 100%;
+  height: 50px;
+  padding: 0 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-top-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.88);
+  font-family: 'Montserrat', ui-sans-serif, sans-serif;
+  font-size: 0.84rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  outline: none;
+  transition: border-color 0.22s ease, background 0.22s ease;
+}
+
+.auth-text-input::placeholder {
+  color: rgba(255, 255, 255, 0.22);
+}
+
+.auth-text-input:focus {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ── Validation error message ── */
+.auth-error {
+  font-family: 'Montserrat', ui-sans-serif, sans-serif;
+  font-size: 0.70rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: rgba(255, 140, 140, 0.80);
+  margin-top: 7px;
+  padding-left: 4px;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  pointer-events: none;
+}
+
+.auth-error.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── CTA button — obsidian pill, white slides in from left ── */
+.auth-cta-btn {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(7, 8, 13, 0.94);
+  color: rgba(255, 255, 255, 0.40);
+  cursor: pointer;
+  overflow: hidden;
+  padding: 0 18px;
+  margin-top: 8px;
+  transition:
+    border-color 0.36s ease,
+    padding      0.36s cubic-bezier(0.4, 0, 0.1, 1),
+    transform    0.18s ease;
+}
+
+.auth-cta-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  border-radius: 999px;
+  transform: translateX(-101%);
+  transition: transform 0.44s cubic-bezier(0.4, 0, 0.08, 1);
+}
+
+.auth-cta-btn span {
+  position: relative;
+  z-index: 2;
+  font-family: 'Montserrat', ui-sans-serif, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.44);
+  transition: color 0.34s ease;
+  white-space: nowrap;
+}
+
+.auth-cta-btn:hover {
+  border-color: transparent;
+  padding: 0 30px;
+}
+
+.auth-cta-btn:hover::before {
+  transform: translateX(0);
+}
+
+.auth-cta-btn:hover span {
+  color: #080910;
+}
+
+.auth-cta-btn:active {
+  transform: scale(0.975);
+}
+
+/* ── Form inner layer — fades out on submit ── */
+.auth-form-inner {
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+.auth-form-inner.form-fading {
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+}
+
+/* ── Confirmation layer — fades in after submit ── */
+.auth-confirm {
+  position: absolute;
+  inset: 52px 46px 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.32s ease 0.05s, transform 0.32s ease 0.05s;
+  pointer-events: none;
+}
+
+.auth-confirm.confirm-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* ── Confirm glyph ── */
+.auth-confirm-glyph {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.72);
+  margin-bottom: 22px;
+}
+
+/* ── Confirm title ── */
+.auth-confirm-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.2rem;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.90);
+  margin: 0 0 14px 0;
+}
+
+/* ── Confirm subtitle ── */
+.auth-confirm-sub {
+  font-family: 'Montserrat', ui-sans-serif, sans-serif;
+  font-size: 0.76rem;
+  font-weight: 300;
+  line-height: 1.78;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.28);
+  margin: 0;
+}
+
+/* ── Responsive auth modal ── */
+@media (max-width: 600px) {
+  .auth-card {
+    padding: 40px 24px 34px;
+    border-radius: 28px;
+  }
+
+  .auth-confirm {
+    inset: 40px 24px 34px;
   }
 }
