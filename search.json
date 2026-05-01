@@ -1,5 +1,40 @@
 [
   {
+    "objectID": "software.html#universal-execution-matrix",
+    "href": "software.html#universal-execution-matrix",
+    "title": "GORAZD",
+    "section": "01. Universal Execution Matrix",
+    "text": "01. Universal Execution Matrix\nGORAZD is an elite, cross-platform quantitative execution engine designed for institutional deployment. It bridges the architectural gap between localized workstation simulation and bare-metal high-frequency deployment, physically bypassing the Python Global Interpreter Lock to achieve deterministic market synchronization.\n\nTactical Simulation: Synthesize, train, and backtest non-linear risk matrices locally utilizing total multicore concurrency and ZeroMQ tactical telemetry.\nLive Deployment: Deploy the identical compiled codebase to a bare-metal server environment. GORAZD automatically targets Linux isolated CPUs and native C-libraries for physical execution."
+  },
+  {
+    "objectID": "software.html#architectural-supremacy",
+    "href": "software.html#architectural-supremacy",
+    "title": "GORAZD",
+    "section": "02. Architectural Supremacy",
+    "text": "02. Architectural Supremacy\n\nThe 4-Core Hydra: Mechanically isolates and hijacks dedicated CPU cores for Asynchronous Ingestion, Routing, Risk Kill-Switch computation, and Concept Drift monitoring.\nPage-Aligned Memory Mapping: Eradicates Operating System page faults by mapping monolithic tensors directly to physical RAM.\nLock-Free Inter-Process Communication: Data transfer mechanisms utilize C11 atomic pointers and strict 64-byte L1 cache-line padding to prevent false sharing cache misses.\nNative C-API Inference: Bypasses Python wrappers entirely. Inference matrices are mapped directly to the underlying compiled C-library.\nMicrostructure Physics: Custom objective gradients are mathematically constrained by exchange routing rebates and execution latency thresholds.\nAvellaneda-Stoikov Routing: Dynamic capital exposure is scaled by inverse volatility and skewed by real-time inventory risk constraints.\n\nThe optimal reservation price is rigorously derived as:\n\n\\[r(s,t) = s - q \\gamma \\sigma^2 (T-t)\\]\n\nThe deterministic bid-ask spread is computed as:\n\n\\[\\delta^a + \\delta^b = \\gamma \\sigma^2 (T-t) + \\frac{2}{\\gamma} \\ln \\left( 1 + \\frac{\\gamma k}{\\kappa} \\right)\\]\n\n\nImmutable Parquet Ledger: Zero-blocking asynchronous trade journaling ensures absolute profit and loss persistence without interrupting the execution thread."
+  },
+  {
+    "objectID": "software.html#environmental-configuration",
+    "href": "software.html#environmental-configuration",
+    "title": "GORAZD",
+    "section": "03. Environmental Configuration",
+    "text": "03. Environmental Configuration\nEstablish a strict environment file in the root execution directory to securely lock API credentials and structural risk parameters.\n# Execution Mode: RETAIL (Free APIs) or BLOOMBERG (B-Pipe)\ndata_source=\"RETAIL\"\n\n# Physical API Infrastructure\ntiingo_api_key=\"SECURE_KEY_HASH\"\nalpaca_api_key=\"SECURE_KEY_HASH\"\nalpaca_api_secret=\"SECURE_SECRET_HASH\"\n\n# Structural Risk Constraints\nmax_leverage=1.5\nbase_capital=250000.0"
+  },
+  {
+    "objectID": "software.html#global-cli-matrix",
+    "href": "software.html#global-cli-matrix",
+    "title": "GORAZD",
+    "section": "04. Global CLI Matrix",
+    "text": "04. Global CLI Matrix\nGORAZD establishes persistent daemons directly into the operating system path. Command the entire quantitative stack from the terminal layer.\ngorazd-fetch   # Polls physical APIs, calculates multipliers, locks Parquet tensors.\ngorazd-train   # Executes Purged Cross-Validation and Non-Linear Optimization.\ngorazd-ui      # Ignites the ZeroMQ tactical terminal dashboard.\ngorazd-ignite  # Launches the 4-Core UHFT memory-mapped daemon."
+  },
+  {
+    "objectID": "software.html#python-operational-api",
+    "href": "software.html#python-operational-api",
+    "title": "GORAZD",
+    "section": "05. Python Operational API",
+    "text": "05. Python Operational API\nFor deep strategic integration, the namespace is engineered for brutal operational brevity.\nimport gorazd as gz\n\n# Phase 1: Synthesize Physical Tensors\ncompiler = gz.TensorCompiler(target=\"SPY\")\ncompiler.compile(start_date=\"2016-01-01\")\n\n# Phase 2: Optimize Physics-Aware Matrix\noptimizer = gz.Optimizer()\noptimizer.fit(parquet_file=\"SPY_institutional_matrix.parquet\")\n\n# Phase 3: Ignite Multicore Daemon\nengine = gz.Engine(target=\"SPY\", model_file=\"core.ubj\")\nengine.ignite()"
+  },
+  {
     "objectID": "research.html#continuous-time-asset-pricing-paradigm",
     "href": "research.html#continuous-time-asset-pricing-paradigm",
     "title": "Theoretical Research",
@@ -32,41 +67,6 @@
     "href": "research.html#restricted-theoretical-repositories",
     "title": "Theoretical Research",
     "section": "05. Restricted Theoretical Repositories",
-    "text": "05. Restricted Theoretical Repositories\nThe underlying proofs for the measure-theoretic convergence of the Atanasovski Measure are currently isolated within our internal mathematical architecture.\n\n\n\n◈\n\n\nINSTITUTIONAL PREPRINT // PEER REVIEW PENDING\n\n\nEXPECTED PUBLICATION: MAY 28, 2026\n\n\n\nTheorem 2 (Absolute Continuity of the Atanasovski Measure)\nLet \\(\\Omega\\) be a Polish space equipped with the Borel \\(\\sigma\\)-algebra \\(\\mathcal{B}(\\Omega)\\). The sequence of fractional probability measures \\(\\mathbb{P}^N\\) converges weakly to the unique invariant measure \\(\\mathbb{P}^*\\) corresponding to the Atanasovski Skew state space.\n\n\\[\n\\mathcal{L}_{\\text{Atanasovski}} = \\int_{\\Omega} \\langle \\nabla \\phi_t, \\nabla \\psi_t \\rangle d\\mathbb{P} \\equiv 0 \\quad \\text{almost surely}\n\\]\n\nProof: We initiate the derivation by defining the fractional generator \\(\\mathcal{L}^H\\) acting on the domain of cylindrical functions. By applying the fractional Itô formula, we establish the bound:\n\n\\[\n\\mathbb{E} \\left[ \\sup_{0 \\leq t \\leq T} |X_t^N - X_t|^p \\right] \\leq C_p T^{pH} \\exp(\\kappa T)\n\\]\n\nFollowing the criteria established by Prokhorov’s Theorem, the tightness of the sequence is guaranteed by the compact embedding of the associated Sobolev space. The Radon-Nikodym derivative confirms the total variation distance approaches zero as \\(N \\to \\infty\\). This formally constructs the exact continuous-time state space."
-  },
-  {
-    "objectID": "code.html#universal-execution-matrix",
-    "href": "code.html#universal-execution-matrix",
-    "title": "GORAZD",
-    "section": "01. Universal Execution Matrix",
-    "text": "01. Universal Execution Matrix\nGORAZD is an elite, cross-platform quantitative execution engine designed for institutional deployment. It bridges the architectural gap between localized workstation simulation and bare-metal high-frequency deployment, physically bypassing the Python Global Interpreter Lock to achieve deterministic market synchronization.\n\nTactical Simulation: Synthesize, train, and backtest non-linear risk matrices locally utilizing total multicore concurrency and ZeroMQ tactical telemetry.\nLive Deployment: Deploy the identical compiled codebase to a bare-metal server environment. GORAZD automatically targets Linux isolated CPUs and native C-libraries for physical execution."
-  },
-  {
-    "objectID": "code.html#architectural-supremacy",
-    "href": "code.html#architectural-supremacy",
-    "title": "GORAZD",
-    "section": "02. Architectural Supremacy",
-    "text": "02. Architectural Supremacy\n\nThe 4-Core Hydra: Mechanically isolates and hijacks dedicated CPU cores for Asynchronous Ingestion, Routing, Risk Kill-Switch computation, and Concept Drift monitoring.\nPage-Aligned Memory Mapping: Eradicates Operating System page faults by mapping monolithic tensors directly to physical RAM.\nLock-Free Inter-Process Communication: Data transfer mechanisms utilize C11 atomic pointers and strict 64-byte L1 cache-line padding to prevent false sharing cache misses.\nNative C-API Inference: Bypasses Python wrappers entirely. Inference matrices are mapped directly to the underlying compiled C-library.\nMicrostructure Physics: Custom objective gradients are mathematically constrained by exchange routing rebates and execution latency thresholds.\nAvellaneda-Stoikov Routing: Dynamic capital exposure is scaled by inverse volatility and skewed by real-time inventory risk constraints.\n\nThe optimal reservation price is rigorously derived as:\n\n\\[r(s,t) = s - q \\gamma \\sigma^2 (T-t)\\]\n\nThe deterministic bid-ask spread is computed as:\n\n\\[\\delta^a + \\delta^b = \\gamma \\sigma^2 (T-t) + \\frac{2}{\\gamma} \\ln \\left( 1 + \\frac{\\gamma k}{\\kappa} \\right)\\]\n\n\nImmutable Parquet Ledger: Zero-blocking asynchronous trade journaling ensures absolute profit and loss persistence without interrupting the execution thread."
-  },
-  {
-    "objectID": "code.html#environmental-configuration",
-    "href": "code.html#environmental-configuration",
-    "title": "GORAZD",
-    "section": "03. Environmental Configuration",
-    "text": "03. Environmental Configuration\nEstablish a strict environment file in the root execution directory to securely lock API credentials and structural risk parameters.\n# Execution Mode: RETAIL (Free APIs) or BLOOMBERG (B-Pipe)\ndata_source=\"RETAIL\"\n\n# Physical API Infrastructure\ntiingo_api_key=\"SECURE_KEY_HASH\"\nalpaca_api_key=\"SECURE_KEY_HASH\"\nalpaca_api_secret=\"SECURE_SECRET_HASH\"\n\n# Structural Risk Constraints\nmax_leverage=1.5\nbase_capital=250000.0"
-  },
-  {
-    "objectID": "code.html#global-cli-matrix",
-    "href": "code.html#global-cli-matrix",
-    "title": "GORAZD",
-    "section": "04. Global CLI Matrix",
-    "text": "04. Global CLI Matrix\nGORAZD establishes persistent daemons directly into the operating system path. Command the entire quantitative stack from the terminal layer.\ngorazd-fetch   # Polls physical APIs, calculates multipliers, locks Parquet tensors.\ngorazd-train   # Executes Purged Cross-Validation and Non-Linear Optimization.\ngorazd-ui      # Ignites the ZeroMQ tactical terminal dashboard.\ngorazd-ignite  # Launches the 4-Core UHFT memory-mapped daemon."
-  },
-  {
-    "objectID": "code.html#python-operational-api",
-    "href": "code.html#python-operational-api",
-    "title": "GORAZD",
-    "section": "05. Python Operational API",
-    "text": "05. Python Operational API\nFor deep strategic integration, the namespace is engineered for brutal operational brevity.\nimport gorazd as gz\n\n# Phase 1: Synthesize Physical Tensors\ncompiler = gz.TensorCompiler(target=\"SPY\")\ncompiler.compile(start_date=\"2016-01-01\")\n\n# Phase 2: Optimize Physics-Aware Matrix\noptimizer = gz.Optimizer()\noptimizer.fit(parquet_file=\"SPY_institutional_matrix.parquet\")\n\n# Phase 3: Ignite Multicore Daemon\nengine = gz.Engine(target=\"SPY\", model_file=\"core.ubj\")\nengine.ignite()"
+    "text": "05. Restricted Theoretical Repositories\nThe underlying proofs for the measure-theoretic convergence of the Atanasovski Measure are currently isolated within our internal mathematical architecture.\n\n\n\n◈\n\n\nINSTITUTIONAL PREPRINT // PEER REVIEW PENDING\n\n\nEXPECTED PUBLICATION: July 28, 2026\n\n\n\nTheorem 2 (Absolute Continuity of the Atanasovski Measure)\nLet \\(\\Omega\\) be a Polish space equipped with the Borel \\(\\sigma\\)-algebra \\(\\mathcal{B}(\\Omega)\\). The sequence of fractional probability measures \\(\\mathbb{P}^N\\) converges weakly to the unique invariant measure \\(\\mathbb{P}^*\\) corresponding to the Atanasovski Skew state space.\n\n\\[\n\\mathcal{L}_{\\text{Atanasovski}} = \\int_{\\Omega} \\langle \\nabla \\phi_t, \\nabla \\psi_t \\rangle d\\mathbb{P} \\equiv 0 \\quad \\text{almost surely}\n\\]\n\nProof: We initiate the derivation by defining the fractional generator \\(\\mathcal{L}^H\\) acting on the domain of cylindrical functions. By applying the fractional Itô formula, we establish the bound:\n\n\\[\n\\mathbb{E} \\left[ \\sup_{0 \\leq t \\leq T} |X_t^N - X_t|^p \\right] \\leq C_p T^{pH} \\exp(\\kappa T)\n\\]\n\nFollowing the criteria established by Prokhorov’s Theorem, the tightness of the sequence is guaranteed by the compact embedding of the associated Sobolev space. The Radon-Nikodym derivative confirms the total variation distance approaches zero as \\(N \\to \\infty\\). This formally constructs the exact continuous-time state space."
   }
 ]
