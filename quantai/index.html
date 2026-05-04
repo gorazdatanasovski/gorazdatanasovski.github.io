@@ -12,7 +12,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap"
     rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <link rel="stylesheet" href="./styles.css" />
 </head>
 
@@ -464,34 +464,65 @@
   <script src="./app.js"></script>
  <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const _SUPABASE_URL = 'https://xfacfbktgpycuixpgyjy.supabase.co';
-      const _SUPABASE_KEY = 'sb_publishable_0gqtUbfcxyl2QM84ZafKig_yfmcsC8S'; 
-      const supabase = window.supabase.createClient(_SUPABASE_URL, _SUPABASE_KEY);
+      const _API_URL = 'https://xfacfbktgpycuixpgyjy.supabase.co/rest/v1/quantai_leads';
+      const _API_KEY = 'sb_publishable_0gqtUbfcxyl2QM84ZafKig_yfmcsC8S'; 
 
-      document.body.addEventListener('click', async (event) => {
+      // Universal execution function for both UI nodes
+      const transmitTelemetry = async (payload) => {
+        console.log(`QuantAI Telemetry: Initiating transmission for ${payload.source}...`);
+        try {
+          const response = await fetch(_API_URL, {
+            method: 'POST',
+            headers: {
+              'apikey': _API_KEY,
+              'Authorization': `Bearer ${_API_KEY}`,
+              'Content-Type': 'application/json',
+              'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify(payload)
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP Error: ${response.status}`);
+          }
+          console.log(`QuantAI Telemetry: ${payload.source} transmission successful.`);
+        } catch (error) {
+          console.error("QuantAI Telemetry Transmission Failure:", error);
+        }
+      };
+
+      document.body.addEventListener('click', (event) => {
+        // ── VECTOR A: AUTHENTICATION NODE ──
         const authBtn = event.target.closest('#authSubmitBtn');
         if (authBtn) {
-          console.log("QuantAI Telemetry: Auth button engaged.");
           const nameEl = document.getElementById('auth-name');
           const emailEl = document.getElementById('auth-email');
           
           if (emailEl && emailEl.value.trim() !== '') {
-            const payload = {
+            transmitTelemetry({
               name: nameEl ? nameEl.value.trim() : 'Unknown',
               email: emailEl.value.trim(),
               source: 'Auth_Node'
-            };
-            console.log("QuantAI Telemetry: Transmitting payload:", payload);
-            
-            const { data, error } = await supabase.from('quantai_leads').insert([payload]);
-            
-            if (error) {
-              console.error("QuantAI Telemetry Error:", error);
-            } else {
-              console.log("QuantAI Telemetry: Transmission successful.");
-            }
+            });
           } else {
-            console.warn("QuantAI Telemetry: Email field empty, aborting transmission.");
+            console.warn("QuantAI Telemetry: Auth email empty. Aborting.");
+          }
+        }
+
+        // ── VECTOR B: WAITLIST/RESERVE NODE ──
+        const waitlistBtn = event.target.closest('.waitlist-cta-btn');
+        if (waitlistBtn) {
+          const modal = waitlistBtn.closest('.waitlist-card') || document;
+          const emailEl = modal.querySelector('.waitlist-email-input');
+          
+          if (emailEl && emailEl.value.trim() !== '') {
+            transmitTelemetry({
+              name: 'Anonymous Quant',
+              email: emailEl.value.trim(),
+              source: 'Waitlist_Node'
+            });
+          } else {
+            console.warn("QuantAI Telemetry: Waitlist email empty. Aborting.");
           }
         }
       });
