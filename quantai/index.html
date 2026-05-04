@@ -462,44 +462,36 @@
   </template>
 
   <script src="./app.js"></script>
-  <script>
+ <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // 1. Establish Secure Telemetry
       const _SUPABASE_URL = 'https://xfacfbktgpycuixpgyjy.supabase.co';
-      const _SUPABASE_KEY = 'sb_publishable_0gqtUbfcxyl2QM84ZafKig_yfmcsC8S';
+      const _SUPABASE_KEY = 'sb_publishable_0gqtUbfcxyl2QM84ZafKig_yfmcsC8S'; 
       const supabase = window.supabase.createClient(_SUPABASE_URL, _SUPABASE_KEY);
 
-      // 2. Global Event Delegation (Captures data without breaking UI animations)
-      document.body.addEventListener('click', (event) => {
-
-        // ── VECTOR A: AUTHENTICATION NODE ──
+      document.body.addEventListener('click', async (event) => {
         const authBtn = event.target.closest('#authSubmitBtn');
         if (authBtn) {
+          console.log("QuantAI Telemetry: Auth button engaged.");
           const nameEl = document.getElementById('auth-name');
           const emailEl = document.getElementById('auth-email');
-
+          
           if (emailEl && emailEl.value.trim() !== '') {
-            supabase.from('quantai_leads').insert([{
+            const payload = {
               name: nameEl ? nameEl.value.trim() : 'Unknown',
               email: emailEl.value.trim(),
               source: 'Auth_Node'
-            }]).then(({ error }) => { if (error) console.error("Auth transmission failure:", error); });
-          }
-        }
-
-        // ── VECTOR B: WAITLIST/RESERVE NODE ──
-        // Uses class-based targeting because this modal is dynamically spawned
-        const waitlistBtn = event.target.closest('.waitlist-cta-btn');
-        if (waitlistBtn) {
-          const modal = waitlistBtn.closest('.waitlist-card') || document;
-          const emailEl = modal.querySelector('.waitlist-email-input');
-
-          if (emailEl && emailEl.value.trim() !== '') {
-            supabase.from('quantai_leads').insert([{
-              name: 'Anonymous Quant',
-              email: emailEl.value.trim(),
-              source: 'Waitlist_Node'
-            }]).then(({ error }) => { if (error) console.error("Waitlist transmission failure:", error); });
+            };
+            console.log("QuantAI Telemetry: Transmitting payload:", payload);
+            
+            const { data, error } = await supabase.from('quantai_leads').insert([payload]);
+            
+            if (error) {
+              console.error("QuantAI Telemetry Error:", error);
+            } else {
+              console.log("QuantAI Telemetry: Transmission successful.");
+            }
+          } else {
+            console.warn("QuantAI Telemetry: Email field empty, aborting transmission.");
           }
         }
       });
