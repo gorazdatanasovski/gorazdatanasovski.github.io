@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -10,11 +11,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap"
-    rel="stylesheet"
-  />
-
+    rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="stylesheet" href="./styles.css" />
 </head>
+
 <body>
   <div class="cursor-light" aria-hidden="true"></div>
   <div class="ambient ambient-a" aria-hidden="true"></div>
@@ -28,7 +29,7 @@
         <a class="sidebar-item" href="./" title="New chat" id="newChatBtn">
           <span class="sidebar-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none">
-              <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+              <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" />
             </svg>
           </span>
           <span class="sidebar-label">New chat</span>
@@ -37,8 +38,8 @@
         <button class="sidebar-item sidebar-button" type="button" title="Search chats" id="searchChatsBtn">
           <span class="sidebar-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none">
-              <circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="1.8"/>
-              <path d="M16 16l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="1.8" />
+              <path d="M16 16l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
             </svg>
           </span>
           <span class="sidebar-label">Search chats</span>
@@ -47,7 +48,8 @@
         <button class="sidebar-item sidebar-button" type="button" title="Projects" id="projectsBtn">
           <span class="sidebar-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none">
-              <path d="M4.5 7.5a2 2 0 0 1 2-2h4l1.5 1.8h5.5a2 2 0 0 1 2 2v6.2a2 2 0 0 1-2 2H6.5a2 2 0 0 1-2-2z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+              <path d="M4.5 7.5a2 2 0 0 1 2-2h4l1.5 1.8h5.5a2 2 0 0 1 2 2v6.2a2 2 0 0 1-2 2H6.5a2 2 0 0 1-2-2z"
+                stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
             </svg>
           </span>
           <span class="sidebar-label">Projects</span>
@@ -56,9 +58,9 @@
         <button class="sidebar-item sidebar-button" type="button" title="More" id="copyLastBtn">
           <span class="sidebar-icon" aria-hidden="true" id="copyIconSvg">
             <svg viewBox="0 0 24 24" fill="currentColor">
-              <circle cx="6" cy="12" r="1.7"/>
-              <circle cx="12" cy="12" r="1.7"/>
-              <circle cx="18" cy="12" r="1.7"/>
+              <circle cx="6" cy="12" r="1.7" />
+              <circle cx="12" cy="12" r="1.7" />
+              <circle cx="18" cy="12" r="1.7" />
             </svg>
           </span>
           <span class="sidebar-label">More</span>
@@ -78,8 +80,9 @@
         <button class="sidebar-item sidebar-button sidebar-account" type="button" title="Account" id="accountBtn">
           <span class="sidebar-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.7"/>
-              <path d="M5.5 19c1.4-3.1 4-4.7 6.5-4.7S17.1 15.9 18.5 19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+              <circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.7" />
+              <path d="M5.5 19c1.4-3.1 4-4.7 6.5-4.7S17.1 15.9 18.5 19" stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" />
             </svg>
           </span>
           <span class="sidebar-label" id="accountLabel">Account</span>
@@ -105,16 +108,17 @@
     <div class="top-actions">
       <button class="top-action" id="shareButton" type="button" title="Share">
         <svg viewBox="0 0 24 24" fill="none">
-          <path d="M12 16V5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-          <path d="M8 9l4-4 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M6 18.5h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M12 16V5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          <path d="M8 9l4-4 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M6 18.5h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
         </svg>
       </button>
       <button class="top-action" id="menuButton" type="button" title="More">
         <svg viewBox="0 0 24 24" fill="currentColor">
-          <circle cx="6" cy="12" r="1.75"/>
-          <circle cx="12" cy="12" r="1.75"/>
-          <circle cx="18" cy="12" r="1.75"/>
+          <circle cx="6" cy="12" r="1.75" />
+          <circle cx="12" cy="12" r="1.75" />
+          <circle cx="18" cy="12" r="1.75" />
         </svg>
       </button>
     </div>
@@ -145,13 +149,8 @@
             </div>
           </div>
 
-          <textarea
-            id="promptTop"
-            class="prompt-input"
-            rows="1"
-            placeholder="Ask anything"
-            aria-label="Ask anything"
-          ></textarea>
+          <textarea id="promptTop" class="prompt-input" rows="1" placeholder="Ask anything"
+            aria-label="Ask anything"></textarea>
 
           <button class="send-button" id="sendTop" type="submit" aria-label="Send">
             <span class="send-orbit" aria-hidden="true"></span>
@@ -187,13 +186,8 @@
           </div>
         </div>
 
-        <textarea
-          id="promptBottom"
-          class="prompt-input"
-          rows="1"
-          placeholder="Ask anything"
-          aria-label="Ask anything"
-        ></textarea>
+        <textarea id="promptBottom" class="prompt-input" rows="1" placeholder="Ask anything"
+          aria-label="Ask anything"></textarea>
 
         <button class="send-button" id="sendBottom" type="submit" aria-label="Send">
           <span class="send-orbit" aria-hidden="true"></span>
@@ -224,14 +218,8 @@
        PRICING MODAL — GLASSMORPHIC QUARTZ EDITION
        Three-tier matrix. Zero thermodynamic rendering friction.
   ══════════════════════════════════════════════════════════════ -->
-  <div
-    class="pricing-overlay hidden"
-    id="pricingOverlay"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="pricingTitle"
-    aria-hidden="true"
-  >
+  <div class="pricing-overlay hidden" id="pricingOverlay" role="dialog" aria-modal="true" aria-labelledby="pricingTitle"
+    aria-hidden="true">
     <!-- Frosted glass backdrop — click to dismiss -->
     <div class="pricing-backdrop" id="pricingBackdrop"></div>
 
@@ -242,7 +230,8 @@
         <!-- ── Close Glyph ── -->
         <button class="pricing-close-btn" id="pricingClose" aria-label="Close pricing modal">
           <svg viewBox="0 0 24 24" fill="none" width="13" height="13">
-            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+              stroke-linejoin="round" />
           </svg>
         </button>
 
@@ -384,14 +373,8 @@
        ACCOUNT AUTHENTICATION MODAL — GLASSMORPHIC QUARTZ EDITION
        Identity Node. Institutional access verification layer.
   ══════════════════════════════════════════════════════════════ -->
-  <div
-    class="auth-overlay hidden"
-    id="authOverlay"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="authTitle"
-    aria-hidden="true"
-  >
+  <div class="auth-overlay hidden" id="authOverlay" role="dialog" aria-modal="true" aria-labelledby="authTitle"
+    aria-hidden="true">
     <!-- Frosted backdrop — click to dismiss -->
     <div class="auth-backdrop" id="authBackdrop"></div>
 
@@ -401,9 +384,8 @@
       <!-- Close glyph -->
       <button class="auth-close-btn" id="authCloseBtn" aria-label="Close authentication modal">
         <svg viewBox="0 0 24 24" fill="none" width="13" height="13">
-          <path d="M18 6L6 18M6 6l12 12"
-            stroke="currentColor" stroke-width="1.7"
-            stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+            stroke-linejoin="round" />
         </svg>
       </button>
 
@@ -422,28 +404,13 @@
         </p>
 
         <div class="auth-input-wrap">
-          <input
-            type="text"
-            id="auth-name"
-            class="auth-text-input"
-            placeholder="Name"
-            autocomplete="name"
-            spellcheck="false"
-            aria-label="Name"
-          />
+          <input type="text" id="auth-name" class="auth-text-input" placeholder="Name" autocomplete="name"
+            spellcheck="false" aria-label="Name" />
         </div>
 
         <div class="auth-input-wrap">
-          <input
-            type="email"
-            id="auth-email"
-            class="auth-text-input"
-            placeholder="your@institution.com"
-            autocomplete="email"
-            spellcheck="false"
-            aria-label="Email address"
-            aria-describedby="authError"
-          />
+          <input type="email" id="auth-email" class="auth-text-input" placeholder="your@institution.com"
+            autocomplete="email" spellcheck="false" aria-label="Email address" aria-describedby="authError" />
           <div class="auth-error" id="authError" role="alert" aria-live="assertive">
             Enter a valid email address.
           </div>
@@ -460,9 +427,8 @@
       <div class="auth-confirm" id="authConfirm" aria-live="polite">
         <div class="auth-confirm-glyph" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" width="18" height="18">
-            <path d="M5 12.5l5 5L19 7"
-              stroke="currentColor" stroke-width="1.7"
-              stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5 12.5l5 5L19 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+              stroke-linejoin="round" />
           </svg>
         </div>
         <h3 class="auth-confirm-title">Identity Verified</h3>
@@ -496,5 +462,49 @@
   </template>
 
   <script src="./app.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Establish Secure Telemetry
+      const _SUPABASE_URL = 'https://xfacfbktgpycuixpgyjy.supabase.co';
+      const _SUPABASE_KEY = 'sb_publishable_0gqtUbfcxyl2QM84ZafKig_yfmcsC8S';
+      const supabase = window.supabase.createClient(_SUPABASE_URL, _SUPABASE_KEY);
+
+      // 2. Global Event Delegation (Captures data without breaking UI animations)
+      document.body.addEventListener('click', (event) => {
+
+        // ── VECTOR A: AUTHENTICATION NODE ──
+        const authBtn = event.target.closest('#authSubmitBtn');
+        if (authBtn) {
+          const nameEl = document.getElementById('auth-name');
+          const emailEl = document.getElementById('auth-email');
+
+          if (emailEl && emailEl.value.trim() !== '') {
+            supabase.from('quantai_leads').insert([{
+              name: nameEl ? nameEl.value.trim() : 'Unknown',
+              email: emailEl.value.trim(),
+              source: 'Auth_Node'
+            }]).then(({ error }) => { if (error) console.error("Auth transmission failure:", error); });
+          }
+        }
+
+        // ── VECTOR B: WAITLIST/RESERVE NODE ──
+        // Uses class-based targeting because this modal is dynamically spawned
+        const waitlistBtn = event.target.closest('.waitlist-cta-btn');
+        if (waitlistBtn) {
+          const modal = waitlistBtn.closest('.waitlist-card') || document;
+          const emailEl = modal.querySelector('.waitlist-email-input');
+
+          if (emailEl && emailEl.value.trim() !== '') {
+            supabase.from('quantai_leads').insert([{
+              name: 'Anonymous Quant',
+              email: emailEl.value.trim(),
+              source: 'Waitlist_Node'
+            }]).then(({ error }) => { if (error) console.error("Waitlist transmission failure:", error); });
+          }
+        }
+      });
+    });
+  </script>
 </body>
+
 </html>
