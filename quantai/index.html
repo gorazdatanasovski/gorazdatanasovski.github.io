@@ -5,6 +5,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 
+  <!-- ══════════════════════════════════════════════════════════════
+       CONTENT SECURITY POLICY — Supabase + QuantAI
+       unsafe-eval is required by the Supabase JS client for its
+       internal crypto/codec operations. If your host sends a
+       server-level CSP header, you must also add unsafe-eval there
+       (Netlify: _headers / netlify.toml · Vercel: vercel.json).
+  ══════════════════════════════════════════════════════════════ -->
   <meta http-equiv="Content-Security-Policy" content="
       default-src 'self' https:;
       script-src 'self' 'unsafe-eval'
@@ -27,6 +34,7 @@
 
   <title>QuantAI</title>
 
+  <!-- ── Typographic Soul ── Cormorant Garamond × Montserrat ── -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -112,20 +120,32 @@
   </aside>
 
   <header class="topbar">
+    <!-- ══════════════════════════════════════════════════════════
+         BRAND ANCHOR — Pure CSS Volumetric Earth + Metallic Type
+         Zero external image dependency. Institutional apex grade.
+    ══════════════════════════════════════════════════════════ -->
     <a class="brand" href="./" title="Refresh QuantAI">
 
+      <!-- Pure CSS 3D Earth icon — deep-pool indigo/purple spectrum -->
       <div class="brand-earth" aria-hidden="true">
+        <!-- Orbital intersection rings -->
         <div class="earth-orbit earth-orbit-1"></div>
         <div class="earth-orbit earth-orbit-2"></div>
+        <!-- Specular highlight — simulates ambient light on sphere surface -->
         <div class="earth-specular"></div>
+        <!-- Equatorial latitude seam -->
         <div class="earth-grid-h"></div>
+        <!-- Prime meridian seam -->
         <div class="earth-grid-v"></div>
+        <!-- Glowing network nodes — data-pool intercepts -->
         <div class="earth-node earth-node-1"></div>
         <div class="earth-node earth-node-2"></div>
         <div class="earth-node earth-node-3"></div>
+        <!-- Node connector line -->
         <div class="earth-connector"></div>
       </div>
 
+      <!-- Metallic extruded logotype -->
       <span class="brand-text">QuantAI</span>
     </a>
 
@@ -226,6 +246,7 @@
 
   <div class="toast" id="toast"></div>
 
+  <!-- ── Original Publication Notice Modal (preserved) ── -->
   <div class="launch-overlay hidden" id="launchOverlay" aria-hidden="true">
     <div class="launch-backdrop"></div>
     <div class="launch-modal" role="dialog" aria-modal="true" aria-labelledby="launchTitle">
@@ -237,6 +258,9 @@
     </div>
   </div>
 
+  <!-- ══════════════════════════════════════════════════════════════
+       PRICING MODAL — GLASSMORPHIC QUARTZ EDITION
+  ══════════════════════════════════════════════════════════════ -->
   <div class="pricing-overlay hidden" id="pricingOverlay" role="dialog" aria-modal="true" aria-labelledby="pricingTitle"
     aria-hidden="true">
     <div class="pricing-backdrop" id="pricingBackdrop"></div>
@@ -252,13 +276,14 @@
         </button>
 
         <header class="pricing-header">
-          <div class="pricing-eyebrow">Atanasovski Quant &middot; Architecture</div>
-          <h2 class="pricing-title" id="pricingTitle">Select Compute Node</h2>
-          <p class="pricing-subtitle">Three research protocols. One asymmetric advantage. Academic use only.</p>
+          <div class="pricing-eyebrow">Atanasovski Quant &middot; Pricing</div>
+          <h2 class="pricing-title" id="pricingTitle">Select Your Edge</h2>
+          <p class="pricing-subtitle">Three tiers. One asymmetric advantage. Zero compromise.</p>
         </header>
 
         <div class="pricing-grid">
 
+          <!-- Card 1 · Free -->
           <article class="pricing-card card-free">
             <div class="card-crystal-edge" aria-hidden="true"></div>
             <div class="card-inner-shimmer" aria-hidden="true"></div>
@@ -267,8 +292,8 @@
             <h3 class="card-model-name">Quant 1.0</h3>
 
             <div class="card-price-block">
-              <span class="card-price-amount card-price-free">Open</span>
-              <span class="card-price-sub">access</span>
+              <span class="card-price-amount card-price-free">Free</span>
+              <span class="card-price-sub">forever</span>
             </div>
 
             <p class="card-description">
@@ -295,18 +320,20 @@
             </button>
           </article>
 
+          <!-- Card 2 · Pro -->
           <article class="pricing-card card-pro">
             <div class="card-crystal-edge" aria-hidden="true"></div>
             <div class="card-inner-shimmer" aria-hidden="true"></div>
             <div class="card-featured-aura" aria-hidden="true"></div>
 
             <div class="card-badge">Bloomberg-Trained Core</div>
-            <div class="card-tier-label">Academic Model</div>
+            <div class="card-tier-label">Pro Model</div>
             <h3 class="card-model-name">Quant Pro</h3>
 
             <div class="card-price-block">
-              <span class="card-price-amount">Internal</span>
-              <span class="card-price-period">network</span>
+              <span class="card-price-currency">$</span>
+              <span class="card-price-amount">99</span>
+              <span class="card-price-period">/month</span>
             </div>
 
             <p class="card-description">
@@ -325,10 +352,11 @@
             <div class="card-spacer"></div>
 
             <button class="card-cta-btn" type="button">
-              <span>Request Access</span>
+              <span>Begin Pro</span>
             </button>
           </article>
 
+          <!-- Card 3 · Ultra -->
           <article class="pricing-card card-ultra">
             <div class="card-crystal-edge" aria-hidden="true"></div>
             <div class="card-inner-shimmer" aria-hidden="true"></div>
@@ -338,8 +366,9 @@
             <h3 class="card-model-name">Quant Ultra</h3>
 
             <div class="card-price-block">
-              <span class="card-price-amount">Private</span>
-              <span class="card-price-period">cluster</span>
+              <span class="card-price-currency">$</span>
+              <span class="card-price-amount">299</span>
+              <span class="card-price-period">/month</span>
             </div>
 
             <p class="card-description">
@@ -359,26 +388,32 @@
             <div class="card-spacer"></div>
 
             <button class="card-cta-btn" type="button">
-              <span>Request Access</span>
+              <span>Acquire Ultra</span>
             </button>
           </article>
 
         </div>
 
         <footer class="pricing-footer">
-          <p>All architectures represent distinct academic research protocols. Institutional collaboration available upon request. No commercial intent.</p>
+          <p>All tiers include access to the QuantAI interface. Institutional licensing available upon request.</p>
         </footer>
 
       </div>
     </div>
   </div>
 
+  <!-- ══════════════════════════════════════════════════════════════
+       ACCOUNT AUTHENTICATION MODAL — BIFURCATED STATE MACHINE
+       Two views: Intake (unauthenticated) · Profile (authenticated)
+       Identity node. Glassmorphic quartz geometry.
+  ══════════════════════════════════════════════════════════════ -->
   <div class="auth-overlay hidden" id="authOverlay" role="dialog" aria-modal="true" aria-labelledby="authTitle"
     aria-hidden="true">
     <div class="auth-backdrop" id="authBackdrop"></div>
 
     <div class="auth-card" id="authCard">
 
+      <!-- Close glyph — shared by both views -->
       <button class="auth-close-btn" id="authCloseBtn" aria-label="Close authentication modal">
         <svg viewBox="0 0 24 24" fill="none" width="13" height="13">
           <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
@@ -386,6 +421,10 @@
         </svg>
       </button>
 
+      <!-- ════════════════════════════════════════════════════════
+           VIEW A: INTAKE — Name + Email intake form
+           Shown when authenticatedUser === null
+      ════════════════════════════════════════════════════════ -->
       <div class="auth-form-inner" id="authFormInner">
 
         <div class="auth-eyebrow">Atanasovski Quant &middot; Authentication</div>
@@ -418,6 +457,7 @@
 
       </div>
 
+      <!-- Confirmation flash — morphs in after successful intake submit -->
       <div class="auth-confirm" id="authConfirm" aria-live="polite">
         <div class="auth-confirm-glyph" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" width="18" height="18">
@@ -432,8 +472,13 @@
         </p>
       </div>
 
+      <!-- ════════════════════════════════════════════════════════
+           VIEW B: PROFILE — Read-only credential display
+           Shown when authenticatedUser !== null (re-open after auth)
+      ════════════════════════════════════════════════════════ -->
       <div class="auth-profile" id="authProfile" aria-hidden="true">
 
+        <!-- Avatar monogram + verification badge -->
         <div class="auth-profile-header">
           <div class="auth-profile-avatar" id="authProfileAvatar">Q</div>
           <div class="auth-profile-badge">
@@ -445,9 +490,11 @@
           </div>
         </div>
 
+        <!-- Locked credentials — read-only display -->
         <div class="auth-profile-name" id="authProfileName">—</div>
         <div class="auth-profile-email" id="authProfileEmail">—</div>
 
+        <!-- Session metadata row -->
         <div class="auth-profile-divider" aria-hidden="true"></div>
         <div class="auth-profile-meta">
           <span class="auth-profile-meta-label">Session</span>
@@ -455,6 +502,7 @@
           <span class="auth-profile-meta-value">Active &nbsp;·&nbsp; Institutional</span>
         </div>
 
+        <!-- Clear Session CTA — red slide-in on hover -->
         <button class="auth-profile-signout" id="authProfileSignout" type="button">
           <span>Clear Session</span>
         </button>
@@ -464,6 +512,7 @@
     </div>
   </div>
 
+  <!-- ── Message Templates (preserved) ── -->
   <template id="userMessageTemplate">
     <article class="message message-user">
       <div class="message-user-bubble"></div>
