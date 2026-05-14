@@ -2331,6 +2331,66 @@ Optimal execution routing is formulated as a rigorously proven solution to a sto
 </section>
 </div>
 </section>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // 1. Establish Secure Ingestion Coordinates
+    const _API_URL = '[https://xfacfbktgpycuixpgyjy.supabase.co/rest/v1/quantai_leads](https://xfacfbktgpycuixpgyjy.supabase.co/rest/v1/quantai_leads)';
+    const _API_KEY = 'sb_publishable_0gqtUbfcxyl2QM84ZafKig_yfmcsC8S'; 
+
+    // 2. High-Fidelity Transmission Engine
+    const transmitTelemetry = async (payload) => {
+      console.log(`[QuantAI Telemetry] Initiating ${payload.source} payload...`);
+      try {
+        const response = await fetch(_API_URL, {
+          method: 'POST',
+          headers: {
+            'apikey': _API_KEY,
+            'Authorization': `Bearer ${_API_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) throw new Error(`Transmission Fault: ${response.status}`);
+        console.log(`[QuantAI Telemetry] ${payload.source} successfully bound to database.`);
+      } catch (error) {
+        console.error("[QuantAI Telemetry] Critical Transmission Failure:", error);
+      }
+    };
+
+    // 3. Global Event Delegation
+    document.body.addEventListener('click', (event) => {
+      // VECTOR A: AUTHENTICATION NODE
+      const authBtn = event.target.closest('#authSubmitBtn');
+      if (authBtn) {
+        const nameEl = document.getElementById('auth-name');
+        const emailEl = document.getElementById('auth-email');
+        if (emailEl && emailEl.value.trim() !== '') {
+          transmitTelemetry({
+            name: nameEl ? nameEl.value.trim() : 'Unknown',
+            email: emailEl.value.trim(),
+            source: 'Auth_Node'
+          });
+        }
+      }
+
+      // VECTOR B: WAITLIST/RESERVE NODE
+      const waitlistBtn = event.target.closest('.waitlist-cta-btn');
+      if (waitlistBtn) {
+        const modal = waitlistBtn.closest('.waitlist-card') || document;
+        const emailEl = modal.querySelector('.waitlist-email-input');
+        if (emailEl && emailEl.value.trim() !== '') {
+          transmitTelemetry({
+            name: 'Anonymous Quant',
+            email: emailEl.value.trim(),
+            source: 'Waitlist_Node'
+          });
+        }
+      }
+    });
+  });
+</script>
 
 
 
