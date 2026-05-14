@@ -1587,75 +1587,12 @@ body.chat-started .site-note-top {
 }
 .card-pro,
 .card-ultra {
-  filter: blur(12px) brightness(0.35) grayscale(0.8);
+  filter: blur(6px) brightness(0.45) grayscale(0.6);
   pointer-events: none;
   user-select: none;
-  opacity: 0.55;
-  position: relative;
+  opacity: 0.7;
 }
 
-.card-pro::after,
-.card-ultra::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: rgba(8, 9, 14, 0.55);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  z-index: 100;
-  pointer-events: none;
-}
-
-.card-pro .card-price-amount,
-.card-pro .card-price-currency,
-.card-pro .card-price-period,
-.card-ultra .card-price-amount,
-.card-ultra .card-price-currency,
-.card-ultra .card-price-period {
-  filter: blur(8px);
-  user-select: none;
-}
-/* ── Tier equation display ── */
-.card-equation {
-  margin: 18px 0 0 0;
-  padding: 14px 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  text-align: center;
-  color: rgba(255, 255, 255, 0.28);
-  font-size: 0.72rem;
-  line-height: 1.6;
-  overflow-x: auto;
-  transition: color 0.32s ease;
-}
-
-.pricing-card:hover .card-equation {
-  color: rgba(255, 255, 255, 0.54);
-}
-
-.card-equation .katex {
-  font-size: 0.82rem;
-}
-
-/* ── Price blur on non-baseline tiers ── */
-.card-pro .card-price-amount,
-.card-pro .card-price-currency,
-.card-pro .card-price-period,
-.card-ultra .card-price-amount,
-.card-ultra .card-price-currency,
-.card-ultra .card-price-period {
-  filter: blur(9px);
-  user-select: none;
-  pointer-events: none;
-}
-
-/* ── Freeze CTA buttons on non-baseline tiers ── */
-.card-pro .card-cta-btn,
-.card-ultra .card-cta-btn {
-  pointer-events: none;
-  opacity: 0.38;
-  cursor: default;
-}
 .pricing-card:nth-child(1) {
   animation-delay: 0.13s;
 }
