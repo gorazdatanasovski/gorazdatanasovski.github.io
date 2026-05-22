@@ -1587,10 +1587,8 @@ body.chat-started .site-note-top {
 }
 .card-pro,
 .card-ultra {
-  filter: blur(6px) brightness(0.45) grayscale(0.6);
   pointer-events: none;
   user-select: none;
-  opacity: 0.7;
 }
 
 .pricing-card:nth-child(1) {
